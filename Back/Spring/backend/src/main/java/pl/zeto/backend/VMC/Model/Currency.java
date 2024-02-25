@@ -1,9 +1,6 @@
 package pl.zeto.backend.VMC.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,20 +15,16 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String code; // Kod waluty, np. "USD"
-    private String name; // Nazwa waluty, np. "dolar amerykański"
-    private Double exchangeRate; // Kurs wymiany względem waluty bazowej, np. PLN
+    private String code;
+    private String name;
+    private Double rate;
 
-    // Konstruktory, gettery i settery
     public Currency() {
     }
 
-    public Currency(String code, String name, Double exchangeRate) {
+    public Currency(String code, String name, Double rate) {
         this.code = code;
         this.name = name;
-        this.exchangeRate = exchangeRate;
+        this.rate = rate;
     }
-
-    // Gettery i settery
-
 }

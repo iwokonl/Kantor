@@ -1,18 +1,13 @@
 package pl.zeto.backend.VMC.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import java.util.List;
-
-@Data
 public class CurrencyResponse {
-    private String currency;
-    private List<Rate> rates;
+    private Double mid;
 
-    @Getter
-    @Setter
-    public static class Rate {
-        private Double mid;
+    public Double getMid() {
+        return mid;
+    }
+
+    public void setMid(Double mid) {
+        this.mid = mid;
     }
 }
