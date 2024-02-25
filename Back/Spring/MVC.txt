@@ -1,0 +1,15 @@
+src/
+|-- main/
+|   |-- java/
+|   |   |-- com/
+|   |       |-- twojaplikacja/
+|   |           |-- controller/  - katalog dla kontrolerów
+|   |           |-- model/       - katalog dla modeli
+|   |           |-- repository/  - katalog dla repozytoriów (Spring Data)
+|   |           |-- service/     - katalog dla serwisów/logiki biznesowej
+|   |           |-- config/      - katalog dla klas konfiguracyjnych
+|   |-- resources/
+|       |-- static/              - katalog dla statycznych zasobów webowych (CSS, JS, obrazy)
+|       |-- templates/           - katalog dla szablonów widoków (Thymeleaf, Freemarker itd.)
+|       |-- application.properties - plik konfiguracyjny aplikacji
+|-- test/  
