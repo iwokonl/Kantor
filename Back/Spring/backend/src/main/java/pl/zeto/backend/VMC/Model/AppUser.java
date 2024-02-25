@@ -1,4 +1,4 @@
-package pl.zeto.backend.VMC.Model;
+package pl.zeto.backend.VMC.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
