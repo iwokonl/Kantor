@@ -1,0 +1,1 @@
+Łączenie branchy: rebase
