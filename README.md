@@ -1,6 +1,5 @@
-# Project Title
-
-A brief introduction to your project. Describe what your application does in one or two sentences.
+# Currency Exchange Service
+This Spring Boot application provides a robust solution for fetching and storing currency exchange rates from the National Bank of Poland (NBP) API. Designed with modern software development practices in mind, it utilizes a Model-View-Controller (MVC) architecture to ensure clean separation of concerns and enhance maintainability.
 
 ## Description
 
@@ -29,11 +28,11 @@ This section provides a step-by-step guide on how to get a development environme
 
 Before installing, ensure you have the following software installed on your machine:
 
-- Node.js (Version: specify_version)
-- JDK (Version: specify_version for Spring Boot)
-- Apache Kafka (Version: specify_version)
-- PostgreSQL (Version: specify_version)
-
+- Node.js 20.10.0
+- JDK 17
+- Apache Kafka 3.6.1
+- PostgreSQL 16.2
+- Spring boot 3.2.3
 ### Installing
 
 Follow these steps to set up your development environment:
