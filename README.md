@@ -33,6 +33,8 @@ Before installing, ensure you have the following software installed on your mach
 - Apache Kafka 3.6.1
 - PostgreSQL 16.2
 - Spring boot 3.2.3
+- Angular 17.2.1
+
 ### Installing
 
 Follow these steps to set up your development environment:
