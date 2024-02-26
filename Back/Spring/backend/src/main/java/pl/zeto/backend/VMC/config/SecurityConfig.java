@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-// Wyłączenie logowania i autentykacji
+    // Wyłączenie logowania i autentykacji
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
