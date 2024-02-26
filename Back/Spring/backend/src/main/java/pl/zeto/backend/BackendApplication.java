@@ -12,7 +12,7 @@ public class BackendApplication {
 
     @GetMapping("/message")
     public String getMessage(){
-        return "ass";
+        return "test message";
     }
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);

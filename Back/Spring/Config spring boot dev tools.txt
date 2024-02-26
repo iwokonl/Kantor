@@ -1,0 +1,5 @@
+Naciśnij ctrl + alt + s
+Przejdź do Build, execution etc.
+Zaznacz opcje "Build project autmatically"
+Przejdź do Advanced Settings 
+Zaznacz "Allow auto-make to start even if developed application is currently running"
