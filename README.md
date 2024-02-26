@@ -34,6 +34,7 @@ Before installing, ensure you have the following software installed on your mach
 - PostgreSQL 16.2
 - Spring boot 3.2.3
 - Angular 17.2.1
+- Java 20.0.2
 
 ### Installing
 
