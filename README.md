@@ -3,7 +3,9 @@ This Spring Boot application provides a robust solution for fetching and storing
 
 ## Description
 
-Provide a more detailed explanation of your project here. Highlight the problem your application aims to solve, its key features, and its overall architecture. Mention the technologies used, such as Angular TypeScript for the frontend, Spring Boot for the backend with a microservices approach, and the integration of Kafka for message brokering and PostgreSQL for data persistence.
+
+----Uzupełnić
+
 
 ## Table of Contents
 
@@ -22,10 +24,12 @@ Provide a more detailed explanation of your project here. Highlight the problem 
 
 ## Installation
 
+----Uzupełnić
 This section provides a step-by-step guide on how to get a development environment running.
 
 ### Prerequisites
 
+----Uzupełnić
 Before installing, ensure you have the following software installed on your machine:
 
 - Node.js 20.10.0
@@ -38,11 +42,12 @@ Before installing, ensure you have the following software installed on your mach
 
 ### Installing
 
+----Uzupełnić
 Follow these steps to set up your development environment:
 
 ```bash
 # Clone the project repository
-git clone https://yourproject.github.io
+git clone https://github.com/iwokonl/Zeto.git
 cd yourproject
 
 # Set up the Angular frontend
