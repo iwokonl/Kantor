@@ -9,18 +9,18 @@ This Spring Boot application provides a robust solution for fetching and storing
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-- [Prerequisites](#prerequisites)
-- [Installing](#installing)
-- [Running the Application](#running-the-application)
-- [Usage](#usage)
-- [API Reference](#api-reference)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Authors](#authors)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+- [Installation](#installation) ----Uzupełnić
+- [Getting Started](#getting-started) ----Uzupełnić
+- [Prerequisites](#prerequisites) ----Uzupełnić
+- [Installing](#installing) ----Uzupełnić
+- [Running the Application](#running-the-application) ----Uzupełnić
+- [Usage](#usage) ----Uzupełnić
+- [API Reference](#api-reference) ----Uzupełnić
+- [Contributing](#contributing) ----Uzupełnić
+- [Versioning](#versioning) ----Uzupełnić
+- [Authors](#authors) ----Uzupełnić
+- [License](#license) ----Uzupełnić
+- [Acknowledgments](#acknowledgments) ----Uzupełnić
 
 ## Installation
 
