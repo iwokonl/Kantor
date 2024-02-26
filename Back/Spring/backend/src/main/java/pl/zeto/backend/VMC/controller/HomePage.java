@@ -8,6 +8,6 @@ public class HomePage {
 
     @GetMapping("/")
     public String home() {
-        return "Strona główna ";
+        return "Strona główna Kantoru Walutowego";
     }
 }
