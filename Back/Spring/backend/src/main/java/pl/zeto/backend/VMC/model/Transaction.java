@@ -18,9 +18,16 @@ import java.time.LocalDateTime;
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long transactionId;
-    private Long accountId; // Uproszczony przykład, w rzeczywistości użyj relacji @ManyToOne do Account
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser user;
+
     private BigDecimal amount;
-    private String transactionType;
-    private LocalDateTime timestamp;
+    private String currencyFrom;
+    private String currencyTo;
+    private LocalDateTime transactionDate;
+
+    // Konstruktor, gettery, settery
 }

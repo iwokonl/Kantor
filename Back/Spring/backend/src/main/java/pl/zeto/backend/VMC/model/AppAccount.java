@@ -17,8 +17,14 @@ import java.math.BigDecimal;
 public class AppAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long accountId;
-    private Long userId; // Uproszczony przykład, w rzeczywistości użyj relacji @ManyToOne do User
-    private String currency;
+    private Long id;
+
     private BigDecimal balance;
+
+    private String currency; // Dodajemy pole do przechowywania waluty konta
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private AppUser user;
+    // Konstruktor, gettery, settery
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,8 +18,17 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
+    private String role; // Pole przechowujące nazwę roli jako String
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<AppAccount> accounts;
+
+    // Usunięcie odniesienia do encji Role
+    // Konstruktor, gettery, settery pozostają niezmienione
 }

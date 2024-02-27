@@ -12,13 +12,13 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @PostMapping("/addTransaction")
-    public Transaction addTransaction(@RequestBody Transaction transaction) {
-        return transactionService.addTransaction(transaction);
+    @PostMapping("/addTransaction/{accountId}")
+    public Transaction addTransaction(@RequestBody Transaction transaction, @PathVariable Long accountId) {
+        return transactionService.addTransaction(transaction, accountId);
     }
+
     @GetMapping("/getTransaction/{id}")
-    public Transaction getTransaction(@PathVariable Long id) {
-        return transactionService.getTransaction(id);
+    public Transaction getTransaction(@PathVariable Long accountId) {
+        return transactionService.getTransaction(accountId);
     }
 }
-
