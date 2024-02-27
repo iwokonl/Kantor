@@ -12,8 +12,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/")
+    @PostMapping("/addUser")
     public AppUser addUser(@RequestBody AppUser user) {
         return userService.addUser(user);
+    }
+
+    @GetMapping("/getUser/{id}")
+    public AppUser getUser(@PathVariable Long id) {
+        return userService.getUser(id);
     }
 }

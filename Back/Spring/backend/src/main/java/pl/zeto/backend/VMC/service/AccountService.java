@@ -14,4 +14,8 @@ public class AccountService {
     public AppAccount addAccount(AppAccount account) {
         return accountRepository.save(account);
     }
+
+    public AppAccount getAccount(Long id) {
+        return accountRepository.findById(id).orElse(null);
+    }
 }
