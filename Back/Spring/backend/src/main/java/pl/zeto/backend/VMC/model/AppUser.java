@@ -24,7 +24,7 @@ public class AppUser {
     private String lastName;
     private String email;
     private String password;
-    private String role; // Pole przechowujące nazwę roli jako String
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<AppAccount> accounts;
