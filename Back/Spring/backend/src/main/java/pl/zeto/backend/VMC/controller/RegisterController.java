@@ -59,7 +59,7 @@ public class RegisterController {
         } catch (Exception e) {
             String errorMessage = "Użytkownik istnieje lub inny błąd rejestracji";
             redirectAttributes.addFlashAttribute("registrationError", errorMessage);
-            return "redirect:/register?error=true"; // Przekieruj z powrotem na stronę rejestracji z komunikatem o błędzie
+            return "redirect:/register"; // Przekieruj z powrotem na stronę rejestracji z komunikatem o błędzie
         }
     }
 

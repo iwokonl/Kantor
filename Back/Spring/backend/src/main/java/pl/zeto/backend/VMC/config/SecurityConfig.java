@@ -31,7 +31,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/", "/home","/register_success", "/register", "/process_register", "/register?error=userexists").permitAll() // Dostęp bez autoryzacji
+                        .requestMatchers("/", "/home","/register_success","redirect:/register_success","/redirect:register", "/register", "/process_register", "/register?error=userexists").permitAll() // Dostęp bez autoryzacji
                         .anyRequest().authenticated() // Wszystkie inne żądania wymagają autoryzacji
                 )
                 .formLogin(login -> login
