@@ -19,10 +19,11 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Role role;
-
+    @Column(unique = true)
     private String username;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
 

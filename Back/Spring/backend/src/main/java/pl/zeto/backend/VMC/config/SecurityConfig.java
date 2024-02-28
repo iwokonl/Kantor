@@ -40,7 +40,9 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/", true)
                 )
                 .logout(logout -> logout
-                        .permitAll() // Zezwala wszystkim na dostęp do wylogowania
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll()
                 );
         return http.build();
     }
