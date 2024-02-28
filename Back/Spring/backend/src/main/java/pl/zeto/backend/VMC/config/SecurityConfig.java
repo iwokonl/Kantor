@@ -38,7 +38,7 @@ public class SecurityConfig {
                         .loginPage("/login") // Określa stronę logowania
                         .permitAll()
                         .defaultSuccessUrl("/", true)
-
+                        .failureUrl("/login?error=true")
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
