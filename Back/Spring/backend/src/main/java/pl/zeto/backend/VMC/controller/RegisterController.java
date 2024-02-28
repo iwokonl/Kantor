@@ -33,6 +33,7 @@ public class RegisterController {
     private UserRepo userRepo;
     @Autowired
     private pl.zeto.backend.VMC.service.UserService userService;
+    @Autowired
     private AccountService accountService;
     // Zwraca widok HTML
     @GetMapping("/register")
@@ -48,13 +49,18 @@ public class RegisterController {
 
     // Przetwarza formularz rejestracji i zwraca stronę HTML
     @PostMapping("/process_register")
-    public String processRegister(AppUser user, RedirectAttributes redirectAttributes) {
+    public String processRegister(AppUser user, RedirectAttributes redirectAttributes, AppAccount account) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
             return "redirect:/"; // Podobnie przekieruj zalogowanych użytkowników
         }
         try {
+
             userService.addUser(user); // Próba dodania użytkownika
+            account.setUser(user);
+            account.setCurrency("PLN");
+            accountService.addAccount(account);
+             // Próba dodania konta użytkownika
             return "/register_success"; // Przekieruj na stronę sukcesu rejestracji
         } catch (Exception e) {
             String errorMessage = "Użytkownik istnieje lub inny błąd rejestracji";

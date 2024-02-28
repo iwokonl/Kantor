@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
@@ -36,7 +37,7 @@ public class UserService implements UserDetailsService {
 
     public AppUser addUser(AppUser user) {
 
-        user.setRole(Role.USER);
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
