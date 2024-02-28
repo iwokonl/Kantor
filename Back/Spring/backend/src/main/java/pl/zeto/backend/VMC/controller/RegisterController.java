@@ -53,7 +53,7 @@ public class RegisterController {
     @ResponseBody
     public ResponseEntity<Object> processRegisterApi(@RequestBody AppUser user) {
         user.setRole(Role.USER);
-        userRepo.save(user);
+        userService.addUser(user);
         return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
     }
 }
