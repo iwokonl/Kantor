@@ -50,6 +50,9 @@
     <div class="mt-3">
         Nie masz konta? <a href="/register">Zarejestruj się</a>
     </div>
+    <div th:if="${registrationError}" class="alert alert-danger">
+        <p th:text="${registrationError}"></p>
+    </div>
 
 </div>
 <footer class="mt-auto">

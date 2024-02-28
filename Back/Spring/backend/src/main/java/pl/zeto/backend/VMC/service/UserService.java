@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
     public AppUser addUser(AppUser user) {
-        // Tutaj można dodać logikę walidacji lub hashowania hasła
+
         user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);

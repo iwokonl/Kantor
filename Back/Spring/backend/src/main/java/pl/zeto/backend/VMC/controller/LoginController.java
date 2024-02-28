@@ -18,9 +18,11 @@ public class LoginController {
         if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
             return "redirect:/home"; // Przekieruj zalogowanych użytkowników na stronę główną
         }
+
         return "login"; // Pokaż stronę logowania dla niezalogowanych użytkowników
 
     }
+
     @GetMapping("/logout")
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -28,6 +30,7 @@ public class LoginController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             return "redirect:/login?logout";
         }
+
         return "redirect:/login"; // Przekieruj niezalogowanych użytkowników na stronę logowania
     }
 }

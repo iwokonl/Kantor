@@ -61,9 +61,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Zarejestruj się</button>
     </form>
-    <div th:if="${error}" class="alert alert-danger" role="alert">
-        <p th:text="${error}"></p>
+    <div th:if="${registrationError}" class="alert alert-danger">
+        <p th:text="${registrationError}"></p>
     </div>
+
 </div>
 <footer class="mt-auto">
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); flex-grow: 1;">
