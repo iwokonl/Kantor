@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.zeto.backend.VMC.exeption.UserAlreadyExistsException;
+import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
@@ -23,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import pl.zeto.backend.VMC.service.AccountService;
 
 @Controller
 public class RegisterController {
@@ -31,7 +33,7 @@ public class RegisterController {
     private UserRepo userRepo;
     @Autowired
     private pl.zeto.backend.VMC.service.UserService userService;
-
+    private AccountService accountService;
     // Zwraca widok HTML
     @GetMapping("/register")
     public String showSignUpForm(Model model) {
@@ -53,13 +55,14 @@ public class RegisterController {
         }
         try {
             userService.addUser(user); // Próba dodania użytkownika
-            return "redirect:/register_success"; // Przekieruj na stronę sukcesu rejestracji
+            return "/register_success"; // Przekieruj na stronę sukcesu rejestracji
         } catch (Exception e) {
             String errorMessage = "Użytkownik istnieje lub inny błąd rejestracji";
             redirectAttributes.addFlashAttribute("registrationError", errorMessage);
             return "redirect:/register?error=true"; // Przekieruj z powrotem na stronę rejestracji z komunikatem o błędzie
         }
     }
+
 
     // Endpoint API do obsługi rejestracji za pomocą JSON
     @PostMapping("/api/register")

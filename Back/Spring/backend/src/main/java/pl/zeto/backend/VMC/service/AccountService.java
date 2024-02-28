@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.repository.AccountRepo;
 
+import java.math.BigDecimal;
+
 @Service
 public class AccountService {
 
@@ -12,6 +14,7 @@ public class AccountService {
     private AccountRepo accountRepository;
 
     public AppAccount addAccount(AppAccount account) {
+        account.setBalance(new BigDecimal(0));
         return accountRepository.save(account);
     }
 
