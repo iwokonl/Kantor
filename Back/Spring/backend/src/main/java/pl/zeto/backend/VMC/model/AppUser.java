@@ -18,13 +18,14 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Role role;
 
     private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private Role role;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<AppAccount> accounts;

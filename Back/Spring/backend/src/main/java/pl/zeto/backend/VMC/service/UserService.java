@@ -5,8 +5,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.zeto.backend.VMC.model.AppUser;
+import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
 
 import java.util.ArrayList;
@@ -14,11 +16,24 @@ import java.util.ArrayList;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepo userRepository;
+    private final UserRepo userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserService(UserRepo userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    public void saveUser(AppUser user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
     public AppUser addUser(AppUser user) {
         // Tutaj można dodać logikę walidacji lub hashowania hasła
+        user.setRole(Role.USER);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

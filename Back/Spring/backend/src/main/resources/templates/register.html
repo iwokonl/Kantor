@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularz rejestracji</title>
+    <!-- Dodajemy Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Formularz rejestracji</h2>
+    <form th:action="@{/process_register}" method="post" th:object="${user}">
+        <div class="form-group">
+            <label for="firstName">Imię</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Wpisz imię" th:field="*{firstName}" required >
+        </div>
+        <div class="form-group">
+            <label for="lastName">Nazwisko</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Wpisz nazwisko" th:field="*{lastName}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Adres e-mail</label>
+            <input type="email" class="form-control" id="email" placeholder="Wpisz adres e-mail" th:field="*{email}" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Login</label>
+            <input type="text" class="form-control" id="username" placeholder="Wpisz login" th:field="*{username}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Hasło</label>
+            <input type="password" class="form-control" id="password" placeholder="Wpisz hasło" th:field="*{password}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+    </form>
+</div>
+
+<!-- Opcjonalnie: Dodajemy Bootstrap JS i zależności -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
