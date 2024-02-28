@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
 public class RegisterController {
@@ -24,6 +28,11 @@ public class RegisterController {
     // Zwraca widok HTML
     @GetMapping("/register")
     public String showSignUpForm(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            return "redirect:/"; // Podobnie przekieruj zalogowanych użytkowników
+        }
+
         model.addAttribute("user", new AppUser());
         return "register";
     }
@@ -31,7 +40,10 @@ public class RegisterController {
     // Przetwarza formularz rejestracji i zwraca stronę HTML
     @PostMapping("/process_register")
     public String processRegister(AppUser user) {
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getPrincipal().equals("anonymousUser")) {
+            return "redirect:/"; // Podobnie przekieruj zalogowanych użytkowników
+        }
         userService.addUser(user);
         return "register_success";
     }
