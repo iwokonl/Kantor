@@ -16,6 +16,14 @@
 
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Konto Walutowe
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" th:if="${not #lists.isEmpty(accounts)}">
+                    <a class="dropdown-item" th:each="account : ${accounts}" th:text="${account.name}" th:href="@{/selectAccount(accountId=${account.id})}"></a>
+                </div>
+            </li>
             <li class="nav-item"><a class="nav-link" href="#">Profil</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Ustawienia</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Wiadomości</a></li>

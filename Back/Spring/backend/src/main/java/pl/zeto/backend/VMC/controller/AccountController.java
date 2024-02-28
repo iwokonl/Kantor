@@ -1,6 +1,7 @@
 package pl.zeto.backend.VMC.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.service.AccountService;
@@ -21,4 +22,6 @@ public class AccountController {
     public AppAccount getAccount(@PathVariable Long id) {
         return accountService.getAccount(id);
     }
+
+
 }
