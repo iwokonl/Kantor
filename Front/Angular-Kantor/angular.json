@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular-Kantor": {
+    "angular-Kantor": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -32,12 +32,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -67,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Angular-Kantor:build:production"
+              "buildTarget": "angular-Kantor:build:production"
             },
             "development": {
-              "buildTarget": "Angular-Kantor:build:development"
+              "buildTarget": "angular-Kantor:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Angular-Kantor:build"
+            "buildTarget": "angular-Kantor:build"
           }
         },
         "test": {
@@ -102,8 +97,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
