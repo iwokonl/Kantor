@@ -15,6 +15,7 @@ public class AccountService {
 
     public AppAccount addAccount(AppAccount account) {
         account.setBalance(new BigDecimal(0));
+
         return accountRepository.save(account);
     }
 
