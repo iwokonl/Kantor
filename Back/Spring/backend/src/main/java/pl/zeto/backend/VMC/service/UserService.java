@@ -2,16 +2,9 @@ package pl.zeto.backend.VMC.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.zeto.backend.VMC.dto.CredentialsDto;
 import pl.zeto.backend.VMC.dto.SignUpDto;
 import pl.zeto.backend.VMC.dto.UserDto;
@@ -21,11 +14,8 @@ import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
-import pl.zeto.backend.VMC.repository.UsersRepo;
 
-import java.beans.Transient;
 import java.nio.CharBuffer;
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -34,7 +24,6 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepo userRepository;
-    private final UsersRepo usersRepos;
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final AccountService accountService;
@@ -50,19 +39,6 @@ public class UserService {
         }
         throw new AppExeption("Invalid password", HttpStatus.BAD_REQUEST);
     }
-
-
-    public AppUser addUser(AppUser user) {
-
-        user.setRole(Role.USER);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
-
-    public AppUser getUser(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
 
     public UserDto register(SignUpDto signUpDto) {
         Optional<AppUser> oUser = userRepository.findByUsername(signUpDto.username());

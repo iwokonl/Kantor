@@ -11,7 +11,7 @@ import pl.zeto.backend.VMC.model.Role;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class UserDto {
+public class UserDto { // Klasa przechowująca dane użytkownika
     private Long id;
     private Role role;
     private String username;

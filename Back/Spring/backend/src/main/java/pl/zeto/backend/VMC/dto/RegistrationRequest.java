@@ -5,12 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegistrationRequest {
+public class RegistrationRequest { // Klasa przechowująca dane rejestracji
     private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    // Getters and setters
 }

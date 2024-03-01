@@ -13,7 +13,7 @@ import pl.zeto.backend.VMC.exeption.AppExeption;
 public class RestExeptionHandler {
     @ExceptionHandler(AppExeption.class)
     @ResponseBody
-    public ResponseEntity<ErrorDto> handleAppExeption(AppExeption e) {
-        return ResponseEntity.status(e.getHttpStatus()).body(new ErrorDto(e.getMessage()));
+    public ResponseEntity<ErrorDto> handleAppExeption(AppExeption e) { // metoda obsługująca wyjątki
+        return ResponseEntity.status(e.getHttpStatus()).body(new ErrorDto(e.getMessage())); // zwracamy status błędu i wiadomość
     }
 }

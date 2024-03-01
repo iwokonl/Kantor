@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class PasswordEncoderConfig {
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() { // Twożymy beana który będzie odpowiedzialny za szyfrowanie hasła
         return new BCryptPasswordEncoder();
     }
 }

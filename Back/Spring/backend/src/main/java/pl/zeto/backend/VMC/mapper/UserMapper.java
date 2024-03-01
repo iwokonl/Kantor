@@ -12,7 +12,7 @@ import pl.zeto.backend.VMC.service.UserService;
 
 @Mapper(componentModel="spring", uses= UserService.class)
 @Component
-public interface UserMapper {
+public interface UserMapper { // Interfejs mapujący obiekty użytkownika na obiekty DTO
     UserDto toUserDto(AppUser appUser);
     @Mapping(target = "password", ignore = true)
     AppUser signUpToUserr(SignUpDto signUpDto);

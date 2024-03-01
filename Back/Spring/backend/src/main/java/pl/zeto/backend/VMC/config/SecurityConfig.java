@@ -16,12 +16,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(request ->
-                        request.requestMatchers(HttpMethod.POST, "/login", "/register").permitAll()
-                                .anyRequest().authenticated());
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception { // Konfiguracja zabezpieczeń
+        httpSecurity.csrf(AbstractHttpConfigurer::disable) // Ochrona CSRF wyłączona
+                .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Wyłączenie zarządzania sesją
+                .authorizeHttpRequests(request -> // Konfiguracja zabezpieczeń
+                        request.requestMatchers(HttpMethod.POST, "/login", "/register").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
+                                .anyRequest().authenticated()); // Wymaga autoryzacji dla pozostałych zapytań
         return httpSecurity.build();
     }
 }
