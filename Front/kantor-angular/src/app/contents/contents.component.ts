@@ -7,6 +7,7 @@ import {AxiosService} from "../axios.service";
   styleUrl: './contents.component.scss'
 })
 export class ContentsComponent {
+  componentToShow: string = "welcome";
 
   constructor(private axiosService: AxiosService) {
   }
@@ -19,7 +20,10 @@ export class ContentsComponent {
         password: input.password
       }
 
-    );
+    ).then((response) => {
+      this.axiosService.setAuthTocken(response.data.token);
+      this.componentToShow = "messages";
+    });
 
   }
 
@@ -36,7 +40,10 @@ export class ContentsComponent {
 
       }
 
-    );
+    ).then((response) => {
+      this.axiosService.setAuthTocken(response.data.token);
+      this.componentToShow = "messages";
+    });
 
   }
 }
