@@ -57,11 +57,4 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-m2
     
-    - name: Cache Node modules
-      uses: actions/cache@v2
-      with:
-        path: Front/kantor-angular/node_modules
-        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-npm
 
