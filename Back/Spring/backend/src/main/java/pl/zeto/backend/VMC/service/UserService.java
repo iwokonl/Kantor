@@ -46,9 +46,11 @@ public class UserService {
         if (oUser.isPresent()) {
             throw new AppExeption("User already exists", HttpStatus.BAD_REQUEST);
         }
-        AppUser user = userMapper.signUpToUserr(signUpDto);
+        AppUser user = userMapper.signUpToUser(signUpDto);
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
         user.setRole(Role.USER);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
+
         user.setUsername(signUpDto.username());
         AppUser savedUser = userRepository.save(user);
         AppAccount account = new AppAccount();
