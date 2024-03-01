@@ -10,6 +10,8 @@ import { WelcomeContentComponent } from './welcome-content/welcome-content.compo
 import { LoginFormComponent } from './login-form/login-form.component';
 import { ContentsComponent } from './contents/contents.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { ButtonsComponent } from './buttons/buttons.component';
+import { HomeComponentComponent } from './home-component/home-component.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     WelcomeContentComponent,
     LoginFormComponent,
     ContentsComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ButtonsComponent,
+    HomeComponentComponent
   ],
   imports: [
     BrowserModule,
