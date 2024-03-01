@@ -3,8 +3,11 @@ package pl.zeto.backend.VMC.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.zeto.backend.VMC.model.AppUser;
 
-public interface UserRepo extends JpaRepository<AppUser, Long> {
-    AppUser findByUsername(String username);
+import java.util.Optional;
 
-    boolean findByUsernameOrEmail(String username, String email);
+public interface UserRepo extends JpaRepository<AppUser, Long> {
+
+    Optional<AppUser> findByUsername(String username);
+
+    AppUser findByUsernameOrUsername(String username, String username2);
 }

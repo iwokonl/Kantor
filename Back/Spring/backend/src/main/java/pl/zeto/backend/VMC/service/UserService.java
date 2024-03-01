@@ -1,7 +1,10 @@
 package pl.zeto.backend.VMC.service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,31 +12,45 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.zeto.backend.VMC.dto.CredentialsDto;
+import pl.zeto.backend.VMC.dto.SignUpDto;
+import pl.zeto.backend.VMC.dto.UserDto;
+import pl.zeto.backend.VMC.exeption.AppExeption;
+import pl.zeto.backend.VMC.mapper.UserMapper;
 import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.model.Role;
 import pl.zeto.backend.VMC.repository.UserRepo;
+import pl.zeto.backend.VMC.repository.UsersRepo;
 
 import java.beans.Transient;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+@RequiredArgsConstructor
+public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepo userRepository;
+    private final UsersRepo usersRepos;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
+    private final AccountService accountService;
 
-    @Autowired
-    public UserService(UserRepo userRepository, BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public UserDto login(CredentialsDto credentialsDto){
+
+        AppUser user = userRepository.findByUsername(credentialsDto.username().toString())
+                .orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
+
+        if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), user.getPassword())) {
+            return userMapper.toUserDto(user);
+
+        }
+        throw new AppExeption("Invalid password", HttpStatus.BAD_REQUEST);
     }
 
-
-    public void saveUser(AppUser user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-    }
 
     public AppUser addUser(AppUser user) {
 
@@ -46,12 +63,22 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+
+    public UserDto register(SignUpDto signUpDto) {
+        Optional<AppUser> oUser = userRepository.findByUsername(signUpDto.username());
+
+        if (oUser.isPresent()) {
+            throw new AppExeption("User already exists", HttpStatus.BAD_REQUEST);
         }
-        return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
+        AppUser user = userMapper.signUpToUserr(signUpDto);
+        user.setRole(Role.USER);
+        user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
+        user.setUsername(signUpDto.username());
+        AppUser savedUser = userRepository.save(user);
+        AppAccount account = new AppAccount();
+        account.setUser(savedUser);
+        account.setCurrency("PLN");
+        accountService.addAccount(account);
+        return userMapper.toUserDto(savedUser);
     }
 }

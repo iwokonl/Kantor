@@ -15,11 +15,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/addAccount")
-    public String addAccount(Model model) {
-        model.addAttribute("account", new AppAccount());
-        return "adding new account";
-    }
+
 
     @GetMapping("/getAccount/{id}")
     public AppAccount getAccount(@PathVariable Long id) {

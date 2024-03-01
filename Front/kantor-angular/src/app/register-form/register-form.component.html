@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kantor Walut</title>
+  <title>Formularz rejestracji</title>
+  <!-- Dodajemy Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100" >
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Kantor Walut</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,40 +37,39 @@
 </nav>
 
 <div class="container mt-5">
-  <h1>Witaj w Kantorze Walut!</h1>
-  <p>Tutaj znajdziesz aktualne kursy walut.</p>
+  <h2>Formularz rejestracji</h2>
+  <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
+    <div class="form-group">
+      <label for="firstName">Imię</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Wpisz imię" [(ngModel)]="firstName" required >
+    </div>
+    <div class="form-group">
+      <label for="lastName">Nazwisko</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Wpisz nazwisko" [(ngModel)]="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Adres e-mail</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Wpisz adres e-mail" [(ngModel)]="email" required>
+    </div>
+    <div class="form-group">
+      <label for="username">Login</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder="Wpisz login" [(ngModel)]="login" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Hasło</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Wpisz hasło" [(ngModel)]="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Zarejestruj</button>
+  </form>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Waluta</th>
-      <th>Kurs Kupna</th>
-      <th>Kurs Sprzedaży</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>USD</td>
-      <td>3.75</td>
-      <td>3.85</td>
-    </tr>
-    <tr>
-      <td>EUR</td>
-      <td>4.45</td>
-      <td>4.55</td>
-    </tr>
-    <!-- Dodaj więcej kursów walut według potrzeb -->
-    </tbody>
-  </table>
+
 </div>
-
-
 <footer class="mt-auto">
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); flex-grow: 1;">
     © 2024 Kantor Walut, Wszelkie prawa zastrzeżone.
   </div>
 </footer>
-
+<!-- Opcjonalnie: Dodajemy Bootstrap JS i zależności -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
