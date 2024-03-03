@@ -6,9 +6,7 @@ import {RegisterFormComponent} from "./register-form/register-form.component";
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponentComponent },
-  { path: 'login', component: LoginFormComponent }, // Załóż, że LoginComponent istnieje
-  { path: 'register', component: RegisterFormComponent } // Załóż, że RegisterComponent istnieje
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
