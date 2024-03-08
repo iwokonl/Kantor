@@ -1,5 +1,5 @@
 # Wybierz obraz bazowy z odpowiednią wersją Javy; użyjemy Java 17
-FROM openjdk:17-jdk-alpine
+FROM openjdk:21-jdk-alpine
 
 # Ustaw zmienną środowiskową do przechowywania informacji o portach, na których nasłuchuje aplikacja
 ARG JAR_FILE=target/*.jar

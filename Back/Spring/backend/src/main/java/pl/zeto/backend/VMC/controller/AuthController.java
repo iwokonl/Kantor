@@ -8,7 +8,6 @@ import pl.zeto.backend.VMC.config.UserAuthProvider;
 import pl.zeto.backend.VMC.dto.CredentialsDto;
 import pl.zeto.backend.VMC.dto.SignUpDto;
 import pl.zeto.backend.VMC.dto.UserDto;
-import pl.zeto.backend.VMC.model.AppUser;
 import pl.zeto.backend.VMC.service.UserService;
 
 import java.net.URI;
