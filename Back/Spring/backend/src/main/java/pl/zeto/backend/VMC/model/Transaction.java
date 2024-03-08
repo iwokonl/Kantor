@@ -25,8 +25,12 @@ public class Transaction {
     private AppUser user;
 
     private BigDecimal amount;
-    private String currencyFrom;
-    private String currencyTo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "currency_from_account_id", referencedColumnName = "id")
+    private AppAccount currencyFromAccount;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "currency_to_account_id", referencedColumnName = "id")
+    private AppAccount currencyToAccount;
     private LocalDateTime transactionDate;
 
     // Konstruktor, gettery, settery
