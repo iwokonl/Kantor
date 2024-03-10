@@ -1,7 +1,8 @@
 .carousel-inner img {
-  width: 100%; /* Set width to 100% */
+  width: 100%;
   margin: auto;
-  min-height:200px;
+  min-height:100px;
+  max-height: 300px;
 }
 @media (max-width: 600px) {
   .carousel-caption {
@@ -9,28 +10,34 @@
     background-color: #001233;
   }
 }
-.main.box
+.main.box {
+  display: flex;
+}
 .left.graf {
   background-color: #001233;
   color: #CAC0B3;
-  float: left;
   width: 50%;
-  height: 100%;
+  height: 30vh;
+  border-bottom: 5px;
+  border-bottom-color: #FF595A;
   text-align: center;
 
 }
 .right.news{
+  display: grid;
   background-color: #001233;
   color: #CAC0B3;
-  float: right;
   width: 50%;
   text-align: center;
-  height: 100%;
+
+}
+
+.right.news info_1{
+  width: 100%;
+}
+.right.news info_2{
+  width: 100%;
 }
 // Trzeba dodać zdjęcie
 .carousel_img_1 {
-  width: 100%;
-  height: 400px;
 }
-
-
