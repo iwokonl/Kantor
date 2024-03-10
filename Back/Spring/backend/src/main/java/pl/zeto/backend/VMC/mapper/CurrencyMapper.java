@@ -14,7 +14,6 @@ import java.util.List;
 @Component
 public interface CurrencyMapper {
 
-    CurrencyDto toUserDto(SearchCurrencyDto searchCurrencyDto);
 
     List<CurrencyDto> toCurrencyDto(List<Currency> currencies);
 }
