@@ -1,0 +1,59 @@
+.header {
+  height: 100px;
+  background-color: #cccccc;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 15px;
+}
+
+.logo {
+  flex: 1;
+  /* Add styles for your logo */
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  //margin: auto 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: transparent;
+  color: #0069d9; //czego to kolor?
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 15px;
+}
+
+.search input {
+  background-color: transparentize(white, 0.2); //kolor tła
+  color: black; //kolor tekstu
+  padding: 8px 16px;
+  border-radius: 15px; // Add this line to make the input field rounded
+}
+
+.search:hover {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 8px 16px;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #333;
+}
