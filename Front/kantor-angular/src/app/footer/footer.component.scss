@@ -1,0 +1,27 @@
+footer {
+  background-color: #001233;
+  padding: 25px;
+  color: #CAC0B3;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+li {
+  list-style-type: none;
+  color: #CAC0B3;
+}
+a {
+  color: #CAC0B3;
+
+}
+a:hover {
+  color: #FF595A;
+  text-decoration: none;
+}
+

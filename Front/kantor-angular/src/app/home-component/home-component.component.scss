@@ -1,0 +1,36 @@
+.carousel-inner img {
+  width: 100%; /* Set width to 100% */
+  margin: auto;
+  min-height:200px;
+}
+@media (max-width: 600px) {
+  .carousel-caption {
+    display: none;
+    background-color: #001233;
+  }
+}
+.main.box
+.left.graf {
+  background-color: #001233;
+  color: #CAC0B3;
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+
+}
+.right.news{
+  background-color: #001233;
+  color: #CAC0B3;
+  float: right;
+  width: 50%;
+  text-align: center;
+  height: 100%;
+}
+// Trzeba dodać zdjęcie
+.carousel_img_1 {
+  width: 100%;
+  height: 400px;
+}
+
+
