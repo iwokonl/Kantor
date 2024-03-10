@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public interface CurrencyRepo extends JpaRepository<Currency, Long> {
 
-    Optional<List<Currency>> findByNameStartingWith(String query);
+    Optional<List<Currency>> findByCodeOrNameStartingWith(String code, String name);
     Optional<Currency> findByName(String name);
+    Optional<Currency> findByCode(String code);
 
 }
