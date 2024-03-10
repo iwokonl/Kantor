@@ -12,7 +12,9 @@ import pl.zeto.backend.VMC.exeption.AppExeption;
 import pl.zeto.backend.VMC.mapper.UserMapper;
 import pl.zeto.backend.VMC.model.AppAccount;
 import pl.zeto.backend.VMC.model.AppUser;
+import pl.zeto.backend.VMC.model.Currency;
 import pl.zeto.backend.VMC.model.Role;
+import pl.zeto.backend.VMC.repository.CurrencyRepo;
 import pl.zeto.backend.VMC.repository.UserRepo;
 
 import java.nio.CharBuffer;
@@ -27,6 +29,7 @@ public class UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
     private final AccountService accountService;
+    private final CurrencyRepo currencyRepository;
 
     public UserDto login(CredentialsDto credentialsDto){
 
@@ -55,7 +58,9 @@ public class UserService {
         AppUser savedUser = userRepository.save(user);
         AppAccount account = new AppAccount();
         account.setUser(savedUser);
-        account.setCurrency("PLN");
+        Currency currency = currencyRepository.findByName("PLN")
+                .orElseThrow(() -> new AppExeption("Currency not found", HttpStatus.NOT_FOUND));
+        account.setCurrency(currency);
         accountService.addAccount(account);
         return userMapper.toUserDto(savedUser);
     }
