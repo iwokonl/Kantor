@@ -20,7 +20,7 @@ public class AppAccount {
     private Long id;
 
     private BigDecimal balance;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Currency currency; // Dodajemy pole do przechowywania waluty konta
 
     @ManyToOne(fetch = FetchType.LAZY)

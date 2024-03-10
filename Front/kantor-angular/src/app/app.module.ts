@@ -12,7 +12,7 @@ import { ContentsComponent } from './contents/contents.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
-import { DfghfghfghComponent } from './dfghfghfgh/dfghfghfgh.component';
+
 
 @NgModule({
   declarations: [
@@ -24,8 +24,7 @@ import { DfghfghfghComponent } from './dfghfghfgh/dfghfghfgh.component';
     ContentsComponent,
     RegisterFormComponent,
     ButtonsComponent,
-    HomeComponentComponent,
-    DfghfghfghComponent
+    HomeComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -58,7 +58,7 @@ public class UserService {
         AppUser savedUser = userRepository.save(user);
         AppAccount account = new AppAccount();
         account.setUser(savedUser);
-        Currency currency = currencyRepository.findByName("PLN")
+        Currency currency = currencyRepository.findByCode("PLN")
                 .orElseThrow(() -> new AppExeption("Currency not found", HttpStatus.NOT_FOUND));
         account.setCurrency(currency);
         accountService.addAccount(account);
