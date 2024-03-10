@@ -20,8 +20,8 @@ public class AppAccount {
     private Long id;
 
     private BigDecimal balance;
-
-    private String currency; // Dodajemy pole do przechowywania waluty konta
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Currency currency; // Dodajemy pole do przechowywania waluty konta
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

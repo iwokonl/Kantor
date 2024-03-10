@@ -17,11 +17,15 @@ public class Currency {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
+
     @Column(nullable = false, length = 3)
     private String code; // Kod waluty, np. "USD"
 
     @Column(nullable = false)
     private String name; // Pełna nazwa waluty, np. "United States Dollar"
+
 
     public Currency(String code, String name) {
         this.code = code;
@@ -188,4 +192,5 @@ INSERT INTO currencies (id, code, name) VALUES
 (155, 'ZMK', 'kwacha zambijska'),
 (156, 'ZWL', 'dolar Zimbabwe');
      */
+
 }
