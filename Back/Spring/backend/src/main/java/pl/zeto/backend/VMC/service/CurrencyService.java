@@ -18,7 +18,7 @@ public class CurrencyService {
     private final CurrencyRepo  currencyRepository;
     private final CurrencyMapper currencyMapper;
     public List<CurrencyDto> findByName(String query) {
-        Optional<List<Currency>> results = currencyRepository.findByNameStartingWith(query);
+        Optional<List<Currency>> results = currencyRepository.findByCodeOrNameStartingWith(query.toUpperCase(), query.toLowerCase());
         if (results.isEmpty()) {
             throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
         }
