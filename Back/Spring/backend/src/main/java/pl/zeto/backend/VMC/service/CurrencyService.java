@@ -20,7 +20,7 @@ public class CurrencyService {
     private final CurrencyRepo  currencyRepository;
     private final CurrencyMapper currencyMapper;
     public List<CurrencyDto> findByName(SearchCurrencyDto query) {
-        Optional<List<Currency>> resultsNameOptional = currencyRepository.findByNameStartingWith(query.name().toLowerCase());
+        Optional<List<Currency>> resultsNameOptional = currencyRepository.findByNameContainingIgnoreCase(query.name().toLowerCase());
         Optional<List<Currency>> resultsCodeOptional = currencyRepository.findByCodeStartingWith(query.name().toUpperCase());
 
         Optional<List<Currency>> combinedOptional = resultsNameOptional.map(ArrayList::new) // Tworzy nową ArrayList na podstawie listy z resultsNameOptional
