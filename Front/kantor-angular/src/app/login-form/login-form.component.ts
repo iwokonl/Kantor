@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import {AxiosService} from "../axios.service";
 
 @Component({
   selector: 'app-login-form',
@@ -6,11 +7,23 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  @Output() onSubmitLoginEvent = new EventEmitter();
+  constructor(private axiosService: AxiosService) {
+  }
+
   login: string = '';
   password: string = '';
 
   onSubmitLogin() {
-    this.onSubmitLoginEvent.emit({"login": this.login, "password": this.password});
+    this.axiosService.request(
+      "POST",
+      "/login",
+      {
+        username: this.login,
+        password: this.password
+      }
+    ).then((response) => {
+      this.axiosService.setAuthTocken(response.data.token);
+
+    });
   }
 }
