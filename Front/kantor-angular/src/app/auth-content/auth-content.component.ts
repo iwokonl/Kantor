@@ -18,4 +18,11 @@ export class AuthContentComponent {
     });
   }
 
+  // ngOnInit() {
+  //   this.axiosService.request('POST', '/messages', {"name":"chi"})
+  //     .then((response) => {
+  //       this.data = response.data;
+  //     });
+  // }
+
 }

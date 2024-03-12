@@ -9,6 +9,7 @@ import pl.zeto.backend.VMC.dto.SearchCurrencyDto;
 import pl.zeto.backend.VMC.model.Currency;
 import pl.zeto.backend.VMC.service.CurrencyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,14 @@ public class CurrencyController {
         List<CurrencyDto> results = currencyService.findByName(query);
         return ResponseEntity.ok(results);
     }
-
+//    @PostMapping("/messages")
+//    public ResponseEntity<List<String>> searchCurrencies(@RequestBody SearchCurrencyDto query) {
+//        List<CurrencyDto> results = currencyService.findByName(query);
+//        List<String> rr = new ArrayList<>();
+//        for (CurrencyDto currencyDto : results) {
+//            rr.add(currencyDto.getName());
+//        }
+//        return ResponseEntity.ok(rr);
+//    }
 
 }

@@ -1,12 +1,17 @@
 package pl.zeto.backend.VMC.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.Arrays;
+import java.util.List;
+
+@RestController
 public class Test {
     @GetMapping("/test")
-    public String test() {
-        return "test";
+    public ResponseEntity<List<String>> test() {
+        return ResponseEntity.ok(Arrays.asList("Hello", "World"));
     }
 }
