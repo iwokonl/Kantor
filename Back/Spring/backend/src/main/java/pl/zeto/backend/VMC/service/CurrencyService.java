@@ -11,8 +11,10 @@ import pl.zeto.backend.VMC.model.Currency;
 import pl.zeto.backend.VMC.repository.CurrencyRepo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +39,11 @@ public class CurrencyService {
             throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
         }
 
-        return currencyMapper.toCurrencyDto(results);
+        List<Currency> sortedResults = results.stream()
+                .sorted(Comparator.comparing(Currency::getName))
+                .distinct()
+                .collect(Collectors.toList());
+        return currencyMapper.toCurrencyDto(sortedResults);
     }
 
 }
