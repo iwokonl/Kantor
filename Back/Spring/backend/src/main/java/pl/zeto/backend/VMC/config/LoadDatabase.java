@@ -13,7 +13,6 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(CurrencyRepo repository) {
         return args -> {
             if (repository.count() == 0) {
-                // Dodaj waluty do bazy danych
                 repository.save(new Currency("AED", "dirham arabski"));
                 repository.save(new Currency("AFN", "afgani"));
                 repository.save(new Currency("ALL", "lek albański"));
@@ -170,7 +169,6 @@ public class LoadDatabase {
                 repository.save(new Currency("ZAR", "rand południowoafrykański"));
                 repository.save(new Currency("ZMK", "kwacha zambijska"));
                 repository.save(new Currency("ZWL", "dolar Zimbabwe"));
-                // Dodaj więcej walut według potrzeb
             }
         };
     }
