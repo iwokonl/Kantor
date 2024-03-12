@@ -1,10 +1,9 @@
 package pl.zeto.backend.VMC.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "currencies")
@@ -32,8 +31,20 @@ public class Currency {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Currency currency = (Currency) o;
+        return Objects.equals(code, currency.code) && Objects.equals(name, currency.name);
+    }
 
-    /*
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name);
+    }
+
+/*
 INSERT INTO currencies (id, code, name) VALUES
 (1, 'AED', 'dirham arabski'),
 (2, 'AFN', 'afgani'),
