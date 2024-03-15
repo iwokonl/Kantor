@@ -18,8 +18,26 @@
 
     <div>
     <form class="form-inline my-2 my-lg-0">
+      <div>
       <input class="form-control mr-sm-2" [style.width.%]="searchExpanded ? 270 : 100" (focus)="expandSearch()" (blur)="collapseSearch($event)" (input)="onInput($event)" type="search" placeholder="Wyszukaj walutę" aria-label="Search" style="transition: width 0.4s ease;">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+      </div>
+      <div class="result-box">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>code</th>
+              <th>id</th>
+              <th>name</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </form>
     </div>
     <div class="navbar-nav">

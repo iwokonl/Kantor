@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {CurrencyPipe} from "@angular/common";
+import {CurrencyDto} from "../currency-search.service";
 
 @Component({
   selector: 'app-header',
@@ -24,3 +28,13 @@ export class HeaderComponent {
     console.log(value);
   }
 }
+
+ @Injectable()
+export class CurrencyService {
+  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost:4200'
+  getCurrency(searchValue: string): Observable<CurrencyDto[]> {
+    return this.http.get<CurrencyDto[]>( `http://localhost:4200/=${searchValue}`
+    );
+  }
+ }

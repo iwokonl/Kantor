@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AxiosService} from "../axios.service";
+import {CurrencyService} from "../header/header.component";
+import {CurrencyDto} from "../currency-search.service";
+import {FormBuilder} from "@angular/forms";
+
 
 @Component({
   selector: 'app-contents',
@@ -45,5 +49,24 @@ export class ContentsComponent {
       this.componentToShow = "messages";
     });
 
+  }
+}
+
+export class AppComponent implements OnInit {
+  searchValue = '';
+  currency: CurrencyDto[]=[];
+  searchForm = this.fb.nonNullable.group({
+    searchValue: '',
+  });
+  constructor(private currencyService: CurrencyService,
+              private fb: FormBuilder
+  ) {}
+  ngOnInit() {
+    this.fetchData();
+  }
+  fetchData(): void {
+    this.currencyService.getCurrency(this.searchValue).subscribe((currency) => {
+      this.currency=currency;
+    })
   }
 }
