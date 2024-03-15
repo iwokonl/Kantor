@@ -1,13 +1,13 @@
 package pl.zeto.backend.VMC.config;
 
 
-import org.springframework.http.ResponseEntity;
+        import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pl.zeto.backend.VMC.dto.ErrorDto;
-import pl.zeto.backend.VMC.exeption.AppExeption;
+        import org.springframework.web.bind.annotation.ControllerAdvice;
+        import org.springframework.web.bind.annotation.ExceptionHandler;
+        import org.springframework.web.bind.annotation.ResponseBody;
+        import pl.zeto.backend.VMC.dto.ErrorDto;
+        import pl.zeto.backend.VMC.exeption.AppExeption;
 
 @ControllerAdvice
 public class RestExeptionHandler {

@@ -2,13 +2,11 @@ package pl.zeto.backend.VMC.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zeto.backend.VMC.model.AppAccount;
+import pl.zeto.backend.VMC.model.ForeignCurrencyAccount;
 import pl.zeto.backend.VMC.model.Transaction;
 import pl.zeto.backend.VMC.repository.AccountRepo;
 import pl.zeto.backend.VMC.repository.TransactionRepo;
 
-import java.math.BigDecimal;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,9 +19,9 @@ public class TransactionService {
     private AccountRepo accountRepository;
 
     public Transaction addTransaction(Transaction transaction, Long accountId) {
-        Set<AppAccount> accounts = transaction.getUser().getAccounts(); // Odniesienie do wielu kont
+        Set<ForeignCurrencyAccount> accounts = transaction.getUser().getAccounts(); // Odniesienie do wielu kont
 
-        AppAccount account = accounts.stream()
+        ForeignCurrencyAccount account = accounts.stream()
                 .filter(acc -> acc.getId().equals(accountId))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Konto o ID " + accountId + " nie zostało znalezione."));

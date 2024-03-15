@@ -33,7 +33,7 @@ public class AppUser implements UserDetails {
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<AppAccount> accounts;
+    private Set<ForeignCurrencyAccount> accounts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
