@@ -6,6 +6,8 @@
   overflow: hidden;
   transition: width 300ms ease-out;
   position: relative;
+ // Ensure the container is positioned relatively for absolute positioning of children if needed
+  flex-grow: 1;
 }
 
 .search-input {
@@ -20,6 +22,8 @@
   right: 0;
   top: 0;
   height: 100%;
+  transform: translateY(2px) translateX(1px);
+
   display: flex;
   align-items: center;
   justify-content: center;

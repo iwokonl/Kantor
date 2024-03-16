@@ -1,0 +1,42 @@
+/* Custom Navbar Breakpoint */
+@media (max-width: 1870px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-collapse.collapsing {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-collapse.show {
+    display: block;
+  }
+}
+
+@media (min-width: 1871px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    display: block;
+  }
+
+  .navbar-expand-lg .navbar-toggler {
+    display: none;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+  }
+}
+
+
+
+
+
+
