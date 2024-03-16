@@ -17,13 +17,14 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         width: '1250px', // Zachowaj szerokość,
         height: '45px'
       })),
-      transition('collapsed <=> expanded', animate('300ms ease-out')),
+      transition('collapsed <=> expanded', animate('600ms ease-in-out')),
     ])
   ]
 })
 export class SearchBarComponent {
   state = 'collapsed';
   searchText: string = '';
+
 
   toggleSearchBar(): void {
     this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';

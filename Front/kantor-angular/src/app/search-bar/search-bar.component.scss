@@ -8,6 +8,7 @@
   position: relative;
  // Ensure the container is positioned relatively for absolute positioning of children if needed
   flex-grow: 1;
+
 }
 
 .search-input {
@@ -16,18 +17,20 @@
   outline: none;
   width: 100%;
   display: none;
+
 }
 .icon-container {
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
-  transform: translateY(2px) translateX(1px);
+  height: 100%; /* Adjusted to take full height of the parent container */
 
   display: flex;
   align-items: center;
+  transform: translateY(2px) translateX(1px);
   justify-content: center;
-  width: 45px; // Dostosuj szerokość do rozmiaru ikony
+  width: 45px; /* Adjust width as needed */
+  /* transform removed to allow the new width and height to define the size */
 }
 .search-input.expanded {
   display: block;
@@ -38,6 +41,7 @@ button {
   border: none;
   cursor: pointer;
   padding: 10px;
+  background-color: #007BFF;
 }
 
 .material-icons {
