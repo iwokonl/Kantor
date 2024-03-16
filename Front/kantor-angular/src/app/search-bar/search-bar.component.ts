@@ -14,7 +14,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       })),
       state('expanded', style({
         transform: 'translateX(0%)', // Element wraca do swojej początkowej pozycji
-        width: '1250px', // Zachowaj szerokość,
+        width: '1200px', // Zachowaj szerokość,
         height: '45px'
       })),
       transition('collapsed <=> expanded', animate('600ms ease-in-out')),
