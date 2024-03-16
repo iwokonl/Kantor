@@ -1,0 +1,41 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: width 300ms ease-out;
+  position: relative;
+}
+
+.search-input {
+  border: none;
+  padding: 10px;
+  outline: none;
+  width: 100%;
+  display: none;
+}
+.icon-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px; // Dostosuj szerokość do rozmiaru ikony
+}
+.search-input.expanded {
+  display: block;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.material-icons {
+  font-size: 24px;
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-header',
@@ -6,21 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  searchExpanded: boolean = false;
+  @Input() ngModel: string = '';
+  @Input() expandClasses: string = 'search-bar--expanded md-whiteframe-z2';
+  @Input() markedClasses: string = 'search-bar--marked';
 
-  expandSearch(): void {
-    this.searchExpanded = true;
-  }
 
-  collapseSearch(event: any): void {
-    if (!event.target.value.trim()) {
-      this.searchExpanded = false;
-    }
-  }
-
-  onInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
-    console.log(value);
-  }
 }
