@@ -12,7 +12,7 @@ export class AuthContentComponent {
 
   }
   ngOnInit() {
-    this.axiosService.request('GET', '/messages', {})
+    this.axiosService.request('GET', '/api/messages', {})
       .then((response) => {
       this.data = response.data;
     });

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "pl.zeto.backend")
+
 public class BackendApplication {
 
     public static void main(String[] args) {

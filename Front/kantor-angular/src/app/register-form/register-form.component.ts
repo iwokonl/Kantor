@@ -18,7 +18,7 @@ password: string = '';
 onSubmitRegister() {
   this.axiosService.request(
     "POST",
-    "/register",
+    "api/authorization/register",
     {
       firstName: this.firstName,
       lastName: this.lastName,

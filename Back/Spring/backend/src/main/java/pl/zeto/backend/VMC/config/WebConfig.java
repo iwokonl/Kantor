@@ -10,11 +10,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.filter.CorsFilter;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import java.util.Arrays;
 
 @EnableWebMvc
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public FilterRegistrationBean crosFilter() { // Rejestracja filtra zabezpieczeń CORS
@@ -39,5 +42,11 @@ public class WebConfig {
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source)); // Rejestruje filtr zabezpieczeń CORS
         bean.setOrder(-102); // Ustawia priorytet filtra na -102 (Aby wykonał się ostatni)
         return bean;
+    }
+
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.addPathPrefix("/api", c -> true);
     }
 }
