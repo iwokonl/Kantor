@@ -19,7 +19,7 @@ public class TransactionService {
 
     @Autowired
     private AccountRepo accountRepository;
-d
+
     public Transaction addTransaction(Transaction transaction, Long accountId) {
         Set<ForeignCurrencyAccount> accounts = transaction.getUser().getAccounts(); // Odniesienie do wielu kont
 
