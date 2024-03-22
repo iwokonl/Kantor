@@ -13,7 +13,5 @@ import java.util.List;
 @Mapper(componentModel="spring")
 @Component
 public interface CurrencyMapper {
-
-
     List<CurrencyDto> toCurrencyDto(List<Currency> currencies);
 }

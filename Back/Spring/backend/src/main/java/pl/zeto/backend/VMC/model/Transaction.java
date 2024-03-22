@@ -26,10 +26,10 @@ public class Transaction {
 
     private BigDecimal amount;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "currency_from_account_id", referencedColumnName = "id")
+    @JoinColumn(name = "currency_from_foreign_furrency_account_id", referencedColumnName = "id")
     private ForeignCurrencyAccount currencyFromAccount;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "currency_to_account_id", referencedColumnName = "id")
+    @JoinColumn(name = "currency_to_foreign_currency_account_id", referencedColumnName = "id")
     private ForeignCurrencyAccount currencyToAccount;
     private LocalDateTime transactionDate;
 
