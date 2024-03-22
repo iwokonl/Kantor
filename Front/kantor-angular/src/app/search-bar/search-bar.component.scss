@@ -6,9 +6,9 @@
   overflow: hidden;
   transition: width 300ms ease-out;
   position: relative;
- // Ensure the container is positioned relatively for absolute positioning of children if needed
+  // Ensure the container is positioned relatively for absolute positioning of children if needed
   flex-grow: 1;
-
+  width: 500px;
 }
 
 .search-input {
@@ -17,8 +17,8 @@
   outline: none;
   width: 100%;
   display: none;
-
 }
+
 .icon-container {
   position: absolute;
   right: 0;
@@ -32,6 +32,7 @@
   width: 45px; /* Adjust width as needed */
   /* transform removed to allow the new width and height to define the size */
 }
+
 .search-input.expanded {
   display: block;
 }

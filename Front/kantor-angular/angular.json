@@ -68,12 +68,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "kantor-angular:build",
+            "port": 4200
+          },
           "configurations": {
             "production": {
-              "buildTarget": "kantor-angular:build:production"
+              "browserTarget": "kantor-angular:build:production"
             },
             "development": {
-              "buildTarget": "kantor-angular:build:development"
+              "browserTarget": "kantor-angular:build:development"
             }
           },
           "defaultConfiguration": "development"

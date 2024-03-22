@@ -1,5 +1,70 @@
 /* Custom Navbar Breakpoint */
-@media (max-width: 1870px) {
+
+//@media (max-width: 1870px) {
+//  .navbar-expand-lg .navbar-nav .nav-link {
+//    display: none;
+//  }
+//
+//  .navbar-expand-lg .navbar-toggler {
+//    display: block;
+//  }
+//
+//  .navbar-expand-lg .navbar-collapse {
+//    display: none;
+//  }
+//
+//  .navbar-expand-lg .navbar-collapse.collapsing {
+//    display: none;
+//  }
+//
+//  .navbar-expand-lg .navbar-collapse.show {
+//    display: block;
+//  }
+//
+//}
+//
+//@media (min-width: 1871px) {
+//  .navbar-expand-lg .navbar-nav .nav-link {
+//    display: block;
+//  }
+//
+//  .navbar-expand-lg .navbar-toggler {
+//    display: none;
+//  }
+//
+//  .navbar-expand-lg .navbar-collapse {
+//    display: flex !important;
+//  }
+//
+//
+//}
+
+
+
+.nav-burger{  //domyślnie ukryty
+  display: none;
+  position: relative;
+
+}
+
+.nav-burger {
+  position: absolute;
+  top: 100%; // This positions the top edge of the element just below the bottom edge of its parent element (the navbar)
+  right: 0; // This aligns the left edge of the element with the left edge of its parent element
+  z-index: 1; // This ensures the dropdown appears on top of other elements
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.navbar-toggler{
+  margin-left: 10px;
+}
+
+
+
+/* Styles for Portrait orientation */
+@media (orientation: portrait) {
   .navbar-expand-lg .navbar-nav .nav-link {
     display: none;
   }
@@ -19,9 +84,14 @@
   .navbar-expand-lg .navbar-collapse.show {
     display: block;
   }
+
+  .navbar-expand-lg .navbar-nav {
+    flex-direction: column-reverse;
+  }
+
 }
 
-@media (min-width: 1871px) {
+@media (orientation: landscape) {
   .navbar-expand-lg .navbar-nav .nav-link {
     display: block;
   }
@@ -33,10 +103,22 @@
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
   }
+
+
 }
 
 
-
-
+//@media (max-width: 768px) {
+//  .body {
+//    display: block;
+//    width: 100%;
+//  }
+//}
+//
+//@media (min-width: 768px) {
+//  .body {
+//    display: inline-block;
+//  }
+//}
 
 
