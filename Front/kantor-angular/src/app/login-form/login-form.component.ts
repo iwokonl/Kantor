@@ -16,8 +16,7 @@ export class LoginFormComponent {
   onSubmitLogin() {
     this.axiosService.request(
       "POST",
-      "/login",
-      // "/API/users/login",
+      "/api/authorization/login",
       {
         username: this.login,
         password: this.password
