@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "pl.zeto.backend")
+@ComponentScan(basePackages = "pl.kantor.backend")
 
 public class BackendApplication {
 
