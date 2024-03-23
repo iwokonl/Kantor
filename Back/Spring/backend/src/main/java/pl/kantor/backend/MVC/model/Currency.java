@@ -1,5 +1,6 @@
 package pl.kantor.backend.MVC.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +12,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Currency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
