@@ -18,7 +18,11 @@ import pl.kantor.backend.MVC.repository.CurrencyRepo;
 import pl.kantor.backend.MVC.repository.UserRepo;
 
 import java.nio.CharBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -63,5 +67,24 @@ public class UserService {
         account.setCurrency(currency);
         foreignCurrencyAccountService.addAccount(account);
         return userMapper.toUserDto(savedUser);
+    }
+    public Map<String, String> jwtInfo(String token) {
+        Pattern pattern = Pattern.compile("UserDto\\(id=(.*?), role=(.*?), username=(.*?), firstName=(.*?), lastName=(.*?), email=(.*?), token=(.*?)\\)");
+        Matcher matcher = pattern.matcher(token);
+
+        if (matcher.find()) {
+            Map<String, String> jwtInfoMap = new HashMap<>();
+            jwtInfoMap.put("id", matcher.group(1));
+            jwtInfoMap.put("role", matcher.group(2));
+            jwtInfoMap.put("username", matcher.group(3));
+            jwtInfoMap.put("firstName", matcher.group(4));
+            jwtInfoMap.put("lastName", matcher.group(5));
+            jwtInfoMap.put("email", matcher.group(6));
+            jwtInfoMap.put("token", matcher.group(7));
+
+            return jwtInfoMap;
+        }
+
+        throw new AppExeption("Invalid token", HttpStatus.BAD_REQUEST);
     }
 }
