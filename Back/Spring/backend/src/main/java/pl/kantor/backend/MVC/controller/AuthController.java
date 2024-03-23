@@ -22,11 +22,11 @@ public class AuthController {
     private final UserAuthProvider userAuthProvider;
     private final UserService userService;
 
-    @GetMapping("/userinfo")
-    public String currentUserName() {
+    @PostMapping("/userinfo")
+    public ResponseEntity<String> currentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        return currentUserName;
+        return ResponseEntity.ok(currentUserName);
     }
 
     @PostMapping("/login")

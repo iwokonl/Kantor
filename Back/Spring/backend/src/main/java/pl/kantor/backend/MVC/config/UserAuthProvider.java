@@ -39,6 +39,7 @@ public class UserAuthProvider {
                 .withIssuer(dto.getUsername())
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
+                .withClaim("id", dto.getId())
                 .withClaim("firstName", dto.getFirstName())
                 .withClaim("lastName", dto.getLastName())
                 .sign(Algorithm.HMAC256(secretKey));
@@ -55,6 +56,7 @@ public class UserAuthProvider {
 
             UserDto user = UserDto.builder()
                     .username(decodedJWT.getIssuer())
+                    .id(decodedJWT.getClaim("id").asLong())
                     .firstName(decodedJWT.getClaim("firstName").asString())
                     .lastName(decodedJWT.getClaim("lastName").asString())
                     .build();
@@ -65,6 +67,9 @@ public class UserAuthProvider {
                 DecodedJWT decodedJWT = JWT.decode(token);
                 UserDto user = UserDto.builder()
                         .username(decodedJWT.getIssuer())
+                        .id(decodedJWT.getClaim("id").asLong())
+                        .firstName(decodedJWT.getClaim("firstName").asString())
+                        .lastName(decodedJWT.getClaim("lastName").asString())
                         .build();
                 String newToken = createToken(user);
                 return new UsernamePasswordAuthenticationToken(user, newToken, Collections.emptyList());
