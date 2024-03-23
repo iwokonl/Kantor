@@ -22,6 +22,9 @@ public class CurrencyService {
     private final CurrencyRepo  currencyRepository;
     private final CurrencyMapper currencyMapper;
     public List<CurrencyDto> findByName(SearchCurrencyDto query) {
+        if (query.name() == null || query.name().isEmpty()) {
+            return currencyMapper.toCurrencyDto(new ArrayList<>());
+        }
         Optional<List<Currency>> resultsNameOptional = currencyRepository.findByNameContainingIgnoreCase(query.name().toLowerCase());
         Optional<List<Currency>> resultsCodeOptional = currencyRepository.findByCodeStartingWith(query.name().toUpperCase());
 
