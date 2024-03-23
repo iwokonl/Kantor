@@ -15,6 +15,7 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 
 
@@ -30,7 +31,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ButtonsComponent,
     HomeComponentComponent,
     HeaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,8 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   searchInput = new Subject<string>();
   searchSubscription!: Subscription;
 
+  searchResults: any[] = [];
+
   constructor(private axiosService: AxiosService) {}
 
 // // //!TODO - wersja bez axios
@@ -50,6 +52,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     ).subscribe(searchText => {
       this.axiosService.request('POST', '/api/currency/search', { name: searchText })
         .then(response => {
+          this.searchResults = response.data;
           this.searchChange.emit(response.data);
         })
         .catch(error => {
