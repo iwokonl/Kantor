@@ -22,12 +22,19 @@ export class HeaderComponent {
     } else {
       this.navburger.nativeElement.style.display = "block";
     }
+
+
   }
 
 
   hideNavList(): void { //ukrywanie listy z burgera
     const navList = this.navburger.nativeElement.querySelector('.nav-burger');
     navList.style.display = 'none';
+  }
+
+  handleSearchChange(newSearchText: string): void {
+    // Handle the new search text here.
+    console.log(newSearchText);
   }
 }
 

@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { AxiosService } from '../axios.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -22,17 +25,53 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ])
   ]
 })
-export class SearchBarComponent {
+
+export class SearchBarComponent implements OnInit, OnDestroy {
   state = 'collapsed';
   searchText: string = '';
+  searchInput = new Subject<string>();
+  searchSubscription!: Subscription;
 
+  constructor(private axiosService: AxiosService) {}
+
+// //!TODO - wersja bez axios
+  ngOnInit(): void {
+    this.searchSubscription = this.searchInput.pipe(
+      debounceTime(500)
+    ).subscribe(searchText => {
+      this.searchChange.emit(searchText);
+    });
+  }
+
+// //!TODO - wersja z axios
+  // ngOnInit(): void {
+  //   this.searchSubscription = this.searchInput.pipe(
+  //     debounceTime(300)
+  //   ).subscribe(searchText => {
+  //     this.axiosService.request('POST', '/currency/search', { query: searchText })
+  //       .then(response => {
+  //         this.searchChange.emit(response.data);
+  //       })
+  //       .catch(error => {
+  //         console.error('Error searching currencies:', error);
+  //       });
+  //   });
+  // }
+
+
+  ngOnDestroy(): void {
+    this.searchSubscription.unsubscribe();
+  }
 
   toggleSearchBar(): void {
     this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';
   }
 
+  @Output() searchChange = new EventEmitter<string>();
+
   onInput(event: Event): void {
     this.searchText = (event.target as HTMLInputElement).value;
+    this.searchInput.next(this.searchText);
   }
 
   onBlur(): void {
