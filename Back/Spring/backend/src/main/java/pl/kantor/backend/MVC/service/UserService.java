@@ -81,7 +81,6 @@ public class UserService {
             jwtInfoMap.put("lastName", matcher.group(5));
             jwtInfoMap.put("email", matcher.group(6));
             jwtInfoMap.put("token", matcher.group(7));
-
             return jwtInfoMap;
         }
 

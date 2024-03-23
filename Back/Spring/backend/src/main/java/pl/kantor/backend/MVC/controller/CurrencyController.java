@@ -18,7 +18,7 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
 
-//TODO: Zapytać się czy robić w taki sposób @RequestBody SearchCurrencyDto query na zasadzie DTO(Zapytać się co to jest obiek domenowy) Zapytać się też kiedy używać DTO
+//TODO: Zapytać się czy robić w taki sposób @RequestBody SearchCurrencyDto query na zasadzie DTO(Zapytać się co to jest obiek domenowy) Zapytać się też kiedy używać DTO - Iwo
     @PostMapping("/search")
     public ResponseEntity<List<CurrencyDto>> searchCurrencies(@RequestBody SearchCurrencyDto query) {
         List<CurrencyDto> results = currencyService.findByName(query);

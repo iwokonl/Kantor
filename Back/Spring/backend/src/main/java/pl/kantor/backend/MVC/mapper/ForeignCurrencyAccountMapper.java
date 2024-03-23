@@ -11,6 +11,6 @@ import java.util.List;
 @Component
 public interface ForeignCurrencyAccountMapper {
 
-//    TODO: Zadać pytanie jak działa mapowanie w mapstruct
+//    TODO: Zadać pytanie jak działa mapowanie w mapstruct - Iwo
     List<ForeignCurrencyAccountDto> toForeignCurrencyAccountDto(List<ForeignCurrencyAccount> foreignCurrencyAccounts);
 }

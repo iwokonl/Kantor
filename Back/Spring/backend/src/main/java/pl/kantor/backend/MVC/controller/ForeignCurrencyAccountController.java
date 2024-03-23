@@ -17,7 +17,7 @@ import java.util.Map;
 public class ForeignCurrencyAccountController {
     private final ForeignCurrencyAccountService foreignCurrencyAccountService;
 
-    //TODO: Zapytać się czy robić w taki sposób @RequestBody Map<String, Long> payload) i co jest bardziej optymalne
+    //TODO: Zapytać się czy robić w taki sposób @RequestBody Map<String, Long> payload) i co jest bardziej optymalne - Iwo
     @PostMapping("/getCurrencyAccounts")
     public ResponseEntity<List<ForeignCurrencyAccountDto>> getCurrencyAccounts(@RequestBody Map<String, Long> payload) {
         Long userId = payload.get("userId");
