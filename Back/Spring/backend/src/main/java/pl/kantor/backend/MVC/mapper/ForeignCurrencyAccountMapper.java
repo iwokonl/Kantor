@@ -10,5 +10,7 @@ import java.util.List;
 @Mapper(componentModel="spring")
 @Component
 public interface ForeignCurrencyAccountMapper {
+
+//    TODO: Zadać pytanie jak działa mapowanie w mapstruct
     List<ForeignCurrencyAccountDto> toForeignCurrencyAccountDto(List<ForeignCurrencyAccount> foreignCurrencyAccounts);
 }
