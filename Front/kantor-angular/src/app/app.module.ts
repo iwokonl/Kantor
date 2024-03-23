@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -38,7 +39,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
