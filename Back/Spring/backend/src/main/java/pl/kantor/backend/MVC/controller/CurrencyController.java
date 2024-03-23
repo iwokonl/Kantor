@@ -18,6 +18,7 @@ public class CurrencyController {
     private final CurrencyService currencyService;
 
 
+
     @PostMapping("/search")
     public ResponseEntity<List<CurrencyDto>> searchCurrencies(@RequestBody SearchCurrencyDto query) {
         List<CurrencyDto> results = currencyService.findByName(query);

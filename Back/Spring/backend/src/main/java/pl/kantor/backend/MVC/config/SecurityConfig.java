@@ -28,4 +28,8 @@ public class SecurityConfig {
                                 .anyRequest().authenticated()); // Wymaga autoryzacji dla pozostałych zapytań
         return httpSecurity.build();
     }
+    //    @Override
+//    public void configurePathMatch(PathMatchConfigurer configurer) {
+//        configurer.addPathPrefix("/api", c -> true);
+//    }
 }
