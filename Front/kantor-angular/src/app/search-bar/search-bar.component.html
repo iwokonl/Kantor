@@ -8,9 +8,14 @@
          (blur)="onBlur()"
          [class.expanded]="state === 'expanded'"
          placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
+
   <div class="icon-container">
     <button (click)="toggleSearchBar()">
       <i class="material-icons">search</i>
     </button>
   </div>
+</div>
+
+<div class="results-container" *ngIf="searchResults.length > 0">
+  <app-search-results [results]="searchResults"></app-search-results>
 </div>

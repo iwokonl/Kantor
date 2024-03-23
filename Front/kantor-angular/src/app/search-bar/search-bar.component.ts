@@ -32,31 +32,34 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   searchInput = new Subject<string>();
   searchSubscription!: Subscription;
 
+  searchResults: any[] = [];
+
   constructor(private axiosService: AxiosService) {}
 
-// //!TODO - wersja bez axios
+// // //!TODO - wersja bez axios
+//   ngOnInit(): void {
+//     this.searchSubscription = this.searchInput.pipe(
+//       debounceTime(500)
+//     ).subscribe(searchText => {
+//       this.searchChange.emit(searchText);
+//     });
+//   }
+
+//!TODO - wersja z axios
   ngOnInit(): void {
     this.searchSubscription = this.searchInput.pipe(
       debounceTime(500)
     ).subscribe(searchText => {
-      this.searchChange.emit(searchText);
+      this.axiosService.request('POST', '/api/currency/search', { name: searchText })
+        .then(response => {
+          this.searchResults = response.data;
+          this.searchChange.emit(response.data);
+        })
+        .catch(error => {
+          console.error('Error searching currencies:', error);
+        });
     });
   }
-
-// //!TODO - wersja z axios
-  // ngOnInit(): void {
-  //   this.searchSubscription = this.searchInput.pipe(
-  //     debounceTime(300)
-  //   ).subscribe(searchText => {
-  //     this.axiosService.request('POST', '/currency/search', { query: searchText })
-  //       .then(response => {
-  //         this.searchChange.emit(response.data);
-  //       })
-  //       .catch(error => {
-  //         console.error('Error searching currencies:', error);
-  //       });
-  //   });
-  // }
 
 
   ngOnDestroy(): void {
