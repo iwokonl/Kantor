@@ -13,6 +13,7 @@ import pl.kantor.backend.MVC.dto.UserDto;
 import pl.kantor.backend.MVC.service.UserService;
 
 import java.net.URI;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,10 +24,11 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/userinfo")
-    public ResponseEntity<String> currentUserName() {
+    public ResponseEntity<Map<String,String>> currentUserName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
-        return ResponseEntity.ok(currentUserName);
+        Map<String,String> response = userService.jwtInfo(currentUserName);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
