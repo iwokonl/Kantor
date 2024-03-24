@@ -55,7 +55,6 @@ public class LoadDatabase {
                 repository.save(new Currency("KHR", "Riel kambodżański"));
                 repository.save(new Currency("ERN", "Nakfa"));
                 repository.save(new Currency("MXN", "Peso Meksykańskie"));
-                repository.save(new Currency("XSU", "Sucre"));
                 repository.save(new Currency("SDG", "Funt sudański"));
                 repository.save(new Currency("XOF", "CFA Frank BCEAO"));
                 repository.save(new Currency("BND", "Dolar Brunejski"));
@@ -99,7 +98,7 @@ public class LoadDatabase {
                 repository.save(new Currency("AFN", "Afgani"));
                 repository.save(new Currency("ARS", "Peso Argentyńskie"));
                 repository.save(new Currency("BHD", "Dinar bahrajński"));
-                repository.save(new Currency("BOV", "Mvdol"));
+
                 repository.save(new Currency("GIP", "Funt Gibraltarski"));
                 repository.save(new Currency("ALL", "Lek"));
                 repository.save(new Currency("MDL", "Lej mołdawski"));
