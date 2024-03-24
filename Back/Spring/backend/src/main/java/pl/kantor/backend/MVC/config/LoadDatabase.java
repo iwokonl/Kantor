@@ -13,7 +13,6 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(CurrencyRepo repository) {
         return args -> {
             if (repository.count() == 0) {
-                repository.save(new Currency("CLF", "Chilijska Unidad de Fomentos"));
                 repository.save(new Currency("ZAR", "Rand"));
                 repository.save(new Currency("NPR", "Rupia nepalska"));
                 repository.save(new Currency("LBP", "Funt Libański"));
@@ -25,21 +24,17 @@ public class LoadDatabase {
                 repository.save(new Currency("BRL", "Real Brazylijski"));
                 repository.save(new Currency("PKR", "Rupia pakistańska"));
                 repository.save(new Currency("LAK", "Kip"));
-                repository.save(new Currency("MXV", "Meksykańskie Unidad de Inversion"));
                 repository.save(new Currency("JPY", "Jen"));
                 repository.save(new Currency("PGK", "Kina"));
                 repository.save(new Currency("TZS", "Szyling tanzański"));
                 repository.save(new Currency("MOP", "Pataca"));
                 repository.save(new Currency("UGX", "Szyling ugandyjski"));
-                repository.save(new Currency("UYI", "Waluta Urugwaju w jednostkach indeksowanych"));
                 repository.save(new Currency("TJS", "Somoni"));
                 repository.save(new Currency("SLL", "Leone"));
                 repository.save(new Currency("RSD", "Dinar serbski"));
                 repository.save(new Currency("CLP", "Peso Chilijskie"));
-                repository.save(new Currency("CUP", "Peso Kubańskie"));
                 repository.save(new Currency("AED", "UAE Dirham"));
                 repository.save(new Currency("TMT", "Manat turkmeński"));
-                repository.save(new Currency("XUA", "Jednostka Rozliczeniowa ADB"));
                 repository.save(new Currency("EUR", "Euro"));
                 repository.save(new Currency("MNT", "Tugrik"));
                 repository.save(new Currency("MYR", "Ringgit"));
@@ -62,14 +57,12 @@ public class LoadDatabase {
                 repository.save(new Currency("MXN", "Peso Meksykańskie"));
                 repository.save(new Currency("XSU", "Sucre"));
                 repository.save(new Currency("SDG", "Funt sudański"));
-                repository.save(new Currency("CUC", "Peso Kubańskie Wymienialne"));
                 repository.save(new Currency("XOF", "CFA Frank BCEAO"));
                 repository.save(new Currency("BND", "Dolar Brunejski"));
                 repository.save(new Currency("SSP", "Funt południowosudański"));
                 repository.save(new Currency("USD", "Dolar amerykański"));
                 repository.save(new Currency("KPW", "Won północnokoreański"));
                 repository.save(new Currency("BSD", "Dolar Bahamski"));
-                repository.save(new Currency("CHE", "WIR Euro"));
                 repository.save(new Currency("BIF", "Frank Burundyjski"));
                 repository.save(new Currency("GEL", "Lari"));
                 repository.save(new Currency("MMK", "Kiat"));
@@ -112,13 +105,11 @@ public class LoadDatabase {
                 repository.save(new Currency("MDL", "Lej mołdawski"));
                 repository.save(new Currency("SCR", "Rupia seszelska"));
                 repository.save(new Currency("IDR", "Rupia"));
-                repository.save(new Currency("nan", "Brak uniwersalnej waluty"));
                 repository.save(new Currency("MKD", "Denar Macedoński"));
                 repository.save(new Currency("BOB", "Boliviano"));
                 repository.save(new Currency("SBD", "Dolar Wysp Salomona"));
                 repository.save(new Currency("VUV", "Vatu"));
                 repository.save(new Currency("QAR", "Rial katarski"));
-                repository.save(new Currency("XDR", "SDR (Specjalne Prawa Ciągnienia)"));
                 repository.save(new Currency("NIO", "Córdoba"));
                 repository.save(new Currency("TWD", "Dolar tajwański"));
                 repository.save(new Currency("GNF", "Frank gwinejski"));
@@ -164,7 +155,6 @@ public class LoadDatabase {
                 repository.save(new Currency("JMD", "Dolar Jamajski"));
                 repository.save(new Currency("BBD", "Dolar Barbadosu"));
                 repository.save(new Currency("SGD", "Dolar singapurski"));
-                repository.save(new Currency("CHW", "WIR Frank"));
                 repository.save(new Currency("STN", "Dobra"));
                 repository.save(new Currency("HKD", "Dolar hongkoński"));
                 repository.save(new Currency("KRW", "Won"));
@@ -179,7 +169,6 @@ public class LoadDatabase {
                 repository.save(new Currency("SRD", "Dolar surinamski"));
                 repository.save(new Currency("ZMW", "Kwacha zambijska"));
                 repository.save(new Currency("SHP", "Funt Świętej Heleny"));
-                repository.save(new Currency("COU", "Umowna Jednostka Walutowa"));
                 repository.save(new Currency("MAD", "Dirham marokański"));
             }
         };
