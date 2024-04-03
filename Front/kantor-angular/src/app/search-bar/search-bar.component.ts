@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy, HostListener } from '@angular/core';
+import {Component, Output, EventEmitter, OnInit, OnDestroy, HostListener, ElementRef} from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -35,7 +35,8 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   searchResults: any[] = [];
 
-  constructor(private axiosService: AxiosService) {}
+  constructor(private axiosService: AxiosService, private eRef: ElementRef) {}
+
 
   ngOnInit(): void {
     this.searchSubscription = this.searchInput.pipe(
@@ -72,6 +73,15 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   onBlur(): void {
     if (!this.searchText) {
       this.state = 'collapsed';
+    }
+  }
+
+  //Chowanie search bar i wyników po kliknięciu poza nim
+  @HostListener('document:click', ['$event'])
+  clickout(event: MouseEvent) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.state = 'collapsed';
+      this.isExpanded = !this.isExpanded;
     }
   }
 }

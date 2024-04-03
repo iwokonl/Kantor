@@ -185,19 +185,4 @@ export class SearchResultsComponent {
 
 
   };
-
-
-  // // Ukrywanie wyników po kliknięciu poza elementem - nie do końca działa
-
-  // @HostListener('document:click', ['$event'])
-  // clickout(event: MouseEvent) {
-  //   if (!this.eRef.nativeElement.contains(event.target)) {
-  //     this.results = [];
-  //   }
-  // }
-
-  // @HostListener('document:click', ['$event'])
-  // onDocumentClick(event: MouseEvent) { // Specify the type of 'event'
-  //   this.show = false;
-  // }
 }
