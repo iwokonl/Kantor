@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, HostListener, ElementRef} from '@angular/core';
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -7,6 +7,7 @@ interface CurrencyFlags {
 interface Result {
   code: keyof CurrencyFlags;
   name: string;
+  message?: string;
 }
 
 @Component({
@@ -14,9 +15,16 @@ interface Result {
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
+
 export class SearchResultsComponent {
   @Input() results: Result[] = [];
+  show: boolean = true;
+  constructor(private eRef: ElementRef) { }
 
+  ngOnInit(): void {
+  }
+
+  //TODO: Szukanie po nazwie kraju - dodać kolumnę kraj w bazie danych
   currencyFlags: CurrencyFlags = {
     'AED': '🇦🇪', // United Arab Emirates
     'AFN': '🇦🇫', // Afghanistan
@@ -178,8 +186,18 @@ export class SearchResultsComponent {
 
   };
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  // // Ukrywanie wyników po kliknięciu poza elementem - nie do końca działa
+
+  // @HostListener('document:click', ['$event'])
+  // clickout(event: MouseEvent) {
+  //   if (!this.eRef.nativeElement.contains(event.target)) {
+  //     this.results = [];
+  //   }
+  // }
+
+  // @HostListener('document:click', ['$event'])
+  // onDocumentClick(event: MouseEvent) { // Specify the type of 'event'
+  //   this.show = false;
+  // }
 }

@@ -4,7 +4,6 @@
   border: 1px solid #ccc;
   border-radius: 20px;
   overflow: hidden;
-  transition: width 300ms ease-out;
   position: relative;
   // Ensure the container is positioned relatively for absolute positioning of children if needed
   flex-grow: 1;
@@ -61,4 +60,9 @@ button {
   margin-top: 12px;
   padding-top: 7px;
   background-color: #f5f5f5;
+  font-size: 20px;
+  height: auto;
+  max-height: 40vh;
+  overflow-y: auto;
 }
+

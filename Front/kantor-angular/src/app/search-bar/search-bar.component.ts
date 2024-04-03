@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -28,6 +28,7 @@ import { AxiosService } from '../axios.service';
 
 export class SearchBarComponent implements OnInit, OnDestroy {
   state = 'collapsed';
+  isExpanded: boolean = false;
   searchText: string = '';
   searchInput = new Subject<string>();
   searchSubscription!: Subscription;
@@ -36,16 +37,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   constructor(private axiosService: AxiosService) {}
 
-// // //!TODO - wersja bez axios
-//   ngOnInit(): void {
-//     this.searchSubscription = this.searchInput.pipe(
-//       debounceTime(500)
-//     ).subscribe(searchText => {
-//       this.searchChange.emit(searchText);
-//     });
-//   }
-
-//!TODO - wersja z axios
   ngOnInit(): void {
     this.searchSubscription = this.searchInput.pipe(
       debounceTime(500)
@@ -68,6 +59,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   toggleSearchBar(): void {
     this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';
+    this.isExpanded = !this.isExpanded;
   }
 
   @Output() searchChange = new EventEmitter<string>();
@@ -83,3 +75,75 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+
+
+
+
+// import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+// import { trigger, state, style, transition, animate } from '@angular/animations';
+// import { Subject, Subscription } from 'rxjs';
+// import { debounceTime } from 'rxjs/operators';
+// import { AxiosService } from '../axios.service';
+//
+// @Component({
+//   selector: 'app-search-bar',
+//   templateUrl: './search-bar.component.html',
+//   styleUrls: ['./search-bar.component.scss'],
+//   animations: [
+//     trigger('expandCollapse', [
+//       state('collapsed', style({
+//         transform: 'translateX(0%)', // Element is fully shifted to the right
+//         width: '45px', // Assuming you want to keep a constant width
+//         height: '45px'
+//       })),
+//       state('expanded', style({
+//         transform: 'translateX(0%)', // Element returns to its initial position
+//         // width: '1200px', // Keep the width,
+//         width: '45vw',
+//         height: '45px'
+//       })),
+//       transition('collapsed <=> expanded', animate('600ms ease-in-out')),
+//     ])
+//   ]
+// })
+//
+// export class SearchBarComponent implements OnInit, OnDestroy {
+//   state = 'collapsed';
+//   searchText: string = '';
+//   searchInput = new Subject<string>();
+//   searchSubscription!: Subscription;
+//
+//   @Output() searchChange = new EventEmitter<SearchResult[]>();
+//   searchResults: SearchResult[] = [];
+//
+//   constructor(private axiosService: AxiosService) {}
+//
+//
+//
+//   ngOnDestroy(): void {
+//     this.searchSubscription.unsubscribe();
+//   }
+//
+//   toggleSearchBar(): void {
+//     this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';
+//   }
+//
+//   onInput(event: Event): void {
+//     this.searchText = (event.target as HTMLInputElement).value;
+//     this.searchInput.next(this.searchText);
+//   }
+//
+//   onBlur(): void {
+//     if (!this.searchText) {
+//       this.state = 'collapsed';
+//     }
+//   }
+// }
+//
+// interface SearchResult {
+//   id?: string;
+//   code?: string;
+//   name?: string;
+//   message?: string;
+// }
