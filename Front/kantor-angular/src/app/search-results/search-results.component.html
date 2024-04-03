@@ -1,29 +1,27 @@
-<!--&lt;!&ndash;Wersja z wyświetlaniem id waluty&ndash;&gt;-->
-<!--<ul>-->
-<!--  <li *ngFor="let result of results">-->
-<!--    {{ result.id }} - {{ result.code }} - {{ result.name }}-->
-<!--  </li>-->
-<!--</ul>-->
+<!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
+<!--  <ul>-->
+<!--    <li *ngFor="let result of results">-->
+<!--      {{ currencyFlags[result.code] }} - {{ result.code }} - {{ result.name }}-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+
 
 
 <div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">
   <ul>
     <li *ngFor="let result of results">
-      {{ currencyFlags[result.code] }} - {{ result.code }} - {{ result.name }}
+      <div class="row">
+        <div class="column">{{ currencyFlags[result.code] }}</div>
+        <div class="column">{{ result.code }}</div>
+        <div class="column">{{ result.name }}</div>
+      </div>
     </li>
   </ul>
 </div>
 
 
-<!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
-<!--  <ul>-->
-<!--    <li *ngIf="results.length === 0 || results[0]?.message === 'Currency not found'">{{ results[0]?.message }}</li>-->
-<!--    <ng-container *ngIf="results.length > 0 && results[0]?.message !== 'Currency not found'">-->
-<!--      <li *ngFor="let result of results">-->
-<!--        {{ currencyFlags[result.code] }} - {{ result.code }} - {{ result.name }}-->
-<!--      </li>-->
-<!--    </ng-container>-->
-<!--  </ul>-->
-<!--</div>-->
+
+
 
 

@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 
 
 
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponentComponent,
     HeaderComponent,
     SearchBarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    CurrencyAccountComponent
   ],
   imports: [
     BrowserModule,

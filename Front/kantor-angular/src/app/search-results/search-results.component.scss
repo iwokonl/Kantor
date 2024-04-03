@@ -27,3 +27,36 @@ select option {
   font-size: 20px !important;
   line-height: 30px !important;
 }
+
+
+
+.row {
+  display: flex;
+}
+
+.column:nth-child(1) {
+  width: 50px;
+  border-right: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column:nth-child(2) {
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #ccc;
+}
+
+.column:nth-child(3) {
+  width: 18vw;
+  display: flex;
+  justify-content: left;
+}
+
+#searchResults ul li {
+  list-style-type: none;  // Remove bullet points
+  overflow-x: hidden;
+}

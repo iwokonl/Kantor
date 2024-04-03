@@ -59,8 +59,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   toggleSearchBar(): void {
-    this.state = this.state === 'collapsed' ? 'expanded' : 'collapsed';
-    this.isExpanded = !this.isExpanded;
+    if (this.state === 'collapsed') {
+      this.state = 'expanded';
+      this.isExpanded = true;
+    }
   }
 
   @Output() searchChange = new EventEmitter<string>();
@@ -79,9 +81,9 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   //Chowanie search bar i wyników po kliknięciu poza nim
   @HostListener('document:click', ['$event'])
   clickout(event: MouseEvent) {
-    if (!this.eRef.nativeElement.contains(event.target)) {
+    if (!this.eRef.nativeElement.contains(event.target) && this.state === 'expanded') {
       this.state = 'collapsed';
-      this.isExpanded = !this.isExpanded;
+      this.isExpanded = false;
     }
   }
 }
