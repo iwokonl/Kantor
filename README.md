@@ -47,7 +47,7 @@ Follow these steps to set up your development environment:
 
 ```bash
 # Clone the project repository
-git clone https://github.com/iwokonl/Zeto.git
+git clone https://github.com/iwokonl/Kantor.git
 cd yourproject
 
 # Set up the Angular frontend
