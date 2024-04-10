@@ -4,8 +4,7 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,7 @@ import pl.kantor.backend.MVC.service.PaypalService;
 @RequestMapping("/payment")
 public class PaypalController {
 
-    private static final Logger log = LoggerFactory.getLogger(PaypalController.class);
+
     private final PaypalService paypalService;
 
     @PostMapping("/create")
