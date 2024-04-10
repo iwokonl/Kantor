@@ -40,4 +40,19 @@ export class AxiosService {
       headers: headers
     });
   }
+
+  requestWithOutData(method: string, url: string) {
+    let headers = {};
+
+    if (this.getAuthTocken() !== null) {
+      headers = {
+        'Authorization': 'Bearer ' + this.getAuthTocken()
+      };
+    }
+    return axios({
+      method: method,
+      url: url,
+      headers: headers
+    });
+  }
 }
