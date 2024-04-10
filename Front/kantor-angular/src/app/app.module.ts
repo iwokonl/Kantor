@@ -18,6 +18,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
+import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 
 
 
@@ -35,7 +36,8 @@ import { CurrencyAccountComponent } from './currency-account/currency-account.co
     HeaderComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    CurrencyAccountComponent
+    CurrencyAccountComponent,
+    CurrencyDetailComponent
   ],
   imports: [
     BrowserModule,

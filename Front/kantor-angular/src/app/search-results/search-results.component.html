@@ -8,20 +8,32 @@
 
 
 
+<!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
+<!--  <ul>-->
+<!--    <li *ngFor="let result of results">-->
+<!--      <div class="row">-->
+<!--        <div class="column">{{ currencyFlags[result.code] }}</div>-->
+<!--        <div class="column">{{ result.code }}</div>-->
+<!--        <div class="column">{{ result.name }}</div>-->
+<!--      </div>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+
+
+
 <div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">
   <ul>
     <li *ngFor="let result of results">
-      <div class="row">
-        <div class="column">{{ currencyFlags[result.code] }}</div>
-        <div class="column">{{ result.code }}</div>
-        <div class="column">{{ result.name }}</div>
-      </div>
+      <a [routerLink]="['/', result.code]">
+        <div class="row">
+          <div class="column">{{ currencyFlags[result.code] }}</div>
+          <div class="column">{{ result.code }}</div>
+          <div class="column">{{ result.name }}</div>
+        </div>
+      </a>
     </li>
   </ul>
 </div>
-
-
-
-
-
 

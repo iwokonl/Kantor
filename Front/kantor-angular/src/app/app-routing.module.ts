@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponentComponent} from "./home-component/home-component.component";
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
+import { CurrencyDetailComponent } from "./currency-detail/currency-detail.component";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponentComponent},
   {path: 'login', component: LoginFormComponent},
-  {path: 'register', component: RegisterFormComponent}
+  {path: 'register', component: RegisterFormComponent},
+  { path: ':code', component: CurrencyDetailComponent}
 ];
 @NgModule({
 
