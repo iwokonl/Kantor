@@ -78,11 +78,16 @@ public class PaypalController {
         } catch (PayPalRESTException e) {
             throw new AppExeption("Error occurred while processing payment", HttpStatus.EXPECTATION_FAILED);
         }
-        return new RedirectView("/error");
+        return new RedirectView("http://localhost:8082/api/payment/error");
     }
 
     @PostMapping("/cancel")
     public RedirectView cancelPayment() {
-        return new RedirectView("/cancel");
+        return new RedirectView("http://localhost:4200/payment/cancel");
+    }
+
+    @PostMapping("/error")
+    public RedirectView errorPayment() {
+        return new RedirectView("http://localhost:4200/payment/error");
     }
 }
