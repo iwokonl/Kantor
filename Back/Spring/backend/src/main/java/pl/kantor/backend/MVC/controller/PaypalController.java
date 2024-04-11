@@ -5,6 +5,7 @@ import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -44,8 +45,12 @@ public class PaypalController {
             String currentUserName = authentication.getName();
             Map<String,String> response = userService.jwtInfo(currentUserName);
             String userId = response.get("id");
+            String token = response.get("token");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Authorization", "Bearer " + token);
 //            TODO:Zapytać się czemu to działa z znakiem "?" a nie z "&" w linku jeśli w linku paypala jest "&"
-            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userId;
+            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userId + "&JWTtoken=" + token;
             Payment payment = paypalService.createPayment(
                     paymentPaypalDto.total(),
                     paymentPaypalDto.currency(),
@@ -55,9 +60,11 @@ public class PaypalController {
                     paymentPaypalDto.cancelUrl(),
                     successUrl
             );
+
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
-                    return ResponseEntity.ok(new RedirectView(links.getHref()));
+                    logger.info("Pasdasddasasd: " + new RedirectView(links.getHref()));
+                    return ResponseEntity.ok().headers(headers).body(new RedirectView(links.getHref()));
                 }
             }
         } catch (PayPalRESTException e) {

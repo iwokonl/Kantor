@@ -18,20 +18,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (header != null) {
-            String[] authElements = header.split(" ");
-            if (authElements.length == 2 && "Bearer".equals(authElements[0])) {
-                try {
+        String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
+        // Jeśli token nie jest dostępny w nagłówku, spróbuj odczytać go z URL
+        if (token == null || !token.startsWith("Bearer ")) {
+            token = request.getParameter("JWTtoken");
+        } else {
+            token = token.substring(7); // Usuń prefiks "Bearer " z tokena
+        }
 
-                    SecurityContextHolder.getContext().setAuthentication(userAuthProvider.validateToken(authElements[1]));
-                } catch (RuntimeException e) {
-                    SecurityContextHolder.clearContext();
-                    throw e;
-                }
+        if (token != null) {
+            try {
+                SecurityContextHolder.getContext().setAuthentication(userAuthProvider.validateToken(token));
+            } catch (RuntimeException e) {
+                SecurityContextHolder.clearContext();
+                throw e;
             }
         }
+
         filterChain.doFilter(request, response);
     }
 }
