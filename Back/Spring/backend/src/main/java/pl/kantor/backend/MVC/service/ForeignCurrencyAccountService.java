@@ -50,4 +50,11 @@ public class ForeignCurrencyAccountService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public ForeignCurrencyAccount addAmount(Long accountId, BigDecimal amount) {
+        ForeignCurrencyAccount account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new AppExeption("Account not found", HttpStatus.NOT_FOUND));
+        account.setBalance(account.getBalance().add(amount));
+        return accountRepository.save(account);
+    }
 }

@@ -13,4 +13,7 @@ public interface ForeignCurrencyAccountMapper {
 
 //    TODO: Zadać pytanie jak działa mapowanie w mapstruct - Iwo
     List<ForeignCurrencyAccountDto> toForeignCurrencyAccountDto(List<ForeignCurrencyAccount> foreignCurrencyAccounts);
+    ForeignCurrencyAccountDto toForeignCurrencyAccountDto(ForeignCurrencyAccount foreignCurrencyAccounts);
+
+    ForeignCurrencyAccount toForeignCurrencyAccount(ForeignCurrencyAccountDto foreignCurrencyAccountDto);
 }
