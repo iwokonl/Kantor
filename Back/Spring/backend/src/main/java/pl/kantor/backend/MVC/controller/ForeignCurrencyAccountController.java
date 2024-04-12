@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kantor.backend.MVC.dto.ForeignCurrencyAccountDto;
+import pl.kantor.backend.MVC.dto.UserIdDto;
 import pl.kantor.backend.MVC.model.ForeignCurrencyAccount;
 import pl.kantor.backend.MVC.service.ForeignCurrencyAccountService;
 
@@ -16,12 +17,9 @@ import java.util.Map;
 @RequestMapping("/ForeignCurrencyAccount")
 public class ForeignCurrencyAccountController {
     private final ForeignCurrencyAccountService foreignCurrencyAccountService;
-
-    //TODO: Zapytać się czy robić w taki sposób @RequestBody Map<String, Long> payload) i co jest bardziej optymalne - Iwo
     @PostMapping("/getCurrencyAccounts")
-    public ResponseEntity<List<ForeignCurrencyAccountDto>> getCurrencyAccounts(@RequestBody Map<String, Long> payload) {
-        Long userId = payload.get("userId");
-        List<ForeignCurrencyAccountDto> accounts = foreignCurrencyAccountService.getAllAccountsByUserId(userId);
+    public ResponseEntity<List<ForeignCurrencyAccountDto>> getCurrencyAccounts(@RequestBody UserIdDto payload) {
+        List<ForeignCurrencyAccountDto> accounts = foreignCurrencyAccountService.getAllAccountsByUserId(payload.userId());
         return ResponseEntity.ok(accounts);
     }
 }

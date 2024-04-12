@@ -81,7 +81,7 @@ public class PaypalService {
 
         return payment.execute(apiContext, paymentExecute);
     }
-//TODO:Poprawić ten syf i zapytać się jak pozyskać token żeby aplikacja nie spadłą z rowerka
+
     public void addAmountToKantorAccount(Payment payment, String userId) {
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(payment.getTransactions().get(0).getAmount().getCurrency(),Long.parseLong(userId));
         if (account.isPresent()) {
