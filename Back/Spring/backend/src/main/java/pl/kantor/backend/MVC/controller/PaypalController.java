@@ -2,6 +2,7 @@ package pl.kantor.backend.MVC.controller;
 
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PayoutBatch;
 import com.paypal.base.rest.PayPalRESTException;
 import lombok.RequiredArgsConstructor;
 
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import pl.kantor.backend.MVC.config.UserAuthProvider;
 import pl.kantor.backend.MVC.dto.PaymentPaypalDto;
+import pl.kantor.backend.MVC.dto.PayoutRequestPaypalDto;
 import pl.kantor.backend.MVC.exeption.AppExeption;
 import pl.kantor.backend.MVC.service.PaypalService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import com.auth0.jwt.JWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.kantor.backend.MVC.service.UserService;
@@ -49,7 +50,6 @@ public class PaypalController {
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "Bearer " + token);
-//            TODO:Zapytać się czemu to działa z znakiem "?" a nie z "&" w linku jeśli w linku paypala jest "&"
             String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userId + "&JWTtoken=" + token;
             Payment payment = paypalService.createPayment(
                     paymentPaypalDto.total(),
@@ -63,7 +63,6 @@ public class PaypalController {
 
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
-                    logger.info("Pasdasddasasd: " + new RedirectView(links.getHref()));
                     return ResponseEntity.ok().headers(headers).body(new RedirectView(links.getHref()));
                 }
             }
@@ -73,6 +72,30 @@ public class PaypalController {
         }
         return ResponseEntity.ok(new RedirectView("/error"));
     }
+
+    @PostMapping("/createPayout")
+    public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption{
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentUserName = authentication.getName();
+            Map<String,String> response = userService.jwtInfo(currentUserName);
+            String userId = response.get("id");
+            paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currency(),userId,payoutRequestPaypalDto.total());
+            PayoutBatch payoutBatch = paypalService.createPayout(
+                    payoutRequestPaypalDto.receiverEmail(),
+                    payoutRequestPaypalDto.total(),
+                    payoutRequestPaypalDto.currency()
+            );
+
+            return ResponseEntity.ok(payoutBatch);
+        } catch (AppExeption e) {
+            throw new AppExeption(e.getMessage(), e.getHttpStatus());
+        }
+
+
+
+    }
+
 
     @GetMapping("/success")
     public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId) {
