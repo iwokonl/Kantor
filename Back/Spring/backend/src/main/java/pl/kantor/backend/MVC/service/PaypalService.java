@@ -131,9 +131,6 @@ public class PaypalService {
     }
 
 
-
-
-
     public APIContext getAPIContext() throws PayPalRESTException {
         OAuthTokenCredential tokenCredential = new OAuthTokenCredential(clientId, clientSecret, getPayPalSDKConfig());
         String accessToken = tokenCredential.getAccessToken();
@@ -150,11 +147,14 @@ public class PaypalService {
 
         return configMap;
     }
+
     //TODO: Usunąc opłatę za przelew bo 2% ściąga z konta a tak być nie może
     public PayoutBatch createPayout(String receiverEmail, Double total, String currency) {
         PayoutSenderBatchHeader senderBatchHeader = new PayoutSenderBatchHeader();
+
         senderBatchHeader.setSenderBatchId(new Random().nextInt(99999) + "").setEmailSubject("You have a payment");
         PayoutItem item = new PayoutItem();
+
         item.setRecipientType("EMAIL").setAmount(new Currency(currency, String.format(Locale.US, "%.2f", total))).setReceiver(receiverEmail)
                 .setSenderItemId("item_" + new Random().nextInt(99999)).setNote("Thank you.");
 
@@ -162,12 +162,15 @@ public class PaypalService {
         items.add(item);
 
         Payout payout = new Payout();
+
         payout.setSenderBatchHeader(senderBatchHeader).setItems(items);
         PayoutBatch response = null;
+
         try {
             APIContext context = getAPIContext();
             Map<String, String> configMap = new HashMap<>();
             configMap.put("mode", mode);
+
             // Dodaj tutaj dodatkowe parametry konfiguracyjne, jeśli są potrzebne
             response = payout.create(context, configMap);
         } catch (Exception e) {
@@ -177,6 +180,7 @@ public class PaypalService {
 
         return response;
     }
+
     public Payment executePayment(
             String paymentId,
             String payerId)
@@ -191,20 +195,20 @@ public class PaypalService {
     }
 
     public void addAmountToKantorAccount(Payment payment, String userId) {
-        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(payment.getTransactions().get(0).getAmount().getCurrency(),Long.parseLong(userId));
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(payment.getTransactions().get(0).getAmount().getCurrency(), Long.parseLong(userId));
         if (account.isPresent()) {
             ForeignCurrencyAccount foreignCurrencyAccount = account.get();
             foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal())));
             foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
-        }
-        else {
+        } else {
             throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
         }
 
     }
+
     public void removeAmountToKantorAccount(String currency, String userId, Double total) throws AppExeption {
 
-        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(currency,Long.parseLong(userId));
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(currency, Long.parseLong(userId));
         if (account.isPresent()) {
             ForeignCurrencyAccount foreignCurrencyAccount = account.get();
             if (foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)).compareTo(BigDecimal.ZERO) < 0) {
@@ -213,8 +217,7 @@ public class PaypalService {
 
             foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)));
             foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
-        }
-        else {
+        } else {
             throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
         }
 

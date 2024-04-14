@@ -36,6 +36,7 @@ public class PaypalController {
     private final UserAuthProvider userAuthProvider;
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(PaypalController.class);
+
     @PostMapping("/create")
     public ResponseEntity<RedirectView> createPayment(@RequestBody PaymentPaypalDto paymentPaypalDto) {
         try {
@@ -44,7 +45,7 @@ public class PaypalController {
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = authentication.getName();
-            Map<String,String> response = userService.jwtInfo(currentUserName);
+            Map<String, String> response = userService.jwtInfo(currentUserName);
             String userId = response.get("id");
             String token = response.get("token");
 
@@ -74,13 +75,15 @@ public class PaypalController {
     }
 
     @PostMapping("/createPayout")
-    public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption{
+    public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = authentication.getName();
-            Map<String,String> response = userService.jwtInfo(currentUserName);
+            Map<String, String> response = userService.jwtInfo(currentUserName);
             String userId = response.get("id");
-            paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currency(),userId,payoutRequestPaypalDto.total());
+            paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currency(), userId, payoutRequestPaypalDto.total());
+
+
             PayoutBatch payoutBatch = paypalService.createPayout(
                     payoutRequestPaypalDto.receiverEmail(),
                     payoutRequestPaypalDto.total(),
@@ -91,9 +94,6 @@ public class PaypalController {
         } catch (AppExeption e) {
             throw new AppExeption(e.getMessage(), e.getHttpStatus());
         }
-
-
-
     }
 
 
@@ -102,7 +102,7 @@ public class PaypalController {
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
             if (payment.getState().equals("approved")) {
-                paypalService.addAmountToKantorAccount(payment,userId);
+                paypalService.addAmountToKantorAccount(payment, userId);
                 return new RedirectView("http://localhost:4200");
             }
         } catch (PayPalRESTException e) {
