@@ -1,10 +1,14 @@
 package pl.kantor.backend.MVC.service;
 
 import com.paypal.api.payments.*;
+import com.paypal.api.payments.Currency;
+import com.paypal.base.Constants;
 import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -32,6 +36,14 @@ public class PaypalService {
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(PaypalService.class);
     private final WebClient webClient;
+
+    @Value("${paypal.client.id}")
+    private String clientId;
+    @Value("${paypal.client.secret}")
+    private String clientSecret;
+    @Value("${paypal.mode}")
+    private String mode;
+
     public Payment createPayment(
             Double total,
             String currency,
@@ -48,7 +60,6 @@ public class PaypalService {
         Transaction transaction = new Transaction();
         transaction.setDescription(description);
         transaction.setAmount(amount);
-
         List<Transaction> transactions = new ArrayList<>();
         transactions.add(transaction);
 
@@ -69,6 +80,109 @@ public class PaypalService {
         return payment.create(apiContext);
     }
 
+    public Payment createPayment(
+            Double total,
+            String currency,
+            String method,
+            String intent,
+            String description,
+            String cancelUrl,
+            String successUrl,
+            String payeeId,
+            String peyerId
+
+    ) throws PayPalRESTException {
+        Details details = new Details();
+        details.setShipping("0");
+        details.setSubtotal("0");
+        details.setTax("0");
+
+        Amount amount = new Amount();
+        amount.setCurrency(currency);
+        amount.setTotal(String.format(Locale.forLanguageTag(currency), "%.2f", total));
+        amount.setDetails(details);
+
+        Payee payee = new Payee();
+        payee.setMerchantId(payeeId);
+
+        Transaction transaction = new Transaction();
+        transaction.setDescription(description);
+        transaction.setAmount(amount);
+        transaction.setPayee(payee);
+
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.add(transaction);
+
+        Payer payer = new Payer();
+        payer.setPaymentMethod(method);
+
+        PayerInfo payerInfo = new PayerInfo();
+        payerInfo.setEmail(peyerId); // Ustaw na adres e-mail konta PayPal płatnika
+        payer.setPayerInfo(payerInfo);
+
+        Payment payment = new Payment();
+        payment.setIntent(intent);
+        payment.setPayer(payer);
+        payment.setTransactions(transactions);
+
+        RedirectUrls redirectUrls = new RedirectUrls();
+        redirectUrls.setCancelUrl(cancelUrl);
+        redirectUrls.setReturnUrl(successUrl);
+
+        payment.setRedirectUrls(redirectUrls);
+
+        return payment.create(apiContext);
+    }
+
+
+
+
+
+    public APIContext getAPIContext() throws PayPalRESTException {
+        OAuthTokenCredential tokenCredential = new OAuthTokenCredential(clientId, clientSecret, getPayPalSDKConfig());
+        String accessToken = tokenCredential.getAccessToken();
+        APIContext apiContext = new APIContext(accessToken);
+        apiContext.setConfigurationMap(getPayPalSDKConfig());
+        return apiContext;
+    }
+
+    private Map<String, String> getPayPalSDKConfig() {
+        Map<String, String> configMap = new HashMap<>();
+        configMap.put(Constants.MODE, Constants.SANDBOX);
+        configMap.put("oauth.EndPoint", "https://api.sandbox.paypal.com");
+        configMap.put("service.EndPoint", "https://api.sandbox.paypal.com");
+
+        return configMap;
+    }
+
+    public PayoutBatch createPayout(String receiverEmail, Double total, String currency) {
+        PayoutSenderBatchHeader senderBatchHeader = new PayoutSenderBatchHeader();
+        senderBatchHeader.setSenderBatchId(new Random().nextInt(99999) + "").setEmailSubject("You have a payment");
+        BigDecimal value = new BigDecimal(total);
+        PayoutItem item = new PayoutItem();
+        item.setRecipientType("EMAIL").setAmount(new Currency(currency, String.format(Locale.US, "%.2f", total))).setReceiver(receiverEmail)
+                .setSenderItemId("item_" + new Random().nextInt(99999)).setNote("Thank you.");
+
+        List<PayoutItem> items = new ArrayList<PayoutItem>();
+        items.add(item);
+
+        Payout payout = new Payout();
+        payout.setSenderBatchHeader(senderBatchHeader).setItems(items);
+
+        PayoutBatch response = null;
+        try {
+            APIContext context = getAPIContext();
+            Map<String, String> configMap = new HashMap<>();
+            configMap.put("mode", mode);
+            // Dodaj tutaj dodatkowe parametry konfiguracyjne, jeśli są potrzebne
+            response = payout.create(context, configMap);
+        } catch (Exception e) {
+            logger.error("Error occurred while creating payout: " + e.getMessage(), e);
+            throw new AppExeption("Error occurred while creating payout", HttpStatus.EXPECTATION_FAILED);
+        }
+
+        return response;
+    }
     public Payment executePayment(
             String paymentId,
             String payerId)
