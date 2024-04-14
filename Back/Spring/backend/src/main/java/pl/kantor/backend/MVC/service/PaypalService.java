@@ -7,15 +7,11 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.reactive.function.client.WebClient;
 import pl.kantor.backend.MVC.config.UserAuthProvider;
 import pl.kantor.backend.MVC.exeption.AppExeption;
@@ -80,7 +76,7 @@ public class PaypalService {
         return payment.create(apiContext);
     }
 
-    public Payment createPayment(
+    public Payment transferMoney(
             Double total,
             String currency,
             String method,
@@ -158,7 +154,6 @@ public class PaypalService {
     public PayoutBatch createPayout(String receiverEmail, Double total, String currency) {
         PayoutSenderBatchHeader senderBatchHeader = new PayoutSenderBatchHeader();
         senderBatchHeader.setSenderBatchId(new Random().nextInt(99999) + "").setEmailSubject("You have a payment");
-        BigDecimal value = new BigDecimal(total);
         PayoutItem item = new PayoutItem();
         item.setRecipientType("EMAIL").setAmount(new Currency(currency, String.format(Locale.US, "%.2f", total))).setReceiver(receiverEmail)
                 .setSenderItemId("item_" + new Random().nextInt(99999)).setNote("Thank you.");
@@ -168,7 +163,6 @@ public class PaypalService {
 
         Payout payout = new Payout();
         payout.setSenderBatchHeader(senderBatchHeader).setItems(items);
-
         PayoutBatch response = null;
         try {
             APIContext context = getAPIContext();
@@ -201,6 +195,23 @@ public class PaypalService {
         if (account.isPresent()) {
             ForeignCurrencyAccount foreignCurrencyAccount = account.get();
             foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal())));
+            foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
+        }
+        else {
+            throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
+        }
+
+    }
+    public void removeAmountToKantorAccount(String currency, String userId, Double total) throws AppExeption {
+
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(currency,Long.parseLong(userId));
+        if (account.isPresent()) {
+            ForeignCurrencyAccount foreignCurrencyAccount = account.get();
+            if (foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)).compareTo(BigDecimal.ZERO) < 0) {
+                throw new AppExeption("Not enough money on account", HttpStatus.BAD_REQUEST);
+            }
+
+            foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)));
             foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
         }
         else {
