@@ -154,7 +154,7 @@ public class PaypalService {
 
         return configMap;
     }
-
+    //TODO: Usunąc opłatę za przelew bo 2% ściąga z konta a tak być nie może
     public PayoutBatch createPayout(String receiverEmail, Double total, String currency) {
         PayoutSenderBatchHeader senderBatchHeader = new PayoutSenderBatchHeader();
         senderBatchHeader.setSenderBatchId(new Random().nextInt(99999) + "").setEmailSubject("You have a payment");
