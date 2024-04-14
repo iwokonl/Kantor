@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "c6a312bc-3896-4822-828d-b1841e82ccad",
+		"name": "Kantor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29521267"
+	},
+	"item": [
+		{
+			"name": "Login auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"iwo\", \"password\": \"iwo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/authorization/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"authorization",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\": \"Iwo\", \"lastName\": \"Stanisławski\", \"email\": \"iwo@iwo.pl\", \"username\": \"iwo\", \"password\": \"iwo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/authorization/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"authorization",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logged user info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6NCwiZXhwIjoxNzEyNzQxODU0LCJpYXQiOjE3MTI3NDE0OTR9.CybybbgkZuypgj7Q0wcbts0FAsKcTKmQmHMaCZb_D7M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/authorization/userinfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"authorization",
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logged user info about Currency acc",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzExNDU2OTgxLCJpYXQiOjE3MTE0NTY2MjF9.dB17PsahnOmcCZUwo0M-lJgVi8fihCtv2O8fkgOI7ik",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/ForeignCurrencyAccount/getCurrencyAccounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"ForeignCurrencyAccount",
+						"getCurrencyAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paypal zamówinie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzEzMTE4NzQ1LCJpYXQiOjE3MTMxMTgzODV9.jLzSLxCgG4wBxSARLoszHQn3a3vCFnRvqRwD5ht5jt8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"total\": 100.02,\r\n    \"currency\": \"PLN\",\r\n    \"method\": \"paypal\",\r\n    \"intent\":  \"sale\",\r\n    \"description\": \"desc\",\r\n    \"cancelUrl\": \"http://localhost:8082/api/payment/cancel\",\r\n    \"successUrl\": \"http://localhost:8082/api/payment/success\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/payment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"payment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzEyODE3MjYwLCJpYXQiOjE3MTI4MTY5MDAsInRva2VuIjoiaXdvQGl3by5wbCJ9.3wQYlWk_5xF57uzSYeuOch_mdU_rnH2iA4wX3kiXS5E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzEzMTE3NzY4LCJpYXQiOjE3MTMxMTc0MDh9.g-ChUQAW2SvBYenvwmxK94wYtnXJLzd30HOjeTadRoU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"receiverEmail\": \"kupujacy@kantrol.pl\",\r\n    \"total\": 100.00,\r\n    \"currency\": \"PLN\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/payment/createPayout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"payment",
+						"createPayout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
