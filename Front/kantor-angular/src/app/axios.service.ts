@@ -25,6 +25,11 @@ export class AxiosService {
     }
 
   }
+
+  isLogged(): boolean {
+    return this.getAuthTocken() !== null;
+  }
+
   request(method: string, url: string, data: any) {
     let headers = {};
 
