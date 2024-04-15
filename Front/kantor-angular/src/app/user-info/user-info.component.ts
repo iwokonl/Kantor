@@ -10,6 +10,7 @@ import * as emoji from 'node-emoji'
 export class UserInfoComponent {
   constructor(private axiosService: AxiosService, private router: Router) {
   }
+  userInfo: any = null;
   login: string = '';
   password: string = '';
   onSubmitUserInfo() {
@@ -19,7 +20,7 @@ export class UserInfoComponent {
       "/api/authorization/userinfo"
     ).then((response) => {
       this.axiosService.setAuthTocken(response.data.token);
-
+      this.userInfo = response.data;
     });
   }
 }
