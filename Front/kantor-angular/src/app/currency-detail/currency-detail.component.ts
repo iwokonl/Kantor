@@ -23,7 +23,6 @@ import { ActivatedRoute } from '@angular/router';
   `,
   styles: []
 })
-
 export class CurrencyDetailComponent implements OnInit {
   code: string = '';
 

@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div class="search-container" [@expandCollapse]="state">
-  <input #searchInputField type="text"
+  <input type="text"
          class="search-input"
          [(ngModel)]="searchText"
          (input)="onInput($event)"

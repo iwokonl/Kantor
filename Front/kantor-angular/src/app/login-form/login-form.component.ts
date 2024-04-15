@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AxiosService} from "../axios.service";
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  constructor(private axiosService: AxiosService, private router: Router) {
+  constructor(private axiosService: AxiosService) {
   }
 
   login: string = '';
@@ -25,7 +23,6 @@ export class LoginFormComponent {
       }
     ).then((response) => {
       this.axiosService.setAuthTocken(response.data.token);
-      this.router.navigate(['/currency-account']);
 
     });
   }

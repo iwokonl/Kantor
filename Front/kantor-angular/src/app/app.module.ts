@@ -20,9 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 
-import { UserInfoComponent } from './user-info/user-info.component';
-
-
 
 
 @NgModule({
@@ -40,10 +37,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
     SearchBarComponent,
     SearchResultsComponent,
     CurrencyAccountComponent,
-    CurrencyDetailComponent,
-    UserInfoComponent
-
-
+    CurrencyDetailComponent
   ],
   imports: [
     BrowserModule,
