@@ -1,18 +1,16 @@
-
-
 <div class="container mt-5">
-  <h2>Logowanie</h2>
+  <h2>Informacje o użytkowniku</h2>
   <form (ngSubmit)="onSubmitUserInfo()" #loginForm="ngForm" >
-
-    <button type="submit" class="btn btn-primary">Zaloguj</button>
+    <button type="submit" class="btn btn-primary">Wyświetl informacje</button>
   </form>
-  <!--  <div class="mt-3">-->
-  <!--    Nie masz konta? <a href="/register">Zarejestruj się</a>-->
-  <!--  </div>-->
-  <!--  <div th:if="${param.error}" class="alert alert-danger">-->
-  <!--    Błąd logowania. Sprawdź swoją nazwę użytkownika i hasło, a następnie spróbuj ponownie.-->
-  <!--  </div>-->
 
+  <div class="details" *ngIf="userInfo">
+    <p><b>Imię:</b> {{ userInfo.firstName }}</p>
+    <p><b>Nazwisko: </b>{{ userInfo.lastName }}</p>
+<!--    <p>Rola: {{ userInfo.role }}</p>-->
+<!--    <p>ID: {{ userInfo.id }}</p>-->
+    <p><b>Email:</b> {{ userInfo.email }}</p>
+    <p><b>Username:</b> {{ userInfo.username }}</p>
+    <p><b>Token:</b> {{ userInfo.token }}</p>
+  </div>
 </div>
-
-
