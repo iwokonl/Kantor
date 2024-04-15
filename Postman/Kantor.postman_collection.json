@@ -111,7 +111,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzExNDU2OTgxLCJpYXQiOjE3MTE0NTY2MjF9.dB17PsahnOmcCZUwo0M-lJgVi8fihCtv2O8fkgOI7ik",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJpd28iLCJsYXN0TmFtZSI6Iml3byIsImlzcyI6Iml3byIsImlkIjoxLCJleHAiOjE3MTMxODkyMDAsImlhdCI6MTcxMzE4ODg0MH0.GVtTwcmzqpYedt27Gg5qPFWu6s27ZRu7C1uvNzDkNEQ",
 							"type": "string"
 						}
 					]
@@ -120,7 +120,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userId\": 1\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
