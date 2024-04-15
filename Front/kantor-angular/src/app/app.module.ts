@@ -22,6 +22,7 @@ import { CurrencyDetailComponent } from './currency-detail/currency-detail.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { CurrencyDetailComponent } from './currency-detail/currency-detail.compo
     SearchBarComponent,
     SearchResultsComponent,
     CurrencyAccountComponent,
-    CurrencyDetailComponent
+    CurrencyDetailComponent,
+
   ],
   imports: [
     BrowserModule,
