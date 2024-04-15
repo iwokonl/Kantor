@@ -15,8 +15,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterFormComponent},
   { path: 'currency-account', component: CurrencyAccountComponent, canActivate: [AuthGuardService] },
   { path: 'userInfo', component: UserInfoComponent},
-
-
+  
+  //TODO Wszystkie poprzednie routy MUSZĄ być przed tym - inaczej niepoprawnie lub nie wyświetlają się - do poprawienia
   { path: ':code', component: CurrencyDetailComponent},
 
 ];
