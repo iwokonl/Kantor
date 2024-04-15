@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AxiosService} from "../axios.service";
 import {Router} from "@angular/router";
-
+import * as emoji from 'node-emoji'
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -13,6 +13,7 @@ export class UserInfoComponent {
   login: string = '';
   password: string = '';
   onSubmitUserInfo() {
+    console.log(emoji.find('🇵🇱') )
     this.axiosService.requestWithOutData(
       "POST",
       "/api/authorization/userinfo"
