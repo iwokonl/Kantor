@@ -30,6 +30,10 @@ export class AxiosService {
     return this.getAuthTocken() !== null;
   }
 
+  requestUserInfo() {
+    return this.request('POST', '/userinfo', null);
+  }
+
   request(method: string, url: string, data: any) {
     let headers = {};
 
