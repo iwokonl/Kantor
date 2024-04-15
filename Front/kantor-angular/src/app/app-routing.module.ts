@@ -6,6 +6,7 @@ import {RegisterFormComponent} from "./register-form/register-form.component";
 import { CurrencyDetailComponent } from "./currency-detail/currency-detail.component";
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 import { AuthGuardService } from './auth-guard.service';
+import {UserInfoComponent} from "./user-info/user-info.component";
 
 
 const routes: Routes = [
@@ -13,7 +14,11 @@ const routes: Routes = [
   {path: 'login', component: LoginFormComponent},
   {path: 'register', component: RegisterFormComponent},
   { path: 'currency-account', component: CurrencyAccountComponent, canActivate: [AuthGuardService] },
+  { path: 'userInfo', component: UserInfoComponent},
+
+
   { path: ':code', component: CurrencyDetailComponent},
+
 ];
 @NgModule({
 
