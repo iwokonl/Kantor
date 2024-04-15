@@ -19,7 +19,9 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
+
 import { UserInfoComponent } from './user-info/user-info.component';
+
 
 
 
@@ -40,6 +42,8 @@ import { UserInfoComponent } from './user-info/user-info.component';
     CurrencyAccountComponent,
     CurrencyDetailComponent,
     UserInfoComponent
+
+
   ],
   imports: [
     BrowserModule,
