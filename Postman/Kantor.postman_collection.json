@@ -252,6 +252,46 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Currency account create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJpd28iLCJsYXN0TmFtZSI6Iml3byIsImlzcyI6Iml3byIsImlkIjoxLCJleHAiOjE3MTMyODM2NjEsImlhdCI6MTcxMzI4MDA2MX0.u1AJL0dDlP_pgOWAj1q4iyVBH1iqe95YI64_wKh6s-Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2137,\r\n    \"curencyCode\": \"USD\",\r\n    \"curencyName\": \"dolar\",\r\n    \"balance\": 0,\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/ForeignCurrencyAccount/createCurrencyAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"ForeignCurrencyAccount",
+						"createCurrencyAccount"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

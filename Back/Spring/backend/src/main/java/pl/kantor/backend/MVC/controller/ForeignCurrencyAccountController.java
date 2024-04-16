@@ -20,14 +20,16 @@ import java.util.Map;
 @RequestMapping("/ForeignCurrencyAccount")
 public class ForeignCurrencyAccountController {
     private final ForeignCurrencyAccountService foreignCurrencyAccountService;
-    private final UserService userService;
+
     @PostMapping("/getCurrencyAccounts")
     public ResponseEntity<List<ForeignCurrencyAccountDto>> getCurrencyAccounts() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        Map<String,String> response = userService.jwtInfo(currentUserName);
-        String userId = response.get("id");
-        List<ForeignCurrencyAccountDto> accounts = foreignCurrencyAccountService.getAllAccountsByUserId(Long.parseLong(userId));
+        List<ForeignCurrencyAccountDto> accounts = foreignCurrencyAccountService.getAllAccountsByUserId();
         return ResponseEntity.ok(accounts);
+    }
+
+    @PostMapping("/createCurrencyAccount")
+    public ResponseEntity<ForeignCurrencyAccountDto> createCurrencyAccount(@RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto){
+        ForeignCurrencyAccountDto foreignCurrencyAccountDtoToSend = foreignCurrencyAccountService.createForeignCurrencyAccount(foreignCurrencyAccountDto.getCurencyCode(),foreignCurrencyAccountDto.getBalance());
+        return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);
     }
 }
