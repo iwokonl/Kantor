@@ -28,8 +28,12 @@ public class ForeignCurrencyAccountController {
     }
 
     @PostMapping("/createCurrencyAccount")
-    public ResponseEntity<ForeignCurrencyAccountDto> createCurrencyAccount(@RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto){
-        ForeignCurrencyAccountDto foreignCurrencyAccountDtoToSend = foreignCurrencyAccountService.createForeignCurrencyAccount(foreignCurrencyAccountDto.getCurencyCode(),foreignCurrencyAccountDto.getBalance());
+    public ResponseEntity<ForeignCurrencyAccountDto> createCurrencyAccount(
+            @RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto
+    ){
+        ForeignCurrencyAccountDto foreignCurrencyAccountDtoToSend = foreignCurrencyAccountService.createForeignCurrencyAccount(
+                foreignCurrencyAccountDto.getCurencyCode(),
+                foreignCurrencyAccountDto.getBalance());
         return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);
     }
 }

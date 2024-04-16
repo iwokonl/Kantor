@@ -261,7 +261,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJpd28iLCJsYXN0TmFtZSI6Iml3byIsImlzcyI6Iml3byIsImlkIjoxLCJleHAiOjE3MTMyODM2NjEsImlhdCI6MTcxMzI4MDA2MX0.u1AJL0dDlP_pgOWAj1q4iyVBH1iqe95YI64_wKh6s-Y",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJpd28iLCJsYXN0TmFtZSI6Iml3byIsImlzcyI6Iml3byIsImlkIjoxLCJleHAiOjE3MTMyODY0NTMsImlhdCI6MTcxMzI4Mjg1M30.yaBQZE3NbMIswP5l23XYKA_ml7V5KSHkq5wnJY3-ngo",
 							"type": "string"
 						}
 					]
@@ -270,7 +270,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 2137,\r\n    \"curencyCode\": \"USD\",\r\n    \"curencyName\": \"dolar\",\r\n    \"balance\": 0,\r\n    \"userId\": 1\r\n}",
+					"raw": "{\r\n    \"curencyCode\": \"CAD\",\r\n    \"balance\": 0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
