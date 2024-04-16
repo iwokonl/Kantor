@@ -15,8 +15,11 @@ export class AxiosService {
 
   }
   setAuthTocken(token: string | null) : void {
+
     if (token !== null) {
-      window.localStorage.setItem('authToken', token);
+
+        window.localStorage.setItem('authToken', token);
+
 
     }
     else {
@@ -25,9 +28,15 @@ export class AxiosService {
     }
 
   }
+
+  checkAuthTocken(): void {
+    if (this.getAuthTocken() === null || this.getAuthTocken() === undefined || this.getAuthTocken() === '' || this.getAuthTocken() === 'null') {
+      window.localStorage.removeItem('authToken');
+    }
+  }
   request(method: string, url: string, data: any) {
     let headers = {};
-
+    this.checkAuthTocken();
     if (this.getAuthTocken() !== null) {
       headers = {
         'Authorization': 'Bearer ' + this.getAuthTocken()
@@ -43,7 +52,7 @@ export class AxiosService {
 
   requestWithOutData(method: string, url: string) {
     let headers = {};
-
+    this.checkAuthTocken();
     if (this.getAuthTocken() !== null) {
       headers = {
         'Authorization': 'Bearer ' + this.getAuthTocken()
