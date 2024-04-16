@@ -26,7 +26,7 @@ public class ForeignCurrencyAccountController {
         List<ForeignCurrencyAccountDto> accounts = foreignCurrencyAccountService.getAllAccountsByUserId();
         return ResponseEntity.ok(accounts);
     }
-
+//TODO: Dodać customowe dto jak będzie mi się nudziło bo z ForeignCurrencyAccountDto są zajęte tylko dwa pola - Iwo
     @PostMapping("/createCurrencyAccount")
     public ResponseEntity<ForeignCurrencyAccountDto> createCurrencyAccount(
             @RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto
