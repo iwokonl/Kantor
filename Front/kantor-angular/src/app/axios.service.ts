@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {Subject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
-
+  private authStatusSubject = new Subject<boolean>();
+  authStatus$ = this.authStatusSubject.asObservable();
   constructor() {
     axios.defaults.baseURL = 'http://localhost:8082';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -26,9 +28,12 @@ export class AxiosService {
       window.localStorage.removeItem('authToken');
 
     }
-
+    this.authStatusSubject.next(!!token);
   }
-
+  logout(): void {
+    window.localStorage.removeItem('authToken');
+    this.authStatusSubject.next(false);
+  }
   checkAuthTocken(): void {
     if (this.getAuthTocken() === null || this.getAuthTocken() === undefined || this.getAuthTocken() === '' || this.getAuthTocken() === 'null') {
       window.localStorage.removeItem('authToken');

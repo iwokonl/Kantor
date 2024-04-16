@@ -32,11 +32,16 @@
 
   <div class="navbar-nav ms-auto">
     <form class="form-inline my-2 my-lg-0 flex-grow-1">
-<!--      <app-search-bar></app-search-bar>-->
       <app-search-bar (searchChange)="handleSearchChange($event)"></app-search-bar>
     </form>
-    <a class="nav-item nav-link" routerLink="/login">Logowanie</a>
-    <a class="nav-item nav-link" routerLink="/register">Rejestracja</a>
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+      <a class="nav-item nav-link" routerLink="/settings">Ustawienia</a>
+      <a class="nav-item nav-link" (click)="axiosService.logout()">Wyloguj</a>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <a class="nav-item nav-link" routerLink="/login">Logowanie</a>
+      <a class="nav-item nav-link" routerLink="/register">Rejestracja</a>
+    </ng-template>
   </div>
 
   <!--  hamburger button-->

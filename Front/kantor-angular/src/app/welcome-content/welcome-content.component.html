@@ -1,1 +1,7 @@
-<div><h1>Witaj: {{user_name}}</h1></div>
+<div *ngIf="isLoggedIn; else notLoggedIn">
+  <p>Zalogowany</p>
+</div>
+
+<ng-template #notLoggedIn>
+  <p>Nie zalogowany</p>
+</ng-template>
