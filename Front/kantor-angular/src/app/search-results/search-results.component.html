@@ -26,7 +26,7 @@
 <div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">
   <ul>
     <li *ngFor="let result of results">
-      <a [routerLink]="['/', result.code]">
+      <a [routerLink]="['/currency', result.code]">
         <div class="row">
           <div class="column">{{ currencyFlags[result.code] }}</div>
           <div class="column">{{ result.code }}</div>

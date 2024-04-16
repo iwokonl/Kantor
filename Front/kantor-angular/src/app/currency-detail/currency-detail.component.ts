@@ -1,34 +1,24 @@
-// import { Component } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-currency-detail',
-//   templateUrl: './currency-detail.component.html',
-//   styleUrl: './currency-detail.component.scss'
-// })
-// export class CurrencyDetailComponent {
-//
-// }
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CurrencyService } from '../currency.service';
 
 @Component({
   selector: 'app-currency-detail',
-  template: `
-    <p>
-      Currency code: {{ code }}
-    </p>
-  `,
-  styles: []
+  templateUrl: './currency-detail.component.html',
+  styleUrls: ['./currency-detail.component.scss']
 })
 export class CurrencyDetailComponent implements OnInit {
   code: string = '';
+  currencyDetails: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.code = this.route.snapshot.paramMap.get('code') ?? '';
+    this.route.paramMap.subscribe(params => {
+      this.code = params.get('code') ?? '';
+      this.currencyService.getCurrencyDetails(this.code).subscribe(details => {
+        this.currencyDetails = details;
+      });
+    });
   }
 }
