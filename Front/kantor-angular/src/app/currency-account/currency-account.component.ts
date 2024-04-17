@@ -12,12 +12,13 @@ export class CurrencyAccountComponent implements OnInit {
   constructor(private axiosService: AxiosService) { }
 
   ngOnInit(): void {
-    this.axiosService.request('POST', '/ForeignCurrencyAccount/getCurrencyAccounts', { userId: 1 })
-      .then(response => {
-        this.accounts = response.data;
-      })
-      .catch(error => {
-        console.error('Error fetching currency accounts:', error);
-      });
+    this.axiosService.requestWithOutData(
+      "POST",
+      "/api/ForeignCurrencyAccount/getCurrencyAccounts"
+    ).then((response) => {
+      this.axiosService.getAuthTocken();
+      this.accounts = response.data;
+      console.log(this.accounts);
+    });
   }
 }
