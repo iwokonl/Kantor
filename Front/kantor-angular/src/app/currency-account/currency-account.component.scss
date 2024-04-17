@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+  background-color: #fff;
+  transition: box-shadow .3s;
+}
+
+.card-body {
+  flex-grow: 1;
+}
