@@ -13,7 +13,7 @@ export class CurrencyService {
   constructor(private http: HttpClient) { }
 
   getCurrencyDetails(code: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${code}`);
+    return this.http.get<any>(`${this.apiUrl}/${code}/?format=json`);
   }
 
   getCurrencyHistory(code: string, startDate: string, endDate: string): Observable<any> {
