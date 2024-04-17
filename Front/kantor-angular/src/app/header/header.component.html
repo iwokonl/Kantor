@@ -36,6 +36,7 @@
     </form>
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <a class="nav-item nav-link" routerLink="/settings">Ustawienia</a>
+      <a class="nav-item nav-link" routerLink="/currency-account">Konta walutowe</a>
       <a class="nav-item nav-link" (click)="axiosService.logout()">Wyloguj</a>
     </ng-container>
     <ng-template #notLoggedIn>
