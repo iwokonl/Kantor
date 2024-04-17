@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AxiosService } from '../axios.service';
+import { CurrencyService } from '../currency.service';
+
 
 @Component({
   selector: 'app-currency-account',
@@ -9,13 +11,22 @@ import { AxiosService } from '../axios.service';
 export class CurrencyAccountComponent implements OnInit {
   accounts: any[] = [];
 
-  constructor(private axiosService: AxiosService) { }
+  constructor(private axiosService: AxiosService, private currencyService: CurrencyService) { }
 
   getCurrencyAccounts(): void {
     this.axiosService.request("POST",
       "/api/ForeignCurrencyAccount/getCurrencyAccounts",
       {}).then((response) => {
       this.accounts = response.data;
+      this.accounts.forEach(account => {
+        if (account.curencyCode !== 'PLN') {
+          this.currencyService.getCurrencyDetails(account.curencyCode).subscribe(details => {
+            account.balanceInPLN = account.balance * details.rates[0].mid;
+          });
+        } else {
+          account.balanceInPLN = account.balance;
+        }
+      });
       console.log(this.accounts);
     });
   }
@@ -26,33 +37,8 @@ export class CurrencyAccountComponent implements OnInit {
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
     });
   }
-
-  // createCurrencyAccount(): void {
-  //   let newAccount = {
-  //     curencyCode: 'USD',
-  //     balance: 1000,
-  //     userId: 2
-  //   };
-  //
-  //   this.axiosService.request("POST", "/api/ForeignCurrencyAccount/createCurrencyAccount", newAccount).then((response) => {
-  //     console.log(response.data);
-  //   });
-  // }
-
   ngOnInit(): void {
     this.getCurrencyAccounts();
-    // this.createCurrencyAccount()
-
-
-    // this.axiosService.requestWithOutData(
-    //   "POST",
-    //   "/api/ForeignCurrencyAccount/getCurrencyAccounts"
-    // ).then((response) => {
-    //   this.axiosService.getAuthTocken();
-    //   this.accounts = response.data;
-    //   console.log(this.accounts);
-    //
-    // });
 
   }
 }

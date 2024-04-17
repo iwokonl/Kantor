@@ -8,7 +8,7 @@
           <h5 class="card-title">
             <a [routerLink]="['/currency', account.curencyCode]">{{ account.curencyName + ' ' + account.curencyCode }}</a>
           </h5>
-          <p class="card-text">Balans: {{ account.balance + ' ' + account.curencyCode  }}</p>
+          <p class="card-text">Balans: {{ account.balance + ' ' + account.curencyCode + ' = ' + (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
         </div>
       </div>
     </div>
