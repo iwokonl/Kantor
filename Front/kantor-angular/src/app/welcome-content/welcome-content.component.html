@@ -1,7 +1,7 @@
 <div *ngIf="isLoggedIn; else notLoggedIn">
-  <p>Zalogowany</p>
+  <p>Zalogowany. Witaj <b>{{ user_name }}</b></p>
 </div>
 
 <ng-template #notLoggedIn>
-  <p>Nie zalogowany</p>
+  <p>Niezalogowany</p>
 </ng-template>

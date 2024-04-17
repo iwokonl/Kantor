@@ -21,9 +21,16 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     this.authStatusSub = this.axiosService.authStatus$.subscribe(isLoggedIn => {
       this.isLoggedIn = isLoggedIn;
       if (isLoggedIn) {
-        this.userService.getUsernameFromBackend().subscribe(username => {
-          this.user_name = username;
+        this.axiosService.request("POST",
+          "api/authorization/userinfo",
+          {}).then((response) => {
+          this.user_name = response.data.username;
+          console.log(this.user_name);
         });
+
+        // this.userService.getUsernameFromBackend().subscribe(username => {
+        //   this.user_name = username;
+        // });
       }
     });
   }
