@@ -14,3 +14,22 @@
     </div>
   </div>
 </div>
+
+
+<h3>Create Currency Account</h3>
+
+<form #createAccountForm="ngForm" (ngSubmit)="createCurrencyAccount(createAccountForm.value)">
+  <div class="form-group">
+    <label for="currencyCode">Currency Code</label>
+    <input type="text" class="form-control" id="currencyCode" name="currencyCode" ngModel>
+  </div>
+  <div class="form-group">
+    <label for="balance">Balance</label>
+    <input type="number" class="form-control" id="balance" name="balance" ngModel>
+  </div>
+  <div class="form-group">
+    <label for="userId">User ID</label>
+    <input type="number" class="form-control" id="userId" name="userId" ngModel>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Account</button>
+</form>
