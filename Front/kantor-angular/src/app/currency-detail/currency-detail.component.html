@@ -1,3 +1,6 @@
-<p>Code: {{ currencyDetails.code }}</p>
-<p>Currency: {{ currencyDetails.currency }}</p>
-<p>Mid: {{ currencyDetails.rates[0].mid }}</p>
+<div class="currency-details">
+    <h3>Informacje o walucie <br> <b>{{ '&nbsp;'+currencyDetails.currency }}</b> </h3>
+    <p>Kod waluty: {{ currencyDetails.code }}</p>
+    <p>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN'}}</p>
+</div>
+
