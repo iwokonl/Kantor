@@ -16,7 +16,11 @@
         <button class="btn btn-outline-primary withdraw" (click)="createPayout(account)">Wypłać fundusze</button>
 
           <input class="form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="account.amount">
-
+          <div class="loading-overlay" *ngIf="isLoading">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
