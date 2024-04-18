@@ -15,7 +15,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: stretch;
-  margin-bottom: 20px;
+  margin-bottom: 8%;
 
 
   border: 1px solid #ccc;
@@ -41,10 +41,17 @@
   flex-grow: 1;
 
 }
+.btn{
+  margin-right: 11px;
+  margin-bottom: 11px;
+  padding: 3px 7px; /* Zmienia rozmiar przycisku poprzez zmianę paddingu */
+  font-size: 16px;
+}
+//TODO:Ogólnie tutaj jest maniana w tym html i nie powinno się tak marginem robić
 .row{
   margin-top: 15%;
-  margin-right: -300px;
-  margin-left: -350px;
+  margin-right: -80%;
+  margin-left: -80%;
 
 }
 .tile {
