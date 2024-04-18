@@ -87,7 +87,7 @@
   }
   &:focus {
 // Usuwa domyślną niebieską poświatę
-
+    background-color: #C82333;
     box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
     // Usuwa dodatkowy cień, który może się pojawiać
   }
@@ -95,6 +95,7 @@
   &:active:focus{
     box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
     border-color: #C82333;
+    background-color: #C82333;
   }
   //position: fixed;
 }
