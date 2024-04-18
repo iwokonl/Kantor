@@ -23,8 +23,8 @@
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   background-color: #fff;
   min-height: 140px;
-  max-height: 187px;
-  min-width: 300px;
+  max-height: 196px;
+  min-width: 320px;
 
 
 
@@ -35,6 +35,11 @@
     background-color: #f1f1f1;
     transform: scale(1.1);
   }
+}
+
+.withdraw{
+  position: fixed;
+  padding: 3px 1px;
 }
 
 //zawartość kafelka - tekst
@@ -52,9 +57,19 @@
 //TODO:Ogólnie tutaj jest maniana w tym html i nie powinno się tak marginem robić
 .row{
   margin-top: 15%;
-  margin-right: -80%;
-  margin-left: -80%;
-
+  margin-right: -87%;
+  margin-left: -87%;
+.delete{
+  width: 275px;
+  color: #C82333;
+  border-color: #C82333;
+  &:hover {
+    // Tutaj dodaj style, które mają być zastosowane po najechaniu na przycisk
+    background-color: #C82333; // Na przykład, zmiana koloru tła
+    color: #f1f1f1; // Zmiana koloru tekstu
+  }
+  //position: fixed;
+}
 }
 .tile {
   flex: 1 1 auto;
