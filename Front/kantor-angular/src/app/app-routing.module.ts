@@ -5,7 +5,7 @@ import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
 import { CurrencyDetailComponent } from "./currency-detail/currency-detail.component";
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
-
+import { SettingsComponent} from "./settings/settings.component";
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterFormComponent},
   { path: 'currency-account', component: CurrencyAccountComponent},
   { path: 'currency/:code', component: CurrencyDetailComponent },
-
+  { path: 'settings', component: SettingsComponent},
 ];
 @NgModule({
 

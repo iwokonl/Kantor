@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -39,7 +40,8 @@ import { CurrencyChartComponent } from './currency-chart/currency-chart.componen
     SearchResultsComponent,
     CurrencyAccountComponent,
     CurrencyDetailComponent,
-    CurrencyChartComponent
+    CurrencyChartComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

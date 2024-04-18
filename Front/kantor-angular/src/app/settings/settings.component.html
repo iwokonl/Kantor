@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ustawienia konta</title>
+</head>
+<body>
+<div class="user-detail-box">
+<div class="user-detail-title">Ustawienia konta</div>
+<form (ngSubmit)="updateUserOnServer()" class="user-info">
+  <div class="user-detail">
+    <label class="user-label">
+      Username:
+      <input [(ngModel)]="user_name" name="username">
+    </label>
+  </div>
+  <div class="user-detail">
+    <label  class="user-label">
+      First Name:
+      <input [(ngModel)]="firstname" name="firstname">
+    </label>
+  </div>
+  <div class="user-detail">
+    <label  class="user-label">
+      Last Name:
+      <input [(ngModel)]="lastname" name="lastname">
+    </label>
+  </div>
+  <button class="form-submit-button">Update</button>
+</form>
+</div>
+</body>
+</html>
