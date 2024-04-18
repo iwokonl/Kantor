@@ -60,7 +60,7 @@ export class CurrencyAccountComponent implements OnInit {
       console.log("Invalid amount");
       return;
     }
-    this.isLoading = true;
+    account.isLoading = true;
     this.axiosService.request("POST",
       "/api/payment/create",
       {
@@ -74,13 +74,17 @@ export class CurrencyAccountComponent implements OnInit {
 
       }).then((response) => {
       console.log(response.data);
-      window.location.href = response.data.url;
       this.getCurrencyAccounts();
+      window.location.href = response.data.url;
+
+
       setTimeout(() => {
-        this.isLoading = false; // Wyłącz animację ładowania po przeniesieniu
-      }, 200000000);
+        account.isLoading = false;
+        // Wyłącz animację ładowania po przeniesieniu
+      }, 2000000);
     }).catch((error) => {
-      this.isLoading = false;
+      account.isLoading = false;
+
     });
   }
 
@@ -91,7 +95,7 @@ export class CurrencyAccountComponent implements OnInit {
       console.log("Invalid amount");
       return;
     }
-    this.isLoading = true;
+    account.isLoading = true;
     this.axiosService.request("POST",
       "/api/payment/createPayout",
       {
@@ -104,10 +108,12 @@ export class CurrencyAccountComponent implements OnInit {
 
       window.location.href = response.data.url;
       setTimeout(() => {
-        this.isLoading = false; // Wyłącz animację ładowania po przeniesieniu
-      }, 200000000);
+        account.isLoading = false;
+        // Wyłącz animację ładowania po przeniesieniu
+      }, 2000000);
     }).catch((error) => {
-      this.isLoading = false;
+      account.isLoading = false;
+
     });;
 
   }
