@@ -59,7 +59,10 @@
   margin-top: 15%;
   margin-right: -87%;
   margin-left: -87%;
+
+
 .delete{
+
   width: 275px;
   color: #C82333;
   border-color: #C82333;
@@ -68,9 +71,22 @@
     background-color: #C82333; // Na przykład, zmiana koloru tła
     color: #f1f1f1; // Zmiana koloru tekstu
   }
+  &:focus {
+// Usuwa domyślną niebieską poświatę
+
+    box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
+    // Usuwa dodatkowy cień, który może się pojawiać
+  }
+
+  &:active:focus{
+    box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
+    border-color: #C82333;
+  }
   //position: fixed;
 }
+
 }
+
 .tile {
   flex: 1 1 auto;
   border: 1px solid #ccc;
