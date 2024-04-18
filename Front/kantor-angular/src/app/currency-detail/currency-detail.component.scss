@@ -1,14 +1,12 @@
 .currency-details {
   display: block;
-  width: 20%; // or any specific width
-  margin-left: 120px;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  width: 100%; // or any specific width
+  margin: 50px auto 50px 120px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+
 
 }

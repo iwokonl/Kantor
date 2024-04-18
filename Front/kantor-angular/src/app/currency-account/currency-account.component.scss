@@ -1,20 +1,31 @@
 //cały kontener ze wszystkimi kafelkami
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-}
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 
+  justify-content: center;
+}
+.nag{
+
+}
 //cały kafelek wraz z zawartością
 .card{
+
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-items: stretch;
   margin-bottom: 20px;
+
+
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   background-color: #fff;
   min-height: 140px;
+  min-width: 300px;
+
+
 
   transition: box-shadow .3s;
 
@@ -28,8 +39,14 @@
 //zawartość kafelka - tekst
 .card-body {
   flex-grow: 1;
-}
 
+}
+.row{
+  margin-top: 15%;
+  margin-right: -300px;
+  margin-left: -350px;
+
+}
 .tile {
   flex: 1 1 auto;
   border: 1px solid #ccc;
@@ -39,6 +56,7 @@
   margin: 10px;
   padding: 20px;
   box-sizing: border-box;
+
 }
 
 .create-account-form {
@@ -47,4 +65,5 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+
 }
