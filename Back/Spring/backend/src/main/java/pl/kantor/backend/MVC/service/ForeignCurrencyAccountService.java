@@ -1,10 +1,8 @@
 package pl.kantor.backend.MVC.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -107,5 +105,9 @@ public class ForeignCurrencyAccountService {
                 .orElseThrow(() -> new AppExeption("Account not found", HttpStatus.NOT_FOUND));
         account.setBalance(account.getBalance().add(amount));
         return accountRepository.save(account);
+    }
+
+    public void deleteForeignCurrencyAccount(Long id) {
+        foreignCurrencyAccountRepo.deleteById(id);
     }
 }

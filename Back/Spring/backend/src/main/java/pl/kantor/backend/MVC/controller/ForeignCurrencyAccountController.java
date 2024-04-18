@@ -36,4 +36,11 @@ public class ForeignCurrencyAccountController {
                 foreignCurrencyAccountDto.getBalance());
         return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);
     }
+    @DeleteMapping("/deleteCurrencyAccount")
+    public ResponseEntity<String> deleteCurrencyAccount(
+            @RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto
+    ){
+        foreignCurrencyAccountService.deleteForeignCurrencyAccount(foreignCurrencyAccountDto.getId());
+        return ResponseEntity.ok("Account deleted");
+    }
 }

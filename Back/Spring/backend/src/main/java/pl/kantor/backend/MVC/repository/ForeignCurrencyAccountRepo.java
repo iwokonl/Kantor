@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface ForeignCurrencyAccountRepo extends JpaRepository<ForeignCurrencyAccount, Long> {
     List<ForeignCurrencyAccount> findAllByUserId(Long userId);
     Optional<ForeignCurrencyAccount> findByCurrencyCodeAndUserId(String currencyCode, Long userId);
-
+    void deleteById(Long Id);
     Optional<ForeignCurrencyAccount> findByUserIdAndCurrencyCode(Long id, String code);
 }

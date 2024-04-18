@@ -10,7 +10,7 @@
             <a [routerLink]="['/currency', account.curencyCode]">{{ account.curencyName + ' ' + account.curencyCode }}</a>
           </h5>
           <p class="card-text">Balans: {{ account.balance + ' ' + account.curencyCode + ' = ' + (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
-        <button class="btn btn-outline-primary delete">Usuń konto walutowe</button>
+        <button class="btn btn-outline-primary delete" (click)="onDeleteAccount(account)">Usuń konto walutowe</button>
         <button class="btn btn-outline-primary">Dodaj fundusze</button>
         <button class="btn btn-outline-primary withdraw">Wypłać fundusze</button>
         </div>
