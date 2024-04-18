@@ -23,6 +23,7 @@
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
   background-color: #fff;
   min-height: 140px;
+  max-height: 187px;
   min-width: 300px;
 
 
@@ -39,7 +40,8 @@
 //zawartość kafelka - tekst
 .card-body {
   flex-grow: 1;
-
+  //padding: 15px;
+  padding: 15px 15px 15px 25px;
 }
 .btn{
   margin-right: 11px;
