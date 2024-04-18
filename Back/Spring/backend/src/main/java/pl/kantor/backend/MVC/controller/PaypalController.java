@@ -39,6 +39,9 @@ public class PaypalController {
 
     @PostMapping("/create")
     public ResponseEntity<RedirectView> createPayment(@RequestBody PaymentPaypalDto paymentPaypalDto) {
+        if(paymentPaypalDto.total() <= 0){
+            throw new AppExeption("Amount must be greater than 0", HttpStatus.BAD_REQUEST);
+        }
         try {
 //            String cancelUrl = "http://localhost:8082/api/payment/cancel";
 //            String successUrl = "http://localhost:8082/api/payment/success";
@@ -76,6 +79,9 @@ public class PaypalController {
 
     @PostMapping("/createPayout")
     public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption {
+        if (payoutRequestPaypalDto.total() <= 0) {
+            throw new AppExeption("Amount must be greater than 0", HttpStatus.BAD_REQUEST);
+        }
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = authentication.getName();
