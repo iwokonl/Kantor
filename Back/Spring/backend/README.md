@@ -39,7 +39,8 @@ Kiedyś dodać
 
 ## Testy
 
-Aby uruchomić testy, wejdź w `Maven -> backend -> Lifecycle -> test`. Jest też możliwośc aby uruchomić testy jednostkowe przy każdym uruchomieniu.  
+Aby uruchomić testy, wejdź w `Maven -> backend -> Lifecycle -> test`. Jest też możliwośc aby uruchomić testy jednostkowe
+przy każdym uruchomieniu.  
 Wejdź w `Run/Debug Configurations -> Modify options -> Before launch -> Add -> Run Maven Goal -> Command: test`.
 
 ## Struktura projektu
@@ -55,13 +56,9 @@ Projekt składa się z następujących głównych części:
 - `MVC/mapper`: Interfejsy mapujące. `Encje -> DTO, DTO -> Encje`
 - `MVC/repository`: Interfejsy repozytorium służą jako warstwa abstrakcji między warstwą usług a danymi.
 - `MVC/service`: Klasy z logiką biznesową.
-# API Documentation
-
-## Overview
-
-This document provides information on the API endpoints for the Kantor Backend project.
 
 [//]: # (TODO: Zrobić API Documentation)
+
 # API Documentation
 
 ## Overview
@@ -84,16 +81,16 @@ Array of `CurrencyDto` objects:
 
 ```json
 [
-{
-"id": 1,
-"code": "USD",
-"name": "United States Dollar"
-},
-{
-"id": 2,
-"code": "EUR",
-"name": "Euro"
-}
+  {
+    "id": 1,
+    "code": "USD",
+    "name": "United States Dollar"
+  },
+  {
+    "id": 2,
+    "code": "EUR",
+    "name": "Euro"
+  }
 ]
 ```
 
@@ -107,8 +104,8 @@ Creates a new currency.
 
 ```json
 {
-"code": "GBP",
-"name": "British Pound"
+  "code": "GBP",
+  "name": "British Pound"
 }
 ```
 
@@ -118,9 +115,9 @@ Created `CurrencyDto` object:
 
 ```json
 {
-"id": 3,
-"code": "GBP",
-"name": "British Pound"
+  "id": 3,
+  "code": "GBP",
+  "name": "British Pound"
 }
 ```
 
@@ -134,8 +131,8 @@ Updates an existing currency.
 
 ```json
 {
-"code": "GBP",
-"name": "British Pound Sterling"
+  "code": "GBP",
+  "name": "British Pound Sterling"
 }
 ```
 
@@ -145,9 +142,9 @@ Updated `CurrencyDto` object:
 
 ```json
 {
-"id": 3,
-"code": "GBP",
-"name": "British Pound Sterling"
+  "id": 3,
+  "code": "GBP",
+  "name": "British Pound Sterling"
 }
 ```
 
@@ -177,16 +174,16 @@ Array of `AccountDto` objects:
 
 ```json
 [
-{
-"id": 1,
-"name": "Account 1",
-"balance": 1000
-},
-{
-"id": 2,
-"name": "Account 2",
-"balance": 2000
-}
+  {
+    "id": 1,
+    "name": "Account 1",
+    "balance": 1000
+  },
+  {
+    "id": 2,
+    "name": "Account 2",
+    "balance": 2000
+  }
 ]
 ```
 
@@ -200,8 +197,8 @@ Creates a new account.
 
 ```json
 {
-"name": "Account 3",
-"balance": 3000
+  "name": "Account 3",
+  "balance": 3000
 }
 ```
 
@@ -211,9 +208,9 @@ Created `AccountDto` object:
 
 ```json
 {
-"id": 3,
-"name": "Account 3",
-"balance": 3000
+  "id": 3,
+  "name": "Account 3",
+  "balance": 3000
 }
 ```
 
@@ -227,8 +224,8 @@ Updates an existing account.
 
 ```json
 {
-"name": "Account 3 Updated",
-"balance": 3500
+  "name": "Account 3 Updated",
+  "balance": 3500
 }
 ```
 
@@ -238,9 +235,9 @@ Updated `AccountDto` object:
 
 ```json
 {
-"id": 3,
-"name": "Account 3 Updated",
-"balance": 3500
+  "id": 3,
+  "name": "Account 3 Updated",
+  "balance": 3500
 }
 ```
 
@@ -262,13 +259,14 @@ In case of an error, the API will return an HTTP status code and a JSON object w
 
 ```json
 {
-"timestamp": "2022-03-01T12:00:00.000+00:00",
-"status": 400,
-"error": "Bad Request",
-"message": "Invalid request",
-"path": "/api/currencies"
+  "timestamp": "2022-03-01T12:00:00.000+00:00",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "Invalid request",
+  "path": "/api/currencies"
 }
 ```
+
 ## Licencja
 
 Informacje o licencji, jeśli taka istnieje.
