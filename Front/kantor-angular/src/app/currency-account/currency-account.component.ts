@@ -10,7 +10,7 @@ import { CurrencyService } from '../currency.service';
 })
 export class CurrencyAccountComponent implements OnInit {
   accounts: any[] = [];
-
+  isLoading: boolean = false;
   constructor(private axiosService: AxiosService, private currencyService: CurrencyService) { }
 
   getCurrencyAccounts(): void {
@@ -47,6 +47,40 @@ export class CurrencyAccountComponent implements OnInit {
       "/api/ForeignCurrencyAccount/deleteCurrencyAccount",
       {
         id: account.id
+      }).then((response) => {
+      console.log(response.data);
+      this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
+    });
+  }
+
+  onAddMoney(account: any) {
+    this.isLoading = true;
+    this.axiosService.request("POST",
+      "/api/payment/create",
+      {
+        total: account.amount,
+        currency: account.curencyCode,
+        method: "paypal",
+        intent: "sale",
+        description: "Płatność za pomocą PayPal. Dodanie środków do konta walutowego. Kwota: " + account.amount + " " + account.currencyCode,
+        cancelUrl: "http://localhost:8082/api/payment/cancel",
+        successUrl: "http://localhost:8082/api/payment/success"
+
+      }).then((response) => {
+      console.log(response.data);
+      window.location.href = response.data.url;
+      this.getCurrencyAccounts();
+      this.isLoading = false;// Refresh the accounts list after creating a new account
+    });
+  }
+
+  createPayout(account: any) {
+    this.axiosService.request("POST",
+      "/api/payment/createPayout",
+      {
+        receiverEmail: "kupujacy@kantrol.pl", // Dodać kiedyś do db pole paypal email i przypisać do usera podczas rejestracji.
+        total: account.amount,
+        currency: account.curencyCode
       }).then((response) => {
       console.log(response.data);
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account

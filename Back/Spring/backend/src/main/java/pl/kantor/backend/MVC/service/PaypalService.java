@@ -51,6 +51,7 @@ public class PaypalService {
     ) throws PayPalRESTException {
         Amount amount = new Amount();
         amount.setCurrency(currency);
+        logger.info("Currencyasdasdasdasdasdads: " + currency);
         amount.setTotal(String.format(Locale.forLanguageTag(currency), "%.2f", total));
 
         Transaction transaction = new Transaction();
@@ -195,6 +196,7 @@ public class PaypalService {
     }
 
     public void addAmountToKantorAccount(Payment payment, String userId) {
+        logger.info("Payment approvedasdasd " + payment.getTransactions().get(0).getAmount().getCurrency()+ "    "+ Long.parseLong(userId));
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyCodeAndUserId(payment.getTransactions().get(0).getAmount().getCurrency(), Long.parseLong(userId));
         if (account.isPresent()) {
             ForeignCurrencyAccount foreignCurrencyAccount = account.get();
