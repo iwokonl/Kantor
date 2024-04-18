@@ -19,7 +19,6 @@ export class CurrencyAccountComponent implements OnInit {
       {}).then((response) => {
       this.accounts = response.data;
       this.accounts.forEach(account => {
-        account.isLoading = false; // Initialize isLoading for each account
         if (account.curencyCode !== 'PLN') {
           this.currencyService.getCurrencyDetails(account.curencyCode).subscribe(details => {
             account.balanceInPLN = account.balance * details.rates[0].mid;
@@ -77,7 +76,9 @@ export class CurrencyAccountComponent implements OnInit {
       console.log(response.data);
       window.location.href = response.data.url;
       this.getCurrencyAccounts();
-      this.isLoading = false;// Refresh the accounts list after creating a new account
+      setTimeout(() => {
+        this.isLoading = false; // Wyłącz animację ładowania po przeniesieniu
+      }, 200000000);
     }).catch((error) => {
       this.isLoading = false;
     });
@@ -100,8 +101,11 @@ export class CurrencyAccountComponent implements OnInit {
       }).then((response) => {
       console.log(response.data);
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
-      this.isLoading = false;//
+
       window.location.href = response.data.url;
+      setTimeout(() => {
+        this.isLoading = false; // Wyłącz animację ładowania po przeniesieniu
+      }, 200000000);
     }).catch((error) => {
       this.isLoading = false;
     });;
