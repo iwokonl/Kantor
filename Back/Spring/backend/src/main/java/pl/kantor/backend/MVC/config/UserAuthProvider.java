@@ -45,6 +45,7 @@ public class UserAuthProvider {
                 .withClaim("id", dto.getId())
                 .withClaim("firstName", dto.getFirstName())
                 .withClaim("lastName", dto.getLastName())
+                .withClaim("email", dto.getEmail())
                 .sign(Algorithm.HMAC256(secretKey));
 
     }
@@ -68,6 +69,7 @@ public class UserAuthProvider {
                     .firstName(decodedJWT.getClaim("firstName").asString())
                     .lastName(decodedJWT.getClaim("lastName").asString())
                     .token(decodedJWT.getToken())
+                    .email(decodedJWT.getClaim("email").asString())
                     .build();
             return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
 
@@ -80,6 +82,7 @@ public class UserAuthProvider {
                         .firstName(decodedJWT.getClaim("firstName").asString())
                         .lastName(decodedJWT.getClaim("lastName").asString())
                         .token(decodedJWT.getClaim("token").asString())
+                        .email(decodedJWT.getClaim("email").asString())
                         .build();
                 String newToken = createToken(user);
                 return new UsernamePasswordAuthenticationToken(user, newToken, Collections.emptyList());
