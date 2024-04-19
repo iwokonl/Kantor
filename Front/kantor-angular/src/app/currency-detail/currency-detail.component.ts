@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CurrencyService } from '../currency.service';
+import { CurrencyFlagsService } from '../currency-flags.service';
+
+interface CurrencyFlags {
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-currency-detail',
@@ -10,8 +15,11 @@ import { CurrencyService } from '../currency.service';
 export class CurrencyDetailComponent implements OnInit {
   code: string = '';
   currencyDetails: any;
+  currencyFlags: { [key: string]: string } = {}; // Add this line
 
-  constructor(private route: ActivatedRoute, private currencyService: CurrencyService) { }
+  constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
+    this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
