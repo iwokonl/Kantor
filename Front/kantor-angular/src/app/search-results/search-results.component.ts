@@ -1,4 +1,5 @@
 import {Component, Input, HostListener, ElementRef} from '@angular/core';
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -22,6 +23,7 @@ export class SearchResultsComponent {
   constructor(private eRef: ElementRef) { }
 
   ngOnInit(): void {
+    polyfillCountryFlagEmojis();
   }
 
   //TODO: Szukanie po nazwie kraju - dodać kolumnę kraj w bazie danych
