@@ -71,6 +71,7 @@ public class UserService {
         foreignCurrencyAccountService.addAccount(account);
         return userMapper.toUserDto(savedUser);
     }
+
     public Map<String, String> jwtInfo(String token) {
         Pattern pattern = Pattern.compile("UserDto\\(id=(.*?), role=(.*?), username=(.*?), firstName=(.*?), lastName=(.*?), email=(.*?), token=(.*?)\\)");
         Matcher matcher = pattern.matcher(token);

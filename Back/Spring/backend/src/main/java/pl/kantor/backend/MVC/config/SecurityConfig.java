@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> // Konfiguracja zabezpieczeń
                         request.requestMatchers(HttpMethod.POST,  "authorization/register","/error", "authorization/login"
                                         , "currency/search" , "messages").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
-                                .requestMatchers(HttpMethod.GET, "test").permitAll() // Pozwala na wykonywanie zapytań GET na adresach: /search/**
+                                .requestMatchers(HttpMethod.GET, "test","api/v1/auth/**","v2/api-docs","v3/api-docs","v3/api-docs/**","swagger-resources","swagger-resources/**","configuration/ui","configuration/security","swagger-ui/**","webjars/**","/swagger-ui.html").permitAll() // Pozwala na wykonywanie zapytań GET na adresach: /search/**
                                 .anyRequest().authenticated()); // Wymaga autoryzacji dla pozostałych zapytań
         return httpSecurity.build();
     }
