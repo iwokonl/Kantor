@@ -15,7 +15,7 @@ interface CurrencyFlags {
 export class CurrencyDetailComponent implements OnInit {
   code: string = '';
   currencyDetails: any;
-  currencyFlags: { [key: string]: string } = {}; // Add this line
+  currencyFlags: { [key: string]: string } = {};
 
   constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
