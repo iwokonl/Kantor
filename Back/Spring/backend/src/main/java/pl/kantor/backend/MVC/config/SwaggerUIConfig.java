@@ -9,7 +9,7 @@ import org.springframework.context.event.EventListener;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
-
+//TODO: Usunąć po zakończeniu pracy nad projektem
 @Configuration
 public class SwaggerUIConfig {
     @EventListener({ApplicationReadyEvent.class})
