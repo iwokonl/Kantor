@@ -4,6 +4,7 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PayoutBatch;
 import com.paypal.base.rest.PayPalRESTException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpHeaders;
@@ -25,10 +26,11 @@ import pl.kantor.backend.MVC.service.UserService;
 
 import java.util.Map;
 
-
+@RestController
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/payment")
+@Tag(name = "Paypal")
 public class PaypalController {
 
 

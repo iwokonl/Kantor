@@ -39,8 +39,6 @@ public class AuthController {
                     @ApiResponse(responseCode = "401", description = "Nieautoryzowany dostęp"),
                     @ApiResponse(responseCode = "403", description = "Brak dostępu")
             }
-
-
     )
     @PostMapping("/userinfo")
     public ResponseEntity<Map<String,String>> currentUserName() {
@@ -79,7 +77,7 @@ public class AuthController {
         return ResponseEntity.ok(user);
     }
 
-    
+
     @Operation(
             description = "Rejestracja użytkownika",
             summary = "Rejestracja użytkownika",
