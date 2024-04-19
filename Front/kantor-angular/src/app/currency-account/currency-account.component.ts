@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { CurrencyService } from '../currency.service';
+import { CurrencyFlagsService } from '../currency-flags.service';
 
+interface CurrencyFlags {
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-currency-account',
@@ -11,7 +15,11 @@ import { CurrencyService } from '../currency.service';
 export class CurrencyAccountComponent implements OnInit {
   accounts: any[] = [];
   isLoading: boolean = false;
-  constructor(private axiosService: AxiosService, private currencyService: CurrencyService) { }
+  currencyFlags: { [key: string]: string } = {};
+
+  constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
+    this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
+  }
 
   getCurrencyAccounts(): void {
     this.axiosService.request("POST",
