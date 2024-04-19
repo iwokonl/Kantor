@@ -1,66 +1,50 @@
-.user-detail-title {
-  font-size: 30px;
+.settings-menu{
+  left: 0;
+  width: 20%;
+  height: 100vh;
+  position: fixed;
+}
+
+.user-details{
+  right: 0;
+  width: 80%;
+  height: 100vh;
+  position: fixed;
+}
+.settings-title{
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+.profile{
+  background: #b9b9b9;
   font-weight: bold;
-  margin-bottom: 20px;
 }
-.user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; /* Ustaw szerokość na 100%, aby elementy były wyśrodkowane w poziomie */
-  text-align: center; /* Wyśrodkuj tekst w poziomie */
-}
-.user-info .user-detail {
-  position : relative;
-  width: 350px;
-  height: 40px;
-  margin-bottom: 20px;
-}
-.user-info input {
+.nav-link
+{
+  margin-left: 5%;
+  margin-right: 15%;
   border-radius: 10px;
-  border: 1px solid #eee;
-  box-shadow: 5px 5px 5px #eee;
+  min-width: 100px;
 }
-.user-detail-box {
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%,-100%);
-  width: 450px;
-  height: auto;
+.nav-link:hover{
+  background: #eeeeee;
+}
+.menu-title{
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-left: 5%;
+  margin-right: 15%;
+
+}
+.form-container{
+  width: 20%;
+  height: 3%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-  border: 1px solid #eeeeee;
-  box-shadow: 5px 5px 5px #eee;
-  border-radius: 15px;
-  padding: 20px;
-  position: absolute;
 }
-.user-label{
-  font-size: 15px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  order: -1;
-  margin-top: 4px;
+.change-username-button{
+  top: 0;
+  float: right;
 }
-.form-submit-button {
-  background: #ffffff;
-  border: 1px solid #eee;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px #eee;
-  text-shadow: none;
-}
-.form-submit-button:hover {
-  background: #016ABC;
-  color: #fff;
-  border: 1px solid #eee;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px #eee;
-  text-shadow: none;
+.change-username{
+  width: 60%;
 }

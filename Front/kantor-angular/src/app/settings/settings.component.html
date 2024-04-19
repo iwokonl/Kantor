@@ -6,29 +6,32 @@
   <title>Ustawienia konta</title>
 </head>
 <body>
-<div class="user-detail-box">
-<div class="user-detail-title">Ustawienia konta</div>
-<form (ngSubmit)="updateUserOnServer()" class="user-info">
-  <div class="user-detail">
-    <label class="user-label">
-      Username:
-      <input [(ngModel)]="user_name" name="username">
-    </label>
+  <div class="whole-settings">
+    <!-- TODO: DODAC WIECEJ OPCJI DO MENU -->
+    <div class="settings-menu">
+      <p class="menu-title">Ustawienia</p>
+      <a class="nav-link profile" routerLink="settings">Profile</a>
+      <a class="nav-link" routerLink="security">Security</a>
+      <a class="nav-link" routerLink="help">Help</a>
+    </div>
+    <div class="user-details">
+      <p class="settings-title">Profile</p>
+      <!-- src/app/settings/settings.component.html -->
+      <div class="form-container" *ngIf="!isEditingUsername">
+        <p>{{ user_name }}</p>
+        <button class="change-username-button" (click)="toggleEditUsername()">Zmień</button>
+      </div>
+
+      <div class="form-container" *ngIf="isEditingUsername">
+        <form>
+          <input class="form-control change-username" [(ngModel)]="user_name" name="user_name" type="form">
+          <button class="change-username-button" type="submit">Zapisz</button>
+        </form>
+      </div>
+      <p>Imię: {{firstname}}</p>
+      <p>Nazwisko: {{lastname}}</p>
+      <p>Email: {{email}}</p>
+    </div>
   </div>
-  <div class="user-detail">
-    <label  class="user-label">
-      First Name:
-      <input [(ngModel)]="firstname" name="firstname">
-    </label>
-  </div>
-  <div class="user-detail">
-    <label  class="user-label">
-      Last Name:
-      <input [(ngModel)]="lastname" name="lastname">
-    </label>
-  </div>
-  <button class="form-submit-button">Update</button>
-</form>
-</div>
 </body>
 </html>

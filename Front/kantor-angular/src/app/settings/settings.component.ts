@@ -13,8 +13,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   user_name: string = '';
   firstname: string = '';
   lastname: string = '';
+  email: string = '';
   isLoggedIn: boolean = false;
   private authStatusSub: Subscription | undefined;
+  isEditingUsername: boolean = false;
 
   constructor(private axiosService: AxiosService, private userService: UserService) { }
 
@@ -35,9 +37,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.user_name = response.data.username;
         this.firstname = response.data.firstName;
         this.lastname = response.data.lastName;
+        this.email = response.data.email;
         console.log(this.firstname);
         console.log(this.lastname);
         console.log(this.user_name);
+        console.log(this.email)
       });
     }
   }
@@ -51,6 +55,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
         console.log(response);
       });
     }
+  }
+  toggleEditUsername() {
+    this.updateUserDetails();
+    this.isEditingUsername = !this.isEditingUsername;
   }
 
   ngOnDestroy(): void {
