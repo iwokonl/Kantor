@@ -152,9 +152,9 @@ public class PaypalController {
     }
 
     @Operation(
-            description = "Przekierowanie po pozytywnym zakończeniu płatności.",
-            summary = "Przekierowanie po pozytywnym zakończeniu płatności. Jeśli płatność wykona się poprawnie to dodaje kwotę do konta kantoru oraz wykonuje płatność. " +
+            description = "Przekierowanie po pozytywnym zakończeniu płatności. Jeśli płatność wykona się poprawnie to dodaje kwotę do konta kantoru oraz wykonuje płatność. " +
                     "Część dalszej logiki /create",
+            summary = "Przekierowanie po pozytywnym zakończeniu płatności.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Pomyślne wykonana operacja"),
                     @ApiResponse(responseCode = "500", description = "Błąd serwera")
@@ -184,9 +184,9 @@ public class PaypalController {
 
 
     @Operation(
-            description = "Przekierowanie po anulowaniu płatności.",
-            summary = "Przekierowanie po anulowaniu płatności. Jeśli płatność zostanie anulowana to przekierowuje na odpowiednią stronę. " +
+            description ="Przekierowanie po anulowaniu płatności. Jeśli płatność zostanie anulowana to przekierowuje na odpowiednią stronę. " +
                     "Część dalszej logiki /create",
+            summary = "Przekierowanie po anulowaniu płatności.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Pomyślne przekierowanie"),
                     @ApiResponse(responseCode = "500", description = "Błąd serwera")
@@ -207,9 +207,9 @@ public class PaypalController {
 
 
     @Operation(
-            description = "Przekierowanie po błędzie podczas płatności.",
-            summary = "Przekierowanie po błędzie podczas płatności. Jeśli podczas płatności wsytąpi błąd to przekierowuje na odpowiednią stronę. " +
+            description ="Przekierowanie po błędzie podczas płatności. Jeśli podczas płatności wsytąpi błąd to przekierowuje na odpowiednią stronę. " +
                     "Część dalszej logiki /create",
+            summary = "Przekierowanie po błędzie podczas płatności.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Pomyślne przekierowanie"),
                     @ApiResponse(responseCode = "500", description = "Błąd serwera")
