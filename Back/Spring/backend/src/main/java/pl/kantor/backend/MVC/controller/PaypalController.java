@@ -4,6 +4,11 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.PayoutBatch;
 import com.paypal.base.rest.PayPalRESTException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -38,6 +43,27 @@ public class PaypalController {
     private final UserAuthProvider userAuthProvider;
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(PaypalController.class);
+
+    @Operation(
+            description = "Stworzenie płatności",
+            summary = "Stworzenie płatności",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Pomyślnie zarejestrowano użytkownika"),
+                    @ApiResponse(responseCode = "400", description = "Nieprawidłowe dane rejestracji"),
+                    @ApiResponse(responseCode = "500", description = "Błąd serwera")
+            },
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            schema = @Schema(implementation = PaymentPaypalDto.class),
+                            examples = {
+                                    @ExampleObject(
+                                            name = "default",
+                                            value = "{\"total\": 100.02, \"currency\": \"PLN\", \"method\": \"paypal\", \"intent\": \"sale\", \"description\": \"desc\", \"cancelUrl\": \"http://localhost:8082/api/payment/cancel\", \"successUrl\": \"http://localhost:8082/api/payment/success\"}"
+                                    )
+                            }
+                    )
+            )
+    )
 
     @PostMapping("/create")
     public ResponseEntity<RedirectView> createPayment(@RequestBody PaymentPaypalDto paymentPaypalDto) {
@@ -79,6 +105,27 @@ public class PaypalController {
         return ResponseEntity.ok(new RedirectView("/error"));
     }
 
+    @Operation(
+            description = "Stworzenie wypłaty",
+            summary = "Stworzenie wypłaty",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successfully created payout"),
+                    @ApiResponse(responseCode = "400", description = "Invalid payout data"),
+                    @ApiResponse(responseCode = "500", description = "Server error")
+            },
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            schema = @Schema(implementation = PayoutRequestPaypalDto.class),
+                            examples = {
+                                    @ExampleObject(
+                                            name = "default",
+                                            value = "{\"receiverEmail\": \"kupujacy@kantrol.pl\", \"total\": 100.00, \"currency\": \"PLN\"}"
+                                    )
+                            }
+                    )
+            )
+    )
+
     @PostMapping("/createPayout")
     public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption {
         if (payoutRequestPaypalDto.total() <= 0) {
@@ -104,7 +151,23 @@ public class PaypalController {
         }
     }
 
-
+    @Operation(
+            description = "Przekierowanie po pozytywnym zakończeniu płatności.",
+            summary = "Przekierowanie po pozytywnym zakończeniu płatności. Jeśli płatność wykona się poprawnie to dodaje kwotę do konta kantoru oraz wykonuje płatność. " +
+                    "Część dalszej logiki /create",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Pomyślne wykonana operacja"),
+                    @ApiResponse(responseCode = "500", description = "Błąd serwera")
+            },
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            schema = @Schema(implementation = PaymentPaypalDto.class),
+                            examples = {
+                                    @ExampleObject()
+                            }
+                    )
+            )
+    )
     @GetMapping("/success")
     public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId) {
         try {
@@ -119,11 +182,47 @@ public class PaypalController {
         return new RedirectView("http://localhost:8082/api/payment/error");
     }
 
+
+    @Operation(
+            description = "Przekierowanie po anulowaniu płatności.",
+            summary = "Przekierowanie po anulowaniu płatności. Jeśli płatność zostanie anulowana to przekierowuje na odpowiednią stronę. " +
+                    "Część dalszej logiki /create",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Pomyślne przekierowanie"),
+                    @ApiResponse(responseCode = "500", description = "Błąd serwera")
+            },
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            schema = @Schema(implementation = PaymentPaypalDto.class),
+                            examples = {
+                                    @ExampleObject()
+                            }
+                    )
+            )
+    )
     @PostMapping("/cancel")
     public RedirectView cancelPayment() {
         return new RedirectView("http://localhost:4200/payment/cancel");
     }
 
+
+    @Operation(
+            description = "Przekierowanie po błędzie podczas płatności.",
+            summary = "Przekierowanie po błędzie podczas płatności. Jeśli podczas płatności wsytąpi błąd to przekierowuje na odpowiednią stronę. " +
+                    "Część dalszej logiki /create",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Pomyślne przekierowanie"),
+                    @ApiResponse(responseCode = "500", description = "Błąd serwera")
+            },
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    content = @Content(
+                            schema = @Schema(implementation = PaymentPaypalDto.class),
+                            examples = {
+                                    @ExampleObject()
+                            }
+                    )
+            )
+    )
     @PostMapping("/error")
     public RedirectView errorPayment() {
         return new RedirectView("http://localhost:4200/payment/error");

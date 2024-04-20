@@ -1,5 +1,10 @@
 package pl.kantor.backend.MVC.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +26,25 @@ public class CurrencyController {
 
 
 //TODO: Zapytać się czy robić w taki sposób @RequestBody SearchCurrencyDto query na zasadzie DTO(Zapytać się co to jest obiek domenowy) Zapytać się też kiedy używać DTO - Iwo
+@Operation(
+        description = "Wyszukiwanie walut",
+        summary = "Wyszukiwanie walut",
+        responses = {
+                @ApiResponse(responseCode = "200", description = "Pomyślnie znaleziono waluty"),
+                @ApiResponse(responseCode = "500", description = "Błąd serwera")
+        },
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                content = @Content(
+                        schema = @Schema(implementation = SearchCurrencyDto.class),
+                        examples = {
+                                @ExampleObject(
+                                        name = "default",
+                                        value = "{\"name\": \"as\"}"
+                                )
+                        }
+                )
+        )
+)
     @PostMapping("/search")
     public ResponseEntity<List<CurrencyDto>> searchCurrencies(@RequestBody SearchCurrencyDto query) {
         List<CurrencyDto> results = currencyService.findByName(query);
