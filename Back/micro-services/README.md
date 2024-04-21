@@ -1,0 +1,1 @@
+Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, spring boot actuator

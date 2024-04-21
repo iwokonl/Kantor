@@ -108,6 +108,7 @@ public class ForeignCurrencyAccountService {
     }
 
     public void deleteForeignCurrencyAccount(Long id) {
-        foreignCurrencyAccountRepo.deleteById(id);
+        foreignCurrencyAccountRepo.
+                deleteById(id);
     }
 }

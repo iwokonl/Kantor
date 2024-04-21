@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: transaction
+  config:
+    import: optional:configserver:http://localhost:8888 # Config server URL. Optional means if this microservise not find the config on config server then it will not fail to start
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/transaction
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/ # Eureka server URL 8761 because its the port of discovery server
+
+
+server:
+  port: 8090
+  servlet:
+    context-path: /api/v1
+
