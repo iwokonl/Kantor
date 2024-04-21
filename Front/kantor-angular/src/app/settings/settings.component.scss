@@ -1,22 +1,29 @@
 .settings-menu{
   left: 0;
   width: 20%;
+  min-width: 200px;
   height: 100vh;
   position: fixed;
+  padding-top: 1rem;
 }
-
 .user-details{
+  margin-left: 20%;
+  padding-left: 6rem;
+  padding-top: 2rem;
   right: 0;
   width: 80%;
   height: 100vh;
   position: fixed;
+  align-items: center;
 }
 .settings-title{
-  font-size: 2rem;
+  height: 3rem;
+  font-size: 3rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 .profile{
-  background: #b9b9b9;
+  background: #dedede;
   font-weight: bold;
 }
 .nav-link
@@ -34,17 +41,54 @@
   margin-top: 1rem;
   margin-left: 5%;
   margin-right: 15%;
-
 }
 .form-container{
-  width: 20%;
-  height: 3%;
+  position: relative;
+  width: 21rem;
+  height: 30px;
+  display: flex; // make this a flex container
+  align-items: center; // center child elements vertically
+  margin-bottom: 1rem;
+}
+.form-box{
   display: flex;
 }
-.change-username-button{
-  top: 0;
+.change-username-button, .change-email-button {
+  margin-left: auto;
   float: right;
+  position: absolute;
+  right: 0;
+  height: 1.5rem;
+  width: 4rem;
+  text-align: center; // horizontally center the text
+  display: flex; // these three lines vertically center the text
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  color: #006fff;
 }
 .change-username{
-  width: 60%;
+  margin-left: 0.5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+
+}
+.change-username:focus, change-email:focus {
+  //height: 25px;
+  border: none;
+  //outline: none;
+}
+.a, p{
+  margin-bottom: 1rem;
+  height: 30px;
+}
+.change-email-button{
+  height: 1.5rem;
+}
+.change-email {
+  margin-left: 0.5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+
 }

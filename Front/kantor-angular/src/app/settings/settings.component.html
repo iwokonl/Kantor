@@ -16,21 +16,22 @@
     </div>
     <div class="user-details">
       <p class="settings-title">Profile</p>
-      <!-- src/app/settings/settings.component.html -->
-      <div class="form-container" *ngIf="!isEditingUsername">
-        <p>{{ user_name }}</p>
-        <button class="change-username-button" (click)="toggleEditUsername()">Zmień</button>
-      </div>
-
-      <div class="form-container" *ngIf="isEditingUsername">
-        <form>
-          <input class="form-control change-username" [(ngModel)]="user_name" name="user_name" type="form">
-          <button class="change-username-button" type="submit">Zapisz</button>
+      <div class="form-container">
+        <a>Username: </a>
+        <form class="form-box">
+          <input class="change-username" [(ngModel)]="user_name" name="user_name" type="form" [disabled]="!isEditingUsername">
+          <button class="change-username-button" (click)="toggleEditUsername()">{{isEditingUsername ? 'Zapisz' : 'Zmień'}}</button>
         </form>
       </div>
       <p>Imię: {{firstname}}</p>
       <p>Nazwisko: {{lastname}}</p>
-      <p>Email: {{email}}</p>
+      <div class="form-container">
+        <a>Email: </a>
+        <form class="form-box">
+          <input class="change-email" [(ngModel)]="email" name="email" type="form" [disabled]="!isEditingEmail">
+          <button class="change-email-button" (click)="toggleEditEmail()">{{isEditingEmail ? 'Zapisz' : 'Zmień'}}</button>
+        </form>
+      </div>
     </div>
   </div>
 </body>

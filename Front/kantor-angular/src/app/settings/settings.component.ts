@@ -60,7 +60,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.updateUserDetails();
     this.isEditingUsername = !this.isEditingUsername;
   }
+  isEditingEmail = false; // Zmienna kontrolująca stan pola formularza
 
+  toggleEditEmail() {
+    this.isEditingEmail = !this.isEditingEmail; // Przełączanie stanu pola formularza
+
+    // if (!this.isEditingEmail) {
+    //   // Jeśli pole formularza jest wyłączone, wysyłamy dane do serwera
+    //   this.sendDataToServer(this.email);
+    // }
+  }
   ngOnDestroy(): void {
     if (this.authStatusSub) {
       this.authStatusSub.unsubscribe();
