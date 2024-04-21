@@ -31,3 +31,17 @@ Ltransaction/src/main/java/org/example/transaction/Dto/GetTransactionDto.java,b
 Otransaction/src/main/java/org/example/transaction/mapper/TransactionMapper.java,3\2\32b2f2deda9d237c9f91d162c340cc4f81fd6b3d
 ~
 Ndiscovery-server/src/main/java/org/example/discovery/DiscoveryApplication.java,c\b\cbdf5089e225d1160df6ab4ebcb6987eaa6e721e
+>
+paypal/pom.xml,e\e\ee70bc35462b90985e7663edc75683c45d85257e
+n
+>paypal/src/main/java/org/example/paypal/PaypalApplication.java,0\6\06a6f072b1e63277fd1250ca573802c5506be893
+a
+1gateway/src/main/resources/application.properties,7\2\723d904adf42b8d4a8340e269af7dbe382232488
+c
+3discovery-server/src/main/resources/application.yml,6\9\69a375ec90c61e85e8309feaaee7ad121559c6e0
+d
+4currency-accounts/src/main/resources/application.yml,1\b\1b181480d28763e4be03a3167ccdb4c576756d35
+]
+-currencies/src/main/resources/application.yml,4\a\4a73b09212a5dbaa3d85774c6e15ebbc70e3e706
+^
+.transaction/src/main/resources/application.yml,9\7\9748f06d4b2b67f6e92bcef29bbaa70ee9e52cba

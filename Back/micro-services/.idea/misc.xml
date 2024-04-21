@@ -8,6 +8,11 @@
         <option value="$PROJECT_DIR$/discovery/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/Paypal/pom.xml" />
+        <option value="$PROJECT_DIR$/currency-accounts/pom.xml" />
+        <option value="$PROJECT_DIR$/currencies/pom.xml" />
+        <option value="$PROJECT_DIR$/paypal/pom.xml" />
       </list>
     </option>
   </component>

@@ -9,16 +9,22 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="discovery-server" />
+        <module name="currency-accounts" />
+        <module name="paypal" />
         <module name="gateway" />
         <module name="transaction" />
+        <module name="currencies" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-server" options="-parameters" />
+      <module name="currencies" options="-parameters" />
+      <module name="currency-accounts" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="paypal" options="-parameters" />
       <module name="transaction" options="-parameters" />
     </option>
   </component>

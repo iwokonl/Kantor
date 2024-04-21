@@ -4,6 +4,7 @@
     <option name="moduleMapping">
       <map>
         <entry key="discovery-server" value="discovery" />
+        <entry key="paypal" value="Paypal" />
       </map>
     </option>
   </component>

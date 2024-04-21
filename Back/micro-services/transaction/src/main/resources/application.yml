@@ -23,7 +23,7 @@ eureka:
 
 
 server:
-  port: 8090
+  port: 8070
   servlet:
     context-path: /api/v1
 
