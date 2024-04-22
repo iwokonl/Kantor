@@ -59,3 +59,5 @@ E
 config-server/pom.xml,a\2\a2f9618c8ad821b143a07a29a9805fcb0b2df470
 J
 _docker/docker-compose.yml,8\a\8a3ca896b99b4cb7a73e49f5cbb43e851708c8d0
+ƒ
+Sdiscovery-server/src/test/java/org/example/discovery/DiscoveryApplicationTests.java,d\b\db1e38b167d1c0b37bd52c54bdd0e0acf2e2f8d5
