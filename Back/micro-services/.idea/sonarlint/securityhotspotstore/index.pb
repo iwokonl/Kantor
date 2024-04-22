@@ -61,3 +61,11 @@ J
 _docker/docker-compose.yml,8\a\8a3ca896b99b4cb7a73e49f5cbb43e851708c8d0
 É
 Sdiscovery-server/src/test/java/org/example/discovery/DiscoveryApplicationTests.java,d\b\db1e38b167d1c0b37bd52c54bdd0e0acf2e2f8d5
+{
+Ktransaction/src/main/java/org/example/transaction/exeption/AppExeption.java,3\7\37f3c77ca578c904101efa952a47d9dbed75111d
+Å
+Qtransaction/src/main/java/org/example/transaction/config/RestExeptionHandler.java,3\6\36851f823976cb8cee99eb0610551b2f4af04ae7
+s
+Ctransaction/src/main/java/org/example/transaction/dto/ErrorDto.java,d\c\dc7632474c473c0063b58e1ef1b86b5028c039bd
+y
+Itransaction/src/main/java/org/example/transaction/dto/TransactionDto.java,c\6\c6efb4e7b2016a0d9dd0636651b6ec0fc9d3532a

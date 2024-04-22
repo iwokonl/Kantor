@@ -24,7 +24,7 @@ public class TransactionController {
     }
 
     @GetMapping("/getTransactions")
-    public ResponseEntity<List<TransactionDto>> getTransactions(@RequestParam Long accountId) {
-        return ResponseEntity.ok(transactionService.getTransactions(accountId));
+    public ResponseEntity<List<TransactionDto>> getTransactions(@RequestBody TransactionDto transactionDto) {
+        return ResponseEntity.ok(transactionService.getTransactions(transactionDto.id()));
     }
 }
