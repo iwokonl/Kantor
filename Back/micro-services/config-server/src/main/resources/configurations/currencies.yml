@@ -3,7 +3,7 @@ spring:
     name: currencies
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/currencies
+    url: jdbc:postgresql://localhost:5435/currencies
     username: postgres
     password: admin
   jpa:

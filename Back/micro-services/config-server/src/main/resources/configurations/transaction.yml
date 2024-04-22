@@ -3,7 +3,7 @@ spring:
     name: transaction
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/transaction
+    url: jdbc:postgresql://localhost:5434/transaction
     username: postgres
     password: admin
   jpa:

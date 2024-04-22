@@ -15,3 +15,5 @@ J
 _keycloak-24.0.3/README.md,4\b\4b695741280cc50ca331725b7c23b12662e542a4
 T
 $_keycloak-24.0.3/conf/cache-ispn.xml,4\b\4b117030aaf35d08112de8c0a32bc4be9653bcfa
+J
+_docker/docker-compose.yml,8\a\8a3ca896b99b4cb7a73e49f5cbb43e851708c8d0
