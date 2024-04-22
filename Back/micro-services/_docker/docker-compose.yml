@@ -1,3 +1,4 @@
+version: '3'
 services:
   postgres_keycloak:
     image: postgres:16.2
@@ -56,6 +57,9 @@ services:
     command: ["start-dev"]
     depends_on:
       - postgres_keycloak
+    volumes:
+      - ./themes/kantor:/opt/keycloak/themes/kantor
+
 
   zipkin:
     container_name: zipkin
