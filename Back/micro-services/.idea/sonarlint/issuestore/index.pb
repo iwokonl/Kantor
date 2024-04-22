@@ -5,10 +5,6 @@ Agateway/src/main/java/org/example/gateway/GatewayApplication.java,a\2\a22c2f68
 gateway/mvnw,e\5\e5a3d5450becc8a5b6bd995f01338866048aaf73
 ?
 gateway/pom.xml,4\b\4b316bc60d1cfae51045f6fc8e58a8ae31f03ff3
-w
-Gdiscovery/src/main/java/org/example/discovery/DiscoveryApplication.java,6\b\6b1823585afd861e753fbadc473c651d317ae3b0
-A
-discovery/pom.xml,a\c\ac3e1555725512e9cd39c39120cd768bda4aa7b4
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 }
@@ -35,8 +31,6 @@ Ndiscovery-server/src/main/java/org/example/discovery/DiscoveryApplication.java
 paypal/pom.xml,e\e\ee70bc35462b90985e7663edc75683c45d85257e
 n
 >paypal/src/main/java/org/example/paypal/PaypalApplication.java,0\6\06a6f072b1e63277fd1250ca573802c5506be893
-a
-1gateway/src/main/resources/application.properties,7\2\723d904adf42b8d4a8340e269af7dbe382232488
 c
 3discovery-server/src/main/resources/application.yml,6\9\69a375ec90c61e85e8309feaaee7ad121559c6e0
 d
@@ -45,3 +39,23 @@ d
 -currencies/src/main/resources/application.yml,4\a\4a73b09212a5dbaa3d85774c6e15ebbc70e3e706
 ^
 .transaction/src/main/resources/application.yml,9\7\9748f06d4b2b67f6e92bcef29bbaa70ee9e52cba
+á
+Wtransaction/src/main/java/org/example/transaction/controller/TransactionController.java,a\5\a5dc5cb53288ba036eceb58ea8c33d4ad69aa597
+|
+Ltransaction/src/main/java/org/example/transaction/dto/AddTransactionDto.java,0\b\0b1e5229e4377eaa5a9259c0a9801bf155d70b44
+Å
+Qconfig-server/src/main/java/org/example/configserver/ConfigServerApplication.java,f\a\fa7d82d29c5463f45067fa4c2ef2a54a826cb687
+C
+transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
+I
+currency-accounts/pom.xml,f\9\f9ab328c55687d660aa7f477454a7c009df84d58
+B
+currencies/pom.xml,5\0\50e56f4843e63821f3363272be691db5445f975d
+z
+Jcurrencies/src/main/java/org/example/currencies/CurrenciesApplication.java,e\6\e6b045445e4ec4722ef5ba6609f9d5058a567079
+H
+discovery-server/pom.xml,2\c\2c58c7878e43d126fc56cae853d5b06de57d0b3e
+E
+config-server/pom.xml,a\2\a2f9618c8ad821b143a07a29a9805fcb0b2df470
+J
+_docker/docker-compose.yml,8\a\8a3ca896b99b4cb7a73e49f5cbb43e851708c8d0

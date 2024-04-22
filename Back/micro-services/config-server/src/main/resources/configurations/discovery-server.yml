@@ -1,0 +1,22 @@
+#spring.application.name=discovery
+#spr.app.na
+#
+#eureka.instance.hostname=localhost
+#eureka.client.register-with-eureka=false
+
+spring:
+  application:
+    name: discovery-server
+
+
+eureka:
+  instance:
+    hostname: localhost # Discovery server name
+  client:
+    register-with-eureka: false # If its true it will register itself with eureka server (inf loop)
+    fetch-registry: false # If its true it will fetch the registry from eureka server
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ # Eureka server URL
+
+server:
+  port: 8761

@@ -1,0 +1,40 @@
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server # Jeśli chodzi o błąd No instances found of configserver (config-server) to bug i tyle wysztko działa :)
+    gateway:
+      mvc:
+        routes:
+          - id: transaction-service
+            uri: http://localhost:8070
+            predicates:
+              - Path=/api/v1/transactions/**
+          - id: paypal-service
+            uri: http://localhost:8071
+            predicates:
+              - Path=/api/v1/paypal/**
+          - id: currencies-service
+            uri: http://localhost:8073
+            predicates:
+              - Path=/api/v1/currencies/**
+          - id: currency-accounts-service
+            uri: http://localhost:8073
+            predicates:
+              - Path=/api/v1/currencyAccounts/**
+
+eureka:
+  client:
+    register-with-eureka: false
+
+server:
+  port: 8222
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,19 +1,17 @@
-package org.example.transaction.Controller;
+package org.example.transaction.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.transaction.Dto.AddTransactionDto;
-import org.example.transaction.Dto.TransactionDto;
-import org.example.transaction.model.Transaction;
+import org.example.transaction.dto.AddTransactionDto;
+import org.example.transaction.dto.TransactionDto;
 import org.example.transaction.service.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("v1/transactions")
 @RequiredArgsConstructor
 public class TransactionController {
 

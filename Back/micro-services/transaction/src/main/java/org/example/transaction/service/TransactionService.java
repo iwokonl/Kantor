@@ -1,8 +1,8 @@
 package org.example.transaction.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.transaction.Dto.AddTransactionDto;
-import org.example.transaction.Dto.TransactionDto;
+import org.example.transaction.dto.AddTransactionDto;
+import org.example.transaction.dto.TransactionDto;
 import org.example.transaction.model.Transaction;
 import org.example.transaction.repo.TransactionRepo;
 import org.springframework.stereotype.Service;
