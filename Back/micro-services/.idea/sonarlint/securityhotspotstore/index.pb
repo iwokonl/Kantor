@@ -59,5 +59,30 @@ E
 config-server/pom.xml,a\2\a2f9618c8ad821b143a07a29a9805fcb0b2df470
 J
 _docker/docker-compose.yml,8\a\8a3ca896b99b4cb7a73e49f5cbb43e851708c8d0
+<<<<<<< Updated upstream
 ƒ
 Sdiscovery-server/src/test/java/org/example/discovery/DiscoveryApplicationTests.java,d\b\db1e38b167d1c0b37bd52c54bdd0e0acf2e2f8d5
+=======
+T
+$_keycloak-24.0.3/providers/README.md,b\0\b0958b2852c5373473f860856a560cbe753329df
+J
+_keycloak-24.0.3/bin/kc.sh,f\2\f29b445339717df1497a81f729a60598e598e515
+J
+_keycloak-24.0.3/README.md,4\b\4b695741280cc50ca331725b7c23b12662e542a4
+K
+_keycloak-24.0.3/bin/kc.bat,d\5\d56791a0194871d2805f4b1b72f268b3d9343784
+]
+-_keycloak-24.0.3/bin/federation-sssd-setup.sh,f\e\fe96b865fa8b5b87d2752ba58fd56e712cad8567
+N
+_keycloak-24.0.3/bin/kcadm.bat,6\a\6a2ba8bd50b571e09cd5f01b18b3c7241f7bfa15
+M
+_keycloak-24.0.3/bin/kcadm.sh,1\7\17b3dc42a19621d72faf460697eb20a5c47fa546
+N
+_keycloak-24.0.3/bin/kcreg.bat,a\f\afe339396cd9bacbd400d85cd5d4026cffa9fe50
+M
+_keycloak-24.0.3/bin/kcreg.sh,e\3\e3f2c67bf20c124b1c965a087817be61455c6aed
+T
+$_keycloak-24.0.3/conf/cache-ispn.xml,4\b\4b117030aaf35d08112de8c0a32bc4be9653bcfa
+S
+#_keycloak-24.0.3/conf/keycloak.conf,f\4\f4939e0715e238d4d4e63199c6fca9e0fc7ae756
+>>>>>>> Stashed changes
