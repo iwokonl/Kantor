@@ -41,3 +41,9 @@ c
 3_docker/themes/kantor/login/resources/css/style.css,a\a\aa95a8ddbc6aeec1a037d739e9c519c0c02fd3ae
 d
 4_docker/themes/kantor/login/resources/css/styles.css,8\0\8003b0bfbe92aaacacee9196817a1d5aab9caaeb
+U
+%_docker/themes/kdk/login/template.ftl,6\7\672aea541d3292ea112b2e0c85b531fbd60c4246
+_
+/_docker/themes/kdk/login/resources/js/quasar.js,f\7\f7368a33ff7421f5a021a86cda82c50937115726
+_
+/_docker/themes/kdk/login/resources/js/config.js,9\7\978fae1ea136bee3b7a3ce8fac58fa55ff269f71
