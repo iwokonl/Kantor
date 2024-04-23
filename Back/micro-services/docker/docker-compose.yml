@@ -43,14 +43,14 @@ services:
 
 
 
-  postgres:
+  postgres_keycloak:
     image: postgres:latest
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
     healthcheck:
       test: "exit 0"
     ports:
@@ -62,17 +62,17 @@ services:
     command: start-dev
     environment:
       KC_DB: postgres
-      KC_DB_URL_HOST: postgres
+      KC_DB_URL_HOST: postgres_keycloak
       KC_DB_URL_DATABASE: keycloak
-      KC_DB_PASSWORD: 123456
-      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: admin
+      KC_DB_USERNAME: postgres
       KC_DB_SCHEMA: public
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: password
     ports:
-      - 8081:8080
+      - 8080:8080
     depends_on:
-      postgres:
+      postgres_keycloak:
         condition: service_healthy
     networks:
       - keycloak_demo
