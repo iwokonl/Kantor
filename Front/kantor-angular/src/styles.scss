@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  overflow:hidden;
+  background-image: url("background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+
 }
+
+
+.success-snackbar {
+  background-color: #2D8ABE;
+  color: #DBDBDB;
+  max-width: 15% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 1rem !important;
+  //padding: 10px !important;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  top: 200px;
+  border-radius: 12px;
+}
+
+.error-snackbar {
+  position: fixed; // Change from absolute to fixed
+  background-color: rgba(255, 0, 0, 0.47);
+  color: #DBDBDB;
+  max-width: 15% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 1rem !important;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  border-radius: 12px;
+  z-index: 99999; // Increase the z-index value
+}
+

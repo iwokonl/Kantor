@@ -21,6 +21,7 @@ import { CurrencyAccountComponent } from './currency-account/currency-account.co
 import { CurrencyDetailComponent } from './currency-detail/currency-detail.component';
 import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
 import { SettingsComponent } from './settings/settings.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -48,7 +49,8 @@ import { SettingsComponent } from './settings/settings.component';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

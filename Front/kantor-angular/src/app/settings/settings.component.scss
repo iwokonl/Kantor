@@ -5,7 +5,10 @@
   height: 100vh;
   position: fixed;
   padding-top: 1rem;
+
+  color: #dbdbdb;
 }
+
 .user-details{
   margin-left: 20%;
   padding-left: 6rem;
@@ -16,32 +19,41 @@
   position: fixed;
   align-items: center;
 }
+
 .settings-title{
   height: 3rem;
   font-size: 3rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+
+  font-weight: bold;
+  color: #dbdbdb;
 }
+
 .profile{
-  background: #dedede;
+  background: #02080d;
   font-weight: bold;
 }
-.nav-link
-{
+
+.nav-link {
   margin-left: 5%;
   margin-right: 15%;
   border-radius: 10px;
   min-width: 100px;
 }
+
 .nav-link:hover{
-  background: #eeeeee;
+  //background: #eeeeee;
+  background: #041c3f;
 }
+
 .menu-title{
   font-size: 1.5rem;
   margin-top: 1rem;
   margin-left: 5%;
   margin-right: 15%;
 }
+
 .form-container{
   position: relative;
   width: 21rem;
@@ -49,10 +61,14 @@
   display: flex; // make this a flex container
   align-items: center; // center child elements vertically
   margin-bottom: 1rem;
+
+  color: #dbdbdb;
 }
+
 .form-box{
   display: flex;
 }
+
 .change-username-button, .change-email-button {
   margin-left: auto;
   float: right;
@@ -64,31 +80,40 @@
   display: flex; // these three lines vertically center the text
   justify-content: center;
   align-items: center;
-  border: none;
   background: none;
   color: #006fff;
+  border: #DBDBDB 1px solid;
+  border-radius: 0.5rem;
 }
-.change-username{
+
+.change-username, .change-email {
   margin-left: 0.5rem;
   height: 1.5rem;
   border-radius: 0.5rem;
+  color: #dbdbdb;
+  background: none;
+
 
 }
-.change-username:focus, change-email:focus {
-  //height: 25px;
-  border: none;
-  //outline: none;
+
+.editing {
+  background-color: #055172;
+  color: white;
 }
+
+//.change-username:focus, change-email:focus {
+//  //height: 25px;
+//  border: none;
+//  //outline: none;
+//}
+
 .a, p{
   margin-bottom: 1rem;
   height: 30px;
+  color: #dbdbdb;
 }
+
 .change-email-button{
   height: 1.5rem;
 }
-.change-email {
-  margin-left: 0.5rem;
-  height: 1.5rem;
-  border-radius: 0.5rem;
 
-}

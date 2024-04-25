@@ -16,9 +16,25 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   }
+}
 
+.logged-in-welcome {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  color: #DBDBDB;
+  font-size: 1.5em;
+  font-weight: 300;
+  text-align: center;
+  padding: 20px;
 
 }

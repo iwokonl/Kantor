@@ -1,5 +1,5 @@
-<div *ngIf="isLoggedIn; else notLoggedIn">
-  <p>Zalogowany. Witaj <b>{{ user_name }}</b></p>
+<div class="logged-in-welcome" *ngIf="isLoggedIn; else notLoggedIn">
+  <h1>Zalogowany. Witaj <b>{{ user_name }}</b></h1>
 </div>
 
 <ng-template #notLoggedIn>

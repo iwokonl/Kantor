@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .nag{
-
+  color: #dbdbdb;
 }
 //cały kafelek wraz z zawartością
 .card{
@@ -21,7 +21,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
-  background-color: #fff;
+  background: linear-gradient(92deg, rgba(241, 241, 241, 0.06) -0.4%, rgba(214, 214, 214, 0.04) 106.05%);
+  backdrop-filter: blur(17.5px);
   min-height: 230px;
   max-height: 400px;
   min-width: 320px;
@@ -32,10 +33,13 @@
 
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
-    background-color: #f1f1f1;
+    background: linear-gradient(92deg, rgba(241, 241, 241, 0.1) -0.4%, rgba(214, 214, 214, 0.1) 106.05%);
+    backdrop-filter: blur(50px);
     transform: scale(1.1);
   }
 }
+
+
 .loading-overlay{
   position: absolute;
   top: 0;
@@ -62,6 +66,7 @@
   //padding: 15px;
   padding: 15px 15px 15px 25px;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+  color: #DBDBDB;
 }
 .btn{
   margin-right: 11px;
@@ -69,38 +74,36 @@
   padding: 3px 7px; /* Zmienia rozmiar przycisku poprzez zmianę paddingu */
   font-size: 16px;
 }
+
 //TODO:Ogólnie tutaj jest maniana w tym html i nie powinno się tak marginem robić
 .row{
   margin-top: 15%;
   margin-right: -87%;
   margin-left: -87%;
 
-
-.delete{
-
-  width: 275px;
-  color: #C82333;
-  border-color: #C82333;
-  &:hover {
-    // Tutaj dodaj style, które mają być zastosowane po najechaniu na przycisk
-    background-color: #C82333; // Na przykład, zmiana koloru tła
-    color: #f1f1f1; // Zmiana koloru tekstu
-  }
-  &:focus {
-// Usuwa domyślną niebieską poświatę
-    background-color: #C82333;
-    box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
-    // Usuwa dodatkowy cień, który może się pojawiać
-  }
-
-  &:active:focus{
-    box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
+  .delete{
+    width: 275px;
+    color: #C82333;
     border-color: #C82333;
-    background-color: #C82333;
-  }
-  //position: fixed;
-}
+    &:hover {
+      // Tutaj dodaj style, które mają być zastosowane po najechaniu na przycisk
+      background-color: #C82333; // Na przykład, zmiana koloru tła
+      color: #f1f1f1; // Zmiana koloru tekstu
+    }
+    &:focus {
+    // Usuwa domyślną niebieską poświatę
+      background-color: #C82333;
+      box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
+      // Usuwa dodatkowy cień, który może się pojawiać
+    }
 
+    &:active:focus{
+      box-shadow: 0 0 0 3px rgba(200, 35, 51, 0.5);
+      border-color: #C82333;
+      background-color: #C82333;
+    }
+    //position: fixed;
+  }
 }
 
 .tile {
@@ -112,7 +115,6 @@
   margin: 10px;
   padding: 20px;
   box-sizing: border-box;
-
 }
 
 .create-account-form {
@@ -122,4 +124,19 @@
    flex-direction: column;
    align-items: center;
 
+  border-radius: 47px;
+  border: 2px solid #DBDBDB;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+  padding: 10px;
+  color: #dbdbdb;
+}
+
+a{
+  color: #dbdbdb;
+}
+
+a:hover{
+  color: #dbdbdb;
+  text-decoration: none;
 }

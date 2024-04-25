@@ -19,7 +19,7 @@
       <div class="form-container">
         <a>Username: </a>
         <form class="form-box">
-          <input class="change-username" [(ngModel)]="user_name" name="user_name" type="form" [disabled]="!isEditingUsername">
+          <input class="change-username" [(ngModel)]="user_name" name="user_name" type="form" [disabled]="!isEditingUsername" [class.editing]="isEditingUsername">
           <button class="change-username-button" (click)="toggleEditUsername()">{{isEditingUsername ? 'Zapisz' : 'Zmień'}}</button>
         </form>
       </div>
@@ -28,7 +28,7 @@
       <div class="form-container">
         <a>Email: </a>
         <form class="form-box">
-          <input class="change-email" [(ngModel)]="email" name="email" type="form" [disabled]="!isEditingEmail">
+          <input class="change-email" [(ngModel)]="email" name="email" type="form" [disabled]="!isEditingEmail" [class.editing]="isEditingEmail">
           <button class="change-email-button" (click)="toggleEditEmail()">{{isEditingEmail ? 'Zapisz' : 'Zmień'}}</button>
         </form>
       </div>

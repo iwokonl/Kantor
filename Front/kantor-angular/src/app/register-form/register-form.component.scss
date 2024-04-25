@@ -22,3 +22,26 @@
 input::placeholder {
   text-align: center;
 }
+
+
+.form-control{
+  border-radius: 15px;
+  border: 2px solid #DBDBDB;
+  background: linear-gradient(92deg, rgba(241, 241, 241, 0.06) -0.4%, rgba(214, 214, 214, 0.04) 106.05%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(17.5px);
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+
+.form-control:focus {
+  background: linear-gradient(92deg, rgba(241, 241, 241, 0.06) -0.4%, rgba(214, 214, 214, 0.04) 106.05%);
+  outline: none;
+  color:white;
+}
+
+.register-form{
+  color: #dbdbdb;
+}
