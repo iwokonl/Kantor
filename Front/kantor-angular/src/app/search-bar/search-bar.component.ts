@@ -49,11 +49,19 @@ export class SearchBarComponent implements OnInit, OnDestroy {
         })
         .catch(error => {
           console.error('Error searching currencies:', error);
-          //TODO: Na razie dodane w ten sposób, później zmienić.
-          // Ten sposób poprawnie wyświetla komunikat o braku wyników, nawet po uprzednim wyświetleniu dobrych wyników
-          // (np. po wpisaniu "usd" wyświetli ok i potem po wpisaniu "usda" zwróci "Nie znaleziono". Poprzednia metoda po prostu pozostawiała poprzednie wyniki)
-          this.searchResults = [{name: 'Nie znaleziono'}];
+          this.searchResults = [{message: 'Nie znaleziono waluty'}];
         });
+
+
+        // .catch(error => {
+        //   console.error('Error searching currencies:', error);
+        //   //TODO: Na razie dodane w ten sposób, później zmienić.
+        //   // Ten sposób poprawnie wyświetla komunikat o braku wyników, nawet po uprzednim wyświetleniu dobrych wyników
+        //   // (np. po wpisaniu "usd" wyświetli ok i potem po wpisaniu "usda" zwróci "Nie znaleziono". Poprzednia metoda po prostu pozostawiała poprzednie wyniki)
+        //   this.searchResults = [{name: 'Nie znaleziono'}];
+        // });
+
+
     });
   }
 

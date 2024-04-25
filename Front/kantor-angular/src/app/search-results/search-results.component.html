@@ -1,29 +1,22 @@
 <!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
 <!--  <ul>-->
 <!--    <li *ngFor="let result of results">-->
-<!--      {{ currencyFlags[result.code] }} - {{ result.code }} - {{ result.name }}-->
+<!--      <a [routerLink]="['/currency', result.code]">-->
+<!--        <div class="row">-->
+<!--          <div class="column">{{ currencyFlags[result.code] }}</div>-->
+<!--          <div class="column">{{ result.code }}</div>-->
+<!--          <div class="column">{{ result.name }}</div>-->
+<!--        </div>-->
+<!--      </a>-->
 <!--    </li>-->
 <!--  </ul>-->
 <!--</div>-->
 
+<div *ngIf="results.length > 0 && results[0].message" class="error-message">
+  {{ results[0].message }}
+</div>
 
-
-<!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
-<!--  <ul>-->
-<!--    <li *ngFor="let result of results">-->
-<!--      <div class="row">-->
-<!--        <div class="column">{{ currencyFlags[result.code] }}</div>-->
-<!--        <div class="column">{{ result.code }}</div>-->
-<!--        <div class="column">{{ result.name }}</div>-->
-<!--      </div>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
-
-
-
-
-<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">
+<div id="searchResults" *ngIf="show && results.length > 0 && !results[0].message" (click)="$event.stopPropagation()">
   <ul>
     <li *ngFor="let result of results">
       <a [routerLink]="['/currency', result.code]">
@@ -36,4 +29,3 @@
     </li>
   </ul>
 </div>
-

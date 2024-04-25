@@ -19,7 +19,8 @@ interface Result {
 })
 
 export class SearchResultsComponent {
-  @Input() results: Result[] = [];
+  // @Input() results: Result[] = [];
+  @Input() results: any[] = [];
   show: boolean = true;
   currencyFlags: { [key: string]: string } = {};
 
