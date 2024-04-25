@@ -1,0 +1,21 @@
+.login-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 509px;
+  height: 540px;
+  border-radius: 47px;
+  border: 2px solid #DBDBDB;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+  padding: 20px;
+}
+
+.btn-primary{
+  width: 342px;
+  height: 57px;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #2D8ABE -54.56%, #4D1877 110.37%);
+  box-shadow: 0px 4px 9.3px -1px rgba(102, 102, 102, 0.25);
+}

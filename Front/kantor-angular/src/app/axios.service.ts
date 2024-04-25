@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import {Subject} from "rxjs";
 @Injectable({
@@ -7,7 +8,7 @@ import {Subject} from "rxjs";
 export class AxiosService {
   private authStatusSubject = new Subject<boolean>();
   authStatus$ = this.authStatusSubject.asObservable();
-  constructor() {
+  constructor(private router: Router) {
     axios.defaults.baseURL = 'http://localhost:8082';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
@@ -33,6 +34,7 @@ export class AxiosService {
   logout(): void {
     window.localStorage.removeItem('authToken');
     this.authStatusSubject.next(false);
+    this.router.navigate(['/']);
   }
   checkAuthTocken(): void {
     if (this.getAuthTocken() === null || this.getAuthTocken() === undefined || this.getAuthTocken() === '' || this.getAuthTocken() === 'null') {
