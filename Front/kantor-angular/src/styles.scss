@@ -8,6 +8,13 @@ body {
 
 }
 
+.cdk-overlay-container {
+  z-index: 1000000;
+}
+
+.mdc-snackbar__surface{
+  border-radius: 12px;
+}
 
 .success-snackbar {
   background-color: #2D8ABE;
@@ -25,7 +32,7 @@ body {
 }
 
 .error-snackbar {
-  position: fixed; // Change from absolute to fixed
+  position: fixed;
   background-color: rgba(255, 0, 0, 0.47);
   color: #DBDBDB;
   max-width: 15% !important;
@@ -37,6 +44,21 @@ body {
   text-align: center;
   top: 0;
   border-radius: 12px;
-  z-index: 99999; // Increase the z-index value
+  z-index: 99999;
 }
 
+.register-error-snackbar {
+  position: fixed;
+  background-color: rgba(255, 0, 0, 0.47);
+  color: #DBDBDB;
+  width: 346px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 1rem !important;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  border-radius: 12px;
+  z-index: 99999;
+}

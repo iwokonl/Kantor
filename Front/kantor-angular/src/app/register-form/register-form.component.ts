@@ -18,7 +18,25 @@ export class RegisterFormComponent {
   login: string = '';
   password: string = '';
 
+  passwordVerification: string = '';
+
   onSubmitRegister() {
+    if (this.firstName.trim() === '' || this.lastName.trim() === '' || this.email.trim() === '' || this.login.trim() === '' || this.password.trim() === '' || this.passwordVerification.trim() === '') {
+      this.snackBar.open('Wszystkie pola muszą być wypełnione!', '', {
+        duration: 5000,
+        panelClass: ['register-error-snackbar'],
+      });
+      return;
+    }
+
+    if (this.password !== this.passwordVerification) {
+      this.snackBar.open('Hasła nie zgadzają się!', '', {
+        duration: 3000,
+        panelClass: ['error-snackbar'],
+      });
+      return;
+    }
+
     this.axiosService.request(
       "POST",
       "/api/authorization/register",
@@ -38,7 +56,7 @@ export class RegisterFormComponent {
       this.router.navigate(['/login']);
     }).catch((error) => {
       // Handle registration error
-      this.snackBar.open('Rejestracja nie powiodła się!', '', {
+      this.snackBar.open('Rejestracja nie powiodła się!\n', '', {
         duration: 3000,
         panelClass: ['error-snackbar'],
       });

@@ -16,6 +16,14 @@ export class LoginFormComponent {
   password: string = '';
 
   onSubmitLogin() {
+    if (this.login.trim() === '' || this.password.trim() === '') {
+      this.snackBar.open('Puste pole!', '', {
+        duration: 3000,
+        panelClass: ['error-snackbar'],
+      });
+      return;
+    }
+
     this.axiosService.request(
       "POST",
       "/api/authorization/login",
