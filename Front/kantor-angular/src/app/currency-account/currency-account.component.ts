@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { CurrencyService } from '../currency.service';
 import { CurrencyFlagsService } from '../currency-flags.service';
+import { Title } from '@angular/platform-browser';
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -17,7 +18,7 @@ export class CurrencyAccountComponent implements OnInit {
   isLoading: boolean = false;
   currencyFlags: { [key: string]: string } = {};
 
-  constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
+  constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
 
@@ -47,7 +48,12 @@ export class CurrencyAccountComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getCurrencyAccounts();
+    this.titleService.setTitle("Konta walutowe - Kantor $€LL")
+  }
 
+
+  ngOnDestroy() {
+    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
   }
 
   onDeleteAccount(account: any) {

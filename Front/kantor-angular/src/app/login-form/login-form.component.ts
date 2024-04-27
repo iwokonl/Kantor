@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {AxiosService} from "../axios.service";
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,10 +11,18 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar, private titleService: Title) { }
 
   login: string = '';
   password: string = '';
+
+  ngOnInit() {
+    this.titleService.setTitle('Logowanie - Kantor $€LL');
+  }
+
+  ngOnDestroy() {
+    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+  }
 
   onSubmitLogin() {
     if (this.login.trim() === '' || this.password.trim() === '') {

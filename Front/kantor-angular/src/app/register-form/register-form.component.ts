@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AxiosService} from "../axios.service";
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register-form',
@@ -9,7 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
-  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar, private titleService: Title) {
   }
 
   firstName: string = '';
@@ -17,8 +18,16 @@ export class RegisterFormComponent {
   email: string = '';
   login: string = '';
   password: string = '';
-
   passwordVerification: string = '';
+
+
+  ngOnInit() {
+    this.titleService.setTitle('Rejestracja - Kantor $€LL');
+  }
+
+  ngOnDestroy() {
+    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+  }
 
   onSubmitRegister() {
     if (this.firstName.trim() === '' || this.lastName.trim() === '' || this.email.trim() === '' || this.login.trim() === '' || this.password.trim() === '' || this.passwordVerification.trim() === '') {
