@@ -27,3 +27,5 @@ Mtransaction/src/main/java/org/example/transaction/TransactionApplication.java,
 gateway/pom.xml,4\b\4b316bc60d1cfae51045f6fc8e58a8ae31f03ff3
 C
 transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
+t
+Dgateway/src/main/java/org/example/gateway/config/SecurityConfig.java,c\9\c9b303e8e90ac810fd9320e31b0841c73079b2b4
