@@ -22,11 +22,11 @@ export class RegisterFormComponent {
 
 
   ngOnInit() {
-    this.titleService.setTitle('Rejestracja - Kantor $€LL');
+    this.titleService.setTitle('Rejestracja - Kantor $€££');
   }
 
   ngOnDestroy() {
-    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+    this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');
   }
 
   onSubmitRegister() {

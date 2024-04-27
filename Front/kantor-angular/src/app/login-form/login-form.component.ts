@@ -17,11 +17,11 @@ export class LoginFormComponent {
   password: string = '';
 
   ngOnInit() {
-    this.titleService.setTitle('Logowanie - Kantor $€LL');
+    this.titleService.setTitle('Logowanie - Kantor $€££');
   }
 
   ngOnDestroy() {
-    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+    this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');
   }
 
   onSubmitLogin() {

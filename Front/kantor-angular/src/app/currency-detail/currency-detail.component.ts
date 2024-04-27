@@ -40,12 +40,12 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
       this.currencyService.getCurrencyDetails(this.code).subscribe(details => {
         this.currencyDetails = details;
         this.currencyDetails.currency = this.capitalizeFirstWord(this.currencyDetails.currency);
-        this.titleService.setTitle(this.capitalizeFirstWord(this.currencyDetails.currency)+" - Kantor $€LL");
+        this.titleService.setTitle(this.capitalizeFirstWord(this.currencyDetails.currency)+" - Kantor $€££");
       });
     });
   }
 
   ngOnDestroy() {
-    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+    this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');
   }
 }

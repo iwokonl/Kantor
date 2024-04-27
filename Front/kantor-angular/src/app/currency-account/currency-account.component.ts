@@ -48,12 +48,12 @@ export class CurrencyAccountComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getCurrencyAccounts();
-    this.titleService.setTitle("Konta walutowe - Kantor $€LL")
+    this.titleService.setTitle("Konta walutowe - Kantor $€££")
   }
 
 
   ngOnDestroy() {
-    this.titleService.setTitle('Kantor $€LL - Wielowalutowy kantor online.');
+    this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');
   }
 
   onDeleteAccount(account: any) {
