@@ -17,13 +17,3 @@ x
 Htransaction/src/main/java/org/example/transaction/model/Transaction.java,9\7\97800460cbead7e1eb491daf5654a375f75b30ac
 {
 Ktransaction/src/main/java/org/example/transaction/repo/TransactionRepo.java,7\1\7155233f13ef7387f82e049be69377de2f6c1cc3
-H
-discovery-server/pom.xml,2\c\2c58c7878e43d126fc56cae853d5b06de57d0b3e
-q
-Agateway/src/main/java/org/example/gateway/GatewayApplication.java,a\2\a22c2f6889714c5decb0d27fc585dc44b8ad7c3c
-}
-Mtransaction/src/main/java/org/example/transaction/TransactionApplication.java,3\3\339e7dbfe19ecf78203a9fe162e21778238d18ce
-?
-gateway/pom.xml,4\b\4b316bc60d1cfae51045f6fc8e58a8ae31f03ff3
-C
-transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
