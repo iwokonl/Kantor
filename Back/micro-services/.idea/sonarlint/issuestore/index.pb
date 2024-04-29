@@ -29,3 +29,9 @@ C
 transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
 t
 Dgateway/src/main/java/org/example/gateway/config/SecurityConfig.java,c\9\c9b303e8e90ac810fd9320e31b0841c73079b2b4
+>
+paypal/pom.xml,e\e\ee70bc35462b90985e7663edc75683c45d85257e
+c
+3docker/themes/kantor/login/resources/css/styles.css,f\3\f3703a2975c2ecd87051a24581c7ce0dd34b2348
+Å
+Qconfig-server/src/main/java/org/example/configserver/ConfigServerApplication.java,f\a\fa7d82d29c5463f45067fa4c2ef2a54a826cb687
