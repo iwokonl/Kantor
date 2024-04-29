@@ -1,25 +1,5 @@
 
 spring:
-  main:
-    allow-bean-definition-overriding: true
-    web-application-type: reactive
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8080/realms/Kantor
-          jwk-set-uri: http://localhost:8080/realms/Kantor/protocol/openid-connect/certs
-      client:
-        registration:
-          keycloak:
-            realm: Kantor
-            client-id: kantor-client-credentials-id
-            client-secret: H2ahrymUVUl5HU0za8a9Q920WD7ZHR9E
-            scope: openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8080/realms/Kantor
-            token-uri: http://localhost:8080/realms/Kantor/protocol/openid-connect/token
   application:
     name: gateway
   cloud:
@@ -28,24 +8,24 @@ spring:
         enabled: true
         service-id: config-server # Jeśli chodzi o błąd No instances found of configserver (config-server) to bug i tyle wysztko działa :)
     gateway:
-      routes:
-        - id: transaction-service
-          uri: http://localhost:8070
-          predicates:
-            - Path=/api/v1/transactions/**
-        - id: paypal-service
-          uri: http://localhost:8071
-          predicates:
-            - Path=/api/v1/paypal/**
-        - id: currencies-service
-          uri: http://localhost:8073
-          predicates:
-            - Path=/api/v1/currencies/**
-        - id: currency-accounts-service
-          uri: http://localhost:8073
-          predicates:
-            - Path=/api/v1/currencyAccounts/**
-
+      mvc:
+        routes:
+          - id: transaction-service
+            uri: http://localhost:8070
+            predicates:
+              - Path=/api/v1/transactions/**
+          - id: paypal-service
+            uri: http://localhost:8071
+            predicates:
+              - Path=/api/v1/paypal/**
+          - id: currencies-service
+            uri: http://localhost:8073
+            predicates:
+              - Path=/api/v1/currencies/**
+          - id: currency-accounts-service
+            uri: http://localhost:8073
+            predicates:
+              - Path=/api/v1/currencyAccounts/**
 
 eureka:
   client:
