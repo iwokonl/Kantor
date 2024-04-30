@@ -1,5 +1,16 @@
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5437/gateway
+    username: postgres
+    password: admin
   application:
     name: gateway
   cloud:

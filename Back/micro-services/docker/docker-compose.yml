@@ -4,6 +4,14 @@ volumes:
     driver: local
 
 services:
+  postgres_gateway:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=gateway
+    ports:
+      - "5437:5432"
 
   postgres_paypal:
     image: postgres:16.2

@@ -45,3 +45,15 @@ x
 Hgateway/src/main/java/org/example/gateway/controller/AuthController.java,1\3\13d62baae2b141907b83ed8640859aff646865f4
 ‡
 Wtransaction/src/main/java/org/example/transaction/controller/TransactionController.java,a\5\a5dc5cb53288ba036eceb58ea8c33d4ad69aa597
+l
+<gateway/src/main/java/org/example/gateway/model/AppUser.java,8\2\82c748efa8da868d034ccddb7b2f3f3282920360
+r
+Bgateway/src/main/java/org/example/gateway/service/UserService.java,2\f\2f78e720d17780aa222338888971cac594890574
+r
+Bgateway/src/main/java/org/example/gateway/repository/UserRepo.java,f\0\f041faa4ce8cb232935e665569b1864e2ded9635
+p
+@gateway/src/main/java/org/example/gateway/mapper/UserMapper.java,2\5\257fc8441f04dc03e590b84543b8a4f234f5b7c0
+>
+paypal/pom.xml,e\e\ee70bc35462b90985e7663edc75683c45d85257e
+@
+gateway/mvnw.cmd,2\b\2b83d90c1fa7d29755ba2aa43a61215a9bcc60c7
