@@ -23,7 +23,7 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class) // Dodanie filtra autoryzacji
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Wyłączenie zarządzania sesją
                 .authorizeHttpRequests(request -> // Konfiguracja zabezpieczeń
-                        request.requestMatchers(HttpMethod.POST,  "api/v1/auth/login","api/v1/auth/register", "/error").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
+                        request.requestMatchers(HttpMethod.POST,  "api/v1/auth/login","api/v1/auth/register", "/error", "api/v1/currencies/search").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
                                 .requestMatchers(HttpMethod.GET).permitAll() // Pozwala na wykonywanie zapytań GET na adresach: /search/**
                                 .anyRequest().authenticated()); // Wymaga autoryzacji dla pozostałych zapytań
         return httpSecurity.build();
