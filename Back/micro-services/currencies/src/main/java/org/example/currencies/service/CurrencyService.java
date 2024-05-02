@@ -50,6 +50,12 @@ public class CurrencyService {
         return currencyMapper.toCurrencyDto(sortedResults);
     }
 
-
+    public CurrencyDto findById(Long id) {
+        Optional<Currency> currency = currencyRepository.findById(id);
+        if (currency.isEmpty()) {
+            throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
+        }
+        return currencyMapper.toCurrencyDto(currency.get());
+    }
 
 }

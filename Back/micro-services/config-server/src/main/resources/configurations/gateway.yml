@@ -1,4 +1,9 @@
-
+logging:
+  level:
+    root: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter: TRACE
+    org.springframework.security: DEBUG
 spring:
   jpa:
     hibernate:
@@ -34,7 +39,7 @@ spring:
             predicates:
               - Path=/api/v1/currencies/**
           - id: currency-accounts-service
-            uri: http://localhost:8073
+            uri: http://localhost:8072
             predicates:
               - Path=/api/v1/currencyAccounts/**
 

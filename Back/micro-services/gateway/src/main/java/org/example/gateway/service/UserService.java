@@ -10,11 +10,17 @@ import org.example.gateway.model.AppUser;
 import org.example.gateway.model.Role;
 import org.example.gateway.repository.UserRepo;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -48,5 +54,39 @@ public class UserService {
         user.setUsername(signUpDto.username());
         AppUser savedUser = userRepository.save(user);
         return userMapper.toUserDto(savedUser);
+    }
+
+    public UserDto getUserInfo(String jwtToken) {
+        return jwtInfo(jwtToken);
+    }
+    public UserDto jwtInfo(String token) {
+        Pattern pattern = Pattern.compile("UserDto\\(id=(.*?), role=(.*?), username=(.*?), firstName=(.*?), lastName=(.*?), email=(.*?), token=(.*?)\\)");
+        Matcher matcher = pattern.matcher(token);
+
+        if (matcher.find()) {
+            UserDto userInfo = new UserDto();
+            userInfo.setId(Long.valueOf(matcher.group(1)));
+            userInfo.setRole(matcher.group(2).equals("ADMIN") ? Role.ADMIN : Role.USER);
+            userInfo.setUsername(matcher.group(3));
+            userInfo.setFirstName(matcher.group(4));
+            userInfo.setLastName(matcher.group(5));
+            userInfo.setEmail(matcher.group(6));
+            userInfo.setToken(matcher.group(7));
+            return userInfo;
+        }
+
+        throw new AppExeption("Invalid token", HttpStatus.BAD_REQUEST);
+    }
+    public UserDto findUserId(Long id) {
+        Optional<AppUser> user = userRepository.findById(id);
+        AppUser user1 = null;
+        if (user.isEmpty()) {
+            user1 = new AppUser();
+            user1.setId(-1L);
+        }
+        else {
+            user1 = user.get();
+        }
+        return userMapper.toUserDto(user1);
     }
 }

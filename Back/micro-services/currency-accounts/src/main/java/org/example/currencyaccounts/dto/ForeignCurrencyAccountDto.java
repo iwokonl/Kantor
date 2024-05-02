@@ -8,8 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 public class ForeignCurrencyAccountDto {
     private Long id;
-    private String curencyCode; //!TODO zmienić na currencyCode
-    private String curencyName; //!TODO zmienić na currencyName
+    private String currencyId;
     private String balance;
     private Long userId;
 

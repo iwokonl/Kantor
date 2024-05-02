@@ -1,105 +1,109 @@
 package org.example.currencyaccounts.service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.example.currencyaccounts.dto.CurrencyDto;
 import org.example.currencyaccounts.dto.ForeignCurrencyAccountDto;
+import org.example.currencyaccounts.dto.UserDto;
 import org.example.currencyaccounts.exeption.AppExeption;
+import org.example.currencyaccounts.feign.CurrencyClient;
+import org.example.currencyaccounts.feign.UserClient;
 import org.example.currencyaccounts.mapper.ForeignCurrencyAccountMapper;
 import org.example.currencyaccounts.model.ForeignCurrencyAccount;
 import org.example.currencyaccounts.repository.ForeignCurrencyAccountRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.Authentication;
+
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Lazy))
 public class ForeignCurrencyAccountService {
 
-    private final CurrencyRepo currencyRepo;
-    private final UserRepo userRepo;
+    @Autowired
+    private HttpServletRequest request;
+    private final CurrencyClient currencyClient;
+    private final UserClient userClient;
     private final ForeignCurrencyAccountRepo foreignCurrencyAccountRepo;
     private final ForeignCurrencyAccountMapper foreignCurrencyAccountMapper;
-    @Lazy
-    private final UserService userService;
+
+    public ForeignCurrencyAccount createForeignCurrencyAccount(String currencyId){
+        Optional<UserDto> userAppDto = userClient.getUserInfo();
+        if (userAppDto.isEmpty()) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
+        UserDto userDtoReal = userAppDto.get();
+        UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
+        if (userDtoReal1.getId() == -1L) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
 
 
-    public ForeignCurrencyAccount addAccount(ForeignCurrencyAccount account) {
-        account.setBalance(new BigDecimal(0));
-
-        return foreignCurrencyAccountRepo.save(account);
-    }
-
-    public ForeignCurrencyAccountDto createForeignCurrencyAccount(String code, String balance) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        Map<String,String> response = userService.jwtInfo(currentUserName);
-        Optional<AppUser> user = userRepo.findById(Long.valueOf(response.get("id")));
-
-        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndCurrencyCode(Long.valueOf(response.get("id")), code);
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndCurrencyId(userDtoReal.getId(), Long.valueOf(currencyId));
         if (account.isPresent()) {
             throw new AppExeption("Account already exists", HttpStatus.BAD_REQUEST);
         }
         ForeignCurrencyAccount foreignCurrencyAccount = new ForeignCurrencyAccount();
-        foreignCurrencyAccount.setBalance(BigDecimal.valueOf(Long.parseLong(balance)));
-
-        Optional<Currency> currency = currencyRepo.findByCode(code.toUpperCase());
-        Currency currencyReal;
-        if (currency.isPresent()) {
-            currencyReal = currency.get();
-        }
-        else {
+        foreignCurrencyAccount.setBalance(BigDecimal.valueOf(0));
+        Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
+        if(currency.isEmpty()){
             throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
         }
-
-        foreignCurrencyAccount.setCurrency(currencyReal);
-
-        AppUser userReal = null;
-        if (user.isPresent()) {
-            userReal = user.get();
-        }
-        foreignCurrencyAccount.setUser(userReal);
-        ForeignCurrencyAccountDto foreignCurrencyAccountDto = foreignCurrencyAccountMapper.ForeignCurrencyAccounttoForeignCurrencyAccountDto(foreignCurrencyAccount);
+        foreignCurrencyAccount.setCurrencyId(Long.valueOf(currencyId));
+        foreignCurrencyAccount.setUserId(userDtoReal.getId());
         foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
+        return foreignCurrencyAccount;
+    }
 
-        return foreignCurrencyAccountDto;
+
+    public String getToken(){
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwtToken = authHeader.substring(7); // Odcinamy "Bearer " aby uzyskać sam token
+            return jwtToken;
+        }
+        return null;
     }
-    public ForeignCurrencyAccount getAccount(Long id) {
-        return foreignCurrencyAccountRepo.findById(id).orElse(null);
-    }
+
 
     public List<ForeignCurrencyAccountDto> getAllAccountsByUserId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        Map<String,String> response = userService.jwtInfo(currentUserName);
-        String userId = response.get("id");
-        List<ForeignCurrencyAccount> accounts = foreignCurrencyAccountRepo.findAllByUserId(Long.valueOf(userId));
-        return accounts.stream()
-                .map(account -> new ForeignCurrencyAccountDto(
-                        account.getId(),
-                        account.getCurrency().getCode(),
-                        account.getCurrency().getName(),
-                        account.getBalance().toString(),
-                        account.getUser().getId()
-                ))
-                .collect(Collectors.toList());
-    }
-
-    public ForeignCurrencyAccount addAmount(Long accountId, BigDecimal amount) {
-        ForeignCurrencyAccount account = foreignCurrencyAccountRepo.findById(accountId)
-                .orElseThrow(() -> new AppExeption("Account not found", HttpStatus.NOT_FOUND));
-        account.setBalance(account.getBalance().add(amount));
-        return foreignCurrencyAccountRepo.save(account);
+        Optional<UserDto> userAppDto = userClient.getUserInfo();
+        if (userAppDto.isEmpty()) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
+        UserDto userDtoReal = userAppDto.get();
+        UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
+        if (userDtoReal1.getId() == -1L) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
+        List<ForeignCurrencyAccount> accounts = foreignCurrencyAccountRepo.findAllByUserId(userDtoReal.getId());
+        return foreignCurrencyAccountMapper.toForeignCurrencyAccountDtoList(accounts);
     }
 
     public void deleteForeignCurrencyAccount(Long id) {
-        foreignCurrencyAccountRepo.
-                deleteById(id);
+        Optional<UserDto> userAppDto = userClient.getUserInfo();
+        if (userAppDto.isEmpty()) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
+        UserDto userDtoReal = userAppDto.get();
+        UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
+        if (userDtoReal1.getId() == -1L) {
+            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+        }
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndId(userDtoReal.getId(), id);
+        if (account.isEmpty()) {
+            throw new AppExeption("Account is not yours", HttpStatus.NOT_FOUND);
+        }
+        try {
+            foreignCurrencyAccountRepo.deleteById(id);
+        } catch (Exception e) {
+            throw new AppExeption("Account not found", HttpStatus.NOT_FOUND);
+        }
+
     }
 }

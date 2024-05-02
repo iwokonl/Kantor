@@ -6,10 +6,7 @@ import org.example.currencies.dto.SearchCurrencyDto;
 import org.example.currencies.repository.CurrencyRepo;
 import org.example.currencies.service.CurrencyService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Currency;
 import java.util.List;
@@ -24,5 +21,10 @@ public class CurrencyController {
     public ResponseEntity<List<CurrencyDto>> searchCurrencies(@RequestBody SearchCurrencyDto query) {
         List<CurrencyDto> results = currencyService.findByName(query);
         return ResponseEntity.ok(results);
+    }
+    @GetMapping("/id/{id}")
+    public ResponseEntity<CurrencyDto> getCurrencyById(@PathVariable Long id) {
+        CurrencyDto currency = currencyService.findById(id);
+        return ResponseEntity.ok(currency);
     }
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 public interface UserMapper { // Interfejs mapujący obiekty użytkownika na obiekty DTO
     UserDto toUserDto(AppUser appUser);
 
+
+
 //  Ten mapping może się bugować ponieważ lombok ładuje się później niż mapstruct i mapstruck chce
 //  pobrać pole password z klasy AppUser, które jest prywatne, a lombok nie generuje gettera dla tego pola w czasie
 //  uruchomienia aplikacji. Więc dlatego trzeba dodać do pom.xml

@@ -21,8 +21,7 @@ public class ForeignCurrencyAccount {
 
     private BigDecimal balance;
     private Long currencyId; // Dodajemy pole do przechowywania waluty konta
-
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @Column(name = "user_id")
     private Long userId;
     // Konstruktor, gettery, settery
 }

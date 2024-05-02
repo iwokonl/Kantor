@@ -1,8 +1,12 @@
 package org.example.currencyaccounts.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.currencyaccounts.dto.CurrencyIdDto;
 import org.example.currencyaccounts.dto.ForeignCurrencyAccountDto;
+import org.example.currencyaccounts.dto.ForeignCurrencyAccountIdDto;
+import org.example.currencyaccounts.model.ForeignCurrencyAccount;
 import org.example.currencyaccounts.service.ForeignCurrencyAccountService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +14,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("v1/ForeignCurrencyAccount")
+@RequestMapping("/v1/currencyAccounts")
 public class ForeignCurrencyAccountController {
     private final ForeignCurrencyAccountService foreignCurrencyAccountService;
+
+
+    @PostMapping("/createCurrencyAccount")
+    public ResponseEntity<ForeignCurrencyAccount> createCurrencyAccount(
+            @RequestBody CurrencyIdDto currencyIdDto) {
+        ForeignCurrencyAccount foreignCurrencyAccountDtoToSend =
+                foreignCurrencyAccountService.createForeignCurrencyAccount(currencyIdDto.id());
+        return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);
+    }
 
     @PostMapping("/getCurrencyAccounts")
     public ResponseEntity<List<ForeignCurrencyAccountDto>> getCurrencyAccounts() {
@@ -20,21 +33,13 @@ public class ForeignCurrencyAccountController {
         return ResponseEntity.ok(accounts);
     }
 
-    @PostMapping("/createCurrencyAccount")
-    public ResponseEntity<ForeignCurrencyAccountDto> createCurrencyAccount(
-            @RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto
-    ) {
-        ForeignCurrencyAccountDto foreignCurrencyAccountDtoToSend = foreignCurrencyAccountService.createForeignCurrencyAccount(
-                foreignCurrencyAccountDto.getCurencyCode(),
-                foreignCurrencyAccountDto.getBalance());
-        return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/deleteCurrencyAccount")
+    public void deleteCurrencyAccount(
+            @RequestBody ForeignCurrencyAccountIdDto foreignCurrencyAccountIdDto
+    ){
+        foreignCurrencyAccountService.deleteForeignCurrencyAccount(Long.valueOf(foreignCurrencyAccountIdDto.id()));
+
     }
 
-    @DeleteMapping("/deleteCurrencyAccount")
-    public ResponseEntity<String> deleteCurrencyAccount(
-            @RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto
-    ) {
-        foreignCurrencyAccountService.deleteForeignCurrencyAccount(foreignCurrencyAccountDto.getId());
-        return ResponseEntity.ok("Account deleted");
-    }
 }

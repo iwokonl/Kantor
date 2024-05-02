@@ -3,7 +3,7 @@ spring:
     name: currency-accounts
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5436/currency-accounts
+    url: jdbc:postgresql://localhost:5436/currency_accounts
     username: postgres
     password: admin
   jpa:
@@ -19,6 +19,12 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/ # Eureka server URL 8761 because its the port of discovery server
 
+logging:
+  level:
+    root: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter: TRACE
+    org.springframework.security: DEBUG
 
 server:
   port: 8072

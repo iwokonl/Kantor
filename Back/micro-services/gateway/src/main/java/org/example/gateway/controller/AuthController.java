@@ -7,10 +7,9 @@ import org.example.gateway.dto.SignUpDto;
 import org.example.gateway.dto.UserDto;
 import org.example.gateway.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -32,5 +31,18 @@ public class AuthController {
         UserDto user = userService.register(signUpDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.created(URI.create("/users/" + user.getId())).body(user);
+    }
+
+    @PostMapping("/findUserId/{id}")
+    public ResponseEntity<UserDto> findUserId(@RequestParam Long id) {
+        UserDto user = userService.findUserId(id);
+        return ResponseEntity.ok(user);
+    }
+    @PostMapping("/userInfo")
+    public ResponseEntity<UserDto> userInfo(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String token = authentication.getName();
+        UserDto user = userService.getUserInfo(token);
+        return ResponseEntity.ok(user);
     }
 }
