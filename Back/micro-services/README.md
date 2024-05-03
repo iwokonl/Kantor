@@ -2,14 +2,33 @@ Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, sp
 
 https://www.youtube.com/watch?v=KJ0cSvYj41c&t=3407s
 Róbcie z tego bo amen XD
+# Spis treści
+
+- [Podstawowe serwisy dla mikrousług](#podstawowe-serwisy-dla-mikrousług)
+   - [Konfiguracja serwisu `Config`](#konfiguracja-serwisu-config)
+   - [Konfiguracja serwisu `Discovery`](#konfiguracja-serwisu-discovery)
+   - [Konfiguracja serwisu `Gateway`](#konfiguracja-serwisu-gateway)
+     - [Security w `Gateway`](#security-w-gateway)
+- [Tworzenie nowego serwisu](#tworzenie-nowego-serwisu)
+  - [Komunikacja między mikrousługami](#komunikacja-między-mikrousługami)
+  - [Kod Security dla mikrousług](#kod-security-dla-mikrousług)
+- [Projekt Mikrousług](#projekt-mikrousług)
+   - [Usługi](#usługi)
+   - [Wymagania](#wymagania)
+   - [Uruchomienie projektu](#uruchomienie-projektu)
+   - [Testowanie](#testowanie)
+   - [Dokumentacja](#dokumentacja)
+   - [Wsparcie](#wsparcie)
+   - [Licencja](#licencja)
+
 
 # Podstawowe serwisy dla mikrousług
 
-`Gateway` - serwis odpowiedzialny za przekierowywanie zapytań do odpowiednich mikrousług.
+- `Gateway` - serwis odpowiedzialny za przekierowywanie zapytań do odpowiednich mikrousług.
 
-`Discovery` - serwis odpowiedzialny za odkrywanie mikrousług.
+- `Discovery` - serwis odpowiedzialny za odkrywanie mikrousług.
 
-`Config` - serwis odpowiedzialny za konfigurację mikrousług.
+- `Config` - serwis odpowiedzialny za konfigurację mikrousług.
 
 ### Konfiguracja serwisu `Config`
 #### Dependency
@@ -28,7 +47,7 @@ Róbcie z tego bo amen XD
     </dependency>
 </dependencies>
 ```
-#### Config w `config-server`
+- #### Config w `config-server`
 
 ```yaml
 server:
@@ -48,7 +67,7 @@ spring:
 
 ### Konfiguracja serwisu `Discovery`
 
-#### Dependency
+- #### Dependency
 
 ```xml
 <dependencies>
@@ -69,7 +88,7 @@ spring:
 </dependencies>
 ```
 
-#### Config w `config-server`
+- #### Config w `config-server`
 
 ```yaml
 spring:
@@ -90,7 +109,7 @@ server:
 
 ```
 
-#### Config w `Discovery`
+- #### Config w `Discovery`
 
 ```yaml
 spring:
@@ -103,7 +122,7 @@ spring:
 
 ### Konfiguracja serwisu `Gateway`
 
-#### Dependency
+- #### Dependency
 
 ```xml
 
@@ -141,7 +160,7 @@ spring:
 </dependencies>
 ```
 
-#### Config w `config-server`
+- #### Config w `config-server`
 
 ```yaml
 spring:
@@ -175,7 +194,7 @@ management:
       probability: 1.0
 ```
 
-#### Config w `Gateway`
+- #### Config w `Gateway`
 
 ```yaml
 spring:
@@ -187,7 +206,7 @@ spring:
 
 ```
 
-#### Security w `Gateway`
+- #### Security w `Gateway`
 
 Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zależność:
 
@@ -206,9 +225,9 @@ Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zale�
 </dependencies>
 ```  
 
-##### `SecurityConfig` - Jest odpowiedzialne za konfigurację zabezpieczeń w aplikacji.
+- ##### `SecurityConfig` - Jest odpowiedzialne za konfigurację zabezpieczeń w aplikacji.
 
-Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
+- Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
 
 
 
@@ -237,9 +256,9 @@ public class SecurityConfig {
     }
 }
 ```
-##### `JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
+- ##### `JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
 
-Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
+- Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
 
 ```java
 @RequiredArgsConstructor
@@ -271,9 +290,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 }
 ```
-##### `JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
+- ##### `JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
 
-Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
+- Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
 
 ```java
 @Component
@@ -291,9 +310,9 @@ public class JwtRedirectionFilter implements Filter {
     }
 }
 ```
-##### `UserAuthProvider` - Jest odpowiedzialne za tworzenie i walidację tokena JWT.
+- ##### `UserAuthProvider` - Jest odpowiedzialne za tworzenie i walidację tokena JWT.
 
-Następnie stworzyć klasę `UserAuthProvider` i dodać konfigurację:
+- Następnie stworzyć klasę `UserAuthProvider` i dodać konfigurację:
 
 ```java
 @RequiredArgsConstructor
@@ -368,11 +387,11 @@ public class UserAuthProvider {
 Aby stworzyć nowy mikroserwis trzeba dodać do niego
 zależności `config client`, `eureka discovery client`, `spring boot actuator` oraz `spring boot starter web`.
 
-`config client` - pozwala na pobieranie konfiguracji z serwera konfiguracyjnego.
+- `config client` - pozwala na pobieranie konfiguracji z serwera konfiguracyjnego.
 
-`eureka discovery client` - pozwala na rejestrację serwisu w serwerze Eureka.
+- `eureka discovery client` - pozwala na rejestrację serwisu w serwerze Eureka.
 
-`spring boot actuator` - pozwala na monitorowanie aplikacji.
+- `spring boot actuator` - pozwala na monitorowanie aplikacji.
 
 ### Dependency
 
@@ -624,3 +643,4 @@ Jeśli masz jakiekolwiek pytania lub problemy, prosimy o kontakt.
 ## Licencja
 
 Ten projekt jest dostępny na licencji [wstaw tutaj nazwę licencji].
+
