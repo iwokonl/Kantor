@@ -32,7 +32,7 @@ public class UserAuthProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 
     }
-//KeycLoak
+
     public String createToken(UserDto dto) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000);
@@ -47,12 +47,7 @@ public class UserAuthProvider {
                 .sign(Algorithm.HMAC256(secretKey));
 
     }
-//    public String getCurrentUserIdFromToken() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentUserName = authentication.getName();
-//        Map<String,String> response = userService.jwtInfo(currentUserName);
-//        return response.get("id");
-//    }
+
     public Authentication validateToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
@@ -88,7 +83,6 @@ public class UserAuthProvider {
             else {
                 throw new AppExeption("Does not apply to token", HttpStatus.UNAUTHORIZED);
             }
-//            throw new AppExeption("Expired token", HttpStatus.UNAUTHORIZED);
 
         }
     }
