@@ -206,8 +206,8 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 ```
-
-- #### Security w `Gateway`
+‎
+- ### Security w `Gateway`
 
 Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zależność:
 
@@ -228,7 +228,7 @@ Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zale�
 
 - ##### `SecurityConfig` - Jest odpowiedzialne za konfigurację zabezpieczeń w aplikacji.
 
-- Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
+Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
 
 
 
@@ -259,7 +259,7 @@ public class SecurityConfig {
 ```
 - ##### `JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
 
-- Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
+Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
 
 ```java
 @RequiredArgsConstructor
@@ -293,7 +293,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 ```
 - ##### `JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
 
-- Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
+Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
 
 ```java
 @Component
