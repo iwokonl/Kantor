@@ -204,8 +204,9 @@ Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zale�
         <version>4.3.0</version>
     </dependency>
 </dependencies>
-```
-`SecurityConfig` - Jest odpowiedzialne za konfigurację zabezpieczeń w aplikacji.
+```  
+
+##### `SecurityConfig` - Jest odpowiedzialne za konfigurację zabezpieczeń w aplikacji.
 
 Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
 
@@ -236,7 +237,7 @@ public class SecurityConfig {
     }
 }
 ```
-`JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
+##### `JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
 
 Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
 
@@ -270,7 +271,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 }
 ```
-`JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
+##### `JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
 
 Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
 
@@ -290,7 +291,7 @@ public class JwtRedirectionFilter implements Filter {
     }
 }
 ```
-`UserAuthProvider` - Jest odpowiedzialne za tworzenie i walidację tokena JWT.
+##### `UserAuthProvider` - Jest odpowiedzialne za tworzenie i walidację tokena JWT.
 
 Następnie stworzyć klasę `UserAuthProvider` i dodać konfigurację:
 
