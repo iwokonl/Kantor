@@ -3,32 +3,212 @@ Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, sp
 https://www.youtube.com/watch?v=KJ0cSvYj41c&t=3407s
 Róbcie z tego bo amen XD
 
+# Podstawowe serwisy dla mikrousług
+
+`Gateway` - serwis odpowiedzialny za przekierowywanie zapytań do odpowiednich mikrousług.
+
+`Discovery` - serwis odpowiedzialny za odkrywanie mikrousług.
+
+`Config` - serwis odpowiedzialny za konfigurację mikrousług.
+
+### Konfiguracja serwisu `Config`
+#### Dependency
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-config-server</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+</dependencies>
+```
+#### Config w `config-server`
+
+```yaml
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: native
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations # Lokalizacja plików konfiguracyjnych
+```
+
+### Konfiguracja serwisu `Discovery`
+
+#### Dependency
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+</dependencies>
+```
+
+#### Config w `config-server`
+
+```yaml
+spring:
+  application:
+    name: discovery-server
+
+eureka:
+  instance:
+    hostname: localhost # Nazwa hosta
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ # Eureka server URL
+
+server:
+  port: 8761
+
+```
+
+#### Config w `Discovery`
+
+```yaml
+spring:
+  application:
+    name: discovery-server
+  config:
+    import: optional:configserver:http://localhost:8888
+
+```
+
+### Konfiguracja serwisu `Gateway`
+
+#### Dependency
+
+```xml
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-gateway-mvc</artifactId>
+    </dependency>
+    <!--   Ewentualnie dla aplikacji reaktywnych-->
+    <!--    <dependency>-->
+    <!--        <groupId>org.springframework.cloud</groupId>-->
+    <!--        <artifactId>spring-cloud-starter-gateway</artifactId>-->
+    <!--    </dependency>-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+</dependencies>
+```
+
+#### Config w `config-server`
+
+```yaml
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+    gateway:
+      mvc: # Dla aplikacji mvc jeśli dla reaktywnych to usunąć.
+        routes: # Dodajemy tutaj routy do serwisów
+          - id: example-service # Umieścić dokładną nazwę serwisu z pliku konfiguracyjnego danego serwiu.
+            uri: http://localhost:XXXX # Zamień XXXX na port serwisu
+            predicates:
+              - Path=/api/v1/example/** # Ścieżka do serwisu wywołanie serwisu "http://localhost:8222/api/v1/example/exampleEndpoint"
+            # To samo musi być w kontrolerze serwisu który chcemy wywołać tzn. @RequestMapping("/v1/currencyAccounts") lub jeśli nie 
+            # narzuciliśmy w configu ścieżki "api" to @RequestMapping("/api/v1/currencyAccounts")
+
+eureka:
+  client:
+    register-with-eureka: false # Czy chcemy aby eureka nam rejestrowała serwis.
+
+server:
+  port: 8222
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+```
+
+#### Config w `Gateway`
+
+```yaml
+spring:
+  application:
+    name: gateway
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+```
 
 ## Tworzenie nowego serwisu
 
-Aby stworzyć nowy mikroserwis trzeba dodać do niego zależności `config client`, `eureka discovery client`, `spring boot actuator` oraz `spring boot starter web`.  
+Aby stworzyć nowy mikroserwis trzeba dodać do niego
+zależności `config client`, `eureka discovery client`, `spring boot actuator` oraz `spring boot starter web`.
 
-`config client` pozwala na pobieranie konfiguracji z serwera konfiguracyjnego.
+`config client` - pozwala na pobieranie konfiguracji z serwera konfiguracyjnego.
 
-`eureka discovery client` pozwala na rejestrację serwisu w serwerze Eureka.
+`eureka discovery client` - pozwala na rejestrację serwisu w serwerze Eureka.
 
-`spring boot actuator` pozwala na monitorowanie aplikacji.
+`spring boot actuator` - pozwala na monitorowanie aplikacji.
+
+### Dependency
+
 ```xml
+
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-config</artifactId>
 </dependency>
 
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 </dependency>
 
 <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-actuator</artifactId>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 ```
+
 Następnie trzeba dodać konfigurację do pliku `application.yml`:
 
 ```yaml
@@ -37,32 +217,34 @@ spring:
     name: NAZWA_TWOJEGO_SERWISU
   config:
     import: optional:configserver:http://localhost:XXXX # Optional znaczy to że jeśli nie znajdzie serwera konfiguracyjnego 
-     # to nie zwróci błędu i będzie działać z domyślnymi wartościami(czyli z tego pliku).
-     # Zamień XXXX na port serwera konfiguracyjnego.
+      # to nie zwróci błędu i będzie działać z domyślnymi wartościami(czyli z tego pliku).
+    # Zamień XXXX na port serwera konfiguracyjnego.
 ```
 
-Nastpnie dodaj plik `NAZWA_TWOJEGO_SERWISU.yml` do serwera konfiguracyjnego w `resources/configurations`. W tym pliku dodaj konfigurację dla swojego serwisu.
+Nastpnie dodaj plik `NAZWA_TWOJEGO_SERWISU.yml` do serwera konfiguracyjnego w `resources/configurations`. W tym pliku
+dodaj konfigurację dla swojego serwisu.
 
 ```yaml
 spring:
-   application:
-      name: NAZWA_TWOJEGO_SERWISU
+  application:
+    name: NAZWA_TWOJEGO_SERWISU
 
 server:
   port: XXXX # Zamień XXXX na port na którym ma działać serwis
   servlet:
     context-path: /api
-    
+
 # To jest ustawienie dla eureki
 management:
   tracing:
     sampling:
       probability: 1.0
 ```
+
 ## Komunikacja między mikrousługami
 
 Jeśli chcesz aby mikrousługi komunikowały się ze sobą, musisz dodać odpowiednie zależności i konfiguracje do każdej z
-nich.  
+nich.
 
 Komunikacja wygląda w ten sposób:
 `gateway` -> `mikrousługa_1` -> `gateway` -> `mikrousługa2` ->`gateway` -> `mikrousługa_1` -> `gateway` -> `wynik`
@@ -71,8 +253,8 @@ Dodaj `FeignConfig` do katalogu `config` aby mikrousługa miała możliwość au
 Działa to na takiej zasadzie że mikrousługa wysyła zapytanie do bramy z tokenem który jest pobierany z hedera
 odtrzymanego z `gateway`, a brama sprawdza czy token jest poprawny i czy mikrousługa ma dostęp do zasobu.
 
-
 ```java
+
 @RequiredArgsConstructor
 @Configuration
 public class FeignConfig {
@@ -115,6 +297,7 @@ JWT:
 Dodaj zależności do `pom.xml`:
 
 ```xml
+
 <dependency>
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -124,6 +307,7 @@ Dodaj zależności do `pom.xml`:
 Dodaj adnotację `@EnableFeignClients` do klasy głównej aplikacji z której wychodzi zapytanie do innej mikrousługi:
 
 ```java
+
 @EnableFeignClients
 @SpringBootApplication
 public class ExampleApplication {
@@ -134,9 +318,14 @@ public class ExampleApplication {
 
 }
 ```
-Dodaj adnotację `@FeignClient` do interfejsu, który będzie używany do komunikacji z inną mikrousługą. Zmienna `name` musi być taka sama jak nazwa aplikacji w pliku konfiguracyjnym `application.yml` w mikrousłudze z którą chcesz się połączyć. Zmienna `url` to adres mikrousługi do której chcesz się połączyć. W przykładzie poniżej jest to `http://localhost:8073/api`
+
+Dodaj adnotację `@FeignClient` do interfejsu, który będzie używany do komunikacji z inną mikrousługą. Zmienna `name`
+musi być taka sama jak nazwa aplikacji w pliku konfiguracyjnym `application.yml` w mikrousłudze z którą chcesz się
+połączyć. Zmienna `url` to adres mikrousługi do której chcesz się połączyć. W przykładzie poniżej jest
+to `http://localhost:8073/api`
 
 ```java
+
 @FeignClient(name = "example-service", url = "http://localhost:8073/api")
 public interface CurrencyClient {
     @GetMapping("/v1/example/id/{id}")
@@ -153,6 +342,7 @@ używasz na localhost zostaw jak jest.
 Konfiguracja klasy `SecurityConfig`:
 
 ```java
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -175,6 +365,7 @@ public class SecurityConfig {
 Konfiguracja klasy `IpAuthorizationManager`:
 
 ```java
+
 @RequiredArgsConstructor
 public class IpAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
