@@ -3,14 +3,74 @@ Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, sp
 https://www.youtube.com/watch?v=KJ0cSvYj41c&t=3407s
 Róbcie z tego bo amen XD
 
+
+## Tworzenie nowego serwisu
+
+Aby stworzyć nowy mikroserwis trzeba dodać do niego zależności `config client`, `eureka discovery client`, `spring boot actuator` oraz `spring boot starter web`.  
+
+`config client` pozwala na pobieranie konfiguracji z serwera konfiguracyjnego.
+
+`eureka discovery client` pozwala na rejestrację serwisu w serwerze Eureka.
+
+`spring boot actuator` pozwala na monitorowanie aplikacji.
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+Następnie trzeba dodać konfigurację do pliku `application.yml`:
+
+```yaml
+spring:
+  application:
+    name: NAZWA_TWOJEGO_SERWISU
+  config:
+    import: optional:configserver:http://localhost:XXXX # Optional znaczy to że jeśli nie znajdzie serwera konfiguracyjnego 
+     # to nie zwróci błędu i będzie działać z domyślnymi wartościami(czyli z tego pliku).
+     # Zamień XXXX na port serwera konfiguracyjnego.
+```
+
+Nastpnie dodaj plik `NAZWA_TWOJEGO_SERWISU.yml` do serwera konfiguracyjnego w `resources/configurations`. W tym pliku dodaj konfigurację dla swojego serwisu.
+
+```yaml
+spring:
+   application:
+      name: NAZWA_TWOJEGO_SERWISU
+
+server:
+  port: XXXX # Zamień XXXX na port na którym ma działać serwis
+  servlet:
+    context-path: /api
+    
+# To jest ustawienie dla eureki
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+```
 ## Komunikacja między mikrousługami
 
 Jeśli chcesz aby mikrousługi komunikowały się ze sobą, musisz dodać odpowiednie zależności i konfiguracje do każdej z
-nich.
+nich.  
+
+Komunikacja wygląda w ten sposób:
+`gateway` -> `mikrousługa_1` -> `gateway` -> `mikrousługa2` ->`gateway` -> `mikrousługa_1` -> `gateway` -> `wynik`
 
 Dodaj `FeignConfig` do katalogu `config` aby mikrousługa miała możliwość autoryzować się w bramie domyślnej
 Działa to na takiej zasadzie że mikrousługa wysyła zapytanie do bramy z tokenem który jest pobierany z hedera
 odtrzymanego z `gateway`, a brama sprawdza czy token jest poprawny i czy mikrousługa ma dostęp do zasobu.
+
 
 ```java
 @RequiredArgsConstructor
