@@ -28,7 +28,9 @@ Róbcie z tego bo amen XD
 
 - `Discovery` - serwis odpowiedzialny za odkrywanie mikrousług.
 
-- `Config` - serwis odpowiedzialny za konfigurację mikrousług.
+- `Config` - serwis odpowiedzialny za konfigurację mikrousług. 
+
+‎
 
 ### Konfiguracja serwisu `Config`
 #### Dependency
@@ -63,10 +65,9 @@ spring:
       server:
         native:
           search-locations: classpath:/configurations # Lokalizacja plików konfiguracyjnych
-```
-
-### Konfiguracja serwisu `Discovery`
-
+```  
+‎
+### Konfiguracja serwisu `Discovery`  
 - #### Dependency
 
 ```xml
@@ -119,7 +120,7 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 ```
-
+‎
 ### Konfiguracja serwisu `Gateway`
 
 - #### Dependency
@@ -382,6 +383,7 @@ public class UserAuthProvider {
     }
 }
 ```
+‎
 ## Tworzenie nowego serwisu
 
 Aby stworzyć nowy mikroserwis trzeba dodać do niego
@@ -445,7 +447,7 @@ management:
     sampling:
       probability: 1.0
 ```
-
+‎
 ## Komunikacja między mikrousługami
 
 Jeśli chcesz aby mikrousługi komunikowały się ze sobą, musisz dodać odpowiednie zależności i konfiguracje do każdej z
@@ -537,7 +539,7 @@ public interface CurrencyClient {
     Optional<CurrencyDto> getexampleById(@PathVariable("id") Long id);
 }
 ```
-
+‎
 ## Kod Security dla mikrousług
 
 Poniżej znajdują się dwie klasy które trzeba dodać jeśli chcesz aby kominikacja odbywała się tylko między gateway i
@@ -586,7 +588,7 @@ public class IpAuthorizationManager implements AuthorizationManager<RequestAutho
     }
 }
 ```
-
+‎
 # Projekt Mikrousług
 
 Ten projekt to zestaw mikrousług zbudowanych przy użyciu Java, Spring Boot i Maven.
