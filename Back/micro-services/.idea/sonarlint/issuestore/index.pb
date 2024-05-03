@@ -135,3 +135,13 @@ ccurrency-accounts/src/main/java/org/example/currencyaccounts/dto/ForeignCurrenc
 Scurrency-accounts/src/main/java/org/example/currencyaccounts/dto/CurrencyIdDto.java,b\b\bb87d7e641ee1deff36469620948d192d3fbd80f
 ‘
 acurrency-accounts/src/main/java/org/example/currencyaccounts/dto/ForeignCurrencyAccountIdDto.java,c\9\c9319588d485c0d132d7c421eba3226b413c5d92
+z
+Jcurrencies/src/main/java/org/example/currencies/config/SecurityConfig.java,4\9\496d3d318bd3bb644966cbc3ccc338d17b0f8541
+‚
+Rcurrencies/src/main/java/org/example/currencies/config/AuthenticationProvider.java,e\7\e723ba258236e5d08d4aa55494470c4ffb7ec198
+t
+Dcurrencies/src/main/java/org/example/currencies/config/IpFilter.java,c\e\ce28f7ef1f5bdfc297bada61f112b27cbe13f881
+‚
+Rcurrencies/src/main/java/org/example/currencies/config/IpAuthorizationManager.java,f\3\f3a449fd7851e85541ee3bbdd40fe764ba8fb85e
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d

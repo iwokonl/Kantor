@@ -12,7 +12,7 @@
         <module name="paypal" />
         <module name="transaction" />
       </profile>
-      <profile name="Annotation profile for currency-accounts" enabled="true">
+      <profile name="Annotation profile for currencies" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
