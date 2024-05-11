@@ -16,6 +16,7 @@ public class JwtRedirectionFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication != null && authentication.getCredentials() != null) {
             String token = authentication.getCredentials().toString();
             ((HttpServletResponse) response).addHeader("Authorization", "Bearer " + token);

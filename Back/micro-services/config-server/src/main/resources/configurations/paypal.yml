@@ -19,7 +19,12 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/ # Eureka server URL 8761 because its the port of discovery server
 
-
+logging:
+  level:
+    root: TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.filter: TRACE
+    org.springframework.security: DEBUG
 server:
   port: 8071
   servlet:
@@ -29,3 +34,16 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+paypal:
+  client:
+    id: AenKnh2zpj8hC0wPsn3GPB6WZMYZjO6wn1BnJFdNfNlE8eHyVUlqeM2dbakznhyRfJxmzKtD35bnqQ00
+    secret: EDhZByws007mwF5sxuAjoOXX1YR7k03_BgHokXBwHN9G4Qs7t163T5AK2V254dpdwwat0sCfNQ1gaqu4
+  mode: sandbox
+
+# Credentials to paypal sandbox
+# Login/mail: kupujacy@kantrol.pl
+# Password: 12345678
+# Konto kantoru
+# Login/mail: wlasciciel@kantor.pl
+# Password: 12345678

@@ -14,13 +14,10 @@ import java.util.List;
 public interface ForeignCurrencyAccountMapper {
 
 //    TODO: Zadać pytanie jak działa mapowanie w mapstruct - Iwo
-    List<ForeignCurrencyAccountDto> toForeignCurrencyAccountDto(List<ForeignCurrencyAccount> foreignCurrencyAccounts);
 
     List<ForeignCurrencyAccountDto> toForeignCurrencyAccountDtoList(List<ForeignCurrencyAccount> accounts);
-//    ForeignCurrencyAccountDto toForeignCurrencyAccountDto(ForeignCurrencyAccount foreignCurrencyAccounts);
-//    @Mapping(target = "curencyCode", source = "currency.code")
-//    @Mapping(target = "curencyName", source = "currency.name")
-//    @Mapping(target = "userId", source = "user.id")
-//    ForeignCurrencyAccountDto ForeignCurrencyAccounttoForeignCurrencyAccountDto(ForeignCurrencyAccount foreignCurrencyAccount);
-////    ForeignCurrencyAccount toForeignCurrencyAccount(ForeignCurrencyAccountDto foreignCurrencyAccountDto);
+
+    ForeignCurrencyAccountDto toForeignCurrencyAccountDto(ForeignCurrencyAccount foreignCurrencyAccount);
+
+    ForeignCurrencyAccount toForeignCurrencyAccount(ForeignCurrencyAccountDto foreignCurrencyAccountDto);
 }

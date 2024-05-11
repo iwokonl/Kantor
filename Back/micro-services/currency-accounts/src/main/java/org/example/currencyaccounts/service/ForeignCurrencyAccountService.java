@@ -11,6 +11,8 @@ import org.example.currencyaccounts.feign.UserClient;
 import org.example.currencyaccounts.mapper.ForeignCurrencyAccountMapper;
 import org.example.currencyaccounts.model.ForeignCurrencyAccount;
 import org.example.currencyaccounts.repository.ForeignCurrencyAccountRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,7 @@ public class ForeignCurrencyAccountService {
     private final UserClient userClient;
     private final ForeignCurrencyAccountRepo foreignCurrencyAccountRepo;
     private final ForeignCurrencyAccountMapper foreignCurrencyAccountMapper;
+    private final Logger logger = LoggerFactory.getLogger(ForeignCurrencyAccountService.class);
 
     public ForeignCurrencyAccount createForeignCurrencyAccount(String currencyId){
         Optional<UserDto> userAppDto = userClient.getUserInfo();
@@ -105,5 +108,27 @@ public class ForeignCurrencyAccountService {
             throw new AppExeption("Account not found", HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    public ForeignCurrencyAccountDto findByCurrencyCodeAndUserId(String currencyId, Long userId) {
+        Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyIdAndUserId(Long.valueOf(currencyId), userId);
+        if (account.isEmpty()) {
+            throw new AppExeption("Account not found", HttpStatus.NOT_FOUND);
+        }
+        return foreignCurrencyAccountMapper.toForeignCurrencyAccountDto(account.get());
+    }
+
+    public void save(ForeignCurrencyAccountDto foreignCurrencyAccountDto) {
+
+
+        ForeignCurrencyAccount foreignCurrencyAccount = new ForeignCurrencyAccount();
+
+        foreignCurrencyAccount.setBalance(new BigDecimal(foreignCurrencyAccountDto.getBalance()));
+
+        foreignCurrencyAccount.setCurrencyId(Long.valueOf(foreignCurrencyAccountDto.getCurrencyId()));
+
+        foreignCurrencyAccount.setUserId(foreignCurrencyAccountDto.getUserId());
+        foreignCurrencyAccount.setId(foreignCurrencyAccountDto.getId());
+        foreignCurrencyAccountRepo.save(foreignCurrencyAccount);
     }
 }

@@ -1,4 +1,4 @@
-package org.example.currencyaccounts.dto;
+package org.example.paypal.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
