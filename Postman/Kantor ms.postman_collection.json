@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "0f244046-0070-440d-843d-5f46c622f928",
+		"name": "Kantor ms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29521267"
+	},
+	"item": [
+		{
+			"name": "dodanie historii transakcji",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJpc3MiOm51bGwsImlkIjpudWxsLCJleHAiOjE3MTQ0MDEwNTksImlhdCI6MTcxNDM5NzQ1OSwiZW1haWwiOiJJV29hc2RhZHMifQ.8GECvrM-52YNzMCJUWd3f2kzd28GnLjfBqgdOSQcJxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "iwokonl",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "iwo",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "password",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "kantor-client-credentials-id",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"appUserId\": 1, \r\n\"amount\":222, \r\n\"currencyFromAccountId\": 2, \r\n\"currencyToAccountId\": 3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/transactions/addTransaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"addTransaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"iwo\", \"password\": \"iwo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\": \"Iwo\", \"lastName\": \"Stanisławski\", \"email\": \"iwoa@iwo.pl\", \"username\": \"iwo\", \"password\": \"iwo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search currency",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE0NjEyODA5LCJpYXQiOjE3MTQ2MDkyMDksImVtYWlsIjoiaXdvQGl3by5wbCJ9.1GTkAQMuqaYe8fATGcb9MmSpyxf1kth-gGuQ6l9GIZ0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"US\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/currencies/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"currencies",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE0NjY1NjQ0LCJpYXQiOjE3MTQ2NjIwNDQsImVtYWlsIjoiaXdvQGl3by5wbCJ9.pJW3fmNsnRb5HBgSSUaESBQRfTfmky-OHzNJgGtGXj4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/currencyAccounts/getCurrency/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"currencyAccounts",
+						"getCurrency",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE0NjczMjA1LCJpYXQiOjE3MTQ2Njk2MDUsImVtYWlsIjoiaXdvQGl3by5wbCJ9.T85BU4nUYu7dgMuVvhyy7MF3QgscimCOd7Hq7-13e9k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/userInfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"userInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCurrencyAccount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd29hIiwiaWQiOjIsImV4cCI6MTcxNDY3Nzc0NCwiaWF0IjoxNzE0Njc0MTQ0LCJlbWFpbCI6Iml3b2FAaXdvLnBsIn0.6lIdupomhmX-SpVePj2FMtKfoO7iROgc6y7G7wl9vuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/currencyAccounts/createCurrencyAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"currencyAccounts",
+						"createCurrencyAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCurrencyAccounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd29hIiwiaWQiOjIsImV4cCI6MTcxNDY3Nzc0NCwiaWF0IjoxNzE0Njc0MTQ0LCJlbWFpbCI6Iml3b2FAaXdvLnBsIn0.6lIdupomhmX-SpVePj2FMtKfoO7iROgc6y7G7wl9vuw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/currencyAccounts/getCurrencyAccounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"currencyAccounts",
+						"getCurrencyAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCurrencyAccount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE0Njc4MzE1LCJpYXQiOjE3MTQ2NzQ3MTUsImVtYWlsIjoiaXdvQGl3by5wbCJ9.KjxKTT7BJmdM6QX7D2mzKW1qL-wZKiv6zqivixm2PuE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/currencyAccounts/deleteCurrencyAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"currencyAccounts",
+						"deleteCurrencyAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paypal zamówinie Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE1NDQyNDM2LCJpYXQiOjE3MTU0Mzg4MzYsImVtYWlsIjoiaXdvYUBpd28ucGwifQ.vRm7AuSDzJsva1LWCZiJ-7qYuLdXEACA2xmF8ILUt94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"total\": 100.02,\r\n    \"currency\": \"62\",\r\n    \"method\": \"paypal\",\r\n    \"intent\":  \"sale\",\r\n    \"description\": \"desc\",\r\n    \"cancelUrl\": \"http://localhost:8071/api/v1/paypal/test\",\r\n    \"successUrl\": \"http://localhost:8071/api/v1/paypal/success\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/paypal/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"paypal",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

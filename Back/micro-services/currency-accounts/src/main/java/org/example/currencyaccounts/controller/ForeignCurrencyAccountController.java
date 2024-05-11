@@ -37,20 +37,22 @@ public class ForeignCurrencyAccountController {
     @DeleteMapping("/deleteCurrencyAccount")
     public void deleteCurrencyAccount(
             @RequestBody ForeignCurrencyAccountIdDto foreignCurrencyAccountIdDto
-    ){
+    ) {
         foreignCurrencyAccountService.deleteForeignCurrencyAccount(Long.valueOf(foreignCurrencyAccountIdDto.id()));
 
     }
+
     @GetMapping("/id/{id}/currencyCode/{currencyCode}")
     ResponseEntity<ForeignCurrencyAccountDto> findByCurrencyCodeAndUserId(
             @PathVariable("currencyCode") String currencyCode,
             @PathVariable("id") Long userId
-    ){
+    ) {
         ForeignCurrencyAccountDto account = foreignCurrencyAccountService.findByCurrencyCodeAndUserId(currencyCode, userId);
         return ResponseEntity.ok(account);
     }
+
     @PostMapping("/save")
-    void save(@RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto){
+    void save(@RequestBody ForeignCurrencyAccountDto foreignCurrencyAccountDto) {
         foreignCurrencyAccountService.save(foreignCurrencyAccountDto);
     }
 
