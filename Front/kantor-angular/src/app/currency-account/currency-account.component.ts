@@ -90,15 +90,15 @@ export class CurrencyAccountComponent implements OnInit {
     }
     account.isLoading = true;
     this.axiosService.request("POST",
-      "/api/payment/create",
+      "/api/v1/paypal/create",
       {
         total: account.amount,
         currency: account.curencyCode,
         method: "paypal",
         intent: "sale",
         description: "Płatność za pomocą PayPal. Dodanie środków do konta walutowego. Kwota: " + account.amount + " " + account.currencyCode,
-        cancelUrl: "http://localhost:8082/api/payment/cancel",
-        successUrl: "http://localhost:8082/api/payment/success"
+        cancelUrl: "http://localhost:8082/api/v1/paypal/cancel",
+        successUrl: "http://localhost:8082/api/v1/paypal/success"
 
       }).then((response) => {
       console.log(response.data);
@@ -125,7 +125,7 @@ export class CurrencyAccountComponent implements OnInit {
     }
     account.isLoading = true;
     this.axiosService.request("POST",
-      "/api/payment/createPayout",
+      "/api/v1/paypal/createPayout",
       {
         receiverEmail: "kupujacy@kantrol.pl", // Dodać kiedyś do db pole paypal email i przypisać do usera podczas rejestracji.
         total: account.amount,
