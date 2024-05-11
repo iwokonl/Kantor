@@ -16,20 +16,34 @@ interface CurrencyFlags {
 export class CurrencyAccountComponent implements OnInit {
   accounts: any[] = [];
   isLoading: boolean = false;
+  currency: any;
   currencyFlags: { [key: string]: string } = {};
+  currencyCode: string = '';
+  currencyName: string = '';
 
   constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
 
+  getCurrencyData() {
+    this.axiosService.getCurrencyData('62').then(data => {
+      this.currencyCode = data.code;
+      this.currencyName = data.name;
+    });
+  }
+
   getCurrencyAccounts(): void {
     this.axiosService.request("POST",
-      "/api/ForeignCurrencyAccount/getCurrencyAccounts",
+      "/api/v1/currencyAccounts/getCurrencyAccounts",
       {}).then((response) => {
       this.accounts = response.data;
       this.accounts.forEach(account => {
-        if (account.curencyCode !== 'PLN') {
-          this.currencyService.getCurrencyDetails(account.curencyCode).subscribe(details => {
+        this.axiosService.getCurrencyData(account.currencyId).then(data => {
+          account.currencyCode = data.code;
+          account.currencyName = data.name;
+        });
+        if (account.currencyId !== "62") {
+          this.currencyService.getCurrencyDetails(account.currencyId).subscribe(details => {
             account.balanceInPLN = account.balance * details.rates[0].mid;
           });
         } else {
@@ -41,7 +55,7 @@ export class CurrencyAccountComponent implements OnInit {
   }
 
   createCurrencyAccount(newAccount: { curencyCode: string, balance: number, userId: number }): void {
-    this.axiosService.request("POST", "/api/ForeignCurrencyAccount/createCurrencyAccount", newAccount).then((response) => {
+    this.axiosService.request("POST", "/api/v1/currencyAccounts/createCurrencyAccountt", newAccount).then((response) => {
       console.log(response.data);
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
     });
@@ -58,7 +72,7 @@ export class CurrencyAccountComponent implements OnInit {
 
   onDeleteAccount(account: any) {
     this.axiosService.request("DELETE",
-      "/api/ForeignCurrencyAccount/deleteCurrencyAccount",
+      "/api/v1/currencyAccounts/deleteCurrencyAccount",
       {
         id: account.id
       }).then((response) => {

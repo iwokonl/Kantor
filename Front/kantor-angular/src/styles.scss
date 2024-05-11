@@ -31,11 +31,12 @@ body {
   border-radius: 12px;
 }
 
+/* src/styles.scss */
+
 .error-snackbar {
   position: fixed;
   background-color: rgba(255, 0, 0, 0.47);
   color: #DBDBDB;
-  max-width: 15% !important;
   margin-left: auto !important;
   margin-right: auto !important;
   margin-bottom: 1rem !important;
@@ -46,6 +47,16 @@ body {
   border-radius: 12px;
   z-index: 99999;
 }
+
+/* Dynamic width classes */
+.width-100 {
+  width: 100px !important;
+}
+
+.width-200 {
+  width: 200px !important;
+}
+
 
 .register-error-snackbar {
   position: fixed;

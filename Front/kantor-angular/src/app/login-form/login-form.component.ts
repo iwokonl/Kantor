@@ -26,16 +26,21 @@ export class LoginFormComponent {
 
   onSubmitLogin() {
     if (this.login.trim() === '' || this.password.trim() === '') {
-      this.snackBar.open('Puste pole!', '', {
+      const message = 'Puste pole!';
+      const width = this.calculateSnackbarWidth(message);
+      const widthClass = `width-${Math.min(300, Math.max(100, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+      this.snackBar.open(message, '', {
         duration: 3000,
-        panelClass: ['error-snackbar'],
+        panelClass: ['error-snackbar', widthClass],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
       });
       return;
     }
 
     this.axiosService.request(
       "POST",
-      "/api/authorization/login",
+      "/api/v1/auth/login",
       {
         username: this.login,
         password: this.password
@@ -54,5 +59,15 @@ export class LoginFormComponent {
         panelClass: ['error-snackbar'],
       });
     });
+  }
+
+  calculateSnackbarWidth(text: string): number {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.font = getComputedStyle(document.body).font;
+      return context.measureText(text).width;
+    }
+    return 0;
   }
 }

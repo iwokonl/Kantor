@@ -51,41 +51,41 @@ services:
 
 
 
-  postgres_keycloak:
-    image: postgres:latest
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-    healthcheck:
-      test: "exit 0"
-    ports:
-      - 5432:5432
-    networks:
-      - keycloak_demo
-  keycloak:
-    image: quay.io/keycloak/keycloak
-    command: start-dev
-    environment:
-      KC_DB: postgres
-      KC_DB_URL_HOST: postgres_keycloak
-      KC_DB_URL_DATABASE: keycloak
-      KC_DB_PASSWORD: admin
-      KC_DB_USERNAME: postgres
-      KC_DB_SCHEMA: public
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    ports:
-      - 8080:8080
-    depends_on:
-      postgres_keycloak:
-        condition: service_healthy
-    networks:
-      - keycloak_demo
-    volumes:
-      - ./themes/kantor:/opt/keycloak/themes/kantor
+#  postgres_keycloak:
+#    image: postgres:latest
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_DB: keycloak
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: admin
+#    healthcheck:
+#      test: "exit 0"
+#    ports:
+#      - 5432:5432
+#    networks:
+#      - keycloak_demo
+#  keycloak:
+#    image: quay.io/keycloak/keycloak
+#    command: start-dev
+#    environment:
+#      KC_DB: postgres
+#      KC_DB_URL_HOST: postgres_keycloak
+#      KC_DB_URL_DATABASE: keycloak
+#      KC_DB_PASSWORD: admin
+#      KC_DB_USERNAME: postgres
+#      KC_DB_SCHEMA: public
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      postgres_keycloak:
+#        condition: service_healthy
+#    networks:
+#      - keycloak_demo
+#    volumes:
+#      - ./themes/kantor:/opt/keycloak/themes/kantor
 
 
   zipkin:

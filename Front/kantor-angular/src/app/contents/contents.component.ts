@@ -15,7 +15,7 @@ export class ContentsComponent {
   onRegister(input: any) {
     this.axiosService.request(
       "POST",
-      "/register",
+      "/api/v1/auth/register",
       {
         firstName: input.firstName,
         lastName: input.lastName,
