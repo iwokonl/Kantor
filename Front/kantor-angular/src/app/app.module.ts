@@ -22,6 +22,7 @@ import { CurrencyDetailComponent } from './currency-detail/currency-detail.compo
 import { CurrencyChartComponent } from './currency-chart/currency-chart.component';
 import { SettingsComponent } from './settings/settings.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 
 
 
@@ -42,7 +43,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     CurrencyAccountComponent,
     CurrencyDetailComponent,
     CurrencyChartComponent,
-    SettingsComponent
+    SettingsComponent,
+    SidebarLeftComponent
   ],
   imports: [
     BrowserModule,

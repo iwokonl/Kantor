@@ -1,0 +1,17 @@
+.sidebar-left {
+  width: 324px;
+  height: 100%;
+  color: #DBDBDB;
+  border-right: 2px solid #DBDBDB;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-list, .nav-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

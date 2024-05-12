@@ -1,12 +1,9 @@
 
 
-<div>
-  <router-outlet>
-    <app-header></app-header>
-<!--    <app-welcome-content></app-welcome-content>-->
-
-  </router-outlet>
-
+<div style="display: flex; flex-direction: column; height: 100vh;">
+  <app-header></app-header>
+  <div style="display: flex; flex-grow: 1;">
+    <app-sidebar-left></app-sidebar-left>
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-
