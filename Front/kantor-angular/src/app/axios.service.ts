@@ -9,7 +9,7 @@ export class AxiosService {
   private authStatusSubject = new Subject<boolean>();
   authStatus$ = this.authStatusSubject.asObservable();
   constructor(private router: Router) {
-    axios.defaults.baseURL = 'http://localhost:8082';
+    axios.defaults.baseURL = 'http://localhost:8222';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
@@ -70,5 +70,15 @@ export class AxiosService {
       url: url,
       headers: headers
     });
+  }
+
+  getCurrencyData(code: string) {
+    return this.requestWithOutData('GET', '/api/v1/currencies/id/'+code)
+      .then(response => {
+        return {
+          code: response.data.code,
+          name: response.data.name
+        };
+      });
   }
 }

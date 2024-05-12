@@ -27,7 +27,7 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   updateUsername(): void {
     if (this.isLoggedIn) {
       this.axiosService.request("POST",
-        "api/authorization/userinfo",
+        "api/v1/auth/userInfo",
         {}).then((response) => {
         this.user_name = response.data.username;
         console.log(this.user_name);

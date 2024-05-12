@@ -48,7 +48,7 @@ export class RegisterFormComponent {
 
     this.axiosService.request(
       "POST",
-      "/api/authorization/register",
+      "/api/v1/auth/register",
       {
         firstName: this.firstName,
         lastName: this.lastName,

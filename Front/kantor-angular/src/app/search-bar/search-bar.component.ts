@@ -42,7 +42,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     this.searchSubscription = this.searchInput.pipe(
       debounceTime(500)
     ).subscribe(searchText => {
-      this.axiosService.request('POST', '/api/currency/search', { name: searchText })
+      this.axiosService.request('POST', '/api/v1/currencies/search', { name: searchText })
         .then(response => {
           this.searchResults = response.data;
           this.searchChange.emit(response.data);
