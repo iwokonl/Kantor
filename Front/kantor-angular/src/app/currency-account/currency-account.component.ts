@@ -43,9 +43,9 @@ export class CurrencyAccountComponent implements OnInit {
           account.currencyName = data.name;
         });
         if (account.currencyId !== "62") {
-          this.currencyService.getCurrencyDetails(account.currencyId).subscribe(details => {
+          this.currencyService.getCurrencyDetailsByID(account.currencyId).subscribe(details => {
             account.balanceInPLN = account.balance * details.rates[0].mid;
-          });
+        });
         } else {
           account.balanceInPLN = account.balance;
         }
@@ -93,12 +93,12 @@ export class CurrencyAccountComponent implements OnInit {
       "/api/v1/paypal/create",
       {
         total: account.amount,
-        currency: account.curencyCode,
+        currency: account.currencyId,
         method: "paypal",
         intent: "sale",
         description: "Płatność za pomocą PayPal. Dodanie środków do konta walutowego. Kwota: " + account.amount + " " + account.currencyCode,
-        cancelUrl: "http://localhost:8082/api/v1/paypal/cancel",
-        successUrl: "http://localhost:8082/api/v1/paypal/success"
+        cancelUrl: "http://localhost:8222/api/v1/paypal/cancel",
+        successUrl: "http://localhost:8222/api/v1/paypal/success"
 
       }).then((response) => {
       console.log(response.data);

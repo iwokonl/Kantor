@@ -1,13 +1,37 @@
 .custom-container {
   width: 25vw;
-  height: 85vh;
+  height: 92vh;
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+  padding: 20px;
 
+
+
+  // custom scrollbar styles
+  &::-webkit-scrollbar {
+    width: 15px;
+    padding-right: 20px;
+    padding-top: 10%; // adjust this value to visually decrease the scrollbar height
+    padding-bottom: 10%; // adjust this value to visually decrease the scrollbar height
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparentize(#888, 0.5);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 
 }
 
@@ -42,7 +66,6 @@
       box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
       background: linear-gradient(92deg, rgba(241, 241, 241, 0.1) -0.4%, rgba(214, 214, 214, 0.1) 106.05%);
       backdrop-filter: blur(50px);
-      transform: scale(1.05);
     }
 }
 

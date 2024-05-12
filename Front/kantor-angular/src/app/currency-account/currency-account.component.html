@@ -1,21 +1,23 @@
-<div class="custom-container">
-  <h3 class="header">Spis kont walutowych</h3>
-  <div class="custom-row">
-    <div class="custom-col" *ngFor="let account of accounts">
-      <div class="custom-card">
-        <div class="custom-card-body">
-          <h5 class="custom-card-title">
-            <a [routerLink]="['/currency', account.currencyCode]">{{ account.currencyName + ' ' + account.currencyCode + ' ' + currencyFlags[account.currencyCode] }}</a>
-          </h5>
-          <p class="custom-card-text">Balans: {{ account.balance + ' ' + account.currencyCode + ' = ' + (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
-          <button class="custom-btn custom-btn-outline-primary delete" (click)="onDeleteAccount(account)">Usuń konto walutowe</button>
-          <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(account)">Dodaj fundusze</button>
-          <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(account)">Wypłać fundusze</button>
+<div class="outerior-container">
+  <div class="custom-container">
+  <!--  <h3 class="header">Spis kont walutowych</h3>-->
+    <div class="custom-row">
+      <div class="custom-col" *ngFor="let account of accounts">
+        <div class="custom-card">
+          <div class="custom-card-body">
+            <h5 class="custom-card-title">
+              <a [routerLink]="['/currency', account.currencyCode]">{{ account.currencyName + ' ' + account.currencyCode + ' ' + currencyFlags[account.currencyCode] }}</a>
+            </h5>
+            <p class="custom-card-text">Balans: {{ account.balance + ' ' + account.currencyCode + ' = ' + (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
+            <button class="custom-btn custom-btn-outline-primary delete" (click)="onDeleteAccount(account)">Usuń konto walutowe</button>
+            <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(account)">Dodaj fundusze</button>
+            <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(account)">Wypłać fundusze</button>
 
-          <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="account.amount">
-          <div class="loading-overlay" *ngIf="account.isLoading">
-            <div class="spinner-border text-primary" role="status">
-              <span class="sr-only">Loading...</span>
+            <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="account.amount">
+            <div class="loading-overlay" *ngIf="account.isLoading">
+              <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
             </div>
           </div>
         </div>
@@ -24,18 +26,18 @@
   </div>
 </div>
 
-<form class="create-account-form" #createAccountForm="ngForm" (ngSubmit)="createCurrencyAccount(createAccountForm.value)">
-  <h3>Dodawanie konta walutowego</h3>
-  <div class="form-group">
-    <label for="curencyCode">Kod waluty (np. USD)</label>
-    <input type="text" class="custom-form-control" id="curencyCode" name="curencyCode" ngModel>
-  </div>
-  <div class="form-group">
-    <label for="balance">Balans</label>
-    <input type="number" class="custom-form-control" id="balance" name="balance" ngModel>
-  </div>
-  <button type="submit" class="custom-btn custom-btn-primary">Create Account</button>
-</form>
+<!--<form class="create-account-form" #createAccountForm="ngForm" (ngSubmit)="createCurrencyAccount(createAccountForm.value)">-->
+<!--  <h3>Dodawanie konta walutowego</h3>-->
+<!--  <div class="form-group">-->
+<!--    <label for="curencyCode">Kod waluty (np. USD)</label>-->
+<!--    <input type="text" class="custom-form-control" id="curencyCode" name="curencyCode" ngModel>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="balance">Balans</label>-->
+<!--    <input type="number" class="custom-form-control" id="balance" name="balance" ngModel>-->
+<!--  </div>-->
+<!--  <button type="submit" class="custom-btn custom-btn-primary">Create Account</button>-->
+<!--</form>-->
 
 
 

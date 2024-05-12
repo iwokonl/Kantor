@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { AxiosService } from './axios.service';
+import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +13,16 @@ import { catchError } from 'rxjs/operators';
 export class CurrencyService {
   private apiUrl = 'http://api.nbp.pl/api/exchangerates/rates/A'; // Adres URL API NBP
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private axiosService: AxiosService) { }
 
   getCurrencyDetails(code: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${code}/?format=json`);
+  }
+
+  getCurrencyDetailsByID(id: string): Observable<any> {
+    return from(this.axiosService.getCurrencyData(id)).pipe(
+      switchMap(data => this.getCurrencyDetails(data.code))
+    );
   }
 
   getCurrencyHistory(code: string, startDate: string, endDate: string): Observable<any> {
