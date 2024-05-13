@@ -89,7 +89,7 @@
       </a>
       <a class="nav-item nav-link text-class" routerLink="/register" routerLinkActive="active-icon">
         <img *ngIf="router.url === '/register'; else inactiveRegisterIcon" class="icons-kantor active-icon"
-             src="assets/register_active.svg" alt="Rejestracja">
+             ngSrc="assets/register_active.svg" alt="Rejestracja" height="45" width="46">
         <ng-template #inactiveRegisterIcon>
           <img class="icons-kantor" src="assets/register.svg" alt="Rejestracja">
         </ng-template>
