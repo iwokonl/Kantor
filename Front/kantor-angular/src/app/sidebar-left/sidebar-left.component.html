@@ -1,7 +1,22 @@
 <div class="sidebar-left">
+
   <div class="nav-list">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/logo.svg" alt="Kantor Walut">
+    </a>
     <a class="nav-link" routerLink="/">Strona Główna</a>
     <a class="nav-link" routerLink="#">Kursy Walut</a>
+  </div>
+  <div class="nav-bottom">
+    <ng-container *ngIf="isLoggedIn; else notLoggedIn">
+      <a class="nav-item nav-link" routerLink="/settings">Ustawienia</a>
+      <a class="nav-item nav-link" routerLink="/currency-account">Konta walutowe</a>
+      <a class="nav-item nav-link" (click)="axiosService.logout()">Wyloguj</a>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <a class="nav-item nav-link" routerLink="/login">Logowanie</a>
+      <a class="nav-item nav-link" routerLink="/register">Rejestracja</a>
+    </ng-template>
   </div>
   <div class="nav-bottom">
     <a class="nav-link" routerLink="#">Kontakt</a>
