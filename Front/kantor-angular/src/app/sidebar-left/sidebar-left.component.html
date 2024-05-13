@@ -2,7 +2,7 @@
 
   <div class="nav-list">
     <a class="navbar-brand" routerLink="/">
-      <img src="assets/logo.svg" alt="Kantor Walut">
+      <img class="logo" src="assets/logo.svg" alt="Kantor Walut">
     </a>
     <a class="nav-item nav-link text-class" routerLink="/" routerLinkActive="active-icon" [routerLinkActiveOptions]="{exact: true}">
       <img *ngIf="router.url === '/'; else inactiveHomeIcon" class="icons-kantor active-icon"
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="nav-bottom">
+  <div class="nav-bottom text-bottom-left-sidebar">
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <a class="nav-item nav-link text-class" routerLink="/settings" routerLinkActive="active-icon">
         <img *ngIf="router.url === '/settings'; else inactiveSettingsIcon" class="icons-kantor active-icon"

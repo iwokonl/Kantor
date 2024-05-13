@@ -20,10 +20,17 @@
   flex-direction: column;
   align-items: center;
 }
-
+.logo{
+  margin-left: -16px !important;
+  margin-top: 38px;
+}
 .text-class {
   align-self: flex-start;
-  margin-left: 40px;
+  margin-left: 55px;
+}
+
+.text-bottom-left-sidebar{
+  margin-bottom: 45px;
 }
 .active-icon {
   color: #5FE5EE; // Zastąp '#your-color' kolorem, na który chcesz zmienić
