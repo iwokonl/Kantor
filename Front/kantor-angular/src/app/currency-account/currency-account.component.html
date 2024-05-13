@@ -49,19 +49,57 @@
     </div>
   </div>
 
+<!--  <div *ngIf="selectedAccount" class="selected-account-container">-->
+<!--    <h3>{{ currencyFlags[selectedAccount.currencyCode]+ ' ' + selectedAccount.currencyCode + ' '+ selectedAccount.currencyName }}</h3>-->
+<!--    <button class="custom-btn custom-btn-outline-primary delete" (click)="onDeleteAccount(selectedAccount)">Usuń konto walutowe</button>-->
+<!--    <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(selectedAccount)">Dodaj fundusze</button>-->
+<!--    <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(selectedAccount)">Wypłać fundusze</button>-->
+<!--    <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="selectedAccount.amount">-->
+<!--    <div class="loading-overlay" *ngIf="selectedAccount.isLoading">-->
+<!--      <div class="spinner-border text-primary" role="status">-->
+<!--        <span class="sr-only">Loading...</span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
   <div *ngIf="selectedAccount" class="selected-account-container">
-    <h3>{{ selectedAccount.currencyName + ' ' + selectedAccount.currencyCode + ' ' + currencyFlags[selectedAccount.currencyCode] }}</h3>
-    <button class="custom-btn custom-btn-outline-primary delete" (click)="onDeleteAccount(selectedAccount)">Usuń konto walutowe</button>
-    <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(selectedAccount)">Dodaj fundusze</button>
-    <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(selectedAccount)">Wypłać fundusze</button>
-    <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="selectedAccount.amount">
-    <div class="loading-overlay" *ngIf="selectedAccount.isLoading">
-      <div class="spinner-border text-primary" role="status">
-        <span class="sr-only">Loading...</span>
+
+    <div class="left-container">
+      <div class="header-container" style="display: flex; flex-direction: row;">
+        <div class="currency-flag-container">
+          <h1 class="currency-flag">{{ currencyFlags[selectedAccount.currencyCode] }}</h1>
+        </div>
+        <div class="currency-info-container">
+          <div class="currency-info">
+            <p>{{ selectedAccount.currencyCode }}</p>
+            <p>{{ selectedAccount.currencyName }}</p>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="right-container">
+      <div class="actions-container">
+        <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [(ngModel)]="selectedAccount.amount">
+        <div class="buttons">
+          <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(selectedAccount)">Dodaj fundusze</button>
+          <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(selectedAccount)">Wypłać fundusze</button>
+        </div>
+
+        <div class="loading-overlay" *ngIf="selectedAccount.isLoading">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+<!--    <div class="loading-overlay" *ngIf="selectedAccount.isLoading">-->
+<!--      <div class="spinner-border text-primary" role="status">-->
+<!--        <span class="sr-only">Loading...</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
   </div>
-</div>
 
 
 
@@ -71,6 +109,7 @@
 
 
 
+<!--  STARE WERSJE - usunąć gdy nowa będzie w 100% funkcjonalna-->
 
 <!--<form class="create-account-form" #createAccountForm="ngForm" (ngSubmit)="createCurrencyAccount(createAccountForm.value)">-->
 <!--  <h3>Dodawanie konta walutowego</h3>-->

@@ -7,14 +7,88 @@
 
 .selected-account-container {
   flex: 1;
+  width: auto;
+  max-width: 1200px;
+  min-width: 800px;
+
   color: #dbdbdb;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   margin-left: 30px;
   border-radius: 47px;
   border: 2px solid #DBDBDB;
-  padding: 20px;
+  padding: 30px;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+
+  display: flex;
+  justify-content: space-between;
+
+  .left-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .header-container {
+      display: flex;
+      flex-direction: row;
+
+      .currency-flag-container {
+        flex: 1;
+        width: 50px; // adjust this value as needed
+        // styles for the currency flag container
+      }
+
+      .currency-info-container {
+        flex: 1;
+        width: 110px; // adjust this value as needed
+        // styles for the currency info container
+      }
+    }
+  }
+
+  .right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
 }
+
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px; // adjust as needed
+  }
+
+  .custom-form-control{
+    width: 300px;
+    height: 60px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 0;
+    color: #dbdbdb;
+
+    border-radius: 15px;
+    border: 2px solid #DBDBDB;
+
+    background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
+
+    mix-blend-mode: screen;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(17.5px);
+  }
+}
+
 
 .custom-container {
   flex: 0 0 20vw;
