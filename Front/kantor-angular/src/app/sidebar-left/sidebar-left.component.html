@@ -4,28 +4,98 @@
     <a class="navbar-brand" routerLink="/">
       <img src="assets/logo.svg" alt="Kantor Walut">
     </a>
-    <a class="nav-link align-content-center text-class" routerLink="/"><img class="icons-kantor" src="assets/home_icon.svg" alt="Kantor Walut">Strona Główna</a>
-    <a class="nav-link text-class" routerLink="#">Kursy Walut</a>
+    <a class="nav-item nav-link text-class" routerLink="/" routerLinkActive="active-icon" [routerLinkActiveOptions]="{exact: true}">
+      <img *ngIf="router.url === '/'; else inactiveHomeIcon" class="icons-kantor active-icon"
+           src="assets/home_icon_active.svg" alt="settings">
+      <ng-template #inactiveHomeIcon>
+        <img class="icons-kantor" src="assets/home_icon.svg" alt="settings">
+      </ng-template>
+      Strona Główna
+    </a>
+    <a class="nav-link text-class" routerLink="/currency-rates" routerLinkActive="active-icon">
+      <img *ngIf="router.url === '/currency-rates'; else inactiveCurrencyRatesIcon" class="icons-kantor active-icon"
+           src="assets/currency_rates_active.svg" alt="Kursy Walut">
+      <ng-template #inactiveCurrencyRatesIcon>
+        <img class="icons-kantor" ngSrc="assets/currency_rates.svg" alt="Kursy Walut" height="41" width="45">
+      </ng-template>
+      Kursy Walut
+    </a>
   </div>
 
   <div class="nav-middle">
     <div class="nav-bottom" *ngIf="router.url.startsWith('/settings')">
-      <a class="nav-link text-class" routerLink="/settings" routerLinkActive="active">Profile</a>
-      <a class="nav-link text-class" routerLink="/security" routerLinkActive="active">Security</a>
-      <a class="nav-link text-class" routerLink="/help" routerLinkActive="active">Help</a>
+      <a class="nav-link text-class" routerLink="/settings" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/settings'; else inactiveProfileIcon" class="icons-kantor active-icon"
+             src="assets/profile_active.svg" alt="Profile">
+        <ng-template #inactiveProfileIcon>
+          <img class="icons-kantor" src="assets/profile.svg" alt="Profile">
+        </ng-template>
+        Profile
+      </a>
+      <a class="nav-link text-class" routerLink="/security" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/security'; else inactiveSecurityIcon" class="icons-kantor active-icon"
+             src="assets/security_active.svg" alt="Security">
+        <ng-template #inactiveSecurityIcon>
+          <img class="icons-kantor" src="assets/security.svg" alt="Security">
+        </ng-template>
+        Security
+      </a>
+      <a class="nav-link text-class" routerLink="/help" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/help'; else inactiveHelpIcon" class="icons-kantor active-icon"
+             src="assets/help_active.svg" alt="Help">
+        <ng-template #inactiveHelpIcon>
+          <img class="icons-kantor" src="assets/help.svg" alt="Help">
+        </ng-template>
+        Help
+      </a>
     </div>
   </div>
 
   <div class="nav-bottom">
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
-      <a class="nav-item nav-link text-class" routerLink="/settings"><img class="icons-kantor" src="assets/settings.svg" alt="settings">Ustawienia</a>
-      <a class="nav-item nav-link text-class" routerLink="/currency-account"><img class="icons-kantor" src="assets/konta-wlutowe.svg" alt="konta-wlutowe">Konta walutowe</a>
-      <a class="nav-item nav-link text-class" (click)="axiosService.logout()"><img class="icons-kantor" src="assets/logout.svg" alt="settings">Wyloguj</a>
+      <a class="nav-item nav-link text-class" routerLink="/settings" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/settings'; else inactiveSettingsIcon" class="icons-kantor active-icon"
+             src="assets/settings_active.svg" alt="settings">
+        <ng-template #inactiveSettingsIcon>
+          <img class="icons-kantor" src="assets/settings.svg" alt="settings">
+        </ng-template>
+        Ustawienia
+      </a>
+      <a class="nav-item nav-link text-class" routerLink="/currency-account" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/currency-account'; else inactiveCurrencyAccountIcon" class="icons-kantor active-icon"
+             src="assets/currency_account_active.svg" alt="konta-wlutowe">
+        <ng-template #inactiveCurrencyAccountIcon>
+          <img class="icons-kantor" src="assets/currency-account.svg" alt="konta-wlutowe">
+        </ng-template>
+        Konta walutowe
+      </a>
+      <a class="nav-item nav-link text-class" (click)="axiosService.logout()">
+        <img *ngIf="router.url === '/logout'; else inactiveLogoutIcon" class="icons-kantor active-icon"
+             src="assets/logout_active.svg" alt="settings">
+        <ng-template #inactiveLogoutIcon>
+          <img class="icons-kantor" src="assets/logout.svg" alt="settings">
+        </ng-template>
+        Wyloguj
+      </a>
     </ng-container>
     <ng-template #notLoggedIn>
-      <a class="nav-item nav-link text-class" routerLink="/login">Logowanie</a>
-      <a class="nav-item nav-link text-class" routerLink="/register">Rejestracja</a>
+      <a class="nav-item nav-link text-class" routerLink="/login" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/login'; else inactiveLoginIcon" class="icons-kantor active-icon"
+             src="assets/login_active.svg" alt="Logowanie">
+        <ng-template #inactiveLoginIcon>
+          <img class="icons-kantor" src="assets/login.svg" alt="Logowanie">
+        </ng-template>
+        Logowanie
+      </a>
+      <a class="nav-item nav-link text-class" routerLink="/register" routerLinkActive="active-icon">
+        <img *ngIf="router.url === '/register'; else inactiveRegisterIcon" class="icons-kantor active-icon"
+             src="assets/register_active.svg" alt="Rejestracja">
+        <ng-template #inactiveRegisterIcon>
+          <img class="icons-kantor" src="assets/register.svg" alt="Rejestracja">
+        </ng-template>
+        Rejestracja
+      </a>
     </ng-template>
-    <a class="nav-link text-class" routerLink="#">Kontakt</a>
+
   </div>
 </div>

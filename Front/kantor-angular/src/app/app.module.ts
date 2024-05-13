@@ -23,6 +23,7 @@ import { CurrencyChartComponent } from './currency-chart/currency-chart.componen
 import { SettingsComponent } from './settings/settings.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 
@@ -53,6 +54,7 @@ import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule,
+    NgOptimizedImage,
   ],
   providers: [],
   bootstrap: [AppComponent]
