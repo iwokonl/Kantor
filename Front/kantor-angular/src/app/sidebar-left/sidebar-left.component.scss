@@ -1,7 +1,8 @@
 .sidebar-left {
   width: 324px;
-  height: 100%;
+  height: 100vh;
   color: #DBDBDB;
+  position: absolute;
   border-right: 2px solid #DBDBDB;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
   backdrop-filter: blur(25px);

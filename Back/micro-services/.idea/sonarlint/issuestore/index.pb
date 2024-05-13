@@ -157,8 +157,6 @@ w
 Gpaypal/src/main/java/org/example/paypal/config/RestExeptionHandler.java,9\e\9e32b6b264dcc093687163492d0ae4c20c4d48b5
 i
 9paypal/src/main/java/org/example/paypal/dto/ErrorDto.java,2\2\228f49304e95d1b1a4fe9bf9c5ae4d3ccd51ef7e
-h
-8paypal/src/main/java/org/example/paypal/AppExeption.java,3\4\3404abd132884e01eadb3f43fffe2c2a32ac9765
 q
 Apaypal/src/main/java/org/example/paypal/exeption/AppExeption.java,9\d\9daa6832aab02af44ccdaa30bfb6fc23e9132b9b
 n
@@ -177,13 +175,7 @@ h
 8paypal/src/main/java/org/example/paypal/dto/UserDto.java,c\7\c71106018c8c4a134596e1bf3396769268e6488a
 o
 ?paypal/src/main/java/org/example/paypal/config/FeignConfig.java,1\0\10d1f4379074cabce0b5d02ad1917a0e2cc67563
-q
-Apaypal/src/main/java/org/example/paypal/feign/CurrencyFeigin.java,d\5\d595d0dc786abe4053dcc5c3a3550af9fd115d73
 o
 ?gateway/src/main/java/org/example/gateway/config/WebConfig.java,9\c\9cfccc50f15cf619c6a341146096e93201369e5c
 u
 Egateway/src/main/java/org/example/gateway/config/WebClientConfig.java,4\e\4ee72956845fbf8c6f975dbc37faddee40a31c33
-m
-=paypal/src/main/java/org/example/paypal/config/WebConfig.java,5\d\5d21b71e28fd1672430d271ac389daf972a5bedf
-s
-Cpaypal/src/main/java/org/example/paypal/config/WebClientConfig.java,f\5\f53a07da8e5f24463323938af719b2edb5d4a35e
