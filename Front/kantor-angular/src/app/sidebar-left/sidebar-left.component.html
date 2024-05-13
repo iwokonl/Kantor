@@ -4,28 +4,28 @@
     <a class="navbar-brand" routerLink="/">
       <img src="assets/logo.svg" alt="Kantor Walut">
     </a>
-    <a class="nav-link" routerLink="/">Strona Główna</a>
-    <a class="nav-link" routerLink="#">Kursy Walut</a>
+    <a class="nav-link align-content-center text-class" routerLink="/"><img class="icons-kantor" src="assets/home_icon.svg" alt="Kantor Walut">Strona Główna</a>
+    <a class="nav-link text-class" routerLink="#">Kursy Walut</a>
   </div>
 
   <div class="nav-middle">
     <div class="nav-bottom" *ngIf="router.url.startsWith('/settings')">
-      <a class="nav-link" routerLink="/settings" routerLinkActive="active">Profile</a>
-      <a class="nav-link" routerLink="/security" routerLinkActive="active">Security</a>
-      <a class="nav-link" routerLink="/help" routerLinkActive="active">Help</a>
+      <a class="nav-link text-class" routerLink="/settings" routerLinkActive="active">Profile</a>
+      <a class="nav-link text-class" routerLink="/security" routerLinkActive="active">Security</a>
+      <a class="nav-link text-class" routerLink="/help" routerLinkActive="active">Help</a>
     </div>
   </div>
 
   <div class="nav-bottom">
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
-      <a class="nav-item nav-link" routerLink="/settings">Ustawienia</a>
-      <a class="nav-item nav-link" routerLink="/currency-account">Konta walutowe</a>
-      <a class="nav-item nav-link" (click)="axiosService.logout()">Wyloguj</a>
+      <a class="nav-item nav-link text-class" routerLink="/settings"><img class="icons-kantor" src="assets/settings.svg" alt="settings">Ustawienia</a>
+      <a class="nav-item nav-link text-class" routerLink="/currency-account"><img class="icons-kantor" src="assets/konta-wlutowe.svg" alt="konta-wlutowe">Konta walutowe</a>
+      <a class="nav-item nav-link text-class" (click)="axiosService.logout()"><img class="icons-kantor" src="assets/logout.svg" alt="settings">Wyloguj</a>
     </ng-container>
     <ng-template #notLoggedIn>
-      <a class="nav-item nav-link" routerLink="/login">Logowanie</a>
-      <a class="nav-item nav-link" routerLink="/register">Rejestracja</a>
+      <a class="nav-item nav-link text-class" routerLink="/login">Logowanie</a>
+      <a class="nav-item nav-link text-class" routerLink="/register">Rejestracja</a>
     </ng-template>
-    <a class="nav-link" routerLink="#">Kontakt</a>
+    <a class="nav-link text-class" routerLink="#">Kontakt</a>
   </div>
 </div>

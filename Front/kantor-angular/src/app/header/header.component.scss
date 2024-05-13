@@ -65,7 +65,9 @@
   // horizontal, vertical, blur radius (rgb, alpha)
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
 }
-
+search-bar {
+  align-items: center;
+}
 
 .nav-burger{  //domyślnie ukryty
   display: none;
