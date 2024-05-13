@@ -21,6 +21,9 @@ export class CurrencyAccountComponent implements OnInit {
   currencyCode: string = '';
   currencyName: string = '';
 
+  selectedAccount: any = null; // Add this line
+
+
   constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
@@ -30,6 +33,10 @@ export class CurrencyAccountComponent implements OnInit {
       this.currencyCode = data.code;
       this.currencyName = data.name;
     });
+  }
+
+  selectAccount(account: any) {
+    this.selectedAccount = account;
   }
 
   getCurrencyAccounts(): void {

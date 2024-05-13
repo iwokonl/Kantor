@@ -51,6 +51,8 @@
 
 .navbar {
   background-color: transparent !important;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
 
   a, p, span, h1, h2, h3, h4, h5, h6 {
     color: #DBDBDB !important;
