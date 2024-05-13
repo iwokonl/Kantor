@@ -7,6 +7,15 @@
     <a class="nav-link" routerLink="/">Strona Główna</a>
     <a class="nav-link" routerLink="#">Kursy Walut</a>
   </div>
+
+  <div class="nav-middle">
+    <div class="nav-bottom" *ngIf="router.url.startsWith('/settings')">
+      <a class="nav-link" routerLink="/settings" routerLinkActive="active">Profile</a>
+      <a class="nav-link" routerLink="/security" routerLinkActive="active">Security</a>
+      <a class="nav-link" routerLink="/help" routerLinkActive="active">Help</a>
+    </div>
+  </div>
+
   <div class="nav-bottom">
     <ng-container *ngIf="isLoggedIn; else notLoggedIn">
       <a class="nav-item nav-link" routerLink="/settings">Ustawienia</a>
@@ -17,8 +26,6 @@
       <a class="nav-item nav-link" routerLink="/login">Logowanie</a>
       <a class="nav-item nav-link" routerLink="/register">Rejestracja</a>
     </ng-template>
-  </div>
-  <div class="nav-bottom">
     <a class="nav-link" routerLink="#">Kontakt</a>
   </div>
 </div>
