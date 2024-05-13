@@ -34,20 +34,26 @@ body {
 /* src/styles.scss */
 
 .error-snackbar {
-  position: fixed;
+  position: fixed !important;
+  width: 230px;
   background-color: rgba(255, 0, 0, 0.47);
   color: #DBDBDB;
+
   margin-left: auto !important;
   margin-right: auto !important;
   margin-bottom: 1rem !important;
   align-content: center;
   justify-content: center;
   text-align: center;
-  top: 0;
+  bottom: 70px !important;
   border-radius: 12px;
   z-index: 99999;
+  height: 52px;
 }
+.mat-mdc-snack-bar-container .mdc-snackbar__surface{
+  box-shadow: none !important;
 
+}
 /* Dynamic width classes */
 .width-100 {
   width: 100px !important;
