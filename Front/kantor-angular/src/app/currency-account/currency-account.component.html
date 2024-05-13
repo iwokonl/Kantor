@@ -36,14 +36,19 @@
         <div class="custom-card">
           <div class="custom-card-body" (click)="selectAccount(account)"> <!-- Add click event here -->
             <h5 class="custom-card-title">
-              <a [routerLink]="['/currency', account.currencyCode]">{{ account.currencyName + ' ' + account.currencyCode + ' ' + currencyFlags[account.currencyCode] }}</a>
+              <a class="custom-card-title" [routerLink]="['/currency', account.currencyCode]">
+                {{ currencyFlags[account.currencyCode] + ' ' + account.currencyCode }} <br>
+                {{ account.currencyName }}
+              </a>
             </h5>
-            <p class="custom-card-text">Balans: {{ account.balance + ' ' + account.currencyCode + ' = ' + (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
+            <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
+            <p class="custom-card-text"> {{ (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   <div *ngIf="selectedAccount" class="selected-account-container">
     <h3>{{ selectedAccount.currencyName + ' ' + selectedAccount.currencyCode + ' ' + currencyFlags[selectedAccount.currencyCode] }}</h3>
     <button class="custom-btn custom-btn-outline-primary delete" (click)="onDeleteAccount(selectedAccount)">Usuń konto walutowe</button>
