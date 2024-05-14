@@ -1,25 +1,22 @@
 .accounts-layout {
   display: flex;
   flex-direction: row;
-  margin-left: 340px;
+  margin-left: 320px;
   margin-top: 0px;
+  margin-right: 20px;
 }
 
 .selected-account-container {
-  flex: 1;
-  width: auto;
-  max-width: 1200px;
-  min-width: 800px;
-
+  flex: 4;
+  width: 80%;
   color: #dbdbdb;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 50px;
-  margin-left: 30px;
+  margin-left: 10px;
   border-radius: 47px;
   border: 2px solid #446475;
   padding: 30px;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
-
   display: flex;
   justify-content: space-between;
   backdrop-filter: blur(25px);
@@ -30,6 +27,7 @@
   //}
   .left-container {
     flex: 1;
+    width: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -97,16 +95,24 @@
 
 .custom-container {
   flex: 0 0 20vw;
-  width: 20vw;
-  height: 92vh;
+  width: 15vw;
+  height: 90vh;
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+  margin: 20px;
+  margin-right: 10px;
   padding: 20px;
-
+  border-radius: 40px;
+  border: 2px solid #446475;
+  color: #dbdbdb;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
+  mix-blend-mode: screen;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(17.5px);
 
 
   // custom scrollbar styles
