@@ -4,11 +4,13 @@
   margin-left: 320px;
   margin-top: 0px;
   margin-right: 20px;
+  height: 85vh
 }
 
 .selected-account-container {
+  height: 100%;
   flex: 4;
-  width: 80%;
+  width: 85%;
   color: #dbdbdb;
   margin-top: 20px;
   margin-bottom: 50px;
@@ -96,7 +98,7 @@
 .custom-container {
   flex: 0 0 20vw;
   width: 15vw;
-  height: 90vh;
+  height: 100%;
   position: sticky;
   top: 0;
   display: flex;
