@@ -8,6 +8,10 @@ This Spring Boot application provides a robust solution for fetching and storing
 
 
 ## Table of Contents
+- [README Mikroserwisów](https://github.com/iwokonl/Kantor/tree/main/Back/micro-services)
+
+- [README Angulara](https://github.com/iwokonl/Kantor)
+
 
 - [Installation](#installation) ----Uzupełnić
 - [Getting Started](#getting-started) ----Uzupełnić

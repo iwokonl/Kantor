@@ -4,7 +4,7 @@
 
 - [README Mikroserwisów](https://github.com/iwokonl/Kantor/tree/main/Back/micro-services)
 
-- [README Główne](https://github.com/iwokonl/Kantor)
+- [README Główne](https://github.com/iwokonl/Kantor/tree/main/Front/kantor-angular)
 
 
 1. [Opis projektu](#opis-projektu)
