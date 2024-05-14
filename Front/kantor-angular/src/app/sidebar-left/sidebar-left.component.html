@@ -81,9 +81,9 @@
     <ng-template #notLoggedIn>
       <a class="nav-item nav-link text-class" routerLink="/login" routerLinkActive="active-icon">
         <img *ngIf="router.url === '/login'; else inactiveLoginIcon" class="icons-kantor active-icon"
-             src="assets/login_active.svg" alt="Logowanie">
+             src="assets/login_active.svg" alt="Logowanie" height="45" width="46">
         <ng-template #inactiveLoginIcon>
-          <img class="icons-kantor" src="assets/login.svg" alt="Logowanie">
+          <img class="icons-kantor" src="assets/login.svg" alt="Logowanie" height="45" width="46">
         </ng-template>
         Logowanie
       </a>
