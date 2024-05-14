@@ -63,17 +63,17 @@
       </a>
       <a class="nav-item nav-link text-class" routerLink="/currency-account" routerLinkActive="active-icon">
         <img *ngIf="router.url === '/currency-account'; else inactiveCurrencyAccountIcon" class="icons-kantor active-icon"
-             src="assets/currency_account_active.svg" alt="konta-wlutowe">
+             src="assets/currency_account_active.svg" alt="konta-walutowe">
         <ng-template #inactiveCurrencyAccountIcon>
-          <img class="icons-kantor" src="assets/currency-account.svg" alt="konta-wlutowe">
+          <img class="icons-kantor" src="assets/currency-account.svg" alt="konta-walutowe">
         </ng-template>
         Konta walutowe
       </a>
       <a class="nav-item nav-link text-class" (click)="axiosService.logout()">
         <img *ngIf="router.url === '/logout'; else inactiveLogoutIcon" class="icons-kantor active-icon logout"
-             src="assets/logout_active.svg" alt="settings">
+             src="assets/logout_active.svg" alt="logout">
         <ng-template #inactiveLogoutIcon>
-          <img class="icons-kantor logout" src="assets/logout.svg" alt="settings">
+          <img class="icons-kantor logout" src="assets/logout.svg" alt="logout">
         </ng-template>
         Wyloguj
       </a>
