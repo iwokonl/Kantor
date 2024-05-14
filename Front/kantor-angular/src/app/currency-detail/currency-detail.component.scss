@@ -2,7 +2,7 @@
   color: #DBDBDB;
   display: block;
   width: 550px;
-  margin-left: 340px;
+  margin-left: 24vw;
   //margin: 50px auto 50px 120px;
   padding: 20px;
   //border: 1px solid #ccc;
@@ -17,4 +17,15 @@
   backdrop-filter: blur(25px);
 
 
+}
+
+
+#chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #DBDBDB;
+  border-radius: 47px;
+  border: 2px solid #DBDBDB;
 }
