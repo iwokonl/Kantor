@@ -22,7 +22,12 @@
 
   display: flex;
   justify-content: space-between;
-
+  backdrop-filter: blur(25px);
+  //&:hover {
+  //  box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+  //  background: linear-gradient(92deg, rgba(241, 241, 241, 0.1) -0.4%, rgba(214, 214, 214, 0.1) 106.05%);
+  //  backdrop-filter: blur(50px);
+  //}
   .left-container {
     flex: 1;
     display: flex;
