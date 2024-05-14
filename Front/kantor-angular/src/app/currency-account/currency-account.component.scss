@@ -117,7 +117,7 @@
 
   // custom scrollbar styles
   &::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
     padding-right: 20px;
     padding-top: 10%; // adjust this value to visually decrease the scrollbar height
     padding-bottom: 10%; // adjust this value to visually decrease the scrollbar height
@@ -126,6 +126,8 @@
   &::-webkit-scrollbar-track {
     background: transparentize(#888, 0.5);
     border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   &::-webkit-scrollbar-thumb {
