@@ -1,7 +1,7 @@
 .accounts-layout {
   display: flex;
   flex-direction: row;
-  margin-left: 25vw;
+  margin-left: 23vw;
   margin-top: 0px;
   margin-right: 20px;
   height: 89vh;
@@ -43,20 +43,22 @@
 
       }
       .currency-flag-container {
-        flex: 1;
         height: 6vh;
         width: 6vw;
       }
 
       .currency-info-container {
         flex: 1;
-        width: 100%;
+        width: 20vw;
+        height: 5vh;
         font-size: 2vw;
         margin-bottom: 0;
         margin-left: 10%;
       }
       .currency-name{
         margin-bottom:0;
+        margin-top: 1vh;
+        height: 3.5vh;
       }
       .currency-code{
         margin-top: 1vh;
@@ -200,11 +202,14 @@
 }
 
 .custom-card-title {
+  font-size: 3vh;
 }
 
 .custom-card-text {
-    font-family: "Twemoji Country Flags", "Helvetica", serif;
-    color: #DBDBDB;
+  font-family: "Twemoji Country Flags", "Helvetica", serif;
+  color: #DBDBDB;
+  font-size: 1.5rem;
+  margin-bottom: 0.5vh;
 }
 
 .custom-btn {
