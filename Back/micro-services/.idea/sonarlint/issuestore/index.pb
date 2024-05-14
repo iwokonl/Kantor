@@ -179,3 +179,15 @@ o
 ?gateway/src/main/java/org/example/gateway/config/WebConfig.java,9\c\9cfccc50f15cf619c6a341146096e93201369e5c
 u
 Egateway/src/main/java/org/example/gateway/config/WebClientConfig.java,4\e\4ee72956845fbf8c6f975dbc37faddee40a31c33
+n
+>config-server/src/main/resources/configurations/currencies.yml,b\8\b881c7b7e1d96788adaecd43282dd17407a523e6
+u
+Econfig-server/src/main/resources/configurations/currency-accounts.yml,0\1\012470b388ade721da98eb5b8c176fa0a571e255
+t
+Dconfig-server/src/main/resources/configurations/discovery-server.yml,1\8\180ace7502b1d7f2f8a10a92d87c2f6fad96bacb
+o
+?config-server/src/main/resources/configurations/transaction.yml,2\3\235cfc1290baa64f6eb11591bbdb1e44e1301d74
+k
+;config-server/src/main/resources/configurations/gateway.yml,7\d\7d082f6c08fc38fc065e057732cb4b78a4c4eaf3
+j
+:config-server/src/main/resources/configurations/paypal.yml,3\5\354e276d89c2e0e774cceaf12646c4c2304e9038

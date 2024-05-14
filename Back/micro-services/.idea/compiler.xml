@@ -9,19 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
         <module name="discovery-server" />
+        <module name="currency-accounts" />
         <module name="paypal" />
         <module name="transaction" />
-      </profile>
-      <profile name="Annotation profile for gateway" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
-        </processorPath>
-        <module name="currency-accounts" />
         <module name="gateway" />
         <module name="currencies" />
       </profile>
@@ -29,13 +19,13 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="config-server" options="-parameters" />
-      <module name="currencies" options="-parameters" />
-      <module name="currency-accounts" options="-parameters" />
-      <module name="discovery-server" options="-parameters" />
-      <module name="gateway" options="-parameters" />
-      <module name="paypal" options="-parameters" />
-      <module name="transaction" options="-parameters" />
+      <module name="config-server" options="" />
+      <module name="currencies" options="" />
+      <module name="currency-accounts" options="" />
+      <module name="discovery-server" options="" />
+      <module name="gateway" options="" />
+      <module name="paypal" options="" />
+      <module name="transaction" options="" />
     </option>
   </component>
 </project>

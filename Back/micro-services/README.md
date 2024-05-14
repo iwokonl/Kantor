@@ -3,6 +3,10 @@ Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, sp
 https://www.youtube.com/watch?v=KJ0cSvYj41c&t=3407s
 Róbcie z tego bo amen XD
 # Spis treści
+- [README Angulara](https://github.com/iwokonl/Kantor/tree/main/Front/kantor-angular) 
+
+- [README Główne](https://github.com/iwokonl/Kantor) 
+
 
 - [Podstawowe serwisy dla mikrousług](#podstawowe-serwisy-dla-mikrousług)
    - [Konfiguracja serwisu `Config`](#konfiguracja-serwisu-config)

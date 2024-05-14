@@ -1,6 +1,12 @@
 # Kantor Angular
 
 ## Spis treści
+
+- [README Mikroserwisów](https://github.com/iwokonl/Kantor/tree/main/Back/micro-services)
+
+- [README Główne](https://github.com/iwokonl/Kantor)
+
+
 1. [Opis projektu](#opis-projektu)
 2. [Technologie](#technologie)
 3. [Instalacja](#instalacja)
