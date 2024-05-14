@@ -70,10 +70,10 @@
         Konta walutowe
       </a>
       <a class="nav-item nav-link text-class" (click)="axiosService.logout()">
-        <img *ngIf="router.url === '/logout'; else inactiveLogoutIcon" class="icons-kantor active-icon"
+        <img *ngIf="router.url === '/logout'; else inactiveLogoutIcon" class="icons-kantor active-icon logout"
              src="assets/logout_active.svg" alt="settings">
         <ng-template #inactiveLogoutIcon>
-          <img class="icons-kantor" src="assets/logout.svg" alt="settings">
+          <img class="icons-kantor logout" src="assets/logout.svg" alt="settings">
         </ng-template>
         Wyloguj
       </a>
