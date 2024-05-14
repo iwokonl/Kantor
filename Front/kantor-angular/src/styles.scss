@@ -17,6 +17,7 @@ body {
 }
 
 .success-snackbar {
+  position: fixed !important;
   background-color: #2D8ABE;
   color: #DBDBDB;
   max-width: 15% !important;
@@ -27,7 +28,8 @@ body {
   align-content: center;
   justify-content: center;
   text-align: center;
-  top: 200px;
+  top: 20px;
+  height: 52px;
   border-radius: 12px;
 }
 
