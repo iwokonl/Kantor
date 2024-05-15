@@ -30,6 +30,19 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
+  changeDateRange(days: number) {
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - days);
+
+    this.startDate = startDate.toISOString().split('T')[0];
+    this.endDate = endDate.toISOString().split('T')[0];
+
+    this.updateChartData();
+  }
+
+
+
 
   // capitalizeWords(str: string): string { //Wszystkie pierwsze litery w słowach będą wielkie
   //   return str.split(' ')
@@ -43,57 +56,37 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
     .join(' ');
 }
 
+  updateChartData(){
+    const currencyDetails$ = this.currencyService.getCurrencyDetails(this.code).pipe(
+      catchError(error => {
+        console.error('Error in getCurrencyDetails:', error);
+        return throwError(error);
+      })
+    );
 
-  // createChart() {
-  //   const endDate = new Date();
-  //   const startDate = new Date();
-  //   startDate.setDate(endDate.getDate() - 14);
-  //
-  //   this.currencyService.getCurrencyHistory(this.code, startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0])
-  //     .subscribe(data => {
-  //       const labels = data.Rates.map((rate: any) => rate.Rate.EffectiveDate);
-  //       const values = data.Rates.map((rate: any) => rate.Rate.Mid);
-  //
-  //       console.log("Obecna data: "+endDate.toISOString().split('T')[0])
-  //       console.log(labels);
-  //       console.log(values);
-  //
-  //
-  //       if (this.chart) {
-  //         this.chart.destroy();
-  //       }
-  //
-  //       this.chart = new Chart('chart', {
-  //         type: 'line',
-  //         data: {
-  //           labels: labels,
-  //           datasets: [{
-  //             label: this.code,
-  //             data: values,
-  //             borderColor: '#3cba9f',
-  //             fill: false
-  //           }]
-  //         },
-  //         options: {
-  //           scales: {
-  //             x: {
-  //               display: true,
-  //               type: 'time',
-  //               time: {
-  //                 unit: 'day'
-  //               }
-  //             },
-  //             y: {
-  //               display: true,
-  //               type: 'linear'
-  //             }
-  //           }
-  //         }
-  //       });
-  //     });
-  // }
+    const currencyHistory$ = this.currencyService.getCurrencyHistory(this.code, this.startDate, this.endDate).pipe(
+      catchError(error => {
+        console.error('Error in getCurrencyHistory:', error);
+        return throwError(error);
+      })
+    )
 
 
+    forkJoin([currencyDetails$, currencyHistory$]).subscribe(([details, history]) => {
+      this.currencyDetails = details;
+      this.currencyDetails.currency = this.capitalizeFirstWord(this.currencyDetails.currency);
+
+      if (history.rates && Array.isArray(history.rates)) {
+        const labels = history.rates.map((rate: any) => rate.effectiveDate);
+        const values = history.rates.map((rate: any) => rate.mid);
+
+        this.createChart(labels, values);
+      } else {
+        console.error('history.rates is not an array:', history.rates);
+      }
+    });
+
+  }
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.code = params.get('code') ?? '';
@@ -106,42 +99,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
       this.startDate = startDate.toISOString().split('T')[0];
       this.endDate = endDate.toISOString().split('T')[0];
 
-      const currencyDetails$ = this.currencyService.getCurrencyDetails(this.code).pipe(
-        catchError(error => {
-          console.error('Error in getCurrencyDetails:', error);
-          return throwError(error);
-        })
-      );
-
-      const currencyHistory$ = this.currencyService.getCurrencyHistory(this.code, startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0]).pipe(
-        catchError(error => {
-          console.error('Error in getCurrencyHistory:', error);
-          return throwError(error);
-        })
-      );
-
-
-      forkJoin([currencyDetails$, currencyHistory$]).subscribe(([details, history]) => {
-        console.log('Subscribed to forkJoin'); // Log subscription to forkJoin
-        console.log('History:', history); // Log the history object
-        this.currencyDetails = details;
-        this.currencyDetails.currency = this.capitalizeFirstWord(this.currencyDetails.currency);
-        this.titleService.setTitle(this.capitalizeFirstWord(this.currencyDetails.currency)+" - Kantor $€££");
-
-        if (history.rates && Array.isArray(history.rates)) { // Change 'Rates' to 'rates'
-          const labels = history.rates.map((rate: any) => rate.effectiveDate); // Change 'Rates' to 'rates'
-          const values = history.rates.map((rate: any) => rate.mid); // Change 'Rates' to 'rates'
-
-          console.log('Labels:', labels); // Log labels
-          console.log('Values:', values); // Log values
-
-          this.createChart(labels, values);
-        } else {
-          console.error('history.rates is not an array:', history.rates); // Change 'Rates' to 'rates'
-        }
-      });
-
-
+      this.updateChartData();
     });
   }
 
