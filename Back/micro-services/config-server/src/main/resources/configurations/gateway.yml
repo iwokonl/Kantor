@@ -2,9 +2,9 @@ spring:
   jpa:
     hibernate:
 #      Pierwsze uruchomienie
-      ddl-auto: create
+#      ddl-auto: create
 #      update - po pierwszym uruchomieniu
-#      ddl-auto: update
+      ddl-auto: update
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect

@@ -6,6 +6,8 @@ import org.example.currencyaccounts.dto.ForeignCurrencyAccountDto;
 import org.example.currencyaccounts.dto.ForeignCurrencyAccountIdDto;
 import org.example.currencyaccounts.model.ForeignCurrencyAccount;
 import org.example.currencyaccounts.service.ForeignCurrencyAccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,12 @@ import java.util.List;
 @RequestMapping("/v1/currencyAccounts")
 public class ForeignCurrencyAccountController {
     private final ForeignCurrencyAccountService foreignCurrencyAccountService;
-
+    private static final Logger logger = LoggerFactory.getLogger(ForeignCurrencyAccountController.class);
 
     @PostMapping("/createCurrencyAccount")
     public ResponseEntity<ForeignCurrencyAccount> createCurrencyAccount(
             @RequestBody CurrencyIdDto currencyIdDto) {
+        logger.error("CurrencyIdDto: " + currencyIdDto.id());
         ForeignCurrencyAccount foreignCurrencyAccountDtoToSend =
                 foreignCurrencyAccountService.createForeignCurrencyAccount(currencyIdDto.id());
         return ResponseEntity.ok(foreignCurrencyAccountDtoToSend);

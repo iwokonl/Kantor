@@ -36,11 +36,15 @@ public class ForeignCurrencyAccountService {
 
     public ForeignCurrencyAccount createForeignCurrencyAccount(String currencyId){
         Optional<UserDto> userAppDto = userClient.getUserInfo();
+
         if (userAppDto.isEmpty()) {
             throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
         }
+
         UserDto userDtoReal = userAppDto.get();
+        logger.error("asdd: " + userAppDto);
         UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
+        logger.error("asddd: " + userAppDto);
         if (userDtoReal1.getId() == -1L) {
             throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
         }

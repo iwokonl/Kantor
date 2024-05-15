@@ -6,6 +6,8 @@ import org.example.gateway.dto.CredentialsDto;
 import org.example.gateway.dto.SignUpDto;
 import org.example.gateway.dto.UserDto;
 import org.example.gateway.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,8 @@ import java.net.URI;
 public class AuthController {
     private final UserAuthProvider userAuthProvider;
     private final UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto coridentialsDto) {
 //
@@ -35,6 +39,7 @@ public class AuthController {
 
     @PostMapping("/findUserId/{id}")
     public ResponseEntity<UserDto> findUserId(@RequestParam Long id) {
+        logger.error("asdd: " + id);
         UserDto user = userService.findUserId(id);
         return ResponseEntity.ok(user);
     }

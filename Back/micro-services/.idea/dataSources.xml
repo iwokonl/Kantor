@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="7326b07d-1fea-4aa8-ac33-3d46a6bb0219">
+    <data-source source="LOCAL" name="postgres@postgres-gateway.postgres.database.azure.com" uuid="bc0a1690-1514-416a-8539-0cb29296059b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5436/</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="com.intellij.clouds.kubernetes.db.host.port" />
-        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.container.port" />
-      </jdbc-additional-properties>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="postgres@postgres-gateway.postgres.database.azure.com" uuid="2dc70873-e5bf-4bd0-a05f-205f0740997e">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
+      <imported>true</imported>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://postgres-gateway.postgres.database.azure.com:5432/postgres</jdbc-url>
       <jdbc-additional-properties>
@@ -25,7 +14,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgres@postgres-currencies.postgres.database.azure.com" uuid="bb1497a8-dd42-4003-af6f-843e3c73792e">
+    <data-source source="LOCAL" name="postgres@postgres-currencies.postgres.database.azure.com" uuid="34324789-7fd7-4ee7-a21e-a90bdaa55e9e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -38,12 +27,12 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="currencies@localhost" uuid="24985889-fe70-42d8-a885-6fbc519bb127">
+    <data-source source="LOCAL" name="postgres@postgres-paypal.postgres.database.azure.com" uuid="6a9738c9-b721-41d2-87bb-8a687a28f38c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5435/currencies</jdbc-url>
+      <jdbc-url>jdbc:postgresql://postgres-paypal.postgres.database.azure.com:5432/postgres</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
@@ -51,12 +40,25 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgres@waluta.postgres.database.azure.com" uuid="c0f88353-663b-4009-9cc2-8291fdc9bb22">
+    <data-source source="LOCAL" name="postgres@postgres-transaction.postgres.database.azure.com" uuid="fefadc5a-cb95-4a4b-9260-c441cbd74248">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://waluta.postgres.database.azure.com:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://postgres-transaction.postgres.database.azure.com:5432/postgres</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="postgres@postgres-currency-accounts.postgres.database.azure.com" uuid="ae59f9c7-da42-4d82-89bb-c5e1aaa4e6df">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://postgres-currency-accounts.postgres.database.azure.com:5432/postgres</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
