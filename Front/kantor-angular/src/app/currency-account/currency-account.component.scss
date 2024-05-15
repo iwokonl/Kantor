@@ -41,7 +41,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-right: 10%;
 
     .header-container {
       display: flex;
@@ -70,11 +69,11 @@
   }
 
   .uppermiddle-container {
-    width: 40%;
+    width: 50%;
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
   }
 
   .currency-name, .currency-code{
@@ -88,6 +87,7 @@
     border: none;
     margin-bottom: 2vh;
     margin-left: auto;
+    justify-content: end;
   }
   .delete-svg{
     height: 5vh;
@@ -106,8 +106,10 @@
     display: flex;
     flex-direction: row;
     gap: 2vw;
-    allign-items: center;
+    justify-content: center;
+    align-items: center;
     width: 80%;
+    font-size: 1.5vh;
   }
 
   .custom-form-control{
@@ -119,6 +121,7 @@
     text-align: center;
     flex-shrink: 0;
     color: #dbdbdb;
+    font-size: 1vw;
 
     border-radius: 15px;
     border: 2px solid #446475;
@@ -131,7 +134,10 @@
   }
 }
 .upperright-container{
-  width: 20%;
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .custom-container {
