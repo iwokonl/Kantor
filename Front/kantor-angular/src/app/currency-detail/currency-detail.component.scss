@@ -1,31 +1,38 @@
 .currency-details {
   color: #DBDBDB;
-  display: block;
-  width: 550px;
+  display: flex;
+  flex-direction: column;
+  width: 100vh;
   margin-left: 24vw;
   //margin: 50px auto 50px 120px;
-  padding: 20px;
+  padding: 1vh;
   //border: 1px solid #ccc;
   //border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
-
-  border-radius: 47px;
-  border: 2px solid #DBDBDB;
+  align-items: center;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
   backdrop-filter: blur(25px);
-
-
 }
-
-
+.chart-container{
+  height: 60%;
+  width: 90%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1vh;
+  color: #DBDBDB;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+}
 #chart {
+  //height: 80% !important;
+  //width: 80% !important;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  color: #DBDBDB;
-  border-radius: 47px;
-  border: 2px solid #DBDBDB;
 }
