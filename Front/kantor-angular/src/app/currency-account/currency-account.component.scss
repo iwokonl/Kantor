@@ -4,7 +4,7 @@
   margin-left: 23vw;
   margin-top: 0px;
   margin-right: 20px;
-  height: 85vh;
+  height: 88vh;
   width: 74vw
 }
 .upper-container{
@@ -24,10 +24,11 @@
   margin-bottom: 50px;
   margin-left: 10px;
   border-radius: 47px;
-  border: 2px solid #446475;
+  border: 2px solid rgba(255, 255, 255, 0.22);
   padding: 30px;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   backdrop-filter: blur(25px);
   //&:hover {
@@ -35,6 +36,17 @@
   //  background: linear-gradient(92deg, rgba(241, 241, 241, 0.1) -0.4%, rgba(214, 214, 214, 0.1) 106.05%);
   //  backdrop-filter: blur(50px);
   //}
+  animation: scale-up 0.5s ease 0s 1 normal forwards;
+  @keyframes scale-up {
+    0% {
+      transform: scale(0.2);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
   .upperleft-container {
     flex: 1;
     width: 40%;
@@ -115,7 +127,7 @@
   .custom-form-control{
     width: 80%;
     height: 6vh;
-    margin-bottom: 10px;
+    margin-bottom: 5%;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -124,7 +136,7 @@
     font-size: 1vw;
 
     border-radius: 15px;
-    border: 2px solid #446475;
+    border: 2px solid rgba(255, 255, 255, 0.22);
 
     background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
 
@@ -155,7 +167,7 @@
   margin-right: 10px;
   padding: 20px;
   border-radius: 40px;
-  border: 2px solid #446475;
+  border: 2px solid rgba(255, 255, 255, 0.22);
   color: #dbdbdb;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
   mix-blend-mode: screen;
@@ -213,7 +225,7 @@
   justify-content: center;
   text-align: center;
   border-radius: 47px;
-  border: 2px solid #446475;
+  border: 2px solid rgba(255, 255, 255, 0.22);
 
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
 
@@ -254,6 +266,9 @@
   line-height: normal;
   border: none;
 }
+.custom-btn:hover{
+  box-shadow: 0px 0px 18.2px 0px rgba(255, 255, 255, 0.65);
+}
 
 .custom-btn-outline-primary {
 }
@@ -286,9 +301,41 @@ a:hover{
   color: #dbdbdb;
   text-decoration: none;
 }
+.lower-container{
+  display: flex;
+  height: 60%;
+  width: 100%;
+  justify-content: center;
+}
+
+.transactions{
+  height: 100%;
+  width: 100%;
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
 
 
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
 
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 10px 10px #555;
+    border: solid 5px transparent;
+  }
+}
 
 
 
