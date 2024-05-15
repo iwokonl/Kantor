@@ -1,21 +1,23 @@
-logging:
-  level:
-    root: TRACE
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.cloud.gateway.filter: TRACE
-    org.springframework.security: DEBUG
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+#      Pierwsze uruchomienie
+      ddl-auto: create
+#      update - po pierwszym uruchomieniu
+#      ddl-auto: update
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5437/gateway
+# Lokalnie przez dockera
+#    url: jdbc:postgresql://localhost:5437/gateway
+#    username: postgres
+#    password: admin
+# Przez Azure
+    url: jdbc:postgresql://postgres-gateway.postgres.database.azure.com:5432/postgres
     username: postgres
-    password: admin
+    password: admin123@
   application:
     name: gateway
   cloud:

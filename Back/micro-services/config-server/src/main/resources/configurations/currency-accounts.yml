@@ -1,17 +1,24 @@
 spring:
   application:
     name: currency-accounts
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5436/currency_accounts
-    username: postgres
-    password: admin
-  jpa:
     hibernate:
-      ddl-auto: update
+      # Pierwsze uruchomienie
+      ddl-auto: create
+    # update - po pierwszym uruchomieniu
+#      ddl-auto: update
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    # Lokalnie przez dockera
+    #    url: jdbc:postgresql://localhost:5436/currency_accounts
+    #    username: postgres
+    #    password: admin
+    # Przez Azure
+    url: jdbc:postgresql://postgres-currency-accounts.postgres.database.azure.com:5432/postgres
+    username: postgres
+    password: admin123@
 eureka:
   instance:
     hostname: localhost

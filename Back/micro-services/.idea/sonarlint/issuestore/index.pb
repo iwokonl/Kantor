@@ -191,3 +191,9 @@ k
 ;config-server/src/main/resources/configurations/gateway.yml,7\d\7d082f6c08fc38fc065e057732cb4b78a4c4eaf3
 j
 :config-server/src/main/resources/configurations/paypal.yml,3\5\354e276d89c2e0e774cceaf12646c4c2304e9038
+Å
+Qconfig-server/src/main/java/org/example/configserver/ConfigServerApplication.java,f\a\fa7d82d29c5463f45067fa4c2ef2a54a826cb687
+|
+Lcurrencies/src/main/java/org/example/currencies/config/UrlToIpConverter.java,2\6\268c068cac5528dcd36dfd0d8f75046f8bc96204
+u
+Ecurrencies/src/main/java/org/example/currencies/model/test_table.java,0\4\04ee1d603d36e40715e06524e7e2b877d6d536b2
