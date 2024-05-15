@@ -5,13 +5,15 @@
   <p>Kod waluty: {{ currencyDetails.code }}</p>
     <p>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN'}}</p>
 
-  <p> Wykres waluty z dni {{ startDate }} - {{ endDate }}</p>
+  <p> Wykres waluty z dni {{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>
   <div class="chart-container"><canvas id="chart" width="80vw" height="60vh"></canvas></div>
 
-<button (click)="changeDateRange(7)">1 Tydzień</button>
-  <button (click)="changeDateRange(14)">2 Tygodnie</button>
-  <button (click)="changeDateRange(30)">1 Miesiąc</button>
-  <button (click)="changeDateRange(90)">3 Miesiące</button>
-  <button (click)="changeDateRange(365)">12 Miesięcy</button>
+  <div class="chart-buttons-container">
+    <button (click)="changeDateRange(7)">1 Tydzień</button>
+    <button (click)="changeDateRange(14)">2 Tygodnie</button>
+    <button (click)="changeDateRange(30)">1 Miesiąc</button>
+    <button (click)="changeDateRange(90)">3 Miesiące</button>
+    <button (click)="changeDateRange(365)">12 Miesięcy</button>
+  </div>
 
 </div>

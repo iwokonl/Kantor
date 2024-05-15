@@ -41,6 +41,11 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
     this.updateChartData();
   }
 
+  formatDate(date: string): string {
+    const [year, month, day] = date.split('-');
+    return `${day}.${month}.${year}`;
+  }
+
 
 
 
@@ -107,7 +112,6 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
     if (this.chart) {
       this.chart.destroy();
     }
-
     this.chart = new Chart('chart', {
       type: 'line',
       data: {
@@ -118,20 +122,55 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
           borderColor: '#3cba9f',
           fill: false,
           tension: 1,
-          cubicInterpolationMode: 'monotone'
+          cubicInterpolationMode: 'monotone',
         }]
       },
       options: {
+        plugins: {
+          legend: {
+            onClick: (e, legendItem, legend) => {}
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                var label = context.dataset.label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
+                }
+                return label;
+              }
+            }
+          }
+        },
         scales: {
           x: {
             type: 'time',
             time: {
-              unit: 'day'
-            }
+              unit: 'day',
+              displayFormats: {
+                day: 'dd.MM.yyyy'
+              },
+              parser: 'yyyy-MM-dd',
+              tooltipFormat: 'dd.MM.yyyy',
+            },
+            ticks: {
+              color: '#DBDBDB', // this will set the color of the labels on the x-axis
+              callback: function(value, index, values) {
+                // Format the date string in the Polish locale
+                return new Intl.DateTimeFormat('pl-PL').format(new Date(value));
+              }
+            },
           },
           y: {
             type: 'linear',
-            position: 'left'
+            position: 'left',
+            ticks: {
+              color: '#DBDBDB' // this will set the color of the labels on the y-axis
+            },
           }
         }
       }
