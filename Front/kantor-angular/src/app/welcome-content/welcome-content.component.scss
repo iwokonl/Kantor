@@ -45,3 +45,102 @@
   padding: 20px;
 
 }
+
+
+
+.popular-pairs{ //kontener dla par walutowych
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 30%;
+  color: #DBDBDB;
+  font-size: 1.5em;
+  font-weight: 300;
+  text-align: center;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 5px;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+}
+
+.pairs {
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-right: 20px;
+}
+
+
+
+.banner-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.banner {
+  display: flex;
+  white-space: nowrap;
+  animation: banner-move 20s linear infinite;
+  color: #DBDBDB;
+}
+
+@keyframes banner-move {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.exchange-rate-change {
+  display: inline-block;
+  margin-right: 20px;
+  // Add other styles for each exchange rate change as needed
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+.zero {
+  color: #5fe5ee;
+}
+
+.square {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: #5fe5ee;
+  transform: rotate(45deg) translateY(-4px);
+}
+
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-style: solid;
+}
+
+.up {
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent green transparent;
+}
+
+.down {
+  border-width: 10px 5px 0 5px;
+  border-color: red transparent transparent transparent;
+}

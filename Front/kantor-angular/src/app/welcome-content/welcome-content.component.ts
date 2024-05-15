@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from '../user.service';
 import { AxiosService } from '../axios.service';
-import { Subscription } from 'rxjs';
+import {forkJoin, Subscription} from 'rxjs';
+import { CurrencyService } from '../currency.service';
 
 @Component({
   selector: 'app-welcome-content',
@@ -13,7 +14,12 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   private authStatusSub: Subscription | undefined;
 
-  constructor(private axiosService: AxiosService, private userService: UserService) { }
+  exchangeRates: { from: string, to: string, rate: number }[] = []; //do wyświetlania kursów walut na stronie głównej
+
+  // exchangeRatesChanges: { from: string, to: string, rate: number, change: number }[] = []; //do karuzeli walut na stronie głównej
+  exchangeRatesChanges: { from: string, to: string, rate: number, change: number, percentageChange?: number }[] = [];
+
+  constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.axiosService.getAuthTocken() !== null;
@@ -22,6 +28,9 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
       this.isLoggedIn = isLoggedIn;
       this.updateUsername();
     });
+
+    this.printExchangeRates();
+    this.fetchExchangeRatesChanges();
   }
 
   updateUsername(): void {
@@ -33,6 +42,58 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
         console.log(this.user_name);
       });
     }
+  }
+
+  printExchangeRates(): void {
+    const currencyPairs = [
+      { from: 'EUR', to: 'PLN' },
+      { from: 'USD', to: 'PLN' },
+      { from: 'GBP', to: 'PLN' },
+      { from: 'USD', to: 'EUR' },
+      { from: 'USD', to: 'GBP' },
+      { from: 'USD', to: 'JPY' },
+    ];
+
+    currencyPairs.forEach(pair => {
+      if (pair.from === 'PLN') {
+        // When the base currency is PLN, directly use the rate from the API
+        this.currencyService.getCurrencyDetails(pair.to).subscribe(details => {
+          this.exchangeRates.push({ from: pair.from, to: pair.to, rate: 1 / details.rates[0].mid });
+        });
+      } else if (pair.to === 'PLN') {
+        // When the target currency is PLN, directly use the rate from the API
+        this.currencyService.getCurrencyDetails(pair.from).subscribe(details => {
+          this.exchangeRates.push({ from: pair.from, to: pair.to, rate: details.rates[0].mid });
+        });
+      } else {
+        // Otherwise, calculate the exchange rate
+        this.currencyService.getExchangeRate(pair.from, pair.to).subscribe(rate => {
+          this.exchangeRates.push({ from: pair.from, to: pair.to, rate });
+        });
+      }
+    });
+  }
+
+  fetchExchangeRatesChanges(): void {
+    const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
+
+    const today = new Date();
+    const oneDayAgo = new Date(today);
+    oneDayAgo.setDate(today.getDate() -1 );
+
+    currencies.forEach(currency => {
+      forkJoin({
+        todayRate: this.currencyService.getCurrencyDetails(currency),
+        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, oneDayAgo.toISOString().split('T')[0], today.toISOString().split('T')[0])
+      }).subscribe(({ todayRate, oneDayAgoRate }) => {
+        const rate = todayRate.rates[0].mid;
+        const oldRate = oneDayAgoRate.rates[0].mid;
+        const change = rate - oldRate;
+        const percentageChange = (change / oldRate) * 100;
+
+        this.exchangeRatesChanges.push({ from: currency, to: 'PLN', rate, change });
+      });
+    });
   }
 
   ngOnDestroy(): void {

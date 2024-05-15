@@ -1,3 +1,15 @@
+<div class="banner-container">
+  <div class="banner">
+    <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
+      <p>{{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }} </p>
+      <p [ngClass]="{ 'positive': exchangeRateChange.change > 0, 'negative': exchangeRateChange.change < 0, 'zero': exchangeRateChange.change == 0 }">
+        {{ exchangeRateChange.change | number:'1.4-4'}}
+        <span class="arrow" [ngClass]="{ 'up': exchangeRateChange.change > 0, 'down': exchangeRateChange.change < 0, 'square': exchangeRateChange.change == 0 }"></span>
+      </p>
+    </div>
+  </div>
+</div>
+
 <div class="logged-in-welcome" *ngIf="isLoggedIn; else notLoggedIn">
   <h1>Zalogowany. Witaj <b>{{ user_name }}</b></h1>
 </div>
@@ -13,3 +25,26 @@
 
   </div>
 </ng-template>
+
+
+<ng-template #currencyPair let-exchangeRate>
+  <div class="pair">
+    <p>{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
+  </div>
+</ng-template>
+
+<div class="popular-pairs">
+  <h2>Najpopularniejsze pary walutowe</h2>
+  <div class="pairs">
+    <div class="column">
+      <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 3)">
+        <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+      </ng-container>
+    </div>
+    <div class="column">
+      <ng-container *ngFor="let exchangeRate of exchangeRates.slice(3, 6)">
+        <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
