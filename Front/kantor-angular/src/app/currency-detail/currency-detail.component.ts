@@ -158,7 +158,9 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
           label: this.code,
           data: values,
           borderColor: '#3cba9f',
-          fill: false
+          fill: false,
+          tension: 1,
+          cubicInterpolationMode: 'monotone'
         }]
       },
       options: {
