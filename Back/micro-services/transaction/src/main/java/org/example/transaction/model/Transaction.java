@@ -19,9 +19,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long appUserId;
-    private BigDecimal amount;
-    private Long currencyFromAccountId;
-    private Long currencyToAccountId;
+    private Long foreginCurrencyId;
+    private Long targetCurrencyId;
+    private BigDecimal amountOfForeginCurrency;
+    private BigDecimal targetCurrency;
+    @Enumerated(EnumType.STRING)
+    private TypeOfTransaction typeOfTransaction;
     private LocalDateTime transactionDate;
-
 }

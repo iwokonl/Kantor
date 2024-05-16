@@ -5,7 +5,10 @@ import org.example.transaction.dto.AddTransactionDto;
 import org.example.transaction.dto.TransactionDto;
 import org.example.transaction.exeption.AppExeption;
 import org.example.transaction.model.Transaction;
+import org.example.transaction.model.TypeOfTransaction;
 import org.example.transaction.repo.TransactionRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +16,32 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
     private final TransactionRepo transactionRepo;
+    private static final Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
     public void addTransaction(AddTransactionDto addTransactionDto) {
-        Transaction transaction = Transaction.builder()
-                .appUserId(Long.parseLong(addTransactionDto.appUserId()))
-                .amount(new BigDecimal(addTransactionDto.amount()))
-                .currencyFromAccountId(Long.parseLong(addTransactionDto.currencyFromAccountId()))
-                .currencyToAccountId(Long.parseLong(addTransactionDto.currencyToAccountId()))
-                .transactionDate(LocalDateTime.now())
-                .build();
-        transactionRepo.save(transaction);
+        try {
+            logger.info("Add transaction");
+            // TODO: Ustawić odpowiednie typy Dla dto
+            Transaction transaction = new Transaction();
+            transaction.setTypeOfTransaction(TypeOfTransaction.valueOf(addTransactionDto.typeOfTransaction()));
+            transaction.setAppUserId(Long.parseLong(addTransactionDto.appUserId()));
+            transaction.setAmountOfForeginCurrency(new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
+            transaction.setTargetCurrency(new BigDecimal(addTransactionDto.targetCurrency()));
+            transaction.setTransactionDate(LocalDateTime.now());
+            transaction.setAmountOfForeginCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
+
+            transaction.setForeginCurrencyId(addTransactionDto.ForeginCurrencyId());
+            transaction.setTargetCurrencyId(addTransactionDto.targetCurrencyId());
+            transactionRepo.save(transaction);
+        }   catch (Exception e) {
+            throw new AppExeption(e.getMessage(), "Transaction", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     public List<TransactionDto> getTransactions(String id) {
@@ -38,9 +51,9 @@ public class TransactionService {
             transactionDtos.add(new TransactionDto(
                     transaction.getId().toString(),
                     transaction.getAppUserId().toString(),
-                    transaction.getAmount().toString(),
-                    transaction.getCurrencyFromAccountId().toString(),
-                    transaction.getCurrencyToAccountId().toString(),
+                    transaction.getAmountOfForeginCurrency().toString(),
+                    transaction.getTargetCurrency().toString(),
+                    transaction.getTypeOfTransaction().name(),
                     transaction.getTransactionDate().toString()
             ));
         }
