@@ -54,6 +54,7 @@ public class PaypalController {
             throw new AppExeption("Amount must be greater than 0", HttpStatus.BAD_REQUEST);
         }
         try {
+
 //            String cancelUrl = "http://localhost:8082/api/payment/cancel";
 //            String successUrl = "http://localhost:8082/api/payment/success";
             UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
@@ -66,9 +67,15 @@ public class PaypalController {
             headers.add("Authorization", "Bearer " + userDto.getToken());
             String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total();
             logger.info("Currency code: " + currency.getCode());
+            ApiService apiService = new ApiService();
+            String json = apiService.callExternalApi(currency.getCode());
+            JSONObject jsonObject = new JSONObject(json);
+            JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
+            double mid = ratesObject.getDouble("mid");
+            BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(BigDecimal.valueOf(paymentPaypalDto.total()));
             Payment payment = paypalService.createPayment(
-                    paymentPaypalDto.total(),
-                    currency.getCode(),
+                    targetAmount.doubleValue(),
+                    "PLN",
                     paymentPaypalDto.method(),
                     paymentPaypalDto.intent(),
                     paymentPaypalDto.description(),
