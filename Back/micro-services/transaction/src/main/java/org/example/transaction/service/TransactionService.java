@@ -35,7 +35,7 @@ public class TransactionService {
             transaction.setTransactionDate(LocalDateTime.now());
             transaction.setAmountOfForeginCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
 
-            transaction.setForeginCurrencyId(addTransactionDto.ForeginCurrencyId());
+            transaction.setForeginCurrencyId(63L);
             transaction.setTargetCurrencyId(addTransactionDto.targetCurrencyId());
             transactionRepo.save(transaction);
         }   catch (Exception e) {
