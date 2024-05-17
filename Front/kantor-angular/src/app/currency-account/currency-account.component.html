@@ -36,10 +36,11 @@
         <div class="custom-card">
           <div class="custom-card-body" (click)="selectAccount(account)"> <!-- Add click event here -->
             <h5 class="custom-card-title">
-              <a class="custom-card-title" [routerLink]="['/currency', account.currencyCode]">
+<!--              <a class="custom-card-title" [routerLink]="['/currency', account.currencyCode]">-->
+              <p class="custom-card-title">
                 {{ currencyFlags[account.currencyCode] + ' ' + account.currencyCode }} <br>
                 {{ account.currencyName }}
-              </a>
+              </p>
             </h5>
             <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
             <p class="custom-card-text"> {{ (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
@@ -67,10 +68,10 @@
     <div class="upper-container">
       <div class="upperleft-container">
         <div class="header-container" style="display: flex; flex-direction: row;">
-          <div class="currency-flag-container">
+          <div class="currency-flag-container" [routerLink]="['/currency', selectedAccount.currencyCode]">
             <h1 class="currency-flag">{{ currencyFlags[selectedAccount.currencyCode] }}</h1>
           </div>
-          <div class="currency-info-container">
+          <div class="currency-info-container" [routerLink]="['/currency', selectedAccount.currencyCode]">
             <div class="currency-info">
               <p class="currency-code">{{ selectedAccount.currencyCode }}</p>
               <p class="currency-name">{{ selectedAccount.currencyName }}</p>
