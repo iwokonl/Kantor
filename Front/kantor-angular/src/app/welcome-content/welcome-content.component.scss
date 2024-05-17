@@ -1,70 +1,112 @@
-.not-logged-welcome {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.welcome-page-container{
+  display: flex;
+  height: 88vh;
+  width: 74vw;
+  margin-left: 22%;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: auto;
-  width: auto;
-  background-color: #f5f5f5;
-  color: #333;
-  font-size: 1.5em;
-  font-weight: 300;
-  text-align: center;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-
-  &:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  }
 }
+.main-container{
+  margin-top: 1%;
+  display: flex;
+  height: 90%;
+  width: 100%;
 
-.logged-in-welcome {
-  margin-left: 340px;
-  display: block;
-  //margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+.left-container{
+  display: flex;
   height: 100%;
-  width: auto;
-  color: #DBDBDB;
-  font-size: 1.5em;
-  font-weight: 300;
-  text-align: center;
-  padding: 20px;
+  width: 75%;
+  flex-direction: column;
 
 }
+.right-container{
+  display: flex;
+  height: 100%;
+  width: 25%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 47px;
+  color: #dbdbdb;
+  backdrop-filter: blur(25px);
+  padding: 1%;
+  margin-left: 1%;
+}
+.upper-container{
+  display: flex;
+  height: 60%;
+  width: 100%;
+  padding: 1%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 47px;
+  color: #dbdbdb;
+  backdrop-filter: blur(25px);
 
+}
+.lower-container{
+  display: flex;
+  height: 40%;
+  width: 100%;
+  padding: 1%;
+  flex-direction: row;
+}
+.left-down-container{
+  display: flex;
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 47px;
+  color: #dbdbdb;
+  backdrop-filter: blur(25px);
+}
+.right-down-container{
+  display: flex;
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 47px;
+  color: #dbdbdb;
+  backdrop-filter: blur(25px);
+  margin-left: 1%;
+  padding: 3%;
+}
 
-
-.popular-pairs{ //kontener dla par walutowych
-  position: absolute;
-  left: 25%;
-  top: 25%;
-  margin-top: 20px;
+.popular-pairs{ //kontener dla par walutowychd
+  overflow-y: auto;
   justify-content: center;
   align-items: center;
   height: auto;
-  width: 30%;
+  width: 100%;
   color: #DBDBDB;
   font-size: 1.5em;
   font-weight: 300;
   text-align: center;
-  border: 2px solid rgba(255, 255, 255, 0.22);
-  border-radius: 5px;
-  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
-  backdrop-filter: blur(25px);
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    padding-right: 20px;
+    padding-top: 10%; // adjust this value to visually decrease the scrollbar height
+    padding-bottom: 10%; // adjust this value to visually decrease the scrollbar height
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 10px 10px #555;
+    border: solid 5px transparent;
+  }
 }
 
 .pairs {
@@ -76,14 +118,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-right: 20px;
-}
-
-
-
-.banner-container {
-  overflow: hidden;
-  width: 100%;
+  margin-right: 2%;
 }
 
 .banner {
@@ -101,13 +136,28 @@
     transform: translateX(-100%);
   }
 }
-
+.banner-container{
+  overflow: hidden;
+  display:flex;
+  height: 10%;
+  justify-content: center;
+  width: 100%;
+  padding: 1%;
+  padding-top: 0.5%;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  border-radius: 47px;
+  color: #dbdbdb;
+  backdrop-filter: blur(25px);
+}
 .exchange-rate-change {
   display: inline-block;
   margin-right: 20px;
+  font-size: 1vw;
   // Add other styles for each exchange rate change as needed
 }
-
+.exchange-rate-text{
+  margin-bottom: 0;
+}
 .positive {
   color: green;
 }

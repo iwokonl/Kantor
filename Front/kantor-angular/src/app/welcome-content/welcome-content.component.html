@@ -1,50 +1,50 @@
-<div class="banner-container">
-  <div class="banner">
-    <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
-      <p>{{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }} </p>
-      <p [ngClass]="{ 'positive': exchangeRateChange.change > 0, 'negative': exchangeRateChange.change < 0, 'zero': exchangeRateChange.change == 0 }">
-        {{ exchangeRateChange.change | number:'1.4-4'}}
-        <span class="arrow" [ngClass]="{ 'up': exchangeRateChange.change > 0, 'down': exchangeRateChange.change < 0, 'square': exchangeRateChange.change == 0 }"></span>
-      </p>
+<div class="welcome-page-container">
+
+  <div class="banner-container">
+    <div class="banner">
+      <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
+        <p class="exchange-rate-text">{{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }} </p>
+        <p class="exchange-rate-text" [ngClass]="{ 'positive': exchangeRateChange.change > 0, 'negative': exchangeRateChange.change < 0, 'zero': exchangeRateChange.change == 0 }">
+          {{ exchangeRateChange.change | number:'1.4-4'}}
+          <span class="arrow" [ngClass]="{ 'up': exchangeRateChange.change > 0, 'down': exchangeRateChange.change < 0, 'square': exchangeRateChange.change == 0 }"></span>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="logged-in-welcome" *ngIf="isLoggedIn; else notLoggedIn">
-  <h1>Zalogowany. Witaj <b>{{ user_name }}</b></h1>
-</div>
-
-<ng-template #notLoggedIn>
-  <p>Niezalogowany</p>
-
-  <div class="not-logged-welcome">
-    <h1>Wielowalutowy kantor online</h1>
-
-    <p>Witaj w kantorze online, gdzie możesz wymieniać waluty w korzystnych kursach.</p>
-    <p>Jeśli nie masz jeszcze konta, <a routerLink="/register">zarejestruj się już teraz!</a></p>
-
-  </div>
-</ng-template>
 
 
-<ng-template #currencyPair let-exchangeRate>
-  <div class="pair">
-    <p>{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
-  </div>
-</ng-template>
+  <div class="main-container">
+    <div class="left-container">
+      <div class="upper-container">
 
-<div class="popular-pairs">
-  <h2>Najpopularniejsze pary walutowe</h2>
-  <div class="pairs">
-    <div class="column">
-      <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 3)">
-        <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
-      </ng-container>
+      </div>
+      <div class="lower-container">
+        <div class="left-down-container"></div>
+        <div class="right-down-container">
+          <ng-template #currencyPair let-exchangeRate>
+            <div class="pair">
+              <p class="exchange-rate-text">{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
+            </div>
+          </ng-template>
+
+          <div class="popular-pairs">
+            <h2>Najpopularniejsze pary walutowe</h2>
+            <div class="pairs">
+              <div class="column">
+                <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 3)">
+                  <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+                </ng-container>
+              </div>
+              <div class="column">
+                <ng-container *ngFor="let exchangeRate of exchangeRates.slice(3, 6)">
+                  <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="column">
-      <ng-container *ngFor="let exchangeRate of exchangeRates.slice(3, 6)">
-        <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
-      </ng-container>
-    </div>
+    <div class="right-container"></div>
   </div>
 </div>
