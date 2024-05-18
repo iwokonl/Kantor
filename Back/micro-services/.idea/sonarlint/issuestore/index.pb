@@ -193,8 +193,6 @@ j
 :config-server/src/main/resources/configurations/paypal.yml,3\5\354e276d89c2e0e774cceaf12646c4c2304e9038
 Å
 Qconfig-server/src/main/java/org/example/configserver/ConfigServerApplication.java,f\a\fa7d82d29c5463f45067fa4c2ef2a54a826cb687
-}
-Mtransaction/src/main/java/org/example/transaction/model/TypeOfTranaction.java,1\b\1b06bd168e048f37324503451fc9f402bdbc68da
 q
 Apaypal/src/main/java/org/example/paypal/feign/CurrencyClient.java,2\6\2608121650fda2c42d52df8e94ba3d9df95d98a1
 s

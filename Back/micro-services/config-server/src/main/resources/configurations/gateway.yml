@@ -11,13 +11,13 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
 # Lokalnie przez dockera
-#    url: jdbc:postgresql://localhost:5437/gateway
-#    username: postgres
-#    password: admin
-# Przez Azure
-    url: jdbc:postgresql://postgres-gateway.postgres.database.azure.com:5432/postgres
+    url: jdbc:postgresql://localhost:5437/gateway
     username: postgres
-    password: admin123@
+    password: admin
+# Przez Azure
+#    url: jdbc:postgresql://postgres-gateway.postgres.database.azure.com:5432/postgres
+#    username: postgres
+#    password: admin123@
   application:
     name: gateway
   cloud:
