@@ -1,31 +1,26 @@
 .accounts-layout {
   display: flex;
   flex-direction: row;
-  margin-left: 1%;
-  margin-top: 0px;
-  margin-right: 20px;
-  height: 88vh;
-  width: 74vw;
+  height: 100%;
+  width: 100%;
+  padding: 1%;
 }
 .upper-container{
-  margin-top: 2%;
   display: flex;
   flex-direction: row;
   height: 40%;
   width: 100%;
+  padding: 2% 5% 5%;
 }
 .selected-account-container {
   height: 100%;
   flex: 4;
-  width: 85%;
+  width: 80%;
   overflow: hidden;
+  margin-left: 1%;
   color: #dbdbdb;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  margin-left: 10px;
   border-radius: 47px;
   border: 2px solid rgba(255, 255, 255, 0.22);
-  padding: 30px;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
   display: flex;
   flex-direction: column;
@@ -65,19 +60,21 @@
 
       }
       .currency-flag-container {
-        height: 6vh;
-        width: 6vw;
+        height: 100%;
+        width: 30%;
         cursor: pointer;
+        padding:1%;
       }
 
       .currency-info-container {
         flex: 1;
-        width: 20vw;
-        height: 5vh;
+        width: 70%;
+        height: 100%;
         font-size: 1.5vw;
-        margin-bottom: 0;
-        margin-left: 10%;
         cursor: pointer;
+      }
+      .currency-info{
+        padding: 1%;
       }
     }
   }
@@ -90,17 +87,15 @@
     align-items: center;
   }
 
-  .currency-name, .currency-code{
-    margin-bottom:0;
-    margin-top: 1vh;
-    height: 3.5vh;
+  .currency-name, .currency-code, .currency-balance{
+    height: 50%;
+    margin-bottom: 1%;
+    margin-top: 4%
   }
   .delete{
     fill: none;
     background: none;
     border: none;
-    margin-bottom: 2vh;
-    margin-left: auto;
     justify-content: end;
   }
   .delete-svg{
@@ -115,6 +110,8 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  gap: 5%;
+  margin-top: 5%;
 
   .buttons {
     display: flex;
@@ -129,20 +126,15 @@
   .custom-form-control{
     width: 80%;
     height: 6vh;
-    margin-bottom: 5%;
     align-items: center;
     justify-content: center;
     text-align: center;
     flex-shrink: 0;
     color: #dbdbdb;
     font-size: 1vw;
-
     border-radius: 15px;
     border: 2px solid rgba(255, 255, 255, 0.22);
-
     background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
-
-    mix-blend-mode: screen;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(17.5px);
   }
@@ -156,7 +148,7 @@
 
 .custom-container {
   flex: 0 0 20vw;
-  width: 15vw;
+  width: 20%;
   height: 100%;
   position: sticky;
   top: 0;
@@ -164,15 +156,10 @@
   flex-direction: column;
   overflow-y: auto;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
-  margin: 20px;
-  margin-left: 0px;
-  margin-right: 10px;
-  padding: 20px;
   border-radius: 40px;
   border: 2px solid rgba(255, 255, 255, 0.22);
   color: #dbdbdb;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.02) 12.6%, rgba(255, 255, 255, 0.01) 100.13%);
-  mix-blend-mode: screen;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(17.5px);
 
@@ -217,7 +204,7 @@
 }
 
 .custom-card {
-  // your styles here
+  margin: 5%;
 }
 
 .custom-card-body {
@@ -228,12 +215,10 @@
   text-align: center;
   border-radius: 47px;
   border: 2px solid rgba(255, 255, 255, 0.22);
-
+  cursor: pointer;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
-
   backdrop-filter: blur(25px);
-  padding: 20px;
-  margin: 20px;
+  padding: 1%;
 
   transition: box-shadow .3s;
 
@@ -311,8 +296,8 @@ a:hover{
 }
 
 .transactions{
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
   border-radius: 40px;
   border: 2px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);

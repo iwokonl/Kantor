@@ -75,6 +75,8 @@
             <div class="currency-info">
               <p class="currency-code">{{ selectedAccount.currencyCode }}</p>
               <p class="currency-name">{{ selectedAccount.currencyName }}</p>
+              <p class="currency-balance">{{ selectedAccount.balance + ' ' + selectedAccount.currencyCode }}</p>
+              <p class="currency-balance"> {{ (selectedAccount.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
             </div>
           </div>
         </div>

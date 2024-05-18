@@ -1,119 +1,46 @@
-.settings-menu{
-  left: 0;
-  width: 20%;
-  min-width: 200px;
-  height: 100vh;
-  position: fixed;
-  padding-top: 1rem;
-
-  color: #dbdbdb;
+.main-settings-container{
+  padding: 1%;
+  height: 100%;
+  width: 100%;
 }
-
-.user-details{
-  margin-left: 20%;
-  padding-left: 6rem;
-  padding-top: 2rem;
-  right: 0;
-  width: 80%;
-  height: 100vh;
-  position: fixed;
-  align-items: center;
-}
-
-.settings-title{
-  height: 3rem;
-  font-size: 3rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-
-  font-weight: bold;
-  color: #dbdbdb;
-}
-
-.profile{
-  background: #02080d;
-  font-weight: bold;
-}
-
-.nav-link {
-  margin-left: 5%;
-  margin-right: 15%;
-  border-radius: 10px;
-  min-width: 100px;
-}
-
-.nav-link:hover{
-  //background: #eeeeee;
-  background: #041c3f;
-}
-
-.menu-title{
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  margin-left: 5%;
-  margin-right: 15%;
-}
-
-.form-container{
-  position: relative;
-  width: 21rem;
-  height: 30px;
-  display: flex; // make this a flex container
-  align-items: center; // center child elements vertically
-  margin-bottom: 1rem;
-
-  color: #dbdbdb;
-}
-
-.form-box{
+.settings-window{
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2% 3%;
+  color: #dbdbdb;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+  border-radius: 47px;
 }
-
-.change-username-button, .change-email-button {
-  margin-left: auto;
-  float: right;
-  position: absolute;
-  right: 0;
-  height: 1.5rem;
-  width: 4rem;
-  text-align: center; // horizontally center the text
-  display: flex; // these three lines vertically center the text
-  justify-content: center;
+p{
+  color: rgba(255, 255, 255, 0.69);
+}
+.upper-settings-container{
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  width: 100%;
+}
+.settings-header{
+  height: 50%;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+.settings-picker-outer{
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  background: none;
-  color: #006fff;
-  border: #DBDBDB 1px solid;
-  border-radius: 0.5rem;
+  height: 50%;
 }
-
-.change-username, .change-email {
-  margin-left: 0.5rem;
-  height: 1.5rem;
-  border-radius: 0.5rem;
-  color: #dbdbdb;
-  background: none;
-
-
+.settings-picker-inner{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40%;
+  border-radius: 40px;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.12) 12.6%, rgba(255, 255, 255, 0.06) 100.13%);
 }
-
-.editing {
-  background-color: #055172;
-  color: white;
-}
-
-//.change-username:focus, change-email:focus {
-//  //height: 25px;
-//  border: none;
-//  //outline: none;
-//}
-
-.a, p{
-  margin-bottom: 1rem;
-  height: 30px;
-  color: #dbdbdb;
-}
-
-.change-email-button{
-  height: 1.5rem;
-}
-

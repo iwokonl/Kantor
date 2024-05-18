@@ -1,7 +1,7 @@
 <div class="outerior-container">
   <div class="register-form">
     <h2>Formularz rejestracji</h2>
-    <form (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
+    <form class="form-class" (ngSubmit)="onSubmitRegister()" #registerForm="ngForm">
       <div class="form-group">
         <label for="firstName">Imię</label>
         <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Wpisz imię" [(ngModel)]="firstName" required >
