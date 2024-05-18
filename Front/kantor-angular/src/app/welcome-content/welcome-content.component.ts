@@ -3,6 +3,8 @@ import { UserService } from '../user.service';
 import { AxiosService } from '../axios.service';
 import {forkJoin, Subscription} from 'rxjs';
 import { CurrencyService } from '../currency.service';
+import {catchError, map} from "rxjs/operators";
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-welcome-content',
@@ -31,6 +33,7 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
 
     this.printExchangeRates();
     this.fetchExchangeRatesChanges();
+    console.log(this.exchangeRatesChanges);
   }
 
   updateUsername(): void {
@@ -75,24 +78,32 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   }
 
   fetchExchangeRatesChanges(): void {
-    const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
+    const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
 
     const today = new Date();
     const oneDayAgo = new Date(today);
     oneDayAgo.setDate(today.getDate() -1 );
 
-    currencies.forEach(currency => {
+    const requests = currencies.map(currency =>
       forkJoin({
-        todayRate: this.currencyService.getCurrencyDetails(currency),
-        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, oneDayAgo.toISOString().split('T')[0], today.toISOString().split('T')[0])
-      }).subscribe(({ todayRate, oneDayAgoRate }) => {
-        const rate = todayRate.rates[0].mid;
-        const oldRate = oneDayAgoRate.rates[0].mid;
-        const change = rate - oldRate;
-        const percentageChange = (change / oldRate) * 100;
+        todayRate: this.currencyService.getCurrencyDetails(currency).pipe(catchError(error => { console.error('Error fetching todayRate for ' + currency, error); return of(null); })),
+        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, oneDayAgo.toISOString().split('T')[0], today.toISOString().split('T')[0]).pipe(catchError(error => { console.error('Error fetching oneDayAgoRate for ' + currency, error); return of(null); }))
+      }).pipe(
+        map(({ todayRate, oneDayAgoRate }) => {
+          const rate = todayRate.rates[0].mid;
+          const oldRate = oneDayAgoRate.rates[0].mid;
+          const change = rate - oldRate;
+          const percentageChange = (change / oldRate) * 100;
 
-        this.exchangeRatesChanges.push({ from: currency, to: 'PLN', rate, change });
-      });
+          // console.log('exchangeRateChange for ' + currency + ': ', { from: currency, to: 'PLN', rate, change, percentageChange });
+          return { from: currency, to: 'PLN', rate, change, percentageChange };
+        })
+      )
+    );
+
+    forkJoin(requests).subscribe(results => {
+      this.exchangeRatesChanges = results;
+      console.log(this.exchangeRatesChanges);
     });
   }
 

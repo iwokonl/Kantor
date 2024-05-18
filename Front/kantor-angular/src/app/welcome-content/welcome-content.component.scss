@@ -126,6 +126,19 @@
   white-space: nowrap;
   animation: banner-move 20s linear infinite;
   color: #DBDBDB;
+
+  align-items: center;
+  font-size: 16px;
+  //justify-content: center;
+  //font-size: 1.5em;
+  //font-weight: 500f;
+  //text-align: center;
+
+  a {
+    color: #DBDBDB;
+    text-decoration: none;
+  }
+
 }
 
 @keyframes banner-move {
@@ -152,11 +165,16 @@
 .exchange-rate-change {
   display: inline-block;
   margin-right: 20px;
-  font-size: 1vw;
-  // Add other styles for each exchange rate change as needed
+  //font-size: 1vw;
+  font-size: 130%;
+  //width: 180px;
 }
 .exchange-rate-text{
   margin-bottom: 0;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+
 }
 .positive {
   color: green;
