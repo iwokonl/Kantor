@@ -1,14 +1,26 @@
-.site-content {
-  flex: 1; /* This will make the content grow to fill the viewport, pushing the footer down */
+.whole-page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
 }
 
-.site-footer {
-  width: 100%; /* Ensures the footer spans the width of the viewport */
-  /* Height of your footer; adjust as needed */
-  height: 50px; /* Example height - set the height of your footer */
-  background-color: #333; /* Example background color - choose your own */
-  color: white; /* Example text color - choose your own */
-  display: flex;
-  justify-content: center; /* Centers content horizontally */
-  align-items: center; /* Centers content vertically */
+.sidebar-container{
+  width: 20%;
+  height: 100%;
+  max-width: 400px;
+}
+
+.rest-of-content{
+  min-width: 80%;
+  max-width: calc(100% - 400px);
+  height: 100%;
+}
+.header-container{
+  width: 100%;
+  height: 10%;
+}
+.main-content{
+  width: 100%;
+  height: 90%;
 }

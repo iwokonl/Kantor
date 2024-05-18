@@ -1,11 +1,16 @@
 
 
-<div style="display: flex; flex-direction: column; height: 100vh;">
-
-  <app-sidebar-left></app-sidebar-left>
-  <app-header></app-header>
-  <div>
-<!--    <app-sidebar-left></app-sidebar-left>-->
-    <router-outlet></router-outlet>
+<div class="whole-page">
+  <div class="sidebar-container">
+    <app-sidebar-left></app-sidebar-left>
+  </div>
+  <div class="rest-of-content">
+    <div class="header-container">
+      <app-header></app-header>
+    </div>
+    <div class="main-content">
+  <!--    <app-sidebar-left></app-sidebar-left>-->
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

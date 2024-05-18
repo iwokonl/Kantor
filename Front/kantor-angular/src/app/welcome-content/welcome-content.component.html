@@ -1,29 +1,56 @@
-<div class="welcome-page-container">
 
-  <div class="banner-container">
-    <div class="banner">
-      <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
-        <a [routerLink]="['/currency/', exchangeRateChange.from.toLowerCase()]">
-          <p class="exchange-rate-text">
-            {{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }}
-          </p>
-          <p class="exchange-rate-text"
-             [ngClass]="{
-                     'positive': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
-                     'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
-                     'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
-                   }">
-            {{ exchangeRateChange.change | number:'1.4-4'}}
-            <span class="arrow"
-                  [ngClass]="{
-                  'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
-                  'down': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
-                  'square': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
-                }">
-            </span>
-            {{ (exchangeRateChange?.percentageChange ?? 0) | number:'1.2-2' }}%
-          </p>
-        </a>
+<div class="welcome-page-container">
+  <div class="banner-outer-container">
+    <div class="banner-inner-container">
+      <div class="banner">
+        <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
+          <a [routerLink]="['/currency/', exchangeRateChange.from.toLowerCase()]">
+            <p class="exchange-rate-text">
+              {{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }}
+            </p>
+            <p class="exchange-rate-text"
+               [ngClass]="{
+                       'positive': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
+                       'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
+                       'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
+                     }">
+              {{ exchangeRateChange.change | number:'1.4-4'}}
+              <span class="arrow"
+                    [ngClass]="{
+                    'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
+                    'down': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
+                    'square': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
+                  }">
+              </span>
+              {{ (exchangeRateChange?.percentageChange ?? 0) | number:'1.2-2' }}%
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="banner">
+        <div *ngFor="let exchangeRateChange of exchangeRatesChanges" class="exchange-rate-change">
+          <a [routerLink]="['/currency/', exchangeRateChange.from.toLowerCase()]">
+            <p class="exchange-rate-text">
+              {{ exchangeRateChange.from }} to PLN: {{ exchangeRateChange.rate | number:'1.4-4' }}
+            </p>
+            <p class="exchange-rate-text"
+               [ngClass]="{
+                       'positive': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
+                       'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
+                       'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
+                     }">
+              {{ exchangeRateChange.change | number:'1.4-4'}}
+              <span class="arrow"
+                    [ngClass]="{
+                    'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
+                    'down': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
+                    'square': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
+                  }">
+              </span>
+              {{ (exchangeRateChange?.percentageChange ?? 0) | number:'1.2-2' }}%
+            </p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
