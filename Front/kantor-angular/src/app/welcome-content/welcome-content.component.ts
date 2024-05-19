@@ -81,13 +81,14 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
 
     const today = new Date();
-    const oneDayAgo = new Date(today);
-    oneDayAgo.setDate(today.getDate() -1 );
+    let daysAgo = today.getDay() === 0 ? 2 : 1; // If today is Sunday, set daysAgo to 2, otherwise 1
+    let dateAgo = new Date(today);
+    dateAgo.setDate(today.getDate() - daysAgo);
 
     const requests = currencies.map(currency =>
       forkJoin({
         todayRate: this.currencyService.getCurrencyDetails(currency).pipe(catchError(error => { console.error('Error fetching todayRate for ' + currency, error); return of(null); })),
-        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, oneDayAgo.toISOString().split('T')[0], today.toISOString().split('T')[0]).pipe(catchError(error => { console.error('Error fetching oneDayAgoRate for ' + currency, error); return of(null); }))
+        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, dateAgo.toISOString().split('T')[0], today.toISOString().split('T')[0]).pipe(catchError(error => { console.error('Error fetching oneDayAgoRate for ' + currency, error); return of(null); }))
       }).pipe(
         map(({ todayRate, oneDayAgoRate }) => {
           const rate = todayRate.rates[0].mid;
@@ -95,7 +96,6 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
           const change = rate - oldRate;
           const percentageChange = (change / oldRate) * 100;
 
-          // console.log('exchangeRateChange for ' + currency + ': ', { from: currency, to: 'PLN', rate, change, percentageChange });
           return { from: currency, to: 'PLN', rate, change, percentageChange };
         })
       )
