@@ -145,7 +145,7 @@ public class PaypalController {
             Payment payment = paypalService.executePayment(paymentId, payerId);
 
             if (payment.getState().equals("approved")) {
-                paypalService.addAmountToKantorAccount(payment, userId,currencyId);
+
                 logger.info("Payment approved asdasdasd");
                 Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
 
@@ -162,7 +162,7 @@ public class PaypalController {
                 JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
                 double mid = ratesObject.getDouble("mid");
                 logger.error("ASDASDSDA" + mid);
-
+                paypalService.addAmountToKantorAccount(payment, userId,currencyId,mid);
                 BigDecimal amount = new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal());
                 BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(amount);
                 AddTransactionDto addTransactionDto = AddTransactionDto.builder()
