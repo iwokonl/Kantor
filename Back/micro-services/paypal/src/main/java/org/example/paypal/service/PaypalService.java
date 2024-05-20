@@ -194,11 +194,11 @@ public class PaypalService {
         return payment.execute(apiContext, paymentExecute);
     }
 
-    public void addAmountToKantorAccount(Payment payment, String userId, String currencyId, double mid) {
+    public void addAmountToKantorAccount(Payment payment, String userId, String currencyId) {
         Optional<ForeignCurrencyAccountDto> account = currencyAccountFeigin.findByCurrencyCodeAndUserId(currencyId, Long.parseLong(userId));
         if (account.isPresent()) {
             ForeignCurrencyAccountDto foreignCurrencyAccount = account.get();
-            foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal())).divide(BigDecimal.valueOf(mid)));
+            foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal())));
             currencyAccountFeigin.save(foreignCurrencyAccount);
         } else {
             throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
