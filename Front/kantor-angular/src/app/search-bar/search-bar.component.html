@@ -8,7 +8,11 @@
            (click)="onSearchBarClick()"
            placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
 
-    <div class="icon-container">
+    <div class="icon-container" *ngIf="searchText" (click)="clearSearch()">
+      <i class="material-icons">clear</i>
+    </div>
+
+    <div class="icon-container" *ngIf="!searchText">
       <i class="material-icons">search</i>
     </div>
   </div>

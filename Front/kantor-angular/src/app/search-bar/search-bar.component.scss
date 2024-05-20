@@ -70,3 +70,22 @@ button {
   display: block;
   color: #DBDBDB;
 }
+
+.icon-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transform: translateY(2px) translateX(1px);
+  justify-content: center;
+  width: 45px;
+  cursor: pointer;
+}
+
+.icon-container:first-child {
+  left: 0;
+  right: auto;
+  transform: translateY(2px) translateX(-1px);
+}

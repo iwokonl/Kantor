@@ -62,4 +62,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
       this.searchResults = this.lastSearchResults;
     }
   }
+
+  clearSearch(): void {
+    this.searchText = '';
+    this.searchResults = [];
+    this.searchInput.next(this.searchText);
+  }
 }
