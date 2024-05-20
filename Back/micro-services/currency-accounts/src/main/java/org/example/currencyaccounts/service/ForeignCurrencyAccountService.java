@@ -38,7 +38,7 @@ public class ForeignCurrencyAccountService {
         Optional<UserDto> userAppDto = userClient.getUserInfo();
 
         if (userAppDto.isEmpty()) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
 
         UserDto userDtoReal = userAppDto.get();
@@ -46,19 +46,19 @@ public class ForeignCurrencyAccountService {
         UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
         logger.error("asddd: " + userAppDto);
         if (userDtoReal1.getId() == -1L) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
 
 
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndCurrencyId(userDtoReal.getId(), Long.valueOf(currencyId));
         if (account.isPresent()) {
-            throw new AppExeption("Account already exists", HttpStatus.BAD_REQUEST);
+            throw new AppExeption("Account already exists","currency-accounts", HttpStatus.BAD_REQUEST);
         }
         ForeignCurrencyAccount foreignCurrencyAccount = new ForeignCurrencyAccount();
         foreignCurrencyAccount.setBalance(BigDecimal.valueOf(0));
         Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
         if(currency.isEmpty()){
-            throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Currency not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         foreignCurrencyAccount.setCurrencyId(Long.valueOf(currencyId));
         foreignCurrencyAccount.setUserId(userDtoReal.getId());
@@ -81,12 +81,12 @@ public class ForeignCurrencyAccountService {
     public List<ForeignCurrencyAccountDto> getAllAccountsByUserId() {
         Optional<UserDto> userAppDto = userClient.getUserInfo();
         if (userAppDto.isEmpty()) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         UserDto userDtoReal = userAppDto.get();
         UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
         if (userDtoReal1.getId() == -1L) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         List<ForeignCurrencyAccount> accounts = foreignCurrencyAccountRepo.findAllByUserId(userDtoReal.getId());
         return foreignCurrencyAccountMapper.toForeignCurrencyAccountDtoList(accounts);
@@ -95,21 +95,21 @@ public class ForeignCurrencyAccountService {
     public void deleteForeignCurrencyAccount(Long id) {
         Optional<UserDto> userAppDto = userClient.getUserInfo();
         if (userAppDto.isEmpty()) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         UserDto userDtoReal = userAppDto.get();
         UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());
         if (userDtoReal1.getId() == -1L) {
-            throw new AppExeption("User not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndId(userDtoReal.getId(), id);
         if (account.isEmpty()) {
-            throw new AppExeption("Account is not yours", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account is not yours","currency-accounts", HttpStatus.NOT_FOUND);
         }
         try {
             foreignCurrencyAccountRepo.deleteById(id);
         } catch (Exception e) {
-            throw new AppExeption("Account not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
 
     }
@@ -117,7 +117,7 @@ public class ForeignCurrencyAccountService {
     public ForeignCurrencyAccountDto findByCurrencyCodeAndUserId(String currencyId, Long userId) {
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByCurrencyIdAndUserId(Long.valueOf(currencyId), userId);
         if (account.isEmpty()) {
-            throw new AppExeption("Account not found", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         return foreignCurrencyAccountMapper.toForeignCurrencyAccountDto(account.get());
     }

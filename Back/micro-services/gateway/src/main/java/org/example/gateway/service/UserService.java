@@ -31,20 +31,20 @@ public class UserService {
     public UserDto login(CredentialsDto credentialsDto){
 
         AppUser user = userRepository.findByUsername(credentialsDto.username())
-                .orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new AppExeption("User not found","gateway", HttpStatus.NOT_FOUND));
 
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), user.getPassword())) {
             return userMapper.toUserDto(user);
 
         }
-        throw new AppExeption("Invalid password", HttpStatus.BAD_REQUEST);
+        throw new AppExeption("Invalid password","gateway", HttpStatus.BAD_REQUEST);
     }
 
     public UserDto register(SignUpDto signUpDto) {
         Optional<AppUser> oUser = userRepository.findByUsername(signUpDto.username());
 
         if (oUser.isPresent()) {
-            throw new AppExeption("User already exists", HttpStatus.BAD_REQUEST);
+            throw new AppExeption("User already exists","gateway", HttpStatus.BAD_REQUEST);
         }
         AppUser user = userMapper.signUpToUser(signUpDto);
         user.setPassword(passwordEncoder.encode(CharBuffer.wrap(signUpDto.password())));
@@ -75,7 +75,7 @@ public class UserService {
             return userInfo;
         }
 
-        throw new AppExeption("Invalid token", HttpStatus.BAD_REQUEST);
+        throw new AppExeption("Invalid token","gateway", HttpStatus.BAD_REQUEST);
     }
     public UserDto findUserId(Long id) {
         Optional<AppUser> user = userRepository.findById(id);

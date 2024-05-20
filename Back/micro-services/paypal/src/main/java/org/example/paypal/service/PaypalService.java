@@ -176,7 +176,7 @@ public class PaypalService {
             response = payout.create(context, configMap);
             logger.error("asdasdasdasdasdasdasdasdasdasdasdd4");
         } catch (Exception e) {
-            throw new AppExeption("Error occurred while creating payout", HttpStatus.EXPECTATION_FAILED);
+            throw new AppExeption("Error occurred while creating payout", "Paypal" , HttpStatus.EXPECTATION_FAILED);
         }
 
         return response;
@@ -204,7 +204,7 @@ public class PaypalService {
             foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(amount));
             currencyAccountFeigin.save(foreignCurrencyAccount);
         } else {
-            throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account does not exist", "Paypal", HttpStatus.NOT_FOUND);
         }
 
     }
@@ -215,13 +215,13 @@ public class PaypalService {
         if (account.isPresent()) {
             ForeignCurrencyAccountDto foreignCurrencyAccount = account.get();
             if (foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)).compareTo(BigDecimal.ZERO) < 0) {
-                throw new AppExeption("Not enough money on account", HttpStatus.BAD_REQUEST);
+                throw new AppExeption("Not enough money on account", "Paypal", HttpStatus.BAD_REQUEST);
             }
 
             foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().subtract(BigDecimal.valueOf(total)));
             currencyAccountFeigin.save(foreignCurrencyAccount);
         } else {
-            throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account does not exist", "Paypal", HttpStatus.NOT_FOUND);
         }
 
     }

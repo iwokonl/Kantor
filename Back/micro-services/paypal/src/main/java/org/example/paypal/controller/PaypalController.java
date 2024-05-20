@@ -48,32 +48,40 @@ public class PaypalController {
     public String test() {
         return "test";
     }
+
     @PostMapping("/create")
     public ResponseEntity<RedirectView> createPayment(@RequestBody PaymentPaypalDto paymentPaypalDto) {
-        if(paymentPaypalDto.total() <= 0){
-            throw new AppExeption("Amount must be greater than 0", HttpStatus.BAD_REQUEST);
+        if (paymentPaypalDto.total() <= 0) {
+            throw new AppExeption("Amount must be greater than 0", "Paypal", HttpStatus.BAD_REQUEST);
         }
         try {
+            logger.info("Create payment");
 
 //            String cancelUrl = "http://localhost:8082/api/payment/cancel";
 //            String successUrl = "http://localhost:8082/api/payment/success";
-            UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
+
+            UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", "Paypal", HttpStatus.NOT_FOUND));
             Optional<CurrencyDto> currencyDto = currencyClient.getCurrencyById(Long.valueOf(paymentPaypalDto.currency()));
-            if(currencyDto.isEmpty()){
-                throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
+            if (currencyDto.isEmpty()) {
+                throw new AppExeption("Currency not found", "Paypal", HttpStatus.NOT_FOUND);
             }
+
             CurrencyDto currency = currencyDto.get();
+
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "Bearer " + userDto.getToken());
+
             ApiService apiService = new ApiService();
             String json = apiService.callExternalApi(currency.getCode());
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
+
             double mid = ratesObject.getDouble("mid");
+
             String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total() + "&exchangeRate=" + mid;
-            logger.info("Currency code: " + currency.getCode());
 
             BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(BigDecimal.valueOf(paymentPaypalDto.total()));
+
             Payment payment = paypalService.createPayment(
                     targetAmount.doubleValue(),
                     "PLN",
@@ -90,10 +98,10 @@ public class PaypalController {
                 }
             }
         } catch (PayPalRESTException e) {
-            throw new AppExeption("Error occurred while processing payment", HttpStatus.EXPECTATION_FAILED);
+            throw new AppExeption("Error occurred while processing payment", "Paypal", HttpStatus.EXPECTATION_FAILED);
 
         } catch (AppExeption e) {
-            throw new AppExeption(e.getMessage(), e.getHttpStatus());
+            throw new AppExeption(e.getMessage(), "Paypal", e.getHttpStatus());
         }
         return ResponseEntity.ok(new RedirectView("/error"));
     }
@@ -101,34 +109,33 @@ public class PaypalController {
     @PostMapping("/createPayout")
     public ResponseEntity<PayoutBatch> createPayout(@RequestBody PayoutRequestPaypalDto payoutRequestPaypalDto) throws PayPalRESTException, AppExeption {
         if (payoutRequestPaypalDto.total() <= 0) {
-            throw new AppExeption("Amount must be greater than 0", HttpStatus.BAD_REQUEST);
+            throw new AppExeption("Amount must be greater than 0", "Paypal", HttpStatus.BAD_REQUEST);
         }
         try {
 
-            UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
-
-
+            UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", "Paypal", HttpStatus.NOT_FOUND));
 
             paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currencyId(), String.valueOf(userDto.getId()), payoutRequestPaypalDto.total());
             Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(payoutRequestPaypalDto.currencyId()));
 
             if (currency.isEmpty()) {
-                throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
+                throw new AppExeption("Currency not found", "Paypal", HttpStatus.NOT_FOUND);
             }
 
             CurrencyDto currencyDto = currency.get();
-            logger.error("asdCurrency total: " +payoutRequestPaypalDto.total());
-            logger.error("asdCurrency code: " +currencyDto.getCode());
             PayoutBatch payoutBatch = paypalService.createPayout(
                     payoutRequestPaypalDto.receiverEmail(),
                     payoutRequestPaypalDto.total(),
                     currencyDto.getCode()
             );
+
             ApiService apiService = new ApiService();
             String json = apiService.callExternalApi(currencyDto.getCode());
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
+
             double mid = ratesObject.getDouble("mid");
+
             AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                     .typeOfTransaction("PAYOUT")
                     .amountOfForeginCurrency(String.valueOf(payoutRequestPaypalDto.total()))
@@ -138,33 +145,27 @@ public class PaypalController {
                     .appUserId(String.valueOf(userDto.getId()))
                     .exchangeRate(String.valueOf(mid))
                     .build();
-            logger.error("kkkckc123");
+
             tranactionClient.addTranactionHistory(addTransactionDto);
+
             return ResponseEntity.ok(payoutBatch);
         } catch (AppExeption e) {
-            throw new AppExeption(e.getMessage(), e.getHttpStatus());
+            throw new AppExeption(e.getMessage(), "Paypal", e.getHttpStatus());
         }
     }
 
     @GetMapping("/success")
-    public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId, @RequestParam("currencyId") String currencyId, @RequestParam("total") String total, @RequestParam("exchangeRate") double mid){
+    public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId, @RequestParam("currencyId") String currencyId, @RequestParam("total") String total, @RequestParam("exchangeRate") double mid) {
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
 
             if (payment.getState().equals("approved")) {
-
-                logger.info("Payment approved asdasdasd");
                 Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
-
                 if (currency.isEmpty()) {
-                    throw new AppExeption("Currency not found", HttpStatus.NOT_FOUND);
+                    throw new AppExeption("Currency not found", "Paypal", HttpStatus.NOT_FOUND);
                 }
 
-                CurrencyDto currencyDto = currency.get();
-
-
-                paypalService.addAmountToKantorAccount(payment, userId,currencyId, total);
-                BigDecimal amount = new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal());
+                paypalService.addAmountToKantorAccount(payment, userId, currencyId, total);
 
                 AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                         .typeOfTransaction("BUY")
@@ -175,11 +176,13 @@ public class PaypalController {
                         .appUserId(userId)
                         .exchangeRate(String.valueOf(mid))
                         .build();
+
                 tranactionClient.addTranactionHistory(addTransactionDto);
+
                 return new RedirectView("http://localhost:4200");
             }
         } catch (PayPalRESTException e) {
-            throw new AppExeption("Error occurred while processing payment", HttpStatus.EXPECTATION_FAILED);
+            throw new AppExeption("Error occurred while processing payment", "Paypal", HttpStatus.EXPECTATION_FAILED);
         }
         return new RedirectView("http://localhost:8082/api/payment/error");
     }
