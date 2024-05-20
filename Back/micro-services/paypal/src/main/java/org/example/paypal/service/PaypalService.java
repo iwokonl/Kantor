@@ -152,13 +152,13 @@ public class PaypalService {
     //TODO: Usunąc opłatę za przelew bo 2% ściąga z konta a tak być nie może
     public PayoutBatch createPayout(String receiverEmail, Double total, String currency) {
         PayoutSenderBatchHeader senderBatchHeader = new PayoutSenderBatchHeader();
-
+        logger.error("asdasdasdasdasdasdasdasdasdasdasdd1");
         senderBatchHeader.setSenderBatchId(new Random().nextInt(99999) + "").setEmailSubject("You have a payment");
         PayoutItem item = new PayoutItem();
 
         item.setRecipientType("EMAIL").setAmount(new Currency(currency, String.format(Locale.US, "%.2f", total))).setReceiver(receiverEmail)
                 .setSenderItemId("item_" + new Random().nextInt(99999)).setNote("Thank you.");
-
+        logger.error("asdasdasdasdasdasdasdasdasdasdasdd2");
         List<PayoutItem> items = new ArrayList<PayoutItem>();
         items.add(item);
 
@@ -166,14 +166,15 @@ public class PaypalService {
 
         payout.setSenderBatchHeader(senderBatchHeader).setItems(items);
         PayoutBatch response = null;
-
+        logger.error("asdasdasdasdasdasdasdasdasdasdasdd3");
         try {
             APIContext context = getAPIContext();
             Map<String, String> configMap = new HashMap<>();
             configMap.put("mode", mode);
-
+            logger.error("asdasdasdasdasdasdasdasdasdasdasdd3");
             // Dodaj tutaj dodatkowe parametry konfiguracyjne, jeśli są potrzebne
             response = payout.create(context, configMap);
+            logger.error("asdasdasdasdasdasdasdasdasdasdasdd4");
         } catch (Exception e) {
             throw new AppExeption("Error occurred while creating payout", HttpStatus.EXPECTATION_FAILED);
         }

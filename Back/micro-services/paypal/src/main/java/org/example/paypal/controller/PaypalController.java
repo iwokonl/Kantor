@@ -108,8 +108,7 @@ public class PaypalController {
             UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", HttpStatus.NOT_FOUND));
 
 
-            logger.error("Currency code: " +payoutRequestPaypalDto.currencyId());
-            logger.error("Currency code: " +String.valueOf(userDto.getId()));
+
             paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currencyId(), String.valueOf(userDto.getId()), payoutRequestPaypalDto.total());
             Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(payoutRequestPaypalDto.currencyId()));
 
@@ -118,22 +117,28 @@ public class PaypalController {
             }
 
             CurrencyDto currencyDto = currency.get();
-
+            logger.error("asdCurrency total: " +payoutRequestPaypalDto.total());
+            logger.error("asdCurrency code: " +currencyDto.getCode());
             PayoutBatch payoutBatch = paypalService.createPayout(
                     payoutRequestPaypalDto.receiverEmail(),
                     payoutRequestPaypalDto.total(),
                     currencyDto.getCode()
             );
-
+            ApiService apiService = new ApiService();
+            String json = apiService.callExternalApi(currencyDto.getCode());
+            JSONObject jsonObject = new JSONObject(json);
+            JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
+            double mid = ratesObject.getDouble("mid");
             AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                     .typeOfTransaction("PAYOUT")
                     .amountOfForeginCurrency(String.valueOf(payoutRequestPaypalDto.total()))
-                    .ForeginCurrencyId(63L)
+                    .ForeginCurrencyId(Long.valueOf(payoutRequestPaypalDto.currencyId()))
                     .targetCurrencyId(63L)
                     .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .appUserId(String.valueOf(userDto.getId()))
-
+                    .exchangeRate(String.valueOf(mid))
                     .build();
+            logger.error("kkkckc123");
             tranactionClient.addTranactionHistory(addTransactionDto);
             return ResponseEntity.ok(payoutBatch);
         } catch (AppExeption e) {
