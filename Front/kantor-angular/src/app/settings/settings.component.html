@@ -30,18 +30,18 @@
     </div>
     <div class="lower-settings-container">
 
-      <div *ngIf="isProfileSelected">
+      <div class="selected-profile" *ngIf="isProfileSelected">
         <!-- Profile settings go here -->
         <p> Profil </p>
       </div>
 
-      <div *ngIf="isSecuritySelected">
+      <div class="selected-security"  *ngIf="isSecuritySelected">
         <!-- Security settings go here -->
         <p> Bezpieczeństwo </p>
 
       </div>
 
-      <div *ngIf="isHelpSelected">
+      <div class="selected-help" *ngIf="isHelpSelected">
         <!-- Help settings go here -->
         <p> Pomocy </p>
 
