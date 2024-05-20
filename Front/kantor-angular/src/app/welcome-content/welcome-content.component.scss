@@ -4,6 +4,16 @@
   width: 100%;
   flex-direction: column;
   padding: 1%;
+  animation: scale-up 0.5s ease 0s 1 normal forwards;
+  @keyframes scale-up {
+    0% {
+      transform: scale(0.2);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
 }
 .main-container{
   margin-top: 1%;
