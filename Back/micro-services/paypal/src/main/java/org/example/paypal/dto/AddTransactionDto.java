@@ -14,6 +14,5 @@ public class AddTransactionDto {
     private String amountOfForeginCurrency;
     private String targetCurrency;
     private String typeOfTransaction;
-    private String exchangeRate;
 }
 

@@ -8,10 +8,10 @@ import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.example.paypal.controller.PaypalController;
 import org.example.paypal.dto.ForeignCurrencyAccountDto;
 import org.example.paypal.exeption.AppExeption;
 import org.example.paypal.feign.CurrencyAccountFeigin;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -194,16 +194,11 @@ public class PaypalService {
         return payment.execute(apiContext, paymentExecute);
     }
 
-    public void addAmountToKantorAccount(Payment payment, String userId, String currencyId, String code) {
+    public void addAmountToKantorAccount(Payment payment, String userId, String currencyId) {
         Optional<ForeignCurrencyAccountDto> account = currencyAccountFeigin.findByCurrencyCodeAndUserId(currencyId, Long.parseLong(userId));
         if (account.isPresent()) {
-            ApiService apiService = new ApiService();
-            String json = apiService.callExternalApi(code);
-            JSONObject jsonObject = new JSONObject(json);
-            JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
-            double mid = ratesObject.getDouble("mid");
             ForeignCurrencyAccountDto foreignCurrencyAccount = account.get();
-            foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal()).divide(BigDecimal.valueOf(mid))));
+            foreignCurrencyAccount.setBalance(foreignCurrencyAccount.getBalance().add(new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal())));
             currencyAccountFeigin.save(foreignCurrencyAccount);
         } else {
             throw new AppExeption("Account does not exist", HttpStatus.NOT_FOUND);

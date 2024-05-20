@@ -207,5 +207,3 @@ Ntransaction/src/main/java/org/example/transaction/model/TypeOfTransaction.java
 Mtransaction/src/main/java/org/example/transaction/TransactionApplication.java,3\3\339e7dbfe19ecf78203a9fe162e21778238d18ce
 o
 ?paypal/src/main/java/org/example/paypal/service/ApiService.java,3\f\3fcf963ec75898e42aa98a16c67b8f84bbdb2d66
-|
-Ltransaction/src/main/java/org/example/transaction/dto/GetTransactionDto.java,f\6\f62de79d4a0bdf68e29b117df4e85541886dcd7b
