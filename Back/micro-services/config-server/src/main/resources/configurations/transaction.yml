@@ -6,7 +6,7 @@ spring:
       # Pierwsze uruchomienie
 #      ddl-auto: create
     # update - po pierwszym uruchomieniu
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect

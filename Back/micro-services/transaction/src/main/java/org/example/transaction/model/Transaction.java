@@ -23,6 +23,7 @@ public class Transaction {
     private Long targetCurrencyId;
     private BigDecimal amountOfForeginCurrency;
     private BigDecimal targetCurrency;
+    private Float exchangeRate;
     @Enumerated(EnumType.STRING)
     private TypeOfTransaction typeOfTransaction;
     private LocalDateTime transactionDate;

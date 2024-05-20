@@ -65,13 +65,14 @@ public class PaypalController {
             CurrencyDto currency = currencyDto.get();
             HttpHeaders headers = new HttpHeaders();
             headers.add("Authorization", "Bearer " + userDto.getToken());
-            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total();
-            logger.info("Currency code: " + currency.getCode());
             ApiService apiService = new ApiService();
             String json = apiService.callExternalApi(currency.getCode());
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
             double mid = ratesObject.getDouble("mid");
+            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total() + "&exchangeRate=" + mid;
+            logger.info("Currency code: " + currency.getCode());
+
             BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(BigDecimal.valueOf(paymentPaypalDto.total()));
             Payment payment = paypalService.createPayment(
                     targetAmount.doubleValue(),
@@ -131,6 +132,7 @@ public class PaypalController {
                     .targetCurrencyId(63L)
                     .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .appUserId(String.valueOf(userDto.getId()))
+
                     .build();
             tranactionClient.addTranactionHistory(addTransactionDto);
             return ResponseEntity.ok(payoutBatch);
@@ -140,12 +142,12 @@ public class PaypalController {
     }
 
     @GetMapping("/success")
-    public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId, @RequestParam("currencyId") String currencyId) {
+    public RedirectView successPayment(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId, @RequestParam("userId") String userId, @RequestParam("currencyId") String currencyId, @RequestParam("total") String total, @RequestParam("exchangeRate") double mid){
         try {
             Payment payment = paypalService.executePayment(paymentId, payerId);
 
             if (payment.getState().equals("approved")) {
-                paypalService.addAmountToKantorAccount(payment, userId,currencyId);
+
                 logger.info("Payment approved asdasdasd");
                 Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
 
@@ -156,22 +158,17 @@ public class PaypalController {
                 CurrencyDto currencyDto = currency.get();
 
 
-                ApiService apiService = new ApiService();
-                String json = apiService.callExternalApi(currencyDto.getCode());
-                JSONObject jsonObject = new JSONObject(json);
-                JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
-                double mid = ratesObject.getDouble("mid");
-                logger.error("ASDASDSDA" + mid);
-
+                paypalService.addAmountToKantorAccount(payment, userId,currencyId, total);
                 BigDecimal amount = new BigDecimal(payment.getTransactions().get(0).getAmount().getTotal());
-                BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(amount);
+
                 AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                         .typeOfTransaction("BUY")
                         .amountOfForeginCurrency(payment.getTransactions().get(0).getAmount().getTotal())
                         .ForeginCurrencyId(63L)
                         .targetCurrencyId(Long.valueOf(currencyId))
-                        .targetCurrency(targetAmount.toString())
+                        .targetCurrency(total)
                         .appUserId(userId)
+                        .exchangeRate(String.valueOf(mid))
                         .build();
                 tranactionClient.addTranactionHistory(addTransactionDto);
                 return new RedirectView("http://localhost:4200");

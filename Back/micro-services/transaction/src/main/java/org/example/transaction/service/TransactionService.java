@@ -34,7 +34,7 @@ public class TransactionService {
             transaction.setTargetCurrency(new BigDecimal(addTransactionDto.targetCurrency()));
             transaction.setTransactionDate(LocalDateTime.now());
             transaction.setAmountOfForeginCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
-
+            transaction.setExchangeRate(Float.parseFloat(addTransactionDto.exchangeRate()));
             transaction.setForeginCurrencyId(63L);
             transaction.setTargetCurrencyId(addTransactionDto.targetCurrencyId());
             transactionRepo.save(transaction);
