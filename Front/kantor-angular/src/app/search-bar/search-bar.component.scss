@@ -5,39 +5,37 @@ body {
 .search-container {
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 2px solid rgba(255, 255, 255, 0.22);
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  // Ensure the container is positioned relatively for absolute positioning of children if needed
   flex-grow: 1;
-  width: 500px;
+  width: 30vw;
 }
 
 .search-input {
+  border-radius: 28px;
   border: none;
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(17.5px);
   padding: 10px;
   outline: none;
   width: 100%;
-  display: none;
+  display: block;
+  color: #DBDBDB;
 }
 
 .icon-container {
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%; /* Adjusted to take full height of the parent container */
-
+  height: 100%;
   display: flex;
   align-items: center;
   transform: translateY(2px) translateX(1px);
   justify-content: center;
-  width: 45px; /* Adjust width as needed */
-  /* transform removed to allow the new width and height to define the size */
-}
-
-.search-input.expanded {
-  display: block;
+  width: 45px;
 }
 
 button {
@@ -45,28 +43,30 @@ button {
   border: none;
   cursor: pointer;
   padding: 10px;
-  background-color: #007BFF;
 }
 
 .material-icons {
   font-size: 24px;
+  color: #dbdbdb;
 }
 
-
-
 .results-container {
-  position: fixed; //absolute zmienione na fixed - inaczej robi overflow przez prawą krawędź
-  width: 45vw; //ustawione na taką samą szerokość jak search-bar w typescript - inherit nie działa i zwraca zbyt wąski pasek
-  background: #fff;
+  position: fixed;
+  width: 30vw;
   z-index: 1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   border-radius: 10px;
   margin-top: 12px;
   padding-top: 7px;
-  background-color: #f5f5f5;
   font-size: 20px;
   height: auto;
   max-height: 40vh;
   overflow-y: auto;
-}
 
+
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(100px);
+  outline: none;
+  display: block;
+  color: #DBDBDB;
+}

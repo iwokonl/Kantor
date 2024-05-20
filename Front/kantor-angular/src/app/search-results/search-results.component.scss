@@ -1,11 +1,14 @@
 .row {
   display: flex;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+  text-decoration: none;
+  color: #DBDBDB;
 }
 
 .column:nth-child(1) {
   width: 50px;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid;
+  border-color: rgba(219, 219, 219, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +19,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid;
+  border-color: rgba(219, 219, 219, 0.3);
 }
 
 .column:nth-child(3) {
@@ -26,13 +30,19 @@
 }
 
 #searchResults ul li {
-  list-style-type: none;  // Remove bullet points
+  list-style-type: none;
   overflow-x: hidden;
   margin-top: 10px;
+  a{
+    text-decoration: none;
+    color: #DBDBDB;
+  }
 }
 
 .error-message {
   margin-left: 20px;
   margin-top: 10px;
   height: 50px;
+  display: flex;
+  justify-content: center;
 }

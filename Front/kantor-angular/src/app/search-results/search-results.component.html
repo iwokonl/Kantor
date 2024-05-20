@@ -1,16 +1,3 @@
-<!--<div id="searchResults" *ngIf="show" (click)="$event.stopPropagation()">-->
-<!--  <ul>-->
-<!--    <li *ngFor="let result of results">-->
-<!--      <a [routerLink]="['/currency', result.code]">-->
-<!--        <div class="row">-->
-<!--          <div class="column">{{ currencyFlags[result.code] }}</div>-->
-<!--          <div class="column">{{ result.code }}</div>-->
-<!--          <div class="column">{{ result.name }}</div>-->
-<!--        </div>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
 
 <div *ngIf="results.length > 0 && results[0].message" class="error-message">
   {{ results[0].message }}
@@ -19,7 +6,7 @@
 <div id="searchResults" *ngIf="show && results.length > 0 && !results[0].message" (click)="$event.stopPropagation()">
   <ul>
     <li *ngFor="let result of results">
-      <a [routerLink]="['/currency', result.code]">
+      <a [routerLink]="['/currency', result.code]" (click)="onResultClick()">
         <div class="row">
           <div class="column">{{ currencyFlags[result.code] }}</div>
           <div class="column">{{ result.code }}</div>

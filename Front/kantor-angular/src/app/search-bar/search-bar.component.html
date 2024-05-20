@@ -1,21 +1,18 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div class="search-container" [@expandCollapse]="state">
-  <input type="text"
-         class="search-input"
-         [(ngModel)]="searchText"
-         (input)="onInput($event)"
-         (blur)="onBlur()"
-         [class.expanded]="state === 'expanded'"
-         placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
+  <div class="search-container">
+    <input type="text"
+           class="search-input"
+           [(ngModel)]="searchText"
+           (input)="onInput($event)"
+           (click)="onSearchBarClick()"
+           placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
 
-  <div class="icon-container">
-    <button (click)="toggleSearchBar()">
+    <div class="icon-container">
       <i class="material-icons">search</i>
-    </button>
+    </div>
   </div>
-</div>
-<!--TODO Długości mają być takie same-->
-<div class="results-container" [style.display]="isExpanded ? 'block' : 'none'" *ngIf="searchResults.length > 0">
-  <app-search-results [results]="searchResults"></app-search-results>
+
+<div class="results-container" *ngIf="searchResults.length > 0">
+  <app-search-results [results]="searchResults" (resultClick)="onResultClick()"></app-search-results>
 </div>
