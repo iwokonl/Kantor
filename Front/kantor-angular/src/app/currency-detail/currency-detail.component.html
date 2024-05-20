@@ -12,11 +12,13 @@
     <div class="chart-container"><canvas id="chart" width="80vw" height="60vh"></canvas></div>
 
     <div class="chart-buttons-container">
-      <button class="chart-buttons" (click)="changeDateRange(7)">1 T</button>
-      <button class="chart-buttons" (click)="changeDateRange(14)">2 T</button>
-      <button class="chart-buttons" (click)="changeDateRange(30)">1 M</button>
-      <button class="chart-buttons" (click)="changeDateRange(90)">3 M</button>
-      <button class="chart-buttons" (click)="changeDateRange(365)">1 R</button>
+      <div class="chart-buttons-inner-container">
+        <button class="chart-buttons" (click)="changeDateRange(7)">1 T</button>
+        <button class="chart-buttons" (click)="changeDateRange(14)">2 T</button>
+        <button class="chart-buttons" (click)="changeDateRange(30)">1 M</button>
+        <button class="chart-buttons" (click)="changeDateRange(90)">3 M</button>
+        <button class="chart-buttons" (click)="changeDateRange(365)">1 R</button>
+      </div>
     </div>
 
   </div>
