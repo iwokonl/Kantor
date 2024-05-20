@@ -23,32 +23,7 @@
   </div>
 
   <div class="nav-middle">
-    <div class="nav-bottom" *ngIf="router.url.startsWith('/settings')">
-      <a class="nav-link text-class" routerLink="/settings" routerLinkActive="active-icon">
-        <img *ngIf="router.url === '/settings'; else inactiveProfileIcon" class="icons-kantor active-icon"
-             src="assets/profile_active.svg" alt="Profile">
-        <ng-template #inactiveProfileIcon>
-          <img class="icons-kantor" src="assets/profile.svg" alt="Profile">
-        </ng-template>
-        Profile
-      </a>
-      <a class="nav-link text-class" routerLink="/security" routerLinkActive="active-icon">
-        <img *ngIf="router.url === '/security'; else inactiveSecurityIcon" class="icons-kantor active-icon"
-             src="assets/security_active.svg" alt="Security">
-        <ng-template #inactiveSecurityIcon>
-          <img class="icons-kantor" src="assets/security.svg" alt="Security">
-        </ng-template>
-        Security
-      </a>
-      <a class="nav-link text-class" routerLink="/help" routerLinkActive="active-icon">
-        <img *ngIf="router.url === '/help'; else inactiveHelpIcon" class="icons-kantor active-icon"
-             src="assets/help_active.svg" alt="Help">
-        <ng-template #inactiveHelpIcon>
-          <img class="icons-kantor" src="assets/help.svg" alt="Help">
-        </ng-template>
-        Help
-      </a>
-    </div>
+
   </div>
 
   <div class="nav-bottom text-bottom-left-sidebar">

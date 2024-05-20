@@ -24,6 +24,12 @@ p{
   height: 30%;
   width: 100%;
 }
+.lower-settings-container{
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  width: 100%;
+}
 .settings-header{
   height: 50%;
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
@@ -43,4 +49,32 @@ p{
   height: 40%;
   border-radius: 40px;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.12) 12.6%, rgba(255, 255, 255, 0.06) 100.13%);
+}
+.profile-active, .security-active, .help-active{
+  height: 100%;
+  width: 33.33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:  0px 40px 0px 0px;
+
+}
+.profile-inactive, .security-inactive, .help-inactive{
+  height: 100%;
+  width: 33.33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius:  0px 40px 0px 0px;
+
+}
+.buttons-active{
+  color: #5FE5EE;
+  border: none;
+  background: none;
+}
+.buttons-inactive{
+  color: #DBDBDB;
+  border: none;
+  background: none;
 }

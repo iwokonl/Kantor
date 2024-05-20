@@ -7,10 +7,24 @@
       </div>
       <div class="settings-picker-outer">
         <div class="settings-picker-inner">
-            <button (click)="selectCategory('profile')">Profile</button>
-            <button (click)="selectCategory('security')">Security</button>
-            <button (click)="selectCategory('help')">Help</button>
-
+          <div class="profile-active" *ngIf="isProfileSelected">
+            <button class="buttons-active" (click)="selectCategory('profile')">Profile</button>
+          </div>
+          <div class="profile-inactive" *ngIf="!isProfileSelected">
+            <button class="buttons-inactive"  (click)="selectCategory('profile')">Profile</button>
+          </div>
+          <div class="security-active" *ngIf="isSecuritySelected">
+            <button class="buttons-active"  (click)="selectCategory('security')">Security</button>
+          </div>
+          <div class="security-inactive" *ngIf="!isSecuritySelected">
+            <button class="buttons-inactive"  (click)="selectCategory('security')">Security</button>
+          </div>
+          <div class="help-active" *ngIf="isHelpSelected">
+            <button class="buttons-active"  (click)="selectCategory('help')">Help</button>
+          </div>
+          <div class="help-inactive" *ngIf="!isHelpSelected">
+            <button class="buttons-inactive"  (click)="selectCategory('help')">Help</button>
+          </div>
         </div>
       </div>
     </div>
