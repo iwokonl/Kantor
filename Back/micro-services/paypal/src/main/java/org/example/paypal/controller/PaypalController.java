@@ -117,7 +117,11 @@ public class PaypalController {
             }
 
             CurrencyDto currencyDto = currency.get();
-
+            ApiService apiService = new ApiService();
+            String json = apiService.callExternalApi(currencyDto.getCode());
+            JSONObject jsonObject = new JSONObject(json);
+            JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
+            double mid = ratesObject.getDouble("mid");
             PayoutBatch payoutBatch = paypalService.createPayout(
                     payoutRequestPaypalDto.receiverEmail(),
                     payoutRequestPaypalDto.total(),
@@ -131,6 +135,7 @@ public class PaypalController {
                     .targetCurrencyId(63L)
                     .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .appUserId(String.valueOf(userDto.getId()))
+                    .exchangeRate(String.valueOf(mid))
                     .build();
             tranactionClient.addTranactionHistory(addTransactionDto);
             return ResponseEntity.ok(payoutBatch);
@@ -172,7 +177,9 @@ public class PaypalController {
                         .targetCurrencyId(Long.valueOf(currencyId))
                         .targetCurrency(targetAmount.toString())
                         .appUserId(userId)
+                        .exchangeRate(String.valueOf(mid))
                         .build();
+                logger.error("ASDASDSDA" + mid);
                 tranactionClient.addTranactionHistory(addTransactionDto);
                 return new RedirectView("http://localhost:4200");
             }
