@@ -7,11 +7,31 @@
       </div>
       <div class="settings-picker-outer">
         <div class="settings-picker-inner">
+            <button (click)="selectCategory('profile')">Profile</button>
+            <button (click)="selectCategory('security')">Security</button>
+            <button (click)="selectCategory('help')">Help</button>
 
         </div>
       </div>
     </div>
     <div class="lower-settings-container">
+
+      <div *ngIf="isProfileSelected">
+        <!-- Profile settings go here -->
+        <p> Profil </p>
+      </div>
+
+      <div *ngIf="isSecuritySelected">
+        <!-- Security settings go here -->
+        <p> Bezpieczeństwo </p>
+
+      </div>
+
+      <div *ngIf="isHelpSelected">
+        <!-- Help settings go here -->
+        <p> Pomocy </p>
+
+      </div>
 
     </div>
   </div>

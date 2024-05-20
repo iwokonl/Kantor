@@ -18,6 +18,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription | undefined;
   isEditingUsername: boolean = false;
 
+
+  isProfileSelected: boolean = true;
+  isSecuritySelected: boolean = false;
+  isHelpSelected: boolean = false;
+
   constructor(private axiosService: AxiosService, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -27,6 +32,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.isLoggedIn = isLoggedIn;
       this.updateUserDetails();
     });
+  }
+
+  selectCategory(category: string) {
+    this.isProfileSelected = category === 'profile';
+    this.isSecuritySelected = category === 'security';
+    this.isHelpSelected = category === 'help';
   }
 
   updateUserDetails(): void {
