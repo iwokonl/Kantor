@@ -5,7 +5,7 @@ body {
 .search-container {
   display: flex;
   align-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid #ccc;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
@@ -15,11 +15,7 @@ body {
 }
 
 .search-input {
-  border-radius: 28px;
   border: none;
-  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(17.5px);
   padding: 10px;
   outline: none;
   width: 100%;
@@ -49,12 +45,11 @@ button {
   border: none;
   cursor: pointer;
   padding: 10px;
-  background-color: transparent;
+  background-color: #007BFF;
 }
 
 .material-icons {
   font-size: 24px;
-  color: #dbdbdb;
 }
 
 
