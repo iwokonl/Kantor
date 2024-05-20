@@ -37,7 +37,15 @@ export class CurrencyAccountComponent implements OnInit {
 
   selectAccount(account: any) {
     this.selectedAccount = account;
+    this.openAccountForm = false; // Close the openAccountForm when an account is selected
   }
+
+  openAccountForm: boolean = false; // Add this line
+  openCurrencyAccountForm() {
+    this.openAccountForm = true;
+    this.selectedAccount = null; // Close the selectedAccount when the form is opened
+  }
+
 
   getCurrencyAccounts(): void {
     this.axiosService.request("POST",
