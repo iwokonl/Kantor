@@ -30,12 +30,12 @@ public class TransactionService {
             Transaction transaction = new Transaction();
             transaction.setTypeOfTransaction(TypeOfTransaction.valueOf(addTransactionDto.typeOfTransaction()));
             transaction.setAppUserId(Long.parseLong(addTransactionDto.appUserId()));
-            transaction.setAmountOfForeignCurrency(new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
+            transaction.setAmountOfForeginCurrency(new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
             transaction.setTargetCurrency(new BigDecimal(addTransactionDto.targetCurrency()));
             transaction.setTransactionDate(LocalDateTime.now());
-            transaction.setAmountOfForeignCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
-            transaction.setExchangeRate(Float.parseFloat(addTransactionDto.exchangeRate()));
-            transaction.setFreignCurrencyId(63L);
+            transaction.setAmountOfForeginCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
+
+            transaction.setForeginCurrencyId(63L);
             transaction.setTargetCurrencyId(addTransactionDto.targetCurrencyId());
             transactionRepo.save(transaction);
         }   catch (Exception e) {
@@ -51,7 +51,7 @@ public class TransactionService {
             transactionDtos.add(new TransactionDto(
                     transaction.getId().toString(),
                     transaction.getAppUserId().toString(),
-                    transaction.getAmountOfForeignCurrency().toString(),
+                    transaction.getAmountOfForeginCurrency().toString(),
                     transaction.getTargetCurrency().toString(),
                     transaction.getTypeOfTransaction().name(),
                     transaction.getTransactionDate().toString()
