@@ -5,8 +5,9 @@ import { CurrencyFlagsService } from '../currency-flags.service';
 import { Title } from '@angular/platform-browser';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import {forkJoin, throwError} from 'rxjs';
-import {catchError} from "rxjs/operators";
+import {forkJoin, from, throwError} from 'rxjs';
+import {catchError, switchMap} from "rxjs/operators";
+import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
 
 
 interface CurrencyFlags {
@@ -27,7 +28,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   startDate: string = '';
   endDate: string = '';
 
-  constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
+  constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title, private snackBar: MatSnackBar) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
   changeDateRange(days: number) {
@@ -179,6 +180,48 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
 
 
 }
+
+  openCurrencyAccount() {
+    from(this.currencyService.getCurrencyId(this.code))
+      .pipe(
+        switchMap(currencyId => this.currencyService.createCurrencyAccount(currencyId))
+      )
+      .subscribe(response => {
+        console.log('Currency account created:', response);
+        const message = 'Konto zostało otwarte!';
+        const width = this.calculateSnackbarWidth(message);
+        const widthClass = `width-${Math.min(300, Math.max(200, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+        this.snackBar.open(message, '', {
+          duration: 3000,
+          panelClass: ['success-snackbar', widthClass],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }, error => {
+        console.error('Error creating currency account:', error);
+        if (error.error.message === 'Account already exists') {
+          const message = 'Konto już istnieje!';
+          const width = this.calculateSnackbarWidth(message);
+          const widthClass = `width-${Math.min(300, Math.max(200, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+          this.snackBar.open(message, '', {
+            duration: 3000,
+            panelClass: ['error-snackbar', widthClass],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      });
+  }
+
+  calculateSnackbarWidth(text: string): number {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.font = getComputedStyle(document.body).font;
+      return context.measureText(text).width;
+    }
+    return 0;
+  }
 
   ngOnDestroy() {
     this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');

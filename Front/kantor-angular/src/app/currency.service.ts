@@ -7,6 +7,7 @@ import { AxiosService } from './axios.service';
 import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -87,4 +88,27 @@ export class CurrencyService {
       );
     }
   }
+
+
+  createCurrencyAccount(currencyId: string) {
+    const url = 'http://localhost:8222/api/v1/currencyAccounts/createCurrencyAccount';
+    const body = { id: currencyId };
+    const headers = {
+      'Authorization': 'Bearer ' + this.axiosService.getAuthTocken() // Add Authorization header
+    };
+    return this.http.post(url, body, { headers }); // Include headers in the request
+  }
+
+  getCurrencyId(code: string) {
+    return this.axiosService.request('POST', '/api/v1/currencies/search', { name: code })
+      .then(response => {
+        // Assuming the response.data is the array of search results
+        return response.data[0]?.id; // Get the id of the first element in the array
+      })
+      .catch(error => {
+        console.error('Error fetching currency ID:', error);
+        throw error;
+      });
+  }
+
 }

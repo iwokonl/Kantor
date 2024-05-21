@@ -3,8 +3,8 @@
   <div class="custom-container">
     <div class="custom-row">
 
-      <div class="custom-card">
-        <div class="custom-card-body" (click)="openCurrencyAccountForm()"> <!-- (click)="openAccount()"  -->
+      <div class="custom-card" *ngIf="accounts.length === 0">
+        <div class="custom-card-body" (click)="openCurrencyAccountForm()">
           <h2 class="custom-card-title" id="open-account-title">
             Otwórz nowe konto walutowe
           </h2>
@@ -48,7 +48,7 @@
 
     <div class="lower-container">
       <div class="transactions">
-            //insert searchbar here
+        <div class="no-accounts-message"> Wyszukaj interesującą cię walutę i otwórz nowe konto walutowe już teraz! </div>
       </div>
     </div>
 

@@ -6,7 +6,7 @@
       <h3>{{ currencyDetails.currency +' ' + currencyFlags[currencyDetails.code] }}</h3>
       <p>Kod waluty: {{ currencyDetails.code }}</p>
         <p>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN'}}</p>
-
+      <button class="custom-btn custom-btn-outline-primary" (click)="openCurrencyAccount()">Otwórz konto walutowe</button>
       <p> Wykres waluty z dni {{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>
     </div>
     <div class="chart-container"><canvas id="chart" width="80vw" height="60vh"></canvas></div>
