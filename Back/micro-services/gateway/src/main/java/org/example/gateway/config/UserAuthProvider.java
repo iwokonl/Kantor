@@ -81,7 +81,7 @@ public class UserAuthProvider {
                 return new UsernamePasswordAuthenticationToken(user, newToken, Collections.emptyList());
             }
             else {
-                throw new AppExeption("Does not apply to token", HttpStatus.UNAUTHORIZED);
+                throw new AppExeption("Does not apply to token", "gateway exception", HttpStatus.UNAUTHORIZED);
             }
 
         }
