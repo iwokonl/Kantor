@@ -17,7 +17,7 @@
   color: #DBDBDB;
   display: flex;
   flex-direction: column;
-  width: 75vh;
+  width: 75%;
   //margin: 50px auto 50px 120px;
   padding: 1vh;
   //border: 1px solid #ccc;
@@ -32,8 +32,8 @@
   backdrop-filter: blur(25px);
 }
 .chart-container{
-  height: 60%;
-  width: 90%;
+  height: 48vh;
+  width: 50vw;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -46,7 +46,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  height: 100%;
+  width: 100%;
 }
 .chart-buttons-container{
   display: flex;

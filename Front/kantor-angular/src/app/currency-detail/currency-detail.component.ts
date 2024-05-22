@@ -31,6 +31,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title, private snackBar: MatSnackBar) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
+
   changeDateRange(days: number) {
     const endDate = new Date();
     const startDate = new Date();
@@ -48,8 +49,6 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   }
 
 
-
-
   // capitalizeWords(str: string): string { //Wszystkie pierwsze litery w słowach będą wielkie
   //   return str.split(' ')
   //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
@@ -57,12 +56,12 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   // }
 
   capitalizeFirstWord(str: string): string { //Pierwsza litera w zdaniu będzie wielka
-  return str.split(' ')
-    .map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word)
-    .join(' ');
-}
+    return str.split(' ')
+      .map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word)
+      .join(' ');
+  }
 
-  updateChartData(){
+  updateChartData() {
     const currencyDetails$ = this.currencyService.getCurrencyDetails(this.code).pipe(
       catchError(error => {
         console.error('Error in getCurrencyDetails:', error);
@@ -93,6 +92,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
     });
 
   }
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.code = params.get('code') ?? '';
@@ -127,25 +127,28 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,// Add this line
         plugins: {
           legend: {
-            onClick: (e, legendItem, legend) => {}
+            onClick: (e, legendItem, legend) => {
+            }
           },
           tooltip: {
             callbacks: {
-              label: function(context) {
+              label: function (context) {
                 var label = context.dataset.label || '';
 
                 if (label) {
                   label += ': ';
                 }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
+                  label += new Intl.NumberFormat('en-US', {style: 'decimal'}).format(context.parsed.y) + ' PLN';
                 }
                 return label;
               }
             }
-          }
+          },
         },
         scales: {
           x: {
@@ -160,11 +163,14 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
             },
             ticks: {
               color: '#DBDBDB', // this will set the color of the labels on the x-axis
-              callback: function(value, index, values) {
+              callback: function (value, index, values) {
                 // Format the date string in the Polish locale
                 return new Intl.DateTimeFormat('pl-PL').format(new Date(value));
               }
             },
+            grid: {
+                color: 'rgba(219, 219, 219, 0)' // this will set the color of the grid lines
+            }
           },
           y: {
             type: 'linear',
@@ -172,14 +178,14 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
             ticks: {
               color: '#DBDBDB' // this will set the color of the labels on the y-axis
             },
+            grid: {
+              color: 'rgba(219, 219, 219, 0.2)',
+            }
           }
         }
       }
     });
-
-
-
-}
+  }
 
   openCurrencyAccount() {
     from(this.currencyService.getCurrencyId(this.code))
