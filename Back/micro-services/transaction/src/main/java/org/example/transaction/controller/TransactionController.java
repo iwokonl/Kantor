@@ -2,6 +2,7 @@ package org.example.transaction.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.transaction.dto.AddTransactionDto;
+import org.example.transaction.dto.GetTransactionDto;
 import org.example.transaction.dto.TransactionDto;
 import org.example.transaction.service.TransactionService;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class TransactionController {
     }
 
     @GetMapping("/getTransactions")
-    public ResponseEntity<List<TransactionDto>> getTransactions(@RequestBody TransactionDto transactionDto) {
+    public ResponseEntity<List<GetTransactionDto>> getTransactions(@RequestBody TransactionDto transactionDto) {
         return ResponseEntity.ok(transactionService.getTransactions(transactionDto.id()));
     }
 }
