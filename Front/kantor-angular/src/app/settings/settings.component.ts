@@ -43,7 +43,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   updateUserDetails(): void {
     if (this.isLoggedIn) {
       this.axiosService.request("POST",
-        "api/v1/auth/userinfo",
+        "api/v1/auth/userInfo",
         {}).then((response) => {
         this.user_name = response.data.username;
         this.firstname = response.data.firstName;
@@ -58,7 +58,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
   updateUserOnServer(): void {
     if (this.isLoggedIn) {
-      this.axiosService.request("PUT", "api/v1/auth/userinfo", {
+      this.axiosService.request("PUT", "api/v1/auth/userInfo", {
         username: this.user_name,
         firstName: this.firstname,
         lastName: this.lastname

@@ -5,6 +5,7 @@ import {forkJoin, Subscription} from 'rxjs';
 import { CurrencyService } from '../currency.service';
 import {catchError, map} from "rxjs/operators";
 import { of } from 'rxjs';
+import {CurrencyFlagsService} from "../currency-flags.service";
 
 @Component({
   selector: 'app-welcome-content',
@@ -15,15 +16,20 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   user_name: string = '';
   isLoggedIn: boolean = false;
   private authStatusSub: Subscription | undefined;
+  accounts: any[] = [];
+  currencyFlags: { [key: string]: string } = {};
 
   exchangeRates: { from: string, to: string, rate: number }[] = []; //do wyświetlania kursów walut na stronie głównej
 
   // exchangeRatesChanges: { from: string, to: string, rate: number, change: number }[] = []; //do karuzeli walut na stronie głównej
   exchangeRatesChanges: { from: string, to: string, rate: number, change: number, percentageChange?: number }[] = [];
 
-  constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService) { }
+  constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
+    this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
+  }
 
   ngOnInit(): void {
+    this.getCurrencyAccounts();
     this.isLoggedIn = this.axiosService.getAuthTocken() !== null;
     this.updateUsername();
     this.authStatusSub = this.axiosService.authStatus$.subscribe(isLoggedIn => {
@@ -36,6 +42,27 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     console.log(this.exchangeRatesChanges);
   }
 
+  getCurrencyAccounts(): void {
+    this.axiosService.request("POST",
+        "/api/v1/currencyAccounts/getCurrencyAccounts",
+        {}).then((response) => {
+      this.accounts = response.data;
+      this.accounts.forEach(account => {
+        this.axiosService.getCurrencyData(account.currencyId).then(data => {
+          account.currencyCode = data.code;
+          account.currencyName = data.name;
+        });
+        if (account.currencyId !== "62") {
+          this.currencyService.getCurrencyDetailsByID(account.currencyId).subscribe(details => {
+            account.balanceInPLN = account.balance * details.rates[0].mid;
+          });
+        } else {
+          account.balanceInPLN = account.balance;
+        }
+      });
+      console.log(this.accounts);
+    });
+  }
   updateUsername(): void {
     if (this.isLoggedIn) {
       this.axiosService.request("POST",
