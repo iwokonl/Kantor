@@ -61,7 +61,7 @@ h1{
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 25%;
+  height: 40%;
   border-radius: 40px;
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.12) 12.6%, rgba(255, 255, 255, 0.06) 100.13%);
 }
@@ -106,27 +106,19 @@ h1{
   color: #5FE5EE;
   border: none;
   background: none;
-  font-size: 1.25vw;
+  font-size: 1.5vw;
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .buttons-inactive{
   color: #DBDBDB;
   border: none;
   background: none;
-  font-size: 1.25vw;
+  font-size: 1.5vw;
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .selected-profile, .selected-help, .selected-security{
-  height: 100%;
-  width: 100%;
   animation: fade-in 1s ease 0s 1 normal forwards;
   @keyframes fade-in {
     0% {
@@ -136,48 +128,5 @@ h1{
     100% {
       opacity: 1;
     }
-  }
-}
-.username{
-  height: 10%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1%;
-}
-.settings-text{
-  margin: 0;
-}
-.settings-forms{
-  display: flex;
-  flex-direction: row;
-  background: linear-gradient(
-      94deg,
-      rgba(255, 255, 255, 0.04) 12.6%,
-      rgba(255, 255, 255, 0.02) 100.13%);
-  border-radius: 40px;
-}
-.input-box{
-  width: 75%;
-  background: none;
-  border: none;
-  color: rgba(219, 219, 219, 0.56);
-  padding-left: 4%;
-  &:focus{
-    outline: none;
-  }
-}
-#active{
-  color: #DBDBDB;
-}
-.button-box{
-  width: 25%;
-  background: none;
-  border-radius: 0 40px 40px 0;
-  border: none;
-  color: rgba(219, 219, 219, 0.56);
-  &:hover{
-    color: rgba(219, 219, 219, 0.82);
   }
 }

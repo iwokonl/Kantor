@@ -66,7 +66,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="transaction@localhost" uuid="669deb39-148a-48ee-961d-0434de89f118">
+    <data-source source="LOCAL" name="transaction@localhost" uuid="bc46a816-7371-4542-811a-04b4631c4ffc">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

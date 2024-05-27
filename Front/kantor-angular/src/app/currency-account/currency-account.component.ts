@@ -144,7 +144,7 @@ export class CurrencyAccountComponent implements OnInit {
       {
         receiverEmail: "kupujacy@kantrol.pl", // Dodać kiedyś do db pole paypal email i przypisać do usera podczas rejestracji.
         total: account.amount,
-        currencyId: account.currencyId
+        currency: account.curencyCode
       }).then((response) => {
       console.log(response.data);
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account

@@ -11,7 +11,7 @@ public class ApiService {
     }
 
     public String callExternalApi(String code) {
-        String url = "https://api.nbp.pl/api/exchangerates/rates/c/"+ code +"/?format=json";
+        String url = "https://api.nbp.pl/api/exchangerates/rates/a/"+ code +"/?format=json";
         String response = webClient.get()
                 .uri(url)
                 .retrieve()

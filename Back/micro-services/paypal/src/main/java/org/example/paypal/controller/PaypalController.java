@@ -76,11 +76,11 @@ public class PaypalController {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
 
-            double ask = ratesObject.getDouble("ask");
+            double mid = ratesObject.getDouble("mid");
 
-            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total() + "&exchangeRate=" + ask;
+            String successUrl = paymentPaypalDto.successUrl() + "?userId=" + userDto.getId() + "&JWTtoken=" + userDto.getToken() + "&currencyId=" + currency.getId() + "&total=" + paymentPaypalDto.total() + "&exchangeRate=" + mid;
 
-            BigDecimal targetAmount = BigDecimal.valueOf(ask).multiply(BigDecimal.valueOf(paymentPaypalDto.total()));
+            BigDecimal targetAmount = BigDecimal.valueOf(mid).multiply(BigDecimal.valueOf(paymentPaypalDto.total()));
 
             Payment payment = paypalService.createPayment(
                     targetAmount.doubleValue(),
@@ -134,7 +134,7 @@ public class PaypalController {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
 
-            double ask = ratesObject.getDouble("ask");
+            double mid = ratesObject.getDouble("mid");
 
             AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                     .typeOfTransaction("PAYOUT")
@@ -143,7 +143,7 @@ public class PaypalController {
                     .targetCurrencyId(63L)
                     .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .appUserId(String.valueOf(userDto.getId()))
-                    .exchangeRate(String.valueOf(ask))
+                    .exchangeRate(String.valueOf(mid))
                     .build();
 
             tranactionClient.addTranactionHistory(addTransactionDto);

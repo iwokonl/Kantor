@@ -33,21 +33,6 @@
       <div class="selected-profile" *ngIf="isProfileSelected">
         <!-- Profile settings go here -->
         <p> Profil </p>
-        <div class="username" *ngIf="!isEditingUsername">
-          <p class="settings-text">Nazwa użytkownika:</p>
-          <form class="settings-forms">
-            <input class="input-box" [readonly]="true" [(ngModel)]="user_name" name="username">
-            <button class="button-box" (click)="toggleEditUsername()">Zmień</button>
-          </form>
-        </div>
-        <div class="username" *ngIf="isEditingUsername">
-          <p class="settings-text">Nazwa użytkownika:</p>
-          <form class="settings-forms" (ngSubmit)="updateUserOnServer()">
-            <input id="active" class="input-box" [(ngModel)]="user_name" name="username">
-            <button class="button-box" type="submit">Zapisz</button>
-          </form>
-        </div>
-        <p> Imię: {{firstname}} </p>
       </div>
 
       <div class="selected-security"  *ngIf="isSecuritySelected">
