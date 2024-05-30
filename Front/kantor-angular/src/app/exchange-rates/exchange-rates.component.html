@@ -1,0 +1,27 @@
+<div class="table-container">
+  <table>
+    <tr class="header">
+      <th>Waluta</th>
+      <th>Obecna Cena</th>
+      <th>7D</th>
+      <th>1M</th>
+      <th>3M</th>
+      <th>12M</th>
+      <th style="width: 23%;">Wykres 1M</th>
+    </tr>
+  </table>
+
+  <div class="inner-table">
+    <table>
+      <tr *ngFor="let currency of exchangeRatesChanges[30]; let i = index">
+          <td> <div class="currency-click"[routerLink]="['/currency', currency.from]" ><h2>{{ currencyFlags[currency.from] }} </h2>  {{ currency.from }} {{ currencyNames[currency.from] }} </div> </td>
+        <td>{{ currency.rate }}</td>
+        <td [ngClass]="getChangeClass(exchangeRatesChanges[7][i].change)">{{ exchangeRatesChanges[7][i].change | number:'1.4-4' }}</td>
+        <td [ngClass]="getChangeClass(exchangeRatesChanges[30][i].change)">{{ exchangeRatesChanges[30][i].change | number:'1.4-4' }}</td>
+        <td [ngClass]="getChangeClass(exchangeRatesChanges[90][i].change)">{{ exchangeRatesChanges[90][i].change | number:'1.4-4' }}</td>
+        <td [ngClass]="getChangeClass(exchangeRatesChanges[365][i].change)">{{ exchangeRatesChanges[365][i].change | number:'1.4-4' }}</td>
+        <td class="chart-cell"><canvas id="{{ 'chart' + i }}"></canvas></td>
+      </tr>
+    </table>
+  </div>
+</div>

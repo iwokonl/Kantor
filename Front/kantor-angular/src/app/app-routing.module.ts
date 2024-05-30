@@ -7,6 +7,7 @@ import { CurrencyDetailComponent } from "./currency-detail/currency-detail.compo
 import { CurrencyAccountComponent } from './currency-account/currency-account.component';
 import { SettingsComponent} from "./settings/settings.component";
 import {WelcomeContentComponent} from "./welcome-content/welcome-content.component";
+import { ExchangeRatesComponent } from './exchange-rates/exchange-rates.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'currency-account', component: CurrencyAccountComponent},
   { path: 'currency/:code', component: CurrencyDetailComponent },
   { path: 'settings', component: SettingsComponent},
+  { path: 'exchange-rates', component: ExchangeRatesComponent}
 ];
 @NgModule({
 

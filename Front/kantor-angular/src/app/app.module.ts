@@ -24,6 +24,7 @@ import { SettingsComponent } from './settings/settings.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
 import {NgOptimizedImage} from "@angular/common";
+import { ExchangeRatesComponent } from './exchange-rates/exchange-rates.component';
 
 
 
@@ -45,7 +46,8 @@ import {NgOptimizedImage} from "@angular/common";
     CurrencyDetailComponent,
     CurrencyChartComponent,
     SettingsComponent,
-    SidebarLeftComponent
+    SidebarLeftComponent,
+    ExchangeRatesComponent
   ],
   imports: [
     BrowserModule,

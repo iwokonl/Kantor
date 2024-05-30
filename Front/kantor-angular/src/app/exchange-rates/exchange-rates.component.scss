@@ -1,0 +1,146 @@
+.table-container{
+  color: #DBDBDB;
+  font-family: "Twemoji Country Flags", "Helvetica", serif;
+
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
+  backdrop-filter: blur(25px);
+
+  max-width: 80%;
+}
+
+.header-table{
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.inner-table {
+  overflow-y: auto;
+  max-height: 83vh;
+  padding: 20px;
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    padding-right: 20px;
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 10px 10px #555;
+    border: solid 5px transparent;
+  }
+
+}
+
+
+th{
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+  //border
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+  margin-top: 20px;
+  margin-left: 10px;
+
+
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+td{
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+  //border: 1px solid #DBDBDB;
+}
+
+td, th {
+  width: 70vw;
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.chart-cell {
+  width: 22%;
+  overflow: hidden;
+}
+
+
+.currency-click {
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  margin: 0 auto;
+  color: #DBDBDB;
+  text-decoration: none;
+  //font-size: 1.5em;
+  font-weight: bold;
+  &:hover{
+    color: #81BCCE;
+    text-decoration: none;
+  }
+}
+
+
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.zero {
+  color: #5fe5ee;
+}
+
+.square {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: #5fe5ee;
+  transform: rotate(45deg) translateY(-4px);
+}
+
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  border-style: solid;
+}
+
+.up {
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent green transparent;
+}
+
+.down {
+  border-width: 10px 5px 0 5px;
+  border-color: red transparent transparent transparent;
+}
+

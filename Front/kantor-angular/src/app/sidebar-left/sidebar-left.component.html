@@ -12,8 +12,8 @@
       </ng-template>
       Strona Główna
     </a>
-    <a class="nav-link text-class" routerLink="/currency-rates" routerLinkActive="active-icon">
-      <img *ngIf="router.url === '/currency-rates'; else inactiveCurrencyRatesIcon" class="icons-kantor active-icon"
+    <a class="nav-link text-class" routerLink="/exchange-rates" routerLinkActive="active-icon">
+      <img *ngIf="router.url === '/exchange-rates'; else inactiveCurrencyRatesIcon" class="icons-kantor active-icon"
            src="assets/currency_rates_active.svg" alt="Kursy Walut">
       <ng-template #inactiveCurrencyRatesIcon>
         <img class="icons-kantor" ngSrc="assets/currency_rates.svg" alt="Kursy Walut" height="41" width="45">
