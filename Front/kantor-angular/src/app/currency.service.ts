@@ -111,4 +111,23 @@ export class CurrencyService {
       });
   }
 
+  getPriceDifferenceOverTime(code: string, todayDate: string, daysAgo: string): Observable<{ priceDifference: number, percentageDifference: number }> {
+    return forkJoin({
+      todayRate: this.http.get<any>(`${this.apiUrl}/${code}/${todayDate}/?format=json`),
+      daysAgoRate: this.http.get<any>(`${this.apiUrl}/${code}/${daysAgo}/?format=json`)
+    }).pipe(
+      map(({ todayRate, daysAgoRate }) => {
+        const rateToday = todayRate.rates[0].mid;
+        const rateDaysAgo = daysAgoRate.rates[0].mid;
+        const priceDifference = rateToday - rateDaysAgo;
+        const percentageDifference = (priceDifference / rateDaysAgo) * 100;
+
+        return { priceDifference, percentageDifference };
+      }),
+      catchError(error => {
+        console.error('Error calculating price difference over time', error);
+        return throwError(error);
+      })
+    );
+  }
 }

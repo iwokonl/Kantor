@@ -15,6 +15,8 @@ interface CurrencyFlags {
   styleUrls: ['./exchange-rates.component.scss']
 })
 export class ExchangeRatesComponent implements OnInit, AfterViewInit {
+  currencies: string[] = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'HKD', 'NZD', 'SGD', 'KRW', 'SEK', 'NOK', 'MXN', 'INR', 'BRL', 'ZAR', 'TRY'] // działa max 19 walut, reszta:, 'DKK', 'THB', 'HUF', 'CZK', 'MYR', 'PHP', 'ILS', 'CLP', 'RON', 'BGN', 'ISK', 'UAH'];
+
   exchangeRatesChanges: { [days: number]: { from: string, to: string, rate: number, change: number, percentageChange: number }[] } = {};
   currencyFlags: CurrencyFlags = {};
   currencyNames: { [key: string]: string } = {};
@@ -25,8 +27,7 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.fetchExchangeRatesChangesForPeriods();
-    const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK']; // replace with your actual list of currencies
-    currencies.forEach(currencyCode => {
+    this.currencies.forEach(currencyCode => {
       this.currencyService.getCurrencyDetails(currencyCode).subscribe(details => {
         this.currencyNames[currencyCode] = details.currency;
       });
@@ -55,13 +56,10 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
   }
 
   fetchExchangeRatesChanges(days: number): void {
-    const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
-
     const today = new Date();
     let dateAgo = new Date(today);
     dateAgo.setDate(today.getDate() - days);
-
-    const requests = currencies.map(currency =>
+    const requests = this.currencies.map(currency =>
       forkJoin({
         todayRate: this.currencyService.getCurrencyDetails(currency),
         daysAgoRate: this.currencyService.getCurrencyHistory(currency, dateAgo.toISOString().split('T')[0], today.toISOString().split('T')[0])
