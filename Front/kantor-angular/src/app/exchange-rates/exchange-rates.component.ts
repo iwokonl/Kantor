@@ -15,7 +15,7 @@ interface CurrencyFlags {
   styleUrls: ['./exchange-rates.component.scss']
 })
 export class ExchangeRatesComponent implements OnInit, AfterViewInit {
-  currencies: string[] = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'HKD', 'NZD', 'SGD', 'KRW', 'SEK', 'NOK', 'MXN', 'INR', 'BRL', 'ZAR', 'TRY'] // działa max 19 walut, reszta:, 'DKK', 'THB', 'HUF', 'CZK', 'MYR', 'PHP', 'ILS', 'CLP', 'RON', 'BGN', 'ISK', 'UAH'];
+  currencies: string[] = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'HKD', 'NZD', 'SGD', 'KRW', 'SEK',] // działa max 19 walut, reszta:,  'NOK', 'MXN', 'INR', 'BRL', 'ZAR', 'TRY''DKK', 'THB', 'HUF', 'CZK', 'MYR', 'PHP', 'ILS', 'CLP', 'RON', 'BGN', 'ISK', 'UAH'];
 
   exchangeRatesChanges: { [days: number]: { from: string, to: string, rate: number, change: number, percentageChange: number }[] } = {};
   currencyFlags: CurrencyFlags = {};
@@ -86,6 +86,7 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
     this.fetchExchangeRatesChanges(30);
     this.fetchExchangeRatesChanges(90);
     this.fetchExchangeRatesChanges(365);
+    console.log('Data fetched and updated:', this.exchangeRatesChanges);
   }
 
   createChart(canvasId: string, labels: string[], values: number[]) {

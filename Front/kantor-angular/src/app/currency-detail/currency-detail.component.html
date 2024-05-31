@@ -7,8 +7,9 @@
       <p>Kod waluty: {{ currencyDetails.code }}</p>
         <p>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN'}}</p>
       <button class="custom-btn custom-btn-outline-primary" (click)="openCurrencyAccount()">Otwórz konto walutowe</button>
-      <p> Wykres waluty z dni {{ formatDate(startDate) }} - {{ formatDate(endDate) }}</p>
+      <p> Wykres waluty z dni <b>{{ formatDate(startDate) }} - {{ formatDate(endDate) }} </b> </p>
     </div>
+
     <div class="chart-container"><canvas id="chart" style="margin-top: 0;"></canvas></div>
 
     <div class="chart-buttons-container">

@@ -85,15 +85,16 @@ td, th {
 
 
 .currency-click {
-  text-align: center;
+  //text-align: center;
   padding: 10px;
-  vertical-align: middle;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  //vertical-align: middle;
+  //display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
   cursor: pointer;
 
-  margin: 0 auto;
+  //margin: 0 auto;
   color: #DBDBDB;
   text-decoration: none;
   //font-size: 1.5em;
