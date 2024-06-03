@@ -27,7 +27,7 @@ body{
   align-content: center;
   justify-content: center;
   text-align: center;
-  top: 20px;
+  top: 50px;
   height: 52px;
   border-radius: 12px;
 }
@@ -40,8 +40,9 @@ app-root{
 .error-snackbar {
   position: fixed !important;
   width: 230px;
-  background-color: rgba(255, 0, 0, 0.47);
+  background-color: rgba(200, 0, 0, 0.9);
   color: #DBDBDB;
+  font-weight: bold;
 
   margin-left: auto !important;
   margin-right: auto !important;
@@ -53,7 +54,7 @@ app-root{
   border-radius: 12px;
   z-index: 99999;
   height: 52px;
-  top: 20px;
+  top: 50px;
 }
 .mat-mdc-snack-bar-container .mdc-snackbar__surface{
   box-shadow: none !important;

@@ -94,35 +94,109 @@
         </button>
       </div>
     </div>
-    <div class="lower-container">
-      <div class="lower-container">
-        <div class="transactions">
-          <div class="transactions-table" >
-            <table>
-              <thead>
-              <tr>
-                <th>Ilość</th>
-                <th>Kurs</th>
-                <th>Wartość</th>
-                <th>Typ transakcji</th>
-                <th>Data</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let transaction of transactions">
-                <td>{{ transaction.targetCurrency }}</td>
-                <td>{{ transaction.exchangeRate }}</td>
-                <td>{{ transaction.amountOfForeginCurrency }}</td>
-                <td>{{ transaction.typeOfTransaction }}</td>
-                <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-              </tr>
-              </tbody>
-            </table>
+
+
+
+
+
+
+
+
+
+<!--    &lt;!&ndash; Thead table &ndash;&gt;-->
+<!--    <div class="table-wrapper">-->
+<!--      <table class="transactions-table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--          <th>Ilość</th>-->
+<!--          <th>Kurs</th>-->
+<!--          <th>Wartość</th>-->
+<!--          <th>Typ transakcji</th>-->
+<!--          <th>Data</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--      </table>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Tbody table &ndash;&gt;-->
+<!--    <div class="lower-container">-->
+<!--      <div class="transactions">-->
+<!--        <div class="table-wrapper">-->
+<!--          <table class="transactions-table">-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let transaction of transactions">-->
+<!--              <td>{{ transaction.targetCurrency }}</td>-->
+<!--              <td>{{ transaction.exchangeRate }}</td>-->
+<!--              <td>{{ transaction.amountOfForeginCurrency }}</td>-->
+<!--              <td>{{ transaction.typeOfTransaction }}</td>-->
+<!--              <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+
+  <div class="history-container">
+      <div class="transactions">
+          <div class="table-container">
+            <div class>
+              <table>
+                <thead>
+                <tr>
+                  <th>Ilość</th>
+                  <th>Kurs</th>
+                  <th>Wartość</th>
+                  <th>Typ transakcji</th>
+                  <th>Data</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="lower-container">
+              <table>
+                <tbody>
+                <tr *ngFor="let transaction of transactions">
+                  <td>{{ transaction.targetCurrency }}</td>
+                  <td>{{ transaction.exchangeRate }}</td>
+                  <td>{{ transaction.amountOfForeginCurrency }}</td>
+                  <td>{{ transaction.typeOfTransaction }}</td>
+                  <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
+    </div>
+
+<!--    <div class="lower-container">-->
+<!--      <div class="lower-container">-->
+<!--        <div class="transactions">-->
+<!--          <div class="transactions-table" >-->
+<!--            <table>-->
+<!--              <thead>-->
+<!--              <tr>-->
+<!--                <th>Ilość</th>-->
+<!--                <th>Kurs</th>-->
+<!--                <th>Wartość</th>-->
+<!--                <th>Typ transakcji</th>-->
+<!--                <th>Data</th>-->
+<!--              </tr>-->
+<!--              </thead>-->
+<!--              <tbody>-->
+<!--              <tr *ngFor="let transaction of transactions">-->
+<!--                <td>{{ transaction.targetCurrency }}</td>-->
+<!--                <td>{{ transaction.exchangeRate }}</td>-->
+<!--                <td>{{ transaction.amountOfForeginCurrency }}</td>-->
+<!--                <td>{{ transaction.typeOfTransaction }}</td>-->
+<!--                <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>-->
+<!--              </tr>-->
+<!--              </tbody>-->
+<!--            </table>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
       </div>
     </div>
-  </div>
 

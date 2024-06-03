@@ -3,6 +3,7 @@ import { AxiosService } from '../axios.service';
 import { CurrencyService } from '../currency.service';
 import { CurrencyFlagsService } from '../currency-flags.service';
 import { Title } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -26,7 +27,7 @@ export class CurrencyAccountComponent implements OnInit {
   transactions: any[] = [];
 
 
-  constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
+  constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title, private snackBar: MatSnackBar) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
 
@@ -106,6 +107,15 @@ export class CurrencyAccountComponent implements OnInit {
     let regExp:RegExp = /[a-zA-Z]/g;
     if (account.amount === undefined || regExp.test(account.amount)) {
       console.log("Invalid amount");
+      const message = 'Nieprawidłowa kwota!';
+      const width = this.calculateSnackbarWidth(message);
+      const widthClass = `width-${Math.min(300, Math.max(250, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+      this.snackBar.open(message, '', {
+        duration: 3000,
+        panelClass: ['error-snackbar', widthClass],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
       return;
     }
     account.isLoading = true;
@@ -136,11 +146,50 @@ export class CurrencyAccountComponent implements OnInit {
     });
   }
 
+  // createPayout(account: any) {
+  //   console.log(account.amount);
+  //   let regExp:RegExp = /[a-zA-Z]/g;
+  //   if (account.amount === undefined || regExp.test(account.amount)) {
+  //     console.log("Invalid amount");
+  //     return;
+  //   }
+  //   account.isLoading = true;
+  //   this.axiosService.request("POST",
+  //     "/api/v1/paypal/createPayout",
+  //     {
+  //       receiverEmail: "kupujacy@kantrol.pl", // Dodać kiedyś do db pole paypal email i przypisać do usera podczas rejestracji.
+  //       total: account.amount,
+  //       currencyId: account.currencyId
+  //     }).then((response) => {
+  //     console.log(response.data);
+  //     this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
+  //
+  //     // window.location.href = response.data.url;
+  //     setTimeout(() => {
+  //       account.isLoading = false;
+  //       // Wyłącz animację ładowania po przeniesieniu
+  //     }, 2000000);
+  //   }).catch((error) => {
+  //     account.isLoading = false;
+  //   });;
+  // }
+
+
+  //nowa wersja - animacja trwa tyle ile trwa operacja, po zakończeniu animacja znika, konta sa odswiezane
   createPayout(account: any) {
     console.log(account.amount);
     let regExp:RegExp = /[a-zA-Z]/g;
     if (account.amount === undefined || regExp.test(account.amount)) {
       console.log("Invalid amount");
+      const message = 'Nieprawidłowa kwota!';
+      const width = this.calculateSnackbarWidth(message);
+      const widthClass = `width-${Math.min(300, Math.max(250, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+      this.snackBar.open(message, '', {
+        duration: 3000,
+        panelClass: ['error-snackbar', widthClass],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
       return;
     }
     account.isLoading = true;
@@ -152,17 +201,46 @@ export class CurrencyAccountComponent implements OnInit {
         currencyId: account.currencyId
       }).then((response) => {
       console.log(response.data);
-      this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
 
-      window.location.href = response.data.url;
-      setTimeout(() => {
-        account.isLoading = false;
-        // Wyłącz animację ładowania po przeniesieniu
-      }, 2000000);
+      const message = 'Pomyślnie wypłacono środki!';
+      const width = this.calculateSnackbarWidth(message);
+      const widthClass = `width-${Math.min(300, Math.max(250, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+      this.snackBar.open(message, '', {
+        duration: 3000,
+        panelClass: ['success-snackbar', widthClass],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+
+      this.getCurrencyAccounts();
     }).catch((error) => {
+      console.log(error);
+
+      // Open the snackbar with the error message
+      const message = 'Niewystaczające środki!';
+      const width = this.calculateSnackbarWidth(message);
+      const widthClass = `width-${Math.min(300, Math.max(250, Math.round(width / 100) * 100))}`; // Round to nearest 100, min 100, max 300
+      this.snackBar.open(message, '', {
+        duration: 3000,
+        panelClass: ['error-snackbar', widthClass],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+
+    }).finally(() => {
       account.isLoading = false;
-
-    });;
-
+    });
   }
+
+
+  calculateSnackbarWidth(text: string): number {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.font = getComputedStyle(document.body).font;
+      return context.measureText(text).width;
+    }
+    return 0;
+  }
+
 }
