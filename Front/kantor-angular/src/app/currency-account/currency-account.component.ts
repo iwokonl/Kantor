@@ -23,6 +23,8 @@ export class CurrencyAccountComponent implements OnInit {
 
   selectedAccount: any = null; // Add this line
 
+  transactions: any[] = [];
+
 
   constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
@@ -38,6 +40,9 @@ export class CurrencyAccountComponent implements OnInit {
   selectAccount(account: any) {
     this.selectedAccount = account;
     this.openAccountForm = false; // Close the openAccountForm when an account is selected
+    this.axiosService.getTransactions(account.currencyId).then(data => {
+      this.transactions = data;
+    });
   }
 
   openAccountForm: boolean = false; // Add this line

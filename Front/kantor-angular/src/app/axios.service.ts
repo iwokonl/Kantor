@@ -81,4 +81,22 @@ export class AxiosService {
         };
       });
   }
+
+  getTransactions(id: string) {
+    let headers = {};
+    this.checkAuthTocken();
+    if (this.getAuthTocken() !== null) {
+      headers = {
+        'Authorization': 'Bearer ' + this.getAuthTocken()
+      };
+    }
+    return axios.request({
+      method: 'POST',
+      url: '/api/v1/transactions/getTransactions',
+      data: { id },
+      headers: headers
+    }).then(response => response.data); // Extract data from AxiosResponse
+  }
+
+
 }

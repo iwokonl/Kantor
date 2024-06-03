@@ -27,7 +27,7 @@ public class TransactionController {
         transactionService.addTransaction(addTransactionDto);
     }
 
-    @GetMapping("/getTransactions")
+    @PostMapping("/getTransactions")
     public ResponseEntity<List<Transaction>> getTransactions(@RequestBody TransactionDto transactionDto) {
         return ResponseEntity.ok(transactionService.getTransactions(transactionDto.id(),userClient.getUserInfo()));
     }

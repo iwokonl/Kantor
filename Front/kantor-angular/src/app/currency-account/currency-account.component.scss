@@ -347,3 +347,26 @@ a:hover{
   color: #dbdbdb;
   margin: 20px;
 }
+
+.transactions-table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  th{
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  td{
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+}
