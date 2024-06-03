@@ -115,7 +115,7 @@ public class PaypalController {
 
             UserDto userDto = userService.getUserInfo().orElseThrow(() -> new AppExeption("User not found", "Paypal", HttpStatus.NOT_FOUND));
 
-            paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currencyId(), String.valueOf(userDto.getId()), payoutRequestPaypalDto.total());
+
             Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(payoutRequestPaypalDto.currencyId()));
 
             if (currency.isEmpty()) {
@@ -135,13 +135,14 @@ public class PaypalController {
             JSONObject ratesObject = jsonObject.getJSONArray("rates").getJSONObject(0);
 
             double mid = ratesObject.getDouble("mid");
-
+            BigDecimal total = BigDecimal.valueOf(payoutRequestPaypalDto.total()).multiply(BigDecimal.valueOf(mid));
+            paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currencyId(), String.valueOf(userDto.getId()), total.doubleValue());
             AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                     .typeOfTransaction("PAYOUT")
                     .amountOfForeginCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .ForeginCurrencyId(Long.valueOf(payoutRequestPaypalDto.currencyId()))
                     .targetCurrencyId(Long.valueOf(payoutRequestPaypalDto.currencyId()))
-                    .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
+                    .targetCurrency(total.toString())
                     .appUserId(String.valueOf(userDto.getId()))
                     .exchangeRate(String.valueOf(mid))
                     .build();
