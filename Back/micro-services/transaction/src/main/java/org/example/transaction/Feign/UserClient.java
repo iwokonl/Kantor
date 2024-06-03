@@ -12,3 +12,4 @@ public interface UserClient {
     @PostMapping("v1/auth/userInfo")
     Optional<UserDto> getUserInfo();
 }
+

@@ -28,6 +28,6 @@ public class FeignErrorDecoder implements ErrorDecoder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new AppExeption(errorContent,"paypal", HttpStatus.valueOf(response.status()));
+        return new AppExeption(errorContent,"Transaction", HttpStatus.valueOf(response.status()));
     }
 }

@@ -2,6 +2,7 @@ package org.example.transaction.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+
 import org.example.transaction.Feign.UserClient;
 import org.example.transaction.dto.AddTransactionDto;
 import org.example.transaction.dto.GetTransactionDto;
@@ -15,21 +16,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
     @Autowired
     private HttpServletRequest request;
-    private UserClient userClient;
     private final TransactionRepo transactionRepo;
     private static final Logger logger = LoggerFactory.getLogger(TransactionService.class);
+
 
     public void addTransaction(AddTransactionDto addTransactionDto) {
         try {
@@ -60,10 +63,16 @@ public class TransactionService {
         }
         return null;
     }
-    public List<GetTransactionDto> getTransactions(String id) {
-        UserDto userDto = userClient.getUserInfo().orElseThrow(() -> new AppExeption("User not found", "Paypal", HttpStatus.NOT_FOUND));
+    public List<Transaction> getTransactions(String id,Optional<UserDto> userDto) {
+        logger.info("Get transactionsasdads");
+//        Optional<UserDto> userDto = Optional.ofNullable(userClient.getUserInfo());
+//        if (userDto.isEmpty()) {
+//            throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
+//        }
 
-        List<GetTransactionDto> transactions = transactionRepo.findAllByAppUserIdAndForeginCurrencyId(userDto.getId(), Long.valueOf(id));
+//        UserDto user = userDto.get();
+
+        List<Transaction> transactions = transactionRepo.findByAppUserIdAndTargetCurrencyId(1L, Long.valueOf(id));
         return transactions;
     }
 }

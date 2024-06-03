@@ -128,7 +128,7 @@ public class PaypalController {
                     payoutRequestPaypalDto.total(),
                     currencyDto.getCode()
             );
-
+            logger.info("Create payout");
             ApiService apiService = new ApiService();
             String json = apiService.callExternalApi(currencyDto.getCode());
             JSONObject jsonObject = new JSONObject(json);
@@ -140,7 +140,7 @@ public class PaypalController {
                     .typeOfTransaction("PAYOUT")
                     .amountOfForeginCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .ForeginCurrencyId(Long.valueOf(payoutRequestPaypalDto.currencyId()))
-                    .targetCurrencyId(63L)
+                    .targetCurrencyId(Long.valueOf(payoutRequestPaypalDto.currencyId()))
                     .targetCurrency(String.valueOf(payoutRequestPaypalDto.total()))
                     .appUserId(String.valueOf(userDto.getId()))
                     .exchangeRate(String.valueOf(mid))

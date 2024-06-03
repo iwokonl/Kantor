@@ -207,3 +207,15 @@ Ntransaction/src/main/java/org/example/transaction/model/TypeOfTransaction.java
 Mtransaction/src/main/java/org/example/transaction/TransactionApplication.java,3\3\339e7dbfe19ecf78203a9fe162e21778238d18ce
 o
 ?paypal/src/main/java/org/example/paypal/service/ApiService.java,3\f\3fcf963ec75898e42aa98a16c67b8f84bbdb2d66
+r
+Btransaction/src/main/java/org/example/transaction/dto/UserDto.java,1\c\1cab10685e06c308c7604f8d3e77720c68a8eacd
+w
+Gtransaction/src/main/java/org/example/transaction/Feign/UserClient.java,0\1\0117a9bbe14d0cb7396923c1db7f48ff8789e1db
+y
+Itransaction/src/main/java/org/example/transaction/config/FeignConfig.java,6\6\66bd3d35f10bb9dd1e6464f1f30021d05f776918
+~
+Ntransaction/src/main/java/org/example/transaction/Feign/FeignErrorDecoder.java,8\0\805df4716d82feeb5a0ecbfc1713587102e4a179
+
+Otransaction/src/main/java/org/example/transaction/mapper/TransactionMapper.java,3\2\32b2f2deda9d237c9f91d162c340cc4f81fd6b3d
+C
+transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
