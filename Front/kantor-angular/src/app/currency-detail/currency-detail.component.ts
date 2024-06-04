@@ -5,10 +5,9 @@ import { CurrencyFlagsService } from '../currency-flags.service';
 import { Title } from '@angular/platform-browser';
 import { Chart } from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import {forkJoin, from, throwError} from 'rxjs';
-import {catchError, switchMap} from "rxjs/operators";
+import { forkJoin, from, throwError } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
-
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -24,9 +23,11 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
   currencyDetails: any;
   currencyFlags: { [key: string]: string } = {};
 
-  chart: Chart | undefined
+  chart: Chart | undefined;
   startDate: string = '';
   endDate: string = '';
+
+  priceChange: number | undefined; // Property to hold the calculated price change
 
   constructor(private route: ActivatedRoute, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title, private snackBar: MatSnackBar) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
@@ -48,13 +49,6 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
     return `${day}.${month}.${year}`;
   }
 
-
-  // capitalizeWords(str: string): string { //Wszystkie pierwsze litery w słowach będą wielkie
-  //   return str.split(' ')
-  //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  //     .join(' ');
-  // }
-
   capitalizeFirstWord(str: string): string { //Pierwsza litera w zdaniu będzie wielka
     return str.split(' ')
       .map((word, index) => index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word)
@@ -74,8 +68,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
         console.error('Error in getCurrencyHistory:', error);
         return throwError(error);
       })
-    )
-
+    );
 
     forkJoin([currencyDetails$, currencyHistory$]).subscribe(([details, history]) => {
       this.currencyDetails = details;
@@ -86,12 +79,17 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
         const values = history.rates.map((rate: any) => rate.mid);
 
         this.createChart(labels, values);
+
+        // Calculate the price change
+        const initialPrice = values[0];
+        const finalPrice = values[values.length - 1];
+        this.priceChange = ((finalPrice - initialPrice) / initialPrice) * 100; // Assigning to priceChange property
       } else {
         console.error('history.rates is not an array:', history.rates);
       }
     });
-
   }
+
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -128,11 +126,10 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,// Add this line
+        maintainAspectRatio: false, // Add this line
         plugins: {
           legend: {
-            onClick: (e, legendItem, legend) => {
-            }
+            onClick: (e, legendItem, legend) => {}
           },
           tooltip: {
             callbacks: {
@@ -143,12 +140,12 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
                   label += ': ';
                 }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat('en-US', {style: 'decimal'}).format(context.parsed.y) + ' PLN';
+                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
                 }
                 return label;
               }
             }
-          },
+          }
         },
         scales: {
           x: {
@@ -169,7 +166,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
               }
             },
             grid: {
-                color: 'rgba(219, 219, 219, 0)' // this will set the color of the grid lines
+              color: 'rgba(219, 219, 219, 0)' // this will set the color of the grid lines
             }
           },
           y: {

@@ -83,36 +83,48 @@
 
   <div class="main-container">
     <div class="left-container">
+
       <div class="upper-container">
-
+        <div class="chart-container"><canvas id="chart" style="margin-top: 0;"></canvas></div>
       </div>
-      <div class="lower-container">
-        <div class="left-down-container"></div>
-        <div class="right-down-container">
-          <ng-template #currencyPair let-exchangeRate>
-            <div class="pair">
-              <p class="exchange-rate-text">{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
-            </div>
-          </ng-template>
 
-          <div class="popular-pairs">
-            <h2>Najpopularniejsze pary walutowe</h2>
-            <div class="pairs">
-              <div class="column">
-                <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 3)">
-                  <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
-                </ng-container>
-              </div>
-              <div class="column">
-                <ng-container *ngFor="let exchangeRate of exchangeRates.slice(3, 6)">
-                  <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
-                </ng-container>
+      <div class="lower-container">
+        <div class="left-down-container">
+          <div class="custom-col" *ngFor="let account of accounts">
+            <div class="custom-card">
+              <div class="custom-card-body">
+                <h5 class="custom-card-title">
+                  <p id="currency-info" class="custom-card-title">
+                    {{ currencyFlags[account.currencyCode] }}
+                    {{account.currencyCode}}
+                  </p>
+                </h5>
+                <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
               </div>
             </div>
           </div>
         </div>
+        <div class="right-down-container">
+
+        </div>
       </div>
     </div>
-    <div class="right-container"></div>
+    <div class="right-container">
+      <ng-template #currencyPair let-exchangeRate>
+      <div class="pair">
+        <p class="exchange-rate-text">{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
+      </div>
+    </ng-template>
+
+      <div class="popular-pairs">
+        <h2>Najpopularniejsze pary walutowe</h2>
+        <div class="pairs">
+          <div class="column">
+            <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 15)">
+              <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div></div>
   </div>
 </div>
