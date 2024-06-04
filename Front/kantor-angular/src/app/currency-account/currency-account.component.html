@@ -156,13 +156,22 @@
             <div class="lower-container">
               <table>
                 <tbody>
-                <tr *ngFor="let transaction of transactions">
-                  <td>{{ transaction.targetCurrency }}</td>
-                  <td>{{ transaction.exchangeRate }}</td>
-                  <td>{{ transaction.amountOfForeginCurrency }}</td>
-                  <td>{{ transaction.typeOfTransaction }}</td>
-                  <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-                </tr>
+                <ng-container *ngFor="let transaction of transactions">
+                  <tr *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                    <td>{{ transaction.targetCurrency + ' PLN'}}</td>
+                    <td>{{ transaction.exchangeRate }}</td>
+                    <td>{{ transaction.amountOfForeginCurrency + ' ' + selectedAccount.currencyCode }}</td>
+                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                  </tr>
+                  <ng-template #elseBlock>
+                    <td>{{ transaction.targetCurrency + ' ' + selectedAccount.currencyCode }}</td>
+                    <td>{{ transaction.exchangeRate }}</td>
+                    <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
+                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td><!-- Tutaj umieść kod, który ma być wyrenderowany, gdy transaction.typeOfTransaction nie jest równy 'PAYOUT' -->
+                  </ng-template>
+                </ng-container>
                 </tbody>
               </table>
             </div>
