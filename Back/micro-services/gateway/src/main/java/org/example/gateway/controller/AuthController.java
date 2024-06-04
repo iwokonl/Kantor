@@ -8,6 +8,7 @@ import org.example.gateway.dto.UserDto;
 import org.example.gateway.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,11 +26,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto coridentialsDto) {
-//
+
         UserDto user = userService.login(coridentialsDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.ok(user);
     }
+
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
         UserDto user = userService.register(signUpDto);
@@ -43,11 +45,41 @@ public class AuthController {
         UserDto user = userService.findUserId(id);
         return ResponseEntity.ok(user);
     }
+
     @PostMapping("/userInfo")
-    public ResponseEntity<UserDto> userInfo(){
+    public ResponseEntity<UserDto> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String token = authentication.getName();
         UserDto user = userService.getUserInfo(token);
         return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/loginChange")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void loginChange(@RequestBody UserDto userDto) {
+        userService.loginChange(userDto);
+    }
+
+    @PutMapping("/firstnameChange")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void firstnameChange(@RequestBody UserDto userDto) {
+        userService.firstnameChange(userDto);
+    }
+
+    @PutMapping("/lastnameChange")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void lastnameChange(@RequestBody UserDto userDto){
+        userService.lastnameChange(userDto);
+    }
+    @PutMapping("/emailChange")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void emailChange(@RequestBody UserDto userDto){
+        userService.emailChange(userDto);
+    }
+
+    @PutMapping("/passwordChange")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void passwordChange(@RequestBody UserDto userDto, String password, String newPassword) {
+        userService.passwordChange(userDto, password, newPassword);
     }
 }
