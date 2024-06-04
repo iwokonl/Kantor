@@ -46,6 +46,15 @@ public class AuthController {
         return ResponseEntity.ok(user);
     }
 
+    @GetMapping("/refreshToken")
+    public ResponseEntity<UserDto> refreshToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String token = authentication.getName();
+        UserDto user = userService.getUserInfo(token);
+        user.setToken(userAuthProvider.createToken(user));
+        return ResponseEntity.ok(user);
+    }
+
     @PostMapping("/userInfo")
     public ResponseEntity<UserDto> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
