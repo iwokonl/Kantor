@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface TransactionRepo extends JpaRepository<Transaction, Long> {
 
     List<Transaction> findByAppUserIdAndTargetCurrencyId(Long appUserId, Long targetCurrencyId);
+    List<Transaction> findByAppUserId(Long appUserId);
 }

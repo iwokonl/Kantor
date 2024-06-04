@@ -31,4 +31,9 @@ public class TransactionController {
     public ResponseEntity<List<Transaction>> getTransactions(@PathVariable String id) {
         return ResponseEntity.ok(transactionService.getTransactions(id,userClient.getUserInfo()));
     }
+
+    @GetMapping("/getTransactionByUser")
+    public ResponseEntity<List<Transaction>> getTransactionByUser() {
+        return ResponseEntity.ok(transactionService.getTransactionByUser());
+    }
 }

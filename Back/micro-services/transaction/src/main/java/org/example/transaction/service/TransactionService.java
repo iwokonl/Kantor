@@ -32,6 +32,8 @@ public class TransactionService {
     private HttpServletRequest request;
     private final TransactionRepo transactionRepo;
     private static final Logger logger = LoggerFactory.getLogger(TransactionService.class);
+    @Autowired
+    private UserClient userClient;
 
 
     public void addTransaction(AddTransactionDto addTransactionDto) {
@@ -65,14 +67,24 @@ public class TransactionService {
     }
     public List<Transaction> getTransactions(String id,Optional<UserDto> userDto) {
         logger.info("Get transactionsasdads");
-//        Optional<UserDto> userDto = Optional.ofNullable(userClient.getUserInfo());
-//        if (userDto.isEmpty()) {
-//            throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
-//        }
+        Optional<UserDto> user= userClient.getUserInfo();
+        if (user.isEmpty()) {
+            throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
+        }
 
-//        UserDto user = userDto.get();
+        List<Transaction> transactions = transactionRepo.findByAppUserIdAndTargetCurrencyId(user.get().getId(), Long.valueOf(id));
+        transactions.sort((t1, t2) -> t2.getTransactionDate().compareTo(t1.getTransactionDate()));
 
-        List<Transaction> transactions = transactionRepo.findByAppUserIdAndTargetCurrencyId(1L, Long.valueOf(id));
+        return transactions;
+    }
+
+    public List<Transaction> getTransactionByUser() {
+
+        Optional<UserDto> user= userClient.getUserInfo();
+        if (user.isEmpty()) {
+            throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
+        }
+        List<Transaction> transactions = transactionRepo.findByAppUserId(user.get().getId());
         transactions.sort((t1, t2) -> t2.getTransactionDate().compareTo(t1.getTransactionDate()));
 
         return transactions;
