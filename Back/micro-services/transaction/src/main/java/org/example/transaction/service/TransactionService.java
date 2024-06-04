@@ -73,6 +73,8 @@ public class TransactionService {
 //        UserDto user = userDto.get();
 
         List<Transaction> transactions = transactionRepo.findByAppUserIdAndTargetCurrencyId(1L, Long.valueOf(id));
+        transactions.sort((t1, t2) -> t2.getTransactionDate().compareTo(t1.getTransactionDate()));
+
         return transactions;
     }
 }

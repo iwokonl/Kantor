@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { CurrencyService } from '../currency.service';
 import { CurrencyFlagsService } from '../currency-flags.service';
 import { Title } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl } from '@angular/forms';
+
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -26,6 +28,10 @@ export class CurrencyAccountComponent implements OnInit {
 
   transactions: any[] = [];
 
+  expectedPrice: number = 0;
+
+  amountControl = new FormControl('');
+
 
   constructor(private axiosService: AxiosService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService, private titleService: Title, private snackBar: MatSnackBar) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
@@ -40,16 +46,28 @@ export class CurrencyAccountComponent implements OnInit {
 
   selectAccount(account: any) {
     this.selectedAccount = account;
-    this.openAccountForm = false; // Close the openAccountForm when an account is selected
+    this.openAccountForm = false;
     this.axiosService.getTransactions(account.currencyId).then(data => {
       this.transactions = data;
     });
+    this.amountControl.reset();
   }
 
-  openAccountForm: boolean = false; // Add this line
+  calculateExpectedPrice() {
+    if (this.selectedAccount && this.selectedAccount.amount) {
+      this.currencyService.getCurrencyDetails(this.selectedAccount.currencyCode).subscribe(details => {
+        console.log('details.rates[0].mid:', details.rates[0].mid);
+        this.expectedPrice = this.selectedAccount.amount * details.rates[0].mid;
+      });
+    } else {
+      this.expectedPrice = 0;
+    }
+  }
+
+  openAccountForm: boolean = false;
   openCurrencyAccountForm() {
     this.openAccountForm = true;
-    this.selectedAccount = null; // Close the selectedAccount when the form is opened
+    this.selectedAccount = null;
   }
 
 
@@ -66,11 +84,26 @@ export class CurrencyAccountComponent implements OnInit {
         if (account.currencyId !== "62") {
           this.currencyService.getCurrencyDetailsByID(account.currencyId).subscribe(details => {
             account.balanceInPLN = account.balance * details.rates[0].mid;
-        });
+          });
         } else {
           account.balanceInPLN = account.balance;
         }
       });
+      // If an account is selected, find the updated account data and update selectedAccount
+      if (this.selectedAccount) {
+        const updatedAccount = this.accounts.find(account => account.currencyId === this.selectedAccount.currencyId);
+        if (updatedAccount) {
+          this.selectedAccount = updatedAccount;
+        }
+      }
+      // czyścimy formularz
+      this.amountControl.reset();
+      // odświeżenie tabeli transakcji/historii
+      if (this.selectedAccount) {
+        this.axiosService.getTransactions(this.selectedAccount.currencyId).then(data => {
+          this.transactions = data;
+        });
+      }
       console.log(this.accounts);
     });
   }
@@ -78,14 +111,26 @@ export class CurrencyAccountComponent implements OnInit {
   createCurrencyAccount(newAccount: { curencyCode: string, balance: number, userId: number }): void {
     this.axiosService.request("POST", "/api/v1/currencyAccounts/createCurrencyAccountt", newAccount).then((response) => {
       console.log(response.data);
-      this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
+      this.getCurrencyAccounts();
     });
   }
   ngOnInit(): void {
     this.getCurrencyAccounts();
     this.titleService.setTitle("Konta walutowe - Kantor $€££")
+
+    this.amountControl.valueChanges.subscribe(value => {
+      if (this.selectedAccount) {
+        this.selectedAccount.amount = value;
+        this.calculateExpectedPrice();
+      }
+    });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedAccount'] && changes['selectedAccount'].currentValue) {
+      this.calculateExpectedPrice();
+    }
+  }
 
   ngOnDestroy() {
     this.titleService.setTitle('Kantor $€££ - Wielowalutowy kantor online.');
@@ -229,6 +274,7 @@ export class CurrencyAccountComponent implements OnInit {
 
     }).finally(() => {
       account.isLoading = false;
+
     });
   }
 
