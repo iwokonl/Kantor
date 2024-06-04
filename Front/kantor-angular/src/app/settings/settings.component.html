@@ -29,10 +29,63 @@
       </div>
     </div>
     <div class="lower-settings-container">
-
       <div class="selected-profile" *ngIf="isProfileSelected">
-        <!-- Profile settings go here -->
-        <p> Profil </p>
+        <div class="lower-settings-titles">
+          <p class="settings-text">Nazwa użytkownika:</p>
+          <p class="settings-text">Imię:</p>
+          <p class="settings-text">Nazwisko:</p>
+          <p class="settings-text">Email:</p>
+        </div>
+        <div class="lower-settings-inputs">
+          <div class="username" *ngIf="!isEditingUsername">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="user_name" name="username">
+              <button class="button-box" (click)="toggleEditUsername()">Zmień</button>
+            </form>
+          </div>
+          <div class="username" *ngIf="isEditingUsername">
+            <form class="settings-forms" (ngSubmit)="updateUserOnServer()">
+              <input id="active-username" class="input-box" [(ngModel)]="user_name" name="username">
+              <button class="button-box" type="submit">Zapisz</button>
+            </form>
+          </div>
+          <div class="firstname"  *ngIf="!isEditingFirstName">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="firstname" name="firstname">
+              <button class="button-box" (click)="toggleEditFirstName()">Zmień</button>
+            </form>
+          </div>
+          <div class="firstname" *ngIf="isEditingFirstName">
+            <form class="settings-forms" (ngSubmit)="updateUserOnServer()">
+              <input id="active-firstname" class="input-box" [(ngModel)]="firstname" name="firstname">
+              <button class="button-box" type="submit">Zapisz</button>
+            </form>
+          </div>
+          <div class="lastname" *ngIf="!isEditingLastName">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="lastname" name="lastname">
+              <button class="button-box" (click)="toggleEditLastName()">Zmień</button>
+            </form>
+          </div>
+          <div class="lastname" *ngIf="isEditingLastName">
+            <form class="settings-forms" (ngSubmit)="updateUserOnServer()">
+              <input id="active-lastname" class="input-box" [(ngModel)]="lastname" name="lastname">
+              <button class="button-box" type="submit">Zapisz</button>
+            </form>
+          </div>
+          <div class="email" *ngIf="!isEditingEmail">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="email" name="email">
+              <button class="button-box" (click)="toggleEditEmail()">Zmień</button>
+            </form>
+          </div>
+          <div class="email" *ngIf="isEditingEmail">
+            <form class="settings-forms" (ngSubmit)="updateUserOnServer()">
+              <input id="active-email" class="input-box" [(ngModel)]="email" name="email">
+              <button class="button-box" (click)="updateUserOnServer()" type="submit">Zapisz</button>
+            </form>
+          </div>
+        </div>
       </div>
 
       <div class="selected-security"  *ngIf="isSecuritySelected">

@@ -17,8 +17,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   private authStatusSub: Subscription | undefined;
   isEditingUsername: boolean = false;
-
-
+  isEditingFirstName: boolean = false;
+  isEditingLastName: boolean = false;
   isProfileSelected: boolean = true;
   isSecuritySelected: boolean = false;
   isHelpSelected: boolean = false;
@@ -43,7 +43,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   updateUserDetails(): void {
     if (this.isLoggedIn) {
       this.axiosService.request("POST",
-        "api/v1/auth/userinfo",
+        "api/v1/auth/userInfo",
         {}).then((response) => {
         this.user_name = response.data.username;
         this.firstname = response.data.firstName;
@@ -56,12 +56,25 @@ export class SettingsComponent implements OnInit, OnDestroy {
       });
     }
   }
-  updateUserOnServer(): void {
+  changeUserDetails(): void {
     if (this.isLoggedIn) {
-      this.axiosService.request("PUT", "api/v1/auth/userinfo", {
+      this.axiosService.request("PUT", "api/v1/auth/userInfo", {
         username: this.user_name,
         firstName: this.firstname,
-        lastName: this.lastname
+        lastName: this.lastname,
+        email: this.email
+      }).then((response) => {
+        console.log(response);
+      });
+    }
+  }
+  updateUserOnServer(): void {
+    if (this.isLoggedIn) {
+      this.axiosService.request("PUT", "api/v1/auth/userInfo", {
+        username: this.user_name,
+        firstName: this.firstname,
+        lastName: this.lastname,
+        email: this.email
       }).then((response) => {
         console.log(response);
       });
@@ -78,9 +91,20 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     // if (!this.isEditingEmail) {
     //   // Jeśli pole formularza jest wyłączone, wysyłamy dane do serwera
-    //   this.sendDataToServer(this.email);
+    //   this.changeUserDetails();
     // }
   }
+
+  toggleEditFirstName() {
+    this.updateUserDetails();
+    this.isEditingFirstName = !this.isEditingFirstName;
+  }
+
+  toggleEditLastName() {
+    this.updateUserDetails();
+    this.isEditingLastName = !this.isEditingLastName;
+  }
+
   ngOnDestroy(): void {
     if (this.authStatusSub) {
       this.authStatusSub.unsubscribe();

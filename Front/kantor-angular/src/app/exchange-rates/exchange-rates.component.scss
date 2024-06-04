@@ -1,3 +1,11 @@
+.content-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 .table-container{
   color: #DBDBDB;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
@@ -6,8 +14,8 @@
   border: 2px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
   backdrop-filter: blur(25px);
-
-  max-width: 80%;
+  height: 90%;
+  max-width: 90%;
 }
 
 .header-table{
@@ -15,11 +23,12 @@
   top: 0;
   z-index: 2;
 }
-
+.header-text{
+  width: 10%;
+}
 .inner-table {
   overflow-y: auto;
-  max-height: 83vh;
-  padding: 20px;
+  max-height: 90%;
 
   &::-webkit-scrollbar {
     width: 20px;
@@ -79,8 +88,9 @@ td, th {
 }
 
 .chart-cell {
-  width: 22%;
-  overflow: hidden;
+  width: 30%;
+  display:flex;
+  justify-content: center;
 }
 
 
@@ -144,4 +154,31 @@ td, th {
   border-width: 10px 5px 0 5px;
   border-color: red transparent transparent transparent;
 }
+.rows{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.one-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.each-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+}
+.header-currency{
+  width: 20%;
+}
+.currency-column{
+  width: 20%;
+}
+.wykres{
 
+  width: 70%;
+}
