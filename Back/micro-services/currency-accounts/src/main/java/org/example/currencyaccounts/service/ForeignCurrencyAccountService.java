@@ -40,7 +40,7 @@ public class ForeignCurrencyAccountService {
         if (userAppDto.isEmpty()) {
             throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
-
+        logger.error("aasdasdasddasdasasdsdd: " + userAppDto);
         UserDto userDtoReal = userAppDto.get();
         logger.error("asdd: " + userAppDto);
         UserDto userDtoReal1 = userClient.findUserId(userDtoReal.getId());

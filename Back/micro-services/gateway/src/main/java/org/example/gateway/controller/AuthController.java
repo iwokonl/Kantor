@@ -40,7 +40,7 @@ public class AuthController {
     }
 
     @PostMapping("/findUserId/{id}")
-    public ResponseEntity<UserDto> findUserId(@RequestParam Long id) {
+    public ResponseEntity<UserDto> findUserId(@PathVariable("id") Long id) {
         logger.error("asdd: " + id);
         UserDto user = userService.findUserId(id);
         return ResponseEntity.ok(user);
@@ -59,6 +59,7 @@ public class AuthController {
     public ResponseEntity<UserDto> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String token = authentication.getName();
+        logger.error("asdd: " + token);
         UserDto user = userService.getUserInfo(token);
         return ResponseEntity.ok(user);
     }

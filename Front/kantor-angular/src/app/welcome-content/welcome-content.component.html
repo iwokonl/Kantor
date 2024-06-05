@@ -104,11 +104,42 @@
             </div>
           </div>
         </div>
-        <div class="right-down-container">
 
+        <div class="right-down-container">
+          <div class="trasactions-container">
+            <div class="row">
+              <table class="grid-table">
+                <tbody>
+                <ng-container *ngFor="let transaction of transactions">
+                  <tr *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                    <td>{{ transaction.amountOfForeginCurrency  + ' ' + transaction.currencyId}}</td>
+                    <td>{{ transaction.exchangeRate }}</td>
+                    <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
+                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                  </tr>
+                  <ng-template #elseBlock>
+                    <tr>
+                    <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
+                    <td>{{ transaction.exchangeRate }}</td>
+                    <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
+                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                    </tr>
+                  </ng-template>
+                </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+
+
       </div>
     </div>
+
+
+
     <div class="right-container">
       <ng-template #currencyPair let-exchangeRate>
       <div class="pair">
@@ -125,6 +156,8 @@
             </ng-container>
           </div>
         </div>
-      </div></div>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -6,4 +6,16 @@
   width: 100%;
 }
 
+.material-icons{
+  color: #DBDBDB;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-top: 8px;
+  font-size: 1.7em;
+
+  &:hover{
+    color: #5fe5ee;
+  }
+}
+
 

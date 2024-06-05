@@ -7,8 +7,11 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.example.gateway.controller.AuthController;
 import org.example.gateway.dto.UserDto;
 import org.example.gateway.exeption.AppExeption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,11 +30,13 @@ public class UserAuthProvider {
     @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserAuthProvider.class);
     @PostConstruct
     public void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 
     }
+
 
     public String createToken(UserDto dto) {
         Date now = new Date();
@@ -44,6 +49,7 @@ public class UserAuthProvider {
                 .withClaim("firstName", dto.getFirstName())
                 .withClaim("lastName", dto.getLastName())
                 .withClaim("email", dto.getEmail())
+                .withClaim("expTime", validity.getTime())
                 .sign(Algorithm.HMAC256(secretKey));
 
     }
@@ -63,6 +69,7 @@ public class UserAuthProvider {
                     .lastName(decodedJWT.getClaim("lastName").asString())
                     .token(decodedJWT.getToken())
                     .email(decodedJWT.getClaim("email").asString())
+                    .expTime(String.valueOf(decodedJWT.getExpiresAt().getTime()))
                     .build();
             return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
 

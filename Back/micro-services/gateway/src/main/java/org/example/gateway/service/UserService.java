@@ -58,10 +58,11 @@ public class UserService {
         return jwtInfo(jwtToken);
     }
     public UserDto jwtInfo(String token) {
-        Pattern pattern = Pattern.compile("UserDto\\(id=(.*?), role=(.*?), username=(.*?), firstName=(.*?), lastName=(.*?), email=(.*?), token=(.*?)\\)");
+        Pattern pattern = Pattern.compile("UserDto\\(id=(.*?), role=(.*?), username=(.*?), firstName=(.*?), lastName=(.*?), email=(.*?), token=(.*?), expTime=(.*?)\\)");
         Matcher matcher = pattern.matcher(token);
 
         if (matcher.find()) {
+            logger.info("asdasddas"+token);
             UserDto userInfo = new UserDto();
             userInfo.setId(Long.valueOf(matcher.group(1)));
             userInfo.setRole(matcher.group(2).equals("ADMIN") ? Role.ADMIN : Role.USER);
@@ -70,6 +71,7 @@ public class UserService {
             userInfo.setLastName(matcher.group(5));
             userInfo.setEmail(matcher.group(6));
             userInfo.setToken(matcher.group(7));
+            userInfo.setExpTime(matcher.group(8));
             return userInfo;
         }
 

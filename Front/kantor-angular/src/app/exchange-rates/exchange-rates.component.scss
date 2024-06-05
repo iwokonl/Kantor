@@ -72,6 +72,10 @@ th{
   z-index: 2;
 }
 
+.one-row{
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+
+}
 
 td{
   text-align: center;
@@ -171,6 +175,7 @@ td, th {
   flex-direction: column;
   align-items: center;
   width: 10%;
+  font-weight: bold;
 }
 .header-currency{
   width: 20%;
