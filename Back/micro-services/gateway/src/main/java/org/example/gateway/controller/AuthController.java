@@ -59,6 +59,7 @@ public class AuthController {
     public ResponseEntity<UserDto> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String token = authentication.getName();
+        logger.error("asdd: " + token);
         UserDto user = userService.getUserInfo(token);
         return ResponseEntity.ok(user);
     }

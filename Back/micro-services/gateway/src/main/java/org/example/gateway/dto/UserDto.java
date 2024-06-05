@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.gateway.model.Role;
 
+import java.time.LocalTime;
+
 @Data
 @AllArgsConstructor
 @Builder
@@ -18,5 +20,6 @@ public class UserDto { // Klasa przechowująca dane użytkownika
     private String lastName;
     private String email;
     private String token;
+    private String expTime;
 
 }
