@@ -63,7 +63,7 @@ docker-compose up -d
 ```bash
 cd Front/kantor-angular
 npm install -g angular-cli@17.3.0
-npm run
+npm serve
 ng b
 cd /Projekt
 ```
