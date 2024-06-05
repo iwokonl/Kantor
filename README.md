@@ -32,7 +32,7 @@ Przejdź po wymaganiach, żeby upewnić się, że posiadasz wszystkie niezbędę
 
 
 Przed instalacją upewnij się, że na komputerze zainstalowane jest następujące oprogramowanie:
-- [Java 22.0.1](https://jdk.java.net/22/)
+- [Java 22.0.x](https://jdk.java.net/22/)
 - [JDK 22](https://www.oracle.com/java/technologies/downloads/#java22)
 - [Spring boot 3.2.x](https://start.spring.io)
 - [TypeScript 5.3.x](https://www.typescriptlang.org/download)
