@@ -46,7 +46,7 @@
           <div class="username" *ngIf="isEditingUsername">
             <form class="settings-forms" (ngSubmit)="changeUserLogin()">
               <input id="active-username" class="input-box" [(ngModel)]="user_name" name="username">
-              <button class="button-box" type="submit">Zapisz</button>
+              <button class="button-box"  (click)="toggleEditUsername()" type="submit">Zapisz</button>
             </form>
           </div>
           <div class="firstname"  *ngIf="!isEditingFirstName">

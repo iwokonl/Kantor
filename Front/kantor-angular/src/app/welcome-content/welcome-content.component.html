@@ -107,30 +107,24 @@
 
         <div class="right-down-container">
           <div class="trasactions-container">
-            <div class="row">
-              <table class="grid-table">
-                <tbody>
                 <ng-container *ngFor="let transaction of transactions">
-                  <tr *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                  <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'WITHDRAW'; else elseBlock">
                     <td>{{ transaction.amountOfForeginCurrency  + ' ' + transaction.currencyId}}</td>
                     <td>{{ transaction.exchangeRate }}</td>
                     <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td><img class="svg image" src="assets/{{ transaction.typeofTransaction }}.svg"></td>
                     <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                   </tr>
                   <ng-template #elseBlock>
-                    <tr>
+                    <tr class="transaction-row">
                     <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
                     <td>{{ transaction.exchangeRate }}</td>
                     <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
-                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
                     <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                     </tr>
                   </ng-template>
                 </ng-container>
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
 

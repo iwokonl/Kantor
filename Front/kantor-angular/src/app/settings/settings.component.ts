@@ -73,6 +73,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       id: this.id
     }).then((response) => {
       console.log(response);
+      this.updateUserDetails();
     });
   }
   changeUserLastName(): void {
