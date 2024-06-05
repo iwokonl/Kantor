@@ -343,3 +343,13 @@ th, td {
   padding: 8px;
   text-align: center;
 }
+
+.notLoggedInBlock, .notLoggedInBlock2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}

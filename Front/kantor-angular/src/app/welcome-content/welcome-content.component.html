@@ -90,6 +90,7 @@
 
       <div class="lower-container">
         <div class="left-down-container">
+          <div *ngIf="isLoggedIn; else notLoggedInBlock">
           <div class="custom-col" *ngFor="let account of accounts">
             <div class="custom-card">
               <div class="custom-card-body">
@@ -103,9 +104,14 @@
               </div>
             </div>
           </div>
+          </div>
+          <ng-template #notLoggedInBlock>
+            <h3 class="notLoggedInBlock"><b>Tu pojawią się konta walutowe zalogowaniu</b></h3>
+          </ng-template>
         </div>
 
         <div class="right-down-container">
+          <div *ngIf="isLoggedIn; else notLoggedInBlock2">
           <div class="trasactions-container">
             <div class="row">
               <table class="grid-table">
@@ -132,6 +138,10 @@
               </table>
             </div>
           </div>
+          </div>
+          <ng-template #notLoggedInBlock2>
+            <h3 class="notLoggedInBlock2"><b>Tu pojawi się historia transakcji po zalogowaniu</b></h3>
+          </ng-template>
         </div>
 
 
