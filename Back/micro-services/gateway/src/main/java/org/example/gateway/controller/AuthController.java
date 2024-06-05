@@ -40,7 +40,7 @@ public class AuthController {
     }
 
     @PostMapping("/findUserId/{id}")
-    public ResponseEntity<UserDto> findUserId(@RequestParam Long id) {
+    public ResponseEntity<UserDto> findUserId(@PathVariable("id") Long id) {
         logger.error("asdd: " + id);
         UserDto user = userService.findUserId(id);
         return ResponseEntity.ok(user);
