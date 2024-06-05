@@ -1,0 +1,105 @@
+version: '3'
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  postgres_gateway:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=gateway
+    ports:
+      - "5437:5432"
+
+  postgres_paypal:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=paypal
+    ports:
+      - "5433:5432"
+
+  postgres_transaction:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=transaction
+    ports:
+      - "5434:5432"
+
+  postgres_currencies:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=currencies
+    ports:
+      - "5435:5432"
+
+  postgres_currency_accounts:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=currency_accounts
+    ports:
+      - "5436:5432"
+
+
+
+#  postgres_keycloak:
+#    image: postgres:latest
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+#    environment:
+#      POSTGRES_DB: keycloak
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: admin
+#    healthcheck:
+#      test: "exit 0"
+#    ports:
+#      - 5432:5432
+#    networks:
+#      - keycloak_demo
+#  keycloak:
+#    image: quay.io/keycloak/keycloak
+#    command: start-dev
+#    environment:
+#      KC_DB: postgres
+#      KC_DB_URL_HOST: postgres_keycloak
+#      KC_DB_URL_DATABASE: keycloak
+#      KC_DB_PASSWORD: admin
+#      KC_DB_USERNAME: postgres
+#      KC_DB_SCHEMA: public
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      postgres_keycloak:
+#        condition: service_healthy
+#    networks:
+#      - keycloak_demo
+#    volumes:
+#      - ./themes/kantor:/opt/keycloak/themes/kantor
+
+
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - zipkin
+
+networks:
+  zipkin:
+    driver: bridge
+  proxy:
+    external: true
+  keycloak_demo:
+    driver: bridge
