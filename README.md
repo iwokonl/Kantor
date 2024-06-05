@@ -50,27 +50,6 @@ Postępuj zgodnie z poniższymi krokami w celu zainstalowania środowiska oraz a
 mkdir Projekt
 git clone https://github.com/iwokonl/Kantor.git
 cd Projekt
-
-
-docker-compose up -d
-# Instalacja zależności dla Angular
-cd Front/kantor-angular
-npm install -g angular-cli@17.3.0
-npm run
-# Uruchomienie aplikacji Angular:
-ng b
-
-# Uruchomienie aplikacji Spring Boot:
-cd ..
-cd Kantor/Back/mikro-services
-mvn clean install
-
-
-# Konfiguracja i uruchomienie Apache Kafka:
-# Skonfiguruj server.properties zgodnie z dokumentacją.
-# Uruchom Kafka:
-bin/zookeeper-server-start.sh config/zookeeper.properties
-bin/kafka-server-start.sh config/server.properties
 ```
 ### Uruchamianie aplikacji
 
@@ -92,8 +71,6 @@ Przejdź do katalogu backend i uruchom polecenie Maven, aby oczyścić projekt, 
 ```bash
 cd Kantor/Back/mikro-services
 mvn clean install
-
-
 cd target
 java -jar [nazwa_pliku_jar] # np. java -jar kantor-0.0.1-SNAPSHOT.jar w Target. Kolejność uruchamiania mikroserwisów jest określona w README.MD w ms.
 ```
