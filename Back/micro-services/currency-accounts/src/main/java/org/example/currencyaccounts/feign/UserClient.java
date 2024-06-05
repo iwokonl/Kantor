@@ -4,6 +4,7 @@ package org.example.currencyaccounts.feign;
 import org.example.currencyaccounts.config.FeignConfig;
 import org.example.currencyaccounts.dto.UserDto;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,5 +15,5 @@ public interface UserClient {
     @PostMapping("v1/auth/userInfo")
     Optional<UserDto> getUserInfo();
     @PostMapping("v1/auth/findUserId/{id}")
-    UserDto findUserId(@RequestParam Long id);
+    UserDto findUserId(@PathVariable("id") Long id);
 }

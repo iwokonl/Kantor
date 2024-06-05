@@ -219,3 +219,5 @@ Ntransaction/src/main/java/org/example/transaction/Feign/FeignErrorDecoder.java
 Otransaction/src/main/java/org/example/transaction/mapper/TransactionMapper.java,3\2\32b2f2deda9d237c9f91d162c340cc4f81fd6b3d
 C
 transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
+v
+Fgateway/src/test/java/org/example/gateway/GatewayApplicationTests.java,2\e\2e04b24ad3fa2f04ac545b4ba7c9ba4ff9f0e0f2

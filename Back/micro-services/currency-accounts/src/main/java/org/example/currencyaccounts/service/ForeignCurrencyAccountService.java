@@ -35,8 +35,9 @@ public class ForeignCurrencyAccountService {
     private final Logger logger = LoggerFactory.getLogger(ForeignCurrencyAccountService.class);
 
     public ForeignCurrencyAccount createForeignCurrencyAccount(String currencyId){
+        logger.error("asddasdasdasdasd: test");
         Optional<UserDto> userAppDto = userClient.getUserInfo();
-
+        logger.error("asddasdasdasdasd: test");
         if (userAppDto.isEmpty()) {
             throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
@@ -54,12 +55,15 @@ public class ForeignCurrencyAccountService {
         if (account.isPresent()) {
             throw new AppExeption("Account already exists","currency-accounts", HttpStatus.BAD_REQUEST);
         }
+
         ForeignCurrencyAccount foreignCurrencyAccount = new ForeignCurrencyAccount();
         foreignCurrencyAccount.setBalance(BigDecimal.valueOf(0));
         Optional<CurrencyDto> currency = currencyClient.getCurrencyById(Long.valueOf(currencyId));
+        logger.error("testyiwo: ");
         if(currency.isEmpty()){
             throw new AppExeption("Currency not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
+
         foreignCurrencyAccount.setCurrencyId(Long.valueOf(currencyId));
         foreignCurrencyAccount.setUserId(userDtoReal.getId());
         foreignCurrencyAccountRepo.save(foreignCurrencyAccount);

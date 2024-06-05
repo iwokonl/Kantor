@@ -23,7 +23,7 @@ public class CurrencyController {
         return ResponseEntity.ok(results);
     }
     @GetMapping("/id/{id}")
-    public ResponseEntity<CurrencyDto> getCurrencyById(@PathVariable Long id) {
+    public ResponseEntity<CurrencyDto> getCurrencyById(@PathVariable("id") Long id) {
         CurrencyDto currency = currencyService.findById(id);
         return ResponseEntity.ok(currency);
     }
