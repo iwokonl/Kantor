@@ -32,14 +32,15 @@ Przejdź po wymaganiach, żeby upewnić się, że posiadasz wszystkie niezbędę
 
 
 Przed instalacją upewnij się, że na komputerze zainstalowane jest następujące oprogramowanie:
-
-- [Node.js 21.7.x](https://nodejs.org/en/download/prebuilt-installer)
-- [JDK 22](https://www.oracle.com/java/technologies/downloads/#java22)
-- [Apache Kafka 3.6.x](https://kafka.apache.org/downloads)
-- [PostgreSQL 16.2](https://www.postgresql.org/download/)
 - [Java 22.0.1](https://jdk.java.net/22/)
-- [Angular 17.3.x](https://www.npmjs.com/package/@angular/cli?activeTab=versions)
+- [JDK 22](https://www.oracle.com/java/technologies/downloads/#java22)
 - [Spring boot 3.2.x](https://start.spring.io)
+- [TypeScript 5.3.x](https://www.typescriptlang.org/download)
+- [Node.js 21.7.x](https://nodejs.org/en/download/prebuilt-installer)
+- [Angular 17.3.x](https://www.npmjs.com/package/@angular/cli?activeTab=versions)
+- [PostgreSQL 16.2](https://www.postgresql.org/download/)
+- [Apache Kafka 3.6.x](https://kafka.apache.org/downloads)
+
 
 ### Instalacja
 
