@@ -1,7 +1,8 @@
 # Kantor
 
 
-![GitHub last commit](https://img.shields.io/github/last-commit/iwokonl/Kantor)
+![GitHub last commit](https://img.shields.io/github/last-commit/iwokonl/Kantor)   ![GitHub Release Date](https://img.shields.io/github/release-date/Iwokonl/Kantor)
+
 
 ## Opis
 Ta aplikacja Spring Boot zapewnia solidne rozwiązanie do pobierania i przechowywania kursów wymiany walut z interfejsu API Narodowego Banku Polskiego (NBP). Zaprojektowana z myślą o nowoczesnych praktykach tworzenia oprogramowania, wykorzystuje architekturę Model-View-Controller (MVC), aby zapewnić czystą separację zagadnień i zwiększyć łatwość konserwacji.
@@ -15,34 +16,34 @@ Ta aplikacja Spring Boot zapewnia solidne rozwiązanie do pobierania i przechowy
 
 
 
-- [Jak zacząć?](#getting-started) 
+- [Jak zacząć?](#Jak-zacząć?) 
 - [Wymagania](#prerequisites)
 - [Instalacja](#Instalacja)
-- [Uruchamianie aplikacji](#Uruchamianie-aplikacji) 
-- [Usage](#usage) 
+- [Uruchamianie aplikacji](#running-the-application) 
+- [Przykłady użycia](#Przykłady-użycia) 
 - [API](#api)
-- [Autorzy](#Autorzy) 
-- [Licencje](#Licencje) 
-- [Podziękowania](#Podziękowania) 
+- [Autorzy](#authors) 
+- [Licencje](#license) 
+- [Podziękowania](#podzienkowania) 
 
-
-
+### Jak zacząć?
+Przejdź po wymaganiach, żeby upewnić się, że posiadasz wszystkie niezbędę oprogramowanie póżniej przejdź do instalacji.
 ### Wymagania wstępne
 
 
 Przed instalacją upewnij się, że na komputerze zainstalowane jest następujące oprogramowanie:
 
-- [Node.js 20.10.0](https://nodejs.org/en/download/package-manager)
-- [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Node.js 21.7.2](https://nodejs.org/en/download/package-manager)
+- [JDK 22](https://www.oracle.com/java/technologies/downloads/#java22)
 - [Apache Kafka 3.6.1](https://kafka.apache.org/downloads)
 - [PostgreSQL 16.2](https://www.postgresql.org/download/)
-- [Java 21](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
-- Angular 17.2.1
-- Spring boot 3.2.3
+- [Java 22.0.1](https://jdk.java.net/22/)
+- Angular 17.3.0
+- Spring boot 3.2.5
 
 ### Instalacja
 
-Postępuj zgodnie z poniższymi krokami w celu zainstalowania środowiska oraz aplikacji.
+Postępuj zgodnie z poniższymi krokami w celu zainstalowania środowiska oraz aplikacji. Na końcu zapoznaj się z Uruchomieniem aplikacji.
 
 ```bash
 # Sklonuj repozytorium:
@@ -66,28 +67,33 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 bin/kafka-server-start.sh config/server.properties
 ```
 ### Uruchamianie aplikacji
+
+- Backend (Spring Boot)
+Przejdź do katalogu backend i uruchom polecenie Maven, aby oczyścić projekt, zbudować plik .jar oraz zainstalować zależności:
+```bash
+cd backend
+./mvnw clean install
+```
+- Uruchomienie aplikacji
+ Po zakończeniu instalacji, przejdź do katalogu target i użyj polecenia Java, aby uruchomić aplikację:
+```bash
+cd target
+java -jar nazwa_pliku.jar
+```
+
+
 - Uruchom Angular
+ Po uruchomieniu backendu, przejdź do katalogu frontend i uruchom aplikację Angular za pomocą następujących poleceń:
 ```bash
 cd frontend
 ng serve
 # Aplikacja będzie dostępna pod adresem http://localhost:4200
 ```
-- Uruchamianie backendu (Spring Boot)
-Utwórz bazę danych dla aplikacji.
-Skonfiguruj plik application.properties w Spring Boot, aby wskazywał na bazę danych PostgreSQL. Przykład konfiguracji:
-```bash
-spring.datasource.url=jdbc:postgresql://localhost:5432/nazwa_bazy_danych
-spring.datasource.username=nazwa_uzytkownika
-spring.datasource.password=haslo
-spring.jpa.hibernate.ddl-auto=update
-```
-- Uruchom aplikację Spring Boot:
-```bash
-cd backend
-./mvnw spring-boot:run
-```
+### Przykłady użycia
+
 ### API
 Aplikacja wykorzystuje interfejs [API Narodowego Banku Polskiego (NBP)](https://api.nbp.pl) do pobierania kursów walut oraz cen złota w formacie XML oraz JSON.
+Kantor używa, także [API Paypal](https://developer.paypal.com/api/rest/) do obsługi płatności.
 ### Autorzy
 [Iwo Stanisławski](https://github.com/iwokonl/), [Bogumił Różański](https://github.com/brozanski), [Paweł Ściślewski](https://github.com/Zaikouu), Bartosz Zalewski, [Patryk Seligowski](https://github.com/Patryk920n)
 ### Licencje
