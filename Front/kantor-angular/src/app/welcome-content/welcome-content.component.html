@@ -108,11 +108,11 @@
         <div class="right-down-container">
           <div class="trasactions-container">
                 <ng-container *ngFor="let transaction of transactions">
-                  <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'WITHDRAW'; else elseBlock">
+                  <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
                     <td>{{ transaction.amountOfForeginCurrency  + ' ' + transaction.currencyId}}</td>
                     <td>{{ transaction.exchangeRate }}</td>
                     <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td><img class="svg image" src="assets/{{ transaction.typeofTransaction }}.svg"></td>
+                    <td><img class="svg image" src="assets/PAYOUT.svg"></td>
                     <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                   </tr>
                   <ng-template #elseBlock>
