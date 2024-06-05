@@ -1,13 +1,10 @@
-
-
-
 <div class="header">
   <div class="search-container">
     <form class="form-inline my-2 my-lg-0 flex-grow-1">
       <app-search-bar (searchChange)="handleSearchChange($event)"></app-search-bar>
     </form>
   </div>
+  <div class="refresh-icon-container" (click)="refreshToken()">
+    <i class="material-icons">autorenew</i>
+  </div>
 </div>
-
-
-
