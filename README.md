@@ -47,18 +47,24 @@ Postępuj zgodnie z poniższymi krokami w celu zainstalowania środowiska oraz a
 
 ```bash
 # Sklonuj repozytorium:
+mkdir Projekt
 git clone https://github.com/iwokonl/Kantor.git
-cd yourproject
+cd Projekt
 
+
+docker-compose up -d
 # Instalacja zależności dla Angular
-cd frontend
-npm install
+cd Front/kantor-angular
+npm install -g angular-cli@17.3.0
+npm run
 # Uruchomienie aplikacji Angular:
-ng serve
+ng b
 
 # Uruchomienie aplikacji Spring Boot:
-cd ../backend
-./mvnw install
+cd ..
+cd Kantor/Back/mikro-services
+mvn clean install
+
 
 # Konfiguracja i uruchomienie Apache Kafka:
 # Skonfiguruj server.properties zgodnie z dokumentacją.
@@ -68,27 +74,32 @@ bin/kafka-server-start.sh config/server.properties
 ```
 ### Uruchamianie aplikacji
 
+- Uruchomienie Docker
+```bash
+docker-compose up -d
+```
+
+- Frontend (Angular)
+```bash
+cd Front/kantor-angular
+npm install -g angular-cli@17.3.0
+npm run
+ng b
+cd /Projekt
+```
 - Backend (Spring Boot)
 Przejdź do katalogu backend i uruchom polecenie Maven, aby oczyścić projekt, zbudować plik .jar oraz zainstalować zależności:
 ```bash
-cd backend
-./mvnw clean install
-```
-- Uruchomienie aplikacji
- Po zakończeniu instalacji, przejdź do katalogu target i użyj polecenia Java, aby uruchomić aplikację:
-```bash
+cd Kantor/Back/mikro-services
+mvn clean install
+
+
 cd target
-java -jar nazwa_pliku.jar
+java -jar [nazwa_pliku_jar] # np. java -jar kantor-0.0.1-SNAPSHOT.jar w Target. Kolejność uruchamiania mikroserwisów jest określona w README.MD w ms.
 ```
 
 
-- Uruchom Angular
- Po uruchomieniu backendu, przejdź do katalogu frontend i uruchom aplikację Angular za pomocą następujących poleceń:
-```bash
-cd frontend
-ng serve
-# Aplikacja będzie dostępna pod adresem http://localhost:4200
-```
+
 ### Przykłady użycia
 
 ### API
