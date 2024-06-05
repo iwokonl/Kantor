@@ -1,13 +1,76 @@
 {
 	"info": {
-		"_postman_id": "0f244046-0070-440d-843d-5f46c622f928",
+		"_postman_id": "2cc8cf35-2713-4b32-9a4c-89080512f451",
 		"name": "Kantor ms",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29521267"
+		"_exporter_id": "29521267",
+		"_collection_link": "https://kantor-uwm.postman.co/workspace/Team-Workspace~ebdeea65-44c8-4958-8b5a-ef4644d02779/collection/33819228-2cc8cf35-2713-4b32-9a4c-89080512f451?action=share&source=collection_link&creator=29521267"
 	},
 	"item": [
 		{
 			"name": "dodanie historii transakcji",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJpc3MiOm51bGwsImlkIjpudWxsLCJleHAiOjE3MTQ0MDEwNTksImlhdCI6MTcxNDM5NzQ1OSwiZW1haWwiOiJJV29hc2RhZHMifQ.8GECvrM-52YNzMCJUWd3f2kzd28GnLjfBqgdOSQcJxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "iwokonl",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "iwo",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "password",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "kantor-client-credentials-id",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"appUserId\": 1, \r\n\"amount\":222, \r\n\"currencyFromAccountId\": 2, \r\n\"currencyToAccountId\": 3}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/transactions/addTransaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"addTransaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sprawdzenie historii transakcji",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -100,13 +163,44 @@
 			"response": []
 		},
 		{
+			"name": "login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"iwo\", \"password\": \"iwo\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "register",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"firstName\": \"Iwo\", \"lastName\": \"Stanisławski\", \"email\": \"iwoa@iwo.pl\", \"username\": \"iwo\", \"password\": \"iwo\"}",
+					"raw": "{\"firstName\": \"Iwo\",\r\n \"lastName\": \"Stanisławski\",\r\n  \"email\": \"iwoa@iwo.pl\",\r\n   \"username\": \"iwo\",\r\n    \"password\": \"iwo\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -253,7 +347,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd29hIiwiaWQiOjIsImV4cCI6MTcxNDY3Nzc0NCwiaWF0IjoxNzE0Njc0MTQ0LCJlbWFpbCI6Iml3b2FAaXdvLnBsIn0.6lIdupomhmX-SpVePj2FMtKfoO7iROgc6y7G7wl9vuw",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE1ODE2MjA3LCJpYXQiOjE3MTU4MTI2MDcsImVtYWlsIjoiaXdvYUBpd28ucGwifQ.K-VZ4V37qgOJjr5tb6CPX4s-H0VI-oBGHrZ4HMpYIvo",
 							"type": "string"
 						}
 					]
@@ -262,7 +356,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"1\"\r\n}",
+					"raw": "{\r\n    \"id\": \"62\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -367,7 +461,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE1NDQyNDM2LCJpYXQiOjE3MTU0Mzg4MzYsImVtYWlsIjoiaXdvYUBpd28ucGwifQ.vRm7AuSDzJsva1LWCZiJ-7qYuLdXEACA2xmF8ILUt94",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE1ODQwMDc1LCJpYXQiOjE3MTU4MzY0NzUsImVtYWlsIjoiaXdvYUBpd28ucGwifQ.6wcmKZ5ex0N6pe8q1xBSa14Sg9bD6PL-rckn5eYzxGI",
 							"type": "string"
 						}
 					]
@@ -376,7 +470,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"total\": 100.02,\r\n    \"currency\": \"62\",\r\n    \"method\": \"paypal\",\r\n    \"intent\":  \"sale\",\r\n    \"description\": \"desc\",\r\n    \"cancelUrl\": \"http://localhost:8071/api/v1/paypal/test\",\r\n    \"successUrl\": \"http://localhost:8071/api/v1/paypal/success\" \r\n}",
+					"raw": "{\r\n    \"total\": 100.00,\r\n    \"currency\": \"6\",\r\n    \"method\": \"paypal\",\r\n    \"intent\":  \"sale\",\r\n    \"description\": \"desc\",\r\n    \"cancelUrl\": \"http://localhost:8071/api/v1/paypal/test\",\r\n    \"successUrl\": \"http://localhost:8071/api/v1/paypal/success\" \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -395,6 +489,154 @@
 						"v1",
 						"paypal",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPayout Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE3NDEwMjk2LCJpYXQiOjE3MTc0MDY2OTYsImVtYWlsIjpudWxsfQ.YSjUfs9B7GHjGKyl_gJLjRk0jWto6whdWnO5Zb522o4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"receiverEmail\": \"kupujacy@kantrol.pl\",\r\n    \"total\": 100,\r\n    \"currencyId\": \"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8222/api/v1/paypal/createPayout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"paypal",
+						"createPayout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "getHistory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJJd28iLCJsYXN0TmFtZSI6IlN0YW5pc8WCYXdza2kiLCJleHBUaW1lIjoxNzE3NjEwOTY5NTIyLCJpc3MiOiJpd28iLCJpZCI6MSwiZXhwIjoxNzE3NjEwOTY5LCJpYXQiOjE3MTc2MDczNjksImVtYWlsIjoiaXdvYUBpd28ucGwifQ.Hmbgv37yyfHy8fTD4f9FX4IjUFE5BPIjryzrXzPxpsE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/transactions/getTransactions/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"getTransactions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginChange",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/loginChange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loginChange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/auth/userInfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"userInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTransactionByUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8222/api/v1/transactions/getTransactionByUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8222",
+					"path": [
+						"api",
+						"v1",
+						"transactions",
+						"getTransactionByUser"
 					]
 				}
 			},
