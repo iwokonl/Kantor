@@ -56,7 +56,7 @@ export class LoginFormComponent {
       // Handle login error
       this.snackBar.open('Logowanie nie powiodło się!', '', {
         duration: 3000,
-        panelClass: ['error-snackbar'],
+        panelClass: ['register-error-snackbar'],
       });
     });
   }

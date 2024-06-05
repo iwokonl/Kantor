@@ -39,7 +39,7 @@ export class RegisterFormComponent {
     }
 
     if (this.password !== this.passwordVerification) {
-      this.snackBar.open('Hasła nie zgadzają się!', '', {
+      this.snackBar.open('Hasła się nie zgadzają!', '', {
         duration: 3000,
         panelClass: ['error-snackbar'],
       });
@@ -67,7 +67,7 @@ export class RegisterFormComponent {
       // Handle registration error
       this.snackBar.open('Rejestracja nie powiodła się!\n', '', {
         duration: 3000,
-        panelClass: ['error-snackbar'],
+        panelClass: ['register-error-snackbar'],
       });
     });
   }
