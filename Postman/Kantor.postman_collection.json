@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "c6a312bc-3896-4822-828d-b1841e82ccad",
+		"_postman_id": "f3cc8332-606c-4448-bf39-927477141c4f",
 		"name": "Kantor",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29521267"
+		"_exporter_id": "29521267",
+		"_collection_link": "https://kantor-uwm.postman.co/workspace/Team-Workspace~ebdeea65-44c8-4958-8b5a-ef4644d02779/collection/33819228-f3cc8332-606c-4448-bf39-927477141c4f?action=share&source=collection_link&creator=29521267"
 	},
 	"item": [
 		{
