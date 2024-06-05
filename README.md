@@ -33,7 +33,7 @@ Przejdź po wymaganiach, żeby upewnić się, że posiadasz wszystkie niezbędę
 
 Przed instalacją upewnij się, że na komputerze zainstalowane jest następujące oprogramowanie:
 
-- [Node.js 21.7.2](https://nodejs.org/en/download/package-manager)
+- [Node.js 21.7.2]([https://nodejs.org/en/download/package-manager](https://nodejs.org/en/download/prebuilt-installer))
 - [JDK 22](https://www.oracle.com/java/technologies/downloads/#java22)
 - [Apache Kafka 3.6.1](https://kafka.apache.org/downloads)
 - [PostgreSQL 16.2](https://www.postgresql.org/download/)
