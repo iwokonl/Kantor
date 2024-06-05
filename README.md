@@ -18,12 +18,12 @@ Ta aplikacja Spring Boot zapewnia solidne rozwiązanie do pobierania i przechowy
 - [Jak zacząć?](#getting-started) 
 - [Wymagania](#prerequisites)
 - [Instalacja](#Instalacja)
-- [Uruchamianie aplikacji](#running-the-application) 
+- [Uruchamianie aplikacji](#Uruchamianie-aplikacji) 
 - [Usage](#usage) 
 - [API](#api)
-- [Autorzy](#authors) 
-- [Licencje](#license) 
-- [Podziękowania](#podzienkowania) 
+- [Autorzy](#Autorzy) 
+- [Licencje](#Licencje) 
+- [Podziękowania](#Podziękowania) 
 
 
 
