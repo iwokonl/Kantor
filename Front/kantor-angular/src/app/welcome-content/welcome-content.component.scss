@@ -61,7 +61,7 @@
 .left-down-container{
   display: flex;
   height: 100%;
-  width: 50%;
+  width: 30%;
   flex-direction: column;
   border: 2px solid rgba(255, 255, 255, 0.22);
   border-radius: 47px;
@@ -71,7 +71,7 @@
 .right-down-container{
   display: flex;
   height: 100%;
-  width: 50%;
+  width: 70%;
   flex-direction: column;
   border: 2px solid rgba(255, 255, 255, 0.22);
   border-radius: 47px;
@@ -301,3 +301,45 @@
 }
 
 
+
+
+.trasactions-container{
+  overflow-y: scroll;
+  overflow-x: auto;
+
+  display: flex;
+  height: 100%;
+  justify-content: center;
+
+  &::-webkit-scrollbar {
+    width: 20px;
+    padding-right: 20px;
+    padding-top: 10%; // adjust this value to visually decrease the scrollbar height
+    padding-bottom: 10%; // adjust this value to visually decrease the scrollbar height
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 10px transparentize(#888, 0.5);
+    border: solid 5px transparent;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 10px 10px #555;
+    border: solid 5px transparent;
+  }
+
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}

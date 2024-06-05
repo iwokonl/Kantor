@@ -25,6 +25,8 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   accounts: any[] = [];
   currencyFlags: { [key: string]: string } = {};
 
+  transactions: any[] = [];
+
   constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
@@ -36,6 +38,8 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
       this.isLoggedIn = isLoggedIn;
       this.updateUsername();
     });
+
+    this.fetchTransactions();
 
     this.printExchangeRates();
     this.fetchExchangeRatesChanges();
@@ -64,7 +68,24 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     });
   }
 
-  
+  fetchTransactions(): void {
+    this.axiosService.request('GET', '/api/v1/transactions/getTransactionByUser', {}).then((response) => {
+      console.log('Response from API:', response); // Log the entire response
+      this.transactions = response.data;
+      console.log('Transactions data:', this.transactions); // Log the transactions data
+
+      // Replace targetCurrencyId with currencyCode for each transaction
+      this.transactions.forEach(transaction => {
+        this.axiosService.getCurrencyData(transaction.targetCurrencyId).then(currencyData => {
+          transaction.currencyId = currencyData.code;
+        }).catch(error => {
+          console.error(`Error fetching currency data for id ${transaction.targetCurrencyId}:`, error);
+        });
+      });
+    }).catch((error) => {
+      console.error('Error fetching transactions:', error); // Log any error that occurs
+    });
+  }
 
   updateUsername(): void {
     if (this.isLoggedIn) {
