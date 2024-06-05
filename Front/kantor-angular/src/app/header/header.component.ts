@@ -3,11 +3,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {Subscription} from "rxjs";
 import {AxiosService} from "../axios.service";
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -31,9 +30,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.authStatusSub.unsubscribe();
     }
   }
+
   handleSearchChange(newSearchText: string): void {
     console.log(newSearchText);
   }
+
+  refreshToken(): void {
+    this.axiosService.request('GET', '/api/v1/auth/refreshToken', null)
+      .then(response => {
+        this.axiosService.setAuthTocken(response.data.token);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
 }
-
-
