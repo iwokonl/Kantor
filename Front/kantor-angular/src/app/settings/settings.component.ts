@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  id: string = '';
   user_name: string = '';
   firstname: string = '';
   lastname: string = '';
@@ -49,36 +50,47 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.firstname = response.data.firstName;
         this.lastname = response.data.lastName;
         this.email = response.data.email;
+        this.id = response.data.id;
         console.log(this.firstname);
         console.log(this.lastname);
         console.log(this.user_name);
-        console.log(this.email)
+        console.log(this.email);
+        console.log(this.id)
       });
     }
   }
-  changeUserDetails(): void {
-    if (this.isLoggedIn) {
-      this.axiosService.request("PUT", "api/v1/auth/userInfo", {
-        username: this.user_name,
-        firstName: this.firstname,
-        lastName: this.lastname,
-        email: this.email
-      }).then((response) => {
-        console.log(response);
-      });
-    }
+  changeUserLogin(): void {
+    this.axiosService.request("PUT", "api/v1/auth/loginChange", {
+      username: this.user_name,
+      id: this.id
+    }).then((response) => {
+      console.log(response);
+    });
   }
-  updateUserOnServer(): void {
-    if (this.isLoggedIn) {
-      this.axiosService.request("PUT", "api/v1/auth/userInfo", {
-        username: this.user_name,
-        firstName: this.firstname,
-        lastName: this.lastname,
-        email: this.email
-      }).then((response) => {
-        console.log(response);
-      });
-    }
+  changeUserFirstName(): void {
+    this.axiosService.request("PUT", "api/v1/auth/firstnameChange", {
+      firstName: this.firstname,
+      id: this.id
+    }).then((response) => {
+      console.log(response);
+    });
+  }
+  changeUserLastName(): void {
+    this.axiosService.request("PUT", "api/v1/auth/lastnameChange", {
+      lastName: this.lastname,
+      id: this.id
+    }).then((response) => {
+      console.log(response);
+    });
+  }
+
+  changeUserEmail(): void {
+    this.axiosService.request("PUT", "api/v1/auth/emailChange", {
+      email: this.email,
+      id: this.id
+    }).then((response) => {
+      console.log(response);
+    });
   }
   toggleEditUsername() {
     this.updateUserDetails();
