@@ -12,7 +12,7 @@ Ta aplikacja Spring Boot zapewnia solidne rozwiązanie do pobierania i przechowy
 ## Spis treści
 - [README Mikroserwisów](https://github.com/iwokonl/Kantor/tree/main/Back/micro-services)
 
-- [README Angulara](https://github.com/iwokonl/Kantor)
+- [README Angulara](https://github.com/iwokonl/Kantor/tree/main/Front/kantor-angular)
 
 
 
