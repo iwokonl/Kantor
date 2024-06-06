@@ -161,7 +161,7 @@
                     <td>{{ transaction.amountOfForeginCurrency  + ' ' + selectedAccount.currencyCode}}</td>
                     <td>{{ transaction.exchangeRate }}</td>
                     <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td>{{ transaction.typeOfTransaction }}</td>
+                    <td><img class="svg image" src="assets/PAYOUT.svg"></td>
                     <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                   </tr>
                   <ng-template #elseBlock>
@@ -169,7 +169,7 @@
                     <td>{{ transaction.targetCurrency + ' ' + selectedAccount.currencyCode }}</td>
                     <td>{{ transaction.exchangeRate }}</td>
                     <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
-                    <td>{{ transaction.typeOfTransaction }}</td>
+                      <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
                     <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td><!-- Tutaj umieść kod, który ma być wyrenderowany, gdy transaction.typeOfTransaction nie jest równy 'PAYOUT' -->
                     </tr>
                   </ng-template>
