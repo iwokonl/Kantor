@@ -181,7 +181,7 @@ public class PaypalController {
 
                 tranactionClient.addTranactionHistory(addTransactionDto);
 
-                return new RedirectView("http://localhost:4200");
+                return new RedirectView("http://localhost:4200/currency-account");
             }
         } catch (PayPalRESTException e) {
             throw new AppExeption("Error occurred while processing payment", "Paypal", HttpStatus.EXPECTATION_FAILED);
@@ -191,12 +191,12 @@ public class PaypalController {
 
     @PostMapping("/cancel")
     public RedirectView cancelPayment() {
-        return new RedirectView("http://localhost:4200/payment/cancel");
+        return new RedirectView("http://localhost:4200");
     }
 
     @PostMapping("/error")
     public RedirectView errorPayment() {
-        return new RedirectView("http://localhost:4200/payment/error");
+        return new RedirectView("http://localhost:4200");
     }
 
 }
