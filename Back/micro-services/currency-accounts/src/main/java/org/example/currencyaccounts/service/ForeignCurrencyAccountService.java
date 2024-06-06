@@ -105,7 +105,7 @@ public class ForeignCurrencyAccountService {
         }
         Optional<ForeignCurrencyAccount> account = foreignCurrencyAccountRepo.findByUserIdAndId(userDtoReal.getId(), id);
         if (account.isEmpty()) {
-            throw new AppExeption("Account is not yours", "currency-accounts", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Account is not yours or does not exist", "currency-accounts", HttpStatus.NOT_FOUND);
         }
         ForeignCurrencyAccount foreignCurrencyAccount = account.get();
         if (foreignCurrencyAccount.getBalance().compareTo(BigDecimal.ZERO) != 0) {
