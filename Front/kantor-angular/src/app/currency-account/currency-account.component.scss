@@ -391,6 +391,10 @@ th, td {
   text-align: center;
 }
 
+tr{
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+}
+
 thead th {
   position: relative;
   left: -10px;
