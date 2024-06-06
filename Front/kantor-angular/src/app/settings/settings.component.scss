@@ -145,7 +145,7 @@ h1 {
   justify-content: center;
 }
 
-.selected-profile, .selected-help, .selected-security {
+.selected-profile {
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -259,3 +259,36 @@ h1 {
   gap: 1%;
 }
 
+
+.selected-help{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  animation: fade-in 1s ease 0s 1 normal forwards;
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+}
+
+.help-header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.help-content p{
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+  margin: 10%;
+  width: 100%;
+}
