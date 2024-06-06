@@ -97,6 +97,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }).then((response) => {
       console.log(response);
     });
+    this.toggleEditEmail();
   }
 
   toggleEditUsername() {

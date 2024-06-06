@@ -37,6 +37,7 @@
   width: 25%;
   margin-left: 1%;
 }
+
 .right-container {
   display: flex;
   height: 99%;
@@ -47,6 +48,11 @@
   backdrop-filter: blur(25px);
   padding: 1%;
   margin-left: 1%;
+
+  h3{
+    padding: 4%;
+    flex-wrap: wrap;
+  }
 }
 
 .upper-container {

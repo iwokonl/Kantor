@@ -8,7 +8,7 @@
       <div class="settings-picker-outer">
         <div class="settings-picker-inner">
           <div class="profile-active" *ngIf="isProfileSelected">
-            <button class="buttons-active" (click)="selectCategory('profile')">Profile</button>
+            <button class="buttons-active" (click)="selectCategory('profile')">Profil</button>
           </div>
           <div class="profile-inactive" *ngIf="!isProfileSelected">
             <button class="buttons-inactive" (click)="selectCategory('profile')">Profile</button>
@@ -17,7 +17,7 @@
             <button class="buttons-active" (click)="selectCategory('help')">Help</button>
           </div>
           <div class="help-inactive" *ngIf="!isHelpSelected">
-            <button class="buttons-inactive" (click)="selectCategory('help')">Help</button>
+            <button class="buttons-inactive" (click)="selectCategory('help')">Pomoc</button>
           </div>
         </div>
       </div>
@@ -40,30 +40,6 @@
           <div class="username" *ngIf="isEditingUsername">
             <form class="settings-forms" (ngSubmit)="changeUserLogin()">
               <input id="active-username" class="input-box" [(ngModel)]="user_name" name="username">
-              <button class="button-box" (click)="toggleEditUsername()" type="submit">Zapisz</button>
-            </form>
-          </div>
-          <div class="firstname" *ngIf="!isEditingFirstName">
-            <form class="settings-forms">
-              <input class="input-box" [readonly]="true" [(ngModel)]="firstname" name="firstname">
-              <button class="button-box" (click)="toggleEditFirstName()">Zmień</button>
-            </form>
-          </div>
-          <div class="firstname" *ngIf="isEditingFirstName">
-            <form class="settings-forms" (ngSubmit)="changeUserFirstName()">
-              <input id="active-firstname" class="input-box" [(ngModel)]="firstname" name="firstname">
-              <button class="button-box" type="submit">Zapisz</button>
-            </form>
-          </div>
-          <div class="lastname" *ngIf="!isEditingLastName">
-            <form class="settings-forms">
-              <input class="input-box" [readonly]="true" [(ngModel)]="lastname" name="lastname">
-              <button class="button-box" (click)="toggleEditLastName()">Zmień</button>
-            </form>
-          </div>
-          <div class="lastname" *ngIf="isEditingLastName">
-            <form class="settings-forms" (ngSubmit)="changeUserLastName()">
-              <input id="active-lastname" class="input-box" [(ngModel)]="lastname" name="lastname">
               <button class="button-box" type="submit">Zapisz</button>
             </form>
           </div>
@@ -79,13 +55,41 @@
               <button class="button-box" type="submit">Zapisz</button>
             </form>
           </div>
+          <div class="firstname" *ngIf="!isEditingFirstName">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="firstname" name="firstname">
+<!--              <button class="button-box" (click)="toggleEditFirstName()">Zmień</button>-->
+            </form>
+          </div>
+          <div class="firstname" *ngIf="isEditingFirstName">
+            <form class="settings-forms" (ngSubmit)="changeUserFirstName()">
+              <input id="active-firstname" class="input-box" [(ngModel)]="firstname" name="firstname">
+<!--              <button class="button-box" type="submit">Zapisz</button>-->
+            </form>
+          </div>
+          <div class="lastname" *ngIf="!isEditingLastName">
+            <form class="settings-forms">
+              <input class="input-box" [readonly]="true" [(ngModel)]="lastname" name="lastname">
+<!--              <button class="button-box" (click)="toggleEditLastName()">Zmień</button>-->
+            </form>
+          </div>
+          <div class="lastname" *ngIf="isEditingLastName">
+            <form class="settings-forms" (ngSubmit)="changeUserLastName()">
+              <input id="active-lastname" class="input-box" [(ngModel)]="lastname" name="lastname">
+<!--              <button class="button-box" type="submit">Zapisz</button>-->
+            </form>
+          </div>
         </div>
       </div>
-      
+
 
       <div class="selected-help" *ngIf="isHelpSelected">
         <!-- Help settings go here -->
-        <p> Pomocy </p>
+        <div class="help-header"><h2> Pomoc i kontakt </h2><br></div>
+        <div classs="help-content">
+          <p> Jeśli masz jakiekolwiek pytania, skontaktuj się z nami pod adresem: </p>
+          <p> <b>pomoc&#64;kantorsell.pl</b> </p>
+        </div>
 
       </div>
 
