@@ -147,6 +147,7 @@ export class CurrencyAccountComponent implements OnInit {
       console.log(response.data);
       this.getCurrencyAccounts(); // Refresh the accounts list after creating a new account
     });
+    this.selectedAccount = null;
   }
 
   onAddMoney(account: any) {
