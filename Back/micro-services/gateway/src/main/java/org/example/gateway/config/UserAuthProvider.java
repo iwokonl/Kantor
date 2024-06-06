@@ -31,6 +31,7 @@ public class UserAuthProvider {
     private String secretKey;
 
     private static final Logger logger = LoggerFactory.getLogger(UserAuthProvider.class);
+
     @PostConstruct
     public void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -74,7 +75,7 @@ public class UserAuthProvider {
             return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
 
         } catch (JWTVerificationException exception) {
-            if(exception.getMessage().contains("The Token has expired on")) {
+            if (exception.getMessage().contains("The Token has expired on")) {
                 DecodedJWT decodedJWT = JWT.decode(token);
                 UserDto user = UserDto.builder()
                         .username(decodedJWT.getIssuer())
@@ -86,8 +87,7 @@ public class UserAuthProvider {
                         .build();
                 String newToken = createToken(user);
                 return new UsernamePasswordAuthenticationToken(user, newToken, Collections.emptyList());
-            }
-            else {
+            } else {
                 throw new AppExeption("Does not apply to token", "gateway exception", HttpStatus.UNAUTHORIZED);
             }
 

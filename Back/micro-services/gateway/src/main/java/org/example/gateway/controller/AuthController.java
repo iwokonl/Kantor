@@ -26,7 +26,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto coridentialsDto) {
-
         UserDto user = userService.login(coridentialsDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.ok(user);
@@ -41,7 +40,6 @@ public class AuthController {
 
     @PostMapping("/findUserId/{id}")
     public ResponseEntity<UserDto> findUserId(@PathVariable("id") Long id) {
-        logger.error("asdd: " + id);
         UserDto user = userService.findUserId(id);
         return ResponseEntity.ok(user);
     }
@@ -59,7 +57,6 @@ public class AuthController {
     public ResponseEntity<UserDto> userInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String token = authentication.getName();
-        logger.error("asdd: " + token);
         UserDto user = userService.getUserInfo(token);
         return ResponseEntity.ok(user);
     }
@@ -78,12 +75,13 @@ public class AuthController {
 
     @PutMapping("/lastnameChange")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void lastnameChange(@RequestBody UserDto userDto){
+    public void lastnameChange(@RequestBody UserDto userDto) {
         userService.lastnameChange(userDto);
     }
+
     @PutMapping("/emailChange")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void emailChange(@RequestBody UserDto userDto){
+    public void emailChange(@RequestBody UserDto userDto) {
         userService.emailChange(userDto);
     }
 

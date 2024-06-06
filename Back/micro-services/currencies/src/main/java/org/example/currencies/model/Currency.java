@@ -22,7 +22,6 @@ public class Currency {
     private Long id;
 
 
-
     @Column(nullable = false, length = 3)
     private String code; // Kod waluty, np. "USD"
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @Controller
 @RestController
 @RequestMapping("v1/transactions")
@@ -29,7 +30,7 @@ public class TransactionController {
 
     @GetMapping("/getTransactions/{id}")
     public ResponseEntity<List<Transaction>> getTransactions(@PathVariable("id") String id) {
-        return ResponseEntity.ok(transactionService.getTransactions(id,userClient.getUserInfo()));
+        return ResponseEntity.ok(transactionService.getTransactions(id, userClient.getUserInfo()));
     }
 
     @GetMapping("/getTransactionByUser")

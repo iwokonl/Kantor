@@ -46,17 +46,18 @@ public class TransactionService {
             transaction.setAmountOfForeginCurrency(new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
             transaction.setTargetCurrency(new BigDecimal(addTransactionDto.targetCurrency()));
             transaction.setTransactionDate(LocalDateTime.now());
-            transaction.setAmountOfForeginCurrency( new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
+            transaction.setAmountOfForeginCurrency(new BigDecimal(addTransactionDto.amountOfForeginCurrency()));
             transaction.setExchangeRate(Float.parseFloat(addTransactionDto.exchangeRate()));
             transaction.setForeginCurrencyId(63L);
             transaction.setTargetCurrencyId(addTransactionDto.targetCurrencyId());
             transactionRepo.save(transaction);
-        }   catch (Exception e) {
+        } catch (Exception e) {
             throw new AppExeption(e.getMessage(), "Transaction", HttpStatus.BAD_REQUEST);
         }
 
     }
-    public String getToken(){
+
+    public String getToken() {
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -65,9 +66,10 @@ public class TransactionService {
         }
         return null;
     }
-    public List<Transaction> getTransactions(String id,Optional<UserDto> userDto) {
+
+    public List<Transaction> getTransactions(String id, Optional<UserDto> userDto) {
         logger.info("Get transactionsasdads");
-        Optional<UserDto> user= userClient.getUserInfo();
+        Optional<UserDto> user = userClient.getUserInfo();
         if (user.isEmpty()) {
             throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
         }
@@ -80,7 +82,7 @@ public class TransactionService {
 
     public List<Transaction> getTransactionByUser() {
 
-        Optional<UserDto> user= userClient.getUserInfo();
+        Optional<UserDto> user = userClient.getUserInfo();
         if (user.isEmpty()) {
             throw new AppExeption("User not found", "Transaction", HttpStatus.NOT_FOUND);
         }

@@ -12,6 +12,6 @@ public class RestExeptionHandler {
     @ExceptionHandler(AppExeption.class)
     @ResponseBody
     public ResponseEntity<ErrorDto> handleAppExeption(AppExeption e) { // metoda obsługująca wyjątki
-        return ResponseEntity.status(e.getHttpStatus()).body(new ErrorDto(e.getMessage(),e.getTheNameOfThMicroservice())); // zwracamy status błędu i wiadomość
+        return ResponseEntity.status(e.getHttpStatus()).body(new ErrorDto(e.getMessage(), e.getTheNameOfThMicroservice())); // zwracamy status błędu i wiadomość
     }
 }
