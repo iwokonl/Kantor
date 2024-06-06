@@ -6,7 +6,7 @@
   width: auto; /* or specify a width if needed */
 }
 
-.login-form{
+.login-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   padding: 20px;
 }
 
-.btn-primary{
+.btn-primary {
   width: 342px;
   height: 57px;
   border-radius: 15px;
@@ -28,7 +28,7 @@
   box-shadow: 0px 4px 9.3px -1px rgba(102, 102, 102, 0.25);
 }
 
-.form-control{
+.form-control {
   border-radius: 15px;
   border: 2px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(92deg, rgba(241, 241, 241, 0.06) -0.4%, rgba(214, 214, 214, 0.04) 106.05%);
@@ -43,9 +43,9 @@
 .form-control:focus {
   background: linear-gradient(92deg, rgba(241, 241, 241, 0.06) -0.4%, rgba(214, 214, 214, 0.04) 106.05%);
   outline: none;
-  color:white;
+  color: white;
 }
 
-.login-form{
+.login-form {
   color: #dbdbdb;
 }

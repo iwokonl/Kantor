@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AxiosService} from "../axios.service";
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register-form',

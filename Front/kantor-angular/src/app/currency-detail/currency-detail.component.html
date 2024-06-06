@@ -1,15 +1,17 @@
-
 <div class="currency-detail-container">
   <div class="currency-details">
     <div class="header-container">
-<!--      <h3>Szczegóły waluty </h3>-->
-      <h4>{{currencyDetails.code +" - "+ currencyDetails.currency +' ' + currencyFlags[currencyDetails.code] }}</h4>
-      <h4>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN'}}</h4>
-      <button class="custom-btn custom-btn-outline-primary" (click)="openCurrencyAccount()">Otwórz konto walutowe</button>
-      <p> Wykres waluty z dni <b>{{ formatDate(startDate) }} - {{ formatDate(endDate) }} </b> </p>
+      <!--      <h3>Szczegóły waluty </h3>-->
+      <h4>{{ currencyDetails.code + " - " + currencyDetails.currency + ' ' + currencyFlags[currencyDetails.code] }}</h4>
+      <h4>Cena (Mid): {{ currencyDetails.rates[0].mid + ' PLN' }}</h4>
+      <button class="custom-btn custom-btn-outline-primary" (click)="openCurrencyAccount()">Otwórz konto walutowe
+      </button>
+      <p> Wykres waluty z dni <b>{{ formatDate(startDate) }} - {{ formatDate(endDate) }} </b></p>
     </div>
 
-    <div class="chart-container"><canvas id="chart" style="margin-top: 0;"></canvas></div>
+    <div class="chart-container">
+      <canvas id="chart" style="margin-top: 0;"></canvas>
+    </div>
     <p>
       <strong>Zmiana: </strong>
       <span [ngClass]="{

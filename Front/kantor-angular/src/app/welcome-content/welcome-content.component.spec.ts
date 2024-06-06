@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WelcomeContentComponent } from './welcome-content.component';
+import {WelcomeContentComponent} from './welcome-content.component';
 
 describe('WelcomeContentComponent', () => {
   let component: WelcomeContentComponent;
@@ -10,8 +10,8 @@ describe('WelcomeContentComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WelcomeContentComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(WelcomeContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

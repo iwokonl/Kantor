@@ -11,19 +11,19 @@
             <button class="buttons-active" (click)="selectCategory('profile')">Profile</button>
           </div>
           <div class="profile-inactive" *ngIf="!isProfileSelected">
-            <button class="buttons-inactive"  (click)="selectCategory('profile')">Profile</button>
+            <button class="buttons-inactive" (click)="selectCategory('profile')">Profile</button>
           </div>
           <div class="security-active" *ngIf="isSecuritySelected">
-            <button class="buttons-active"  (click)="selectCategory('security')">Security</button>
+            <button class="buttons-active" (click)="selectCategory('security')">Security</button>
           </div>
           <div class="security-inactive" *ngIf="!isSecuritySelected">
-            <button class="buttons-inactive"  (click)="selectCategory('security')">Security</button>
+            <button class="buttons-inactive" (click)="selectCategory('security')">Security</button>
           </div>
           <div class="help-active" *ngIf="isHelpSelected">
-            <button class="buttons-active"  (click)="selectCategory('help')">Help</button>
+            <button class="buttons-active" (click)="selectCategory('help')">Help</button>
           </div>
           <div class="help-inactive" *ngIf="!isHelpSelected">
-            <button class="buttons-inactive"  (click)="selectCategory('help')">Help</button>
+            <button class="buttons-inactive" (click)="selectCategory('help')">Help</button>
           </div>
         </div>
       </div>
@@ -46,10 +46,10 @@
           <div class="username" *ngIf="isEditingUsername">
             <form class="settings-forms" (ngSubmit)="changeUserLogin()">
               <input id="active-username" class="input-box" [(ngModel)]="user_name" name="username">
-              <button class="button-box"  (click)="toggleEditUsername()" type="submit">Zapisz</button>
+              <button class="button-box" (click)="toggleEditUsername()" type="submit">Zapisz</button>
             </form>
           </div>
-          <div class="firstname"  *ngIf="!isEditingFirstName">
+          <div class="firstname" *ngIf="!isEditingFirstName">
             <form class="settings-forms">
               <input class="input-box" [readonly]="true" [(ngModel)]="firstname" name="firstname">
               <button class="button-box" (click)="toggleEditFirstName()">Zmień</button>
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <div class="selected-security"  *ngIf="isSecuritySelected">
+      <div class="selected-security" *ngIf="isSecuritySelected">
         <!-- Security settings go here -->
         <p> Bezpieczeństwo </p>
 

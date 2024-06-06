@@ -1,21 +1,21 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <div class="search-container">
-    <input type="text"
-           class="search-input"
-           [(ngModel)]="searchText"
-           (input)="onInput($event)"
-           (click)="onSearchBarClick()"
-           placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
+<div class="search-container">
+  <input type="text"
+         class="search-input"
+         [(ngModel)]="searchText"
+         (input)="onInput($event)"
+         (click)="onSearchBarClick()"
+         placeholder="Wpisz nazwę lub kod waluty, aby ją wyszukać.">
 
-    <div class="icon-container" *ngIf="searchText" (click)="clearSearch()">
-      <i class="material-icons">clear</i>
-    </div>
-
-    <div class="icon-container" *ngIf="!searchText">
-      <i class="material-icons">search</i>
-    </div>
+  <div class="icon-container" *ngIf="searchText" (click)="clearSearch()">
+    <i class="material-icons">clear</i>
   </div>
+
+  <div class="icon-container" *ngIf="!searchText">
+    <i class="material-icons">search</i>
+  </div>
+</div>
 
 <div class="results-container" *ngIf="searchResults.length > 0">
   <app-search-results [results]="searchResults" (resultClick)="onResultClick()"></app-search-results>

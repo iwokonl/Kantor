@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
   private authStatusSub: Subscription | undefined;
 
-  constructor(public axiosService: AxiosService) { }
+  constructor(public axiosService: AxiosService) {
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = this.axiosService.getAuthTocken() !== null;

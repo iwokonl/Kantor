@@ -19,6 +19,7 @@
 10. [Rozwój](#rozwój)
 
 ## Opis projektu
+
 Projekt kantoru wymiany walut online. Aplikacja pozwala użytkownikom na przeglądanie aktualnych kursów walut, wykresów historycznych kursów, zakładanie kont walutowych, przeprowadzanie transakcji walutowych i zarządzanie swoim kontem. Użytkownicy mogą również zarejestrować się, zalogować się i wylogować z aplikacji.
 Doładowanie konta oraz wypłata środków jest możliwa po zalogowaniu się do aplikacji.
 W obecnej wersji, kursy walut są pobierane z API NBP, a użytkownicy mogą przeglądać kursy walut z różnych krajów.
@@ -26,7 +27,6 @@ Transakcja realizowana jest poprzez PayPal (w tym projekcie jest to wyłącznie 
 Wszystkie operacje są zapisywane w bazie danych, a użytkownik może sprawdzić historię swoich transakcji.
 Aplikacja jest napisana w Angularze, wykorzystuje TypeScript, SCSS, Bootstrap, Axios, Chart.js i inne technologie.
 Jest to projekt edukacyjny, który ma na celu nauczenie się tworzenia aplikacji internetowych za pomocą Angulara i innych technologii webowych.
-
 
 ## Technologie
 
@@ -50,8 +50,8 @@ Jest to projekt edukacyjny, który ma na celu nauczenie się tworzenia aplikacji
 
 11. **Snackbar**: Jest to komponent Angulara, który wyświetla krótkie powiadomienia na dole ekranu. Jest to przydatne do wyświetlania informacji zwrotnych dla użytkownika.
 
-
 ## Instalacja
+
 Instalacja NPM i Angular CLI:
 
 1. **Node.js i NPM**: Angular wymaga Node.js i NPM (Node Package Manager) do zarządzania zależnościami. Możesz zainstalować Node.js i NPM odwiedzając stronę [Node.js](https://nodejs.org/en/download/) i pobierając odpowiedni instalator dla swojego systemu operacyjnego. Po zainstalowaniu Node.js, NPM zostanie zainstalowany automatycznie.
@@ -62,9 +62,8 @@ Instalacja NPM i Angular CLI:
 npm install -g @angular/cli
 ```
 
-
-
 ## Uruchomienie
+
 Uruchomienie projektu Angular:
 
 Po zainstalowaniu Angular CLI i utworzeniu projektu Angular, możesz uruchomić swój projekt za pomocą polecenia `ng serve`. To polecenie uruchomi serwer deweloperski, który automatycznie odświeży twoją aplikację po każdej zmianie w plikach źródłowych.
@@ -83,13 +82,13 @@ npm start
 
 Podobnie jak wcześniej, aplikacja będzie dostępna pod adresem `http://localhost:4200/` w przeglądarce.
 
-
 ## Testy
+
 Dotychczas testy na frontendzie były wykonywane manualnie.
 W przyszłości planujemy dodać testy jednostkowe i testy end-to-end do projektu.
 
-
 ## Komponenty
+
 Komponenty z `app.module.ts`:
 
 1. `AppComponent`: Jest to główny komponent aplikacji, który jest punktem wejścia dla innych komponentów.
@@ -122,9 +121,8 @@ Komponenty z `app.module.ts`:
 
 15. `SettingsComponent`: Komponent odpowiedzialny za wyświetlanie ustawień.
 
-
-
 ## Serwisy
+
 Plik `axios.service.ts` zawiera deklarację serwisu `AxiosService`, który jest serwisem Angulara. Serwis ten jest odpowiedzialny za zarządzanie autoryzacją użytkownika i wykonywanie żądań HTTP za pomocą biblioteki axios. Oto szczegółowy opis metod zadeklarowanych w tym serwisie:
 
 1. `getAuthTocken()`: Ta metoda zwraca token autoryzacji zapisany w pamięci lokalnej przeglądarki. Jeśli token nie istnieje, zwraca `null`.
@@ -151,12 +149,11 @@ Inne serwisy
 
 4. `user.service.ts`: Jest to serwis, który dostarcza metody do pobierania informacji o użytkowniku z backendu. Używa `HttpClient` do wykonywania żądań HTTP.
 
-
 ## Stylowanie
+
 Postanowiliśmy zaprojektować całą stronę w ciemnej kolorystyce, ze wspólnym motywem dla wszystkich stron i kompnentów.
 Próbujemy unikać gotowych rozwiązań pokroju Bootstrap i sami projektujemy od zera nasz design. Projekt designu i layoutu wykonany został w aplikacji Figma.
 Stawiamy na nowoczesny wygląd z użyciem przezroczytych, rozmazanych ramek dających szklany wygląd.
-
 
 ## Zależności
 
@@ -164,8 +161,8 @@ Stawiamy na nowoczesny wygląd z użyciem przezroczytych, rozmazanych ramek daj�
 to oduł pozwalający na wyświetlanie emoji flagi dla danego kodu kraju. Używamy go w aplikacji do wyświetlania flagi dla danej waluty.
 Jest użyty w projekcie z powodu braku wsparcia dla emoji flag w niektórych przeglądarkach na Windowsie.
 
-
 ## Rozwój
+
 - Dodanie możliwości zmiany motywu kolorystycznego
 - Dodanie możliwości zmiany języka
 - Dodanie możliwości zmiany domyślnej waluty

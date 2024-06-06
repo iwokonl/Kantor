@@ -1,4 +1,4 @@
-.content-container{
+.content-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,8 @@
   height: 100%;
   width: 100%;
 }
-.table-container{
+
+.table-container {
   color: #DBDBDB;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
 
@@ -18,14 +19,16 @@
   max-width: 90%;
 }
 
-.header-table{
+.header-table {
   position: sticky;
   top: 0;
   z-index: 2;
 }
-.header-text{
+
+.header-text {
   width: 10%;
 }
+
 .inner-table {
   overflow-y: auto;
   max-height: 90%;
@@ -57,7 +60,7 @@
 }
 
 
-th{
+th {
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
   //border
   text-align: center;
@@ -72,12 +75,12 @@ th{
   z-index: 2;
 }
 
-.one-row{
+.one-row {
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
 
 }
 
-td{
+td {
   text-align: center;
   padding: 10px;
   vertical-align: middle;
@@ -93,7 +96,7 @@ td, th {
 
 .chart-cell {
   width: 30%;
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -113,12 +116,12 @@ td, th {
   text-decoration: none;
   //font-size: 1.5em;
   font-weight: bold;
-  &:hover{
+
+  &:hover {
     color: #81BCCE;
     text-decoration: none;
   }
 }
-
 
 
 .positive {
@@ -158,32 +161,38 @@ td, th {
   border-width: 10px 5px 0 5px;
   border-color: red transparent transparent transparent;
 }
-.rows{
+
+.rows {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
+
 .one-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
 }
-.each-column{
+
+.each-column {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 10%;
   font-weight: bold;
 }
-.header-currency{
+
+.header-currency {
   width: 20%;
 }
-.currency-column{
+
+.currency-column {
   width: 20%;
 }
-.wykres{
+
+.wykres {
 
   width: 70%;
 }

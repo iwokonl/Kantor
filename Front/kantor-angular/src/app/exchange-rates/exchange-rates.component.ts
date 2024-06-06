@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CurrencyService } from '../currency.service';
-import { CurrencyFlagsService } from '../currency-flags.service';
-import { Chart } from 'chart.js/auto';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {CurrencyService} from '../currency.service';
+import {CurrencyFlagsService} from '../currency-flags.service';
+import {Chart} from 'chart.js/auto';
+import {forkJoin} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -17,9 +17,12 @@ interface CurrencyFlags {
 export class ExchangeRatesComponent implements OnInit, AfterViewInit {
   currencies: string[] = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'HKD', 'NZD', 'SGD', 'KRW', 'SEK',] // działa max 19 walut, reszta:,  'NOK', 'MXN', 'INR', 'BRL', 'ZAR', 'TRY''DKK', 'THB', 'HUF', 'CZK', 'MYR', 'PHP', 'ILS', 'CLP', 'RON', 'BGN', 'ISK', 'UAH'];
 
-  exchangeRatesChanges: { [days: number]: { from: string, to: string, rate: number, change: number, percentageChange: number }[] } = {};
+  exchangeRatesChanges: {
+    [days: number]: { from: string, to: string, rate: number, change: number, percentageChange: number }[]
+  } = {};
   currencyFlags: CurrencyFlags = {};
   currencyNames: { [key: string]: string } = {};
+
   constructor(private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
 
@@ -33,6 +36,7 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
       });
     });
   }
+
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.exchangeRatesChanges[30].forEach((currency, i) => {
@@ -64,13 +68,13 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
         todayRate: this.currencyService.getCurrencyDetails(currency),
         daysAgoRate: this.currencyService.getCurrencyHistory(currency, dateAgo.toISOString().split('T')[0], today.toISOString().split('T')[0])
       }).pipe(
-        map(({ todayRate, daysAgoRate }) => {
+        map(({todayRate, daysAgoRate}) => {
           const rate = todayRate.rates[0].mid;
           const oldRate = daysAgoRate.rates[0].mid;
           const change = rate - oldRate;
           const percentageChange = (change / oldRate) * 100;
 
-          return { from: currency, to: 'PLN', rate, change, percentageChange };
+          return {from: currency, to: 'PLN', rate, change, percentageChange};
         })
       )
     );
@@ -163,6 +167,7 @@ export class ExchangeRatesComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   getChangeClass(change: number): string {
     if (change > 0) {
       return 'positive';

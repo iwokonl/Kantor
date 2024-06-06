@@ -2,29 +2,30 @@ Jeśli tworzysz nowy serwis to dodaj: config client, eureka discovery client, sp
 
 https://www.youtube.com/watch?v=KJ0cSvYj41c&t=3407s
 Róbcie z tego bo amen XD
-# Spis treści
-- [README Angulara](https://github.com/iwokonl/Kantor/tree/main/Front/kantor-angular) 
 
-- [README Główne](https://github.com/iwokonl/Kantor) 
+# Spis treści
+
+- [README Angulara](https://github.com/iwokonl/Kantor/tree/main/Front/kantor-angular)
+
+- [README Główne](https://github.com/iwokonl/Kantor)
 
 
 - [Podstawowe serwisy dla mikrousług](#podstawowe-serwisy-dla-mikrousług)
-   - [Konfiguracja serwisu `Config`](#konfiguracja-serwisu-config)
-   - [Konfiguracja serwisu `Discovery`](#konfiguracja-serwisu-discovery)
-   - [Konfiguracja serwisu `Gateway`](#konfiguracja-serwisu-gateway)
-     - [Security w `Gateway`](#security-w-gateway)
+    - [Konfiguracja serwisu `Config`](#konfiguracja-serwisu-config)
+    - [Konfiguracja serwisu `Discovery`](#konfiguracja-serwisu-discovery)
+    - [Konfiguracja serwisu `Gateway`](#konfiguracja-serwisu-gateway)
+        - [Security w `Gateway`](#security-w-gateway)
 - [Tworzenie nowego serwisu](#tworzenie-nowego-serwisu)
-  - [Komunikacja między mikrousługami](#komunikacja-między-mikrousługami)
-  - [Kod Security dla mikrousług](#kod-security-dla-mikrousług)
+    - [Komunikacja między mikrousługami](#komunikacja-między-mikrousługami)
+    - [Kod Security dla mikrousług](#kod-security-dla-mikrousług)
 - [Projekt Mikrousług](#projekt-mikrousług)
-   - [Usługi](#usługi)
-   - [Wymagania](#wymagania)
-   - [Uruchomienie projektu](#uruchomienie-projektu)
-   - [Testowanie](#testowanie)
-   - [Dokumentacja](#dokumentacja)
-   - [Wsparcie](#wsparcie)
-   - [Licencja](#licencja)
-
+    - [Usługi](#usługi)
+    - [Wymagania](#wymagania)
+    - [Uruchomienie projektu](#uruchomienie-projektu)
+    - [Testowanie](#testowanie)
+    - [Dokumentacja](#dokumentacja)
+    - [Wsparcie](#wsparcie)
+    - [Licencja](#licencja)
 
 # Podstawowe serwisy dla mikrousług
 
@@ -32,11 +33,12 @@ Róbcie z tego bo amen XD
 
 - `Discovery` - serwis odpowiedzialny za odkrywanie mikrousług.
 
-- `Config` - serwis odpowiedzialny za konfigurację mikrousług. 
+- `Config` - serwis odpowiedzialny za konfigurację mikrousług.
 
 ‎
 
 ### Konfiguracja serwisu `Config`
+
 #### Dependency
 
 ```xml
@@ -53,6 +55,7 @@ Róbcie z tego bo amen XD
     </dependency>
 </dependencies>
 ```
+
 - #### Config w `config-server`
 
 ```yaml
@@ -70,23 +73,27 @@ spring:
         native:
           search-locations: classpath:/configurations # Lokalizacja plików konfiguracyjnych
 ```  
+
 ‎
-### Konfiguracja serwisu `Discovery`  
+
+### Konfiguracja serwisu `Discovery`
+
 - #### Dependency
 
 ```xml
+
 <dependencies>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
     </dependency>
-    
-   <dependency>
+
+    <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    
-   <dependency>
+
+    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-config</artifactId>
     </dependency>
@@ -124,7 +131,9 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 ```
+
 ‎
+
 ### Konfiguracja serwisu `Gateway`
 
 - #### Dependency
@@ -136,28 +145,28 @@ spring:
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    
-   <dependency>
+
+    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-config</artifactId>
     </dependency>
-    
-   <dependency>
+
+    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-gateway-mvc</artifactId>
     </dependency>
-   
+
     <!--   Ewentualnie dla aplikacji reaktywnych-->
     <!--    <dependency>-->
     <!--        <groupId>org.springframework.cloud</groupId>-->
     <!--        <artifactId>spring-cloud-starter-gateway</artifactId>-->
     <!--    </dependency>-->
-    
-   <dependency>
+
+    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
-   
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-security</artifactId>
@@ -210,18 +219,21 @@ spring:
     import: optional:configserver:http://localhost:8888
 
 ```
+
 ‎
+
 - ### Security w `Gateway`
 
 Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zależność:
 
 ```xml
+
 <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
-   
+
     <dependency>
         <groupId>com.auth0</groupId>
         <artifactId>java-jwt</artifactId>
@@ -234,9 +246,8 @@ Aby dodać możliwość autentykacji tokenem JWT trzeba w `pom.xml` dodać zale�
 
 Następnie stworzyć klasę `SecurityConfig` i dodać konfigurację:
 
-
-
 ```java
+
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
@@ -254,18 +265,20 @@ public class SecurityConfig {
                 .addFilterBefore(jwtRedirectionFilter, BasicAuthenticationFilter.class)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Wyłączenie zarządzania sesją
                 .authorizeHttpRequests(request -> // Konfiguracja zabezpieczeń
-                        request.requestMatchers(HttpMethod.POST,  "api/v1/auth/login","api/v1/auth/register", "/error", "api/v1/currencies/search","api/v1/currencyAccounts/error").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
+                        request.requestMatchers(HttpMethod.POST, "api/v1/auth/login", "api/v1/auth/register", "/error", "api/v1/currencies/search", "api/v1/currencyAccounts/error").permitAll() // Pozwala na wykonywanie zapytań POST na adresach: /login, /register
                                 .requestMatchers(HttpMethod.GET).permitAll() // Pozwala na wykonywanie zapytań GET na adresach: /search/**
                                 .anyRequest().authenticated()); // Wymaga autoryzacji dla pozostałych zapytań
         return httpSecurity.build();
     }
 }
 ```
+
 - ##### `JwtAuthFilter` - Jest odpowiedzialne za autoryzację tokenem JWT i jest.
 
 Następnie stworzyć klasę `JwtAuthFilter` i dodać konfigurację:
 
 ```java
+
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -295,11 +308,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 }
 ```
+
 - ##### `JwtRedirectionFilter` - Jest odpowiedzialne za przekierowywanie tokena JWT z serwisu do bramy tzn. że na danemy wywołanemu serwisowi zostanie dostarczony token JWT.
 
 Następnie stworzyć klasę `JwtRedirectionFilter` i dodać konfigurację:
 
 ```java
+
 @Component
 public class JwtRedirectionFilter implements Filter {
 
@@ -315,11 +330,13 @@ public class JwtRedirectionFilter implements Filter {
     }
 }
 ```
+
 - ##### `UserAuthProvider` - Jest odpowiedzialne za tworzenie i walidację tokena JWT.
 
 - Następnie stworzyć klasę `UserAuthProvider` i dodać konfigurację:
 
 ```java
+
 @RequiredArgsConstructor
 @Component
 public class UserAuthProvider {
@@ -366,7 +383,7 @@ public class UserAuthProvider {
             return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
 
         } catch (JWTVerificationException exception) {
-            if(exception.getMessage().contains("The Token has expired on")) {
+            if (exception.getMessage().contains("The Token has expired on")) {
                 DecodedJWT decodedJWT = JWT.decode(token);
                 UserDto user = UserDto.builder()
                         .username(decodedJWT.getIssuer())
@@ -378,8 +395,7 @@ public class UserAuthProvider {
                         .build();
                 String newToken = createToken(user);
                 return new UsernamePasswordAuthenticationToken(user, newToken, Collections.emptyList());
-            }
-            else {
+            } else {
                 throw new AppExeption("Does not apply to token", HttpStatus.UNAUTHORIZED);
             }
 
@@ -387,7 +403,9 @@ public class UserAuthProvider {
     }
 }
 ```
+
 ‎
+
 ## Tworzenie nowego serwisu
 
 Aby stworzyć nowy mikroserwis trzeba dodać do niego
@@ -402,6 +420,7 @@ zależności `config client`, `eureka discovery client`, `spring boot actuator` 
 ### Dependency
 
 ```xml
+
 <dependencies>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -428,7 +447,7 @@ spring:
     name: NAZWA_TWOJEGO_SERWISU
   config:
     import: optional:configserver:http://localhost:XXXX # Optional znaczy to że jeśli nie znajdzie serwera konfiguracyjnego 
-      # to nie zwróci błędu i będzie działać z domyślnymi wartościami(czyli z tego pliku).
+    # to nie zwróci błędu i będzie działać z domyślnymi wartościami(czyli z tego pliku).
     # Zamień XXXX na port serwera konfiguracyjnego.
 ```
 
@@ -451,7 +470,9 @@ management:
     sampling:
       probability: 1.0
 ```
+
 ‎
+
 ## Komunikacja między mikrousługami
 
 Jeśli chcesz aby mikrousługi komunikowały się ze sobą, musisz dodać odpowiednie zależności i konfiguracje do każdej z
@@ -543,7 +564,9 @@ public interface CurrencyClient {
     Optional<CurrencyDto> getexampleById(@PathVariable("id") Long id);
 }
 ```
+
 ‎
+
 ## Kod Security dla mikrousług
 
 Poniżej znajdują się dwie klasy które trzeba dodać jeśli chcesz aby kominikacja odbywała się tylko między gateway i
@@ -592,7 +615,9 @@ public class IpAuthorizationManager implements AuthorizationManager<RequestAutho
     }
 }
 ```
+
 ‎
+
 # Projekt Mikrousług
 
 Ten projekt to zestaw mikrousług zbudowanych przy użyciu Java, Spring Boot i Maven.

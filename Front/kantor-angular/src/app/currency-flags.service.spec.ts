@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CurrencyFlagsService } from './currency-flags.service';
+import {CurrencyFlagsService} from './currency-flags.service';
 
 describe('CurrencyFlagsService', () => {
   let service: CurrencyFlagsService;

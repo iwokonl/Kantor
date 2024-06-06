@@ -14,14 +14,32 @@
 
     <div class="inner-table">
       <table class="rows">
-          <tr class="one-row" *ngFor="let currency of exchangeRatesChanges[30]; let i = index">
-            <td class="currency-column"> <div class="currency-click"[routerLink]="['/currency', currency.from]" ><h2>{{ currencyFlags[currency.from] }} </h2>  <p class="row-text">{{ currency.from }} {{ currencyNames[currency.from] }}</p> </div> </td>
-            <td class="each-column">{{ currency.rate }}</td>
-            <td class="each-column" [ngClass]="getChangeClass(exchangeRatesChanges[7][i].percentageChange)">{{ exchangeRatesChanges[7][i].percentageChange | number:'1.2-2' }}%</td>
-            <td class="each-column" [ngClass]="getChangeClass(exchangeRatesChanges[30][i].percentageChange)">{{ exchangeRatesChanges[30][i].percentageChange | number:'1.2-2' }}%</td>
-            <td class="each-column" [ngClass]="getChangeClass(exchangeRatesChanges[90][i].percentageChange)">{{ exchangeRatesChanges[90][i].percentageChange | number:'1.2-2' }}%</td>
-            <td class="each-column" [ngClass]="getChangeClass(exchangeRatesChanges[365][i].percentageChange)">{{ exchangeRatesChanges[365][i].percentageChange | number:'1.2-2' }}%</td>
-            <td class="chart-cell"><canvas class="wykres" id="{{ 'chart' + i }}"></canvas></td>
+        <tr class="one-row" *ngFor="let currency of exchangeRatesChanges[30]; let i = index">
+          <td class="currency-column">
+            <div class="currency-click" [routerLink]="['/currency', currency.from]">
+              <h2>{{ currencyFlags[currency.from] }} </h2>
+              <p class="row-text">{{ currency.from }} {{ currencyNames[currency.from] }}</p></div>
+          </td>
+          <td class="each-column">{{ currency.rate }}</td>
+          <td class="each-column"
+              [ngClass]="getChangeClass(exchangeRatesChanges[7][i].percentageChange)">{{ exchangeRatesChanges[7][i].percentageChange | number:'1.2-2' }}
+            %
+          </td>
+          <td class="each-column"
+              [ngClass]="getChangeClass(exchangeRatesChanges[30][i].percentageChange)">{{ exchangeRatesChanges[30][i].percentageChange | number:'1.2-2' }}
+            %
+          </td>
+          <td class="each-column"
+              [ngClass]="getChangeClass(exchangeRatesChanges[90][i].percentageChange)">{{ exchangeRatesChanges[90][i].percentageChange | number:'1.2-2' }}
+            %
+          </td>
+          <td class="each-column"
+              [ngClass]="getChangeClass(exchangeRatesChanges[365][i].percentageChange)">{{ exchangeRatesChanges[365][i].percentageChange | number:'1.2-2' }}
+            %
+          </td>
+          <td class="chart-cell">
+            <canvas class="wykres" id="{{ 'chart' + i }}"></canvas>
+          </td>
         </tr>
       </table>
     </div>

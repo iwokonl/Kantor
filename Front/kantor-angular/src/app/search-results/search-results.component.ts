@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter, Input} from '@angular/core';
-import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
-import { CurrencyFlagsService } from '../currency-flags.service';
+import {polyfillCountryFlagEmojis} from "country-flag-emoji-polyfill";
+import {CurrencyFlagsService} from '../currency-flags.service';
 
 interface CurrencyFlags {
   [key: string]: string;

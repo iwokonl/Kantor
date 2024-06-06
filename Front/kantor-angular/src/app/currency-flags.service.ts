@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {polyfillCountryFlagEmojis} from "country-flag-emoji-polyfill";
 
 @Injectable({

@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CurrencyService } from '../currency.service';
-import { CurrencyFlagsService } from '../currency-flags.service';
-import { Title } from '@angular/platform-browser';
-import { Chart } from 'chart.js/auto';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {CurrencyService} from '../currency.service';
+import {CurrencyFlagsService} from '../currency-flags.service';
+import {Title} from '@angular/platform-browser';
+import {Chart} from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import { forkJoin, from, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar'; // Import MatSnackBar
+import {forkJoin, from, throwError} from 'rxjs';
+import {catchError, switchMap} from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material/snack-bar'; // Import MatSnackBar
 
 interface CurrencyFlags {
   [key: string]: string;
@@ -129,7 +129,8 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
         maintainAspectRatio: false, // Add this line
         plugins: {
           legend: {
-            onClick: (e, legendItem, legend) => {}
+            onClick: (e, legendItem, legend) => {
+            }
           },
           tooltip: {
             callbacks: {
@@ -140,7 +141,7 @@ export class CurrencyDetailComponent implements OnInit, OnDestroy {
                   label += ': ';
                 }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
+                  label += new Intl.NumberFormat('en-US', {style: 'decimal'}).format(context.parsed.y) + ' PLN';
                 }
                 return label;
               }

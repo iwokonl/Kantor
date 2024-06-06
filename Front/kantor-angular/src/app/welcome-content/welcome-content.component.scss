@@ -1,4 +1,4 @@
-.welcome-page-container{
+.welcome-page-container {
   display: flex;
   height: 100%;
   width: 100%;
@@ -15,21 +15,24 @@
     }
   }
 }
-.main-container{
+
+.main-container {
   margin-top: 1%;
   display: flex;
   height: 90%;
   width: 100%;
 
 }
-.left-container{
+
+.left-container {
   display: flex;
   height: 100%;
   width: 100%;
   flex-direction: column;
 
 }
-.right-container{
+
+.right-container {
   display: flex;
   height: 100%;
   width: 25%;
@@ -40,7 +43,8 @@
   padding: 1%;
   margin-left: 1%;
 }
-.upper-container{
+
+.upper-container {
   display: flex;
   justify-content: space-around;
   height: 60%;
@@ -83,7 +87,7 @@
 }
 
 
-.welcome-text{
+.welcome-text {
   font-family: "Twemoji Country Flags", "Helvetica", serif;
   padding: 4%;
   text-align: justify;
@@ -93,14 +97,15 @@
 }
 
 
-.lower-container{
+.lower-container {
   display: flex;
   height: 40%;
   width: 100%;
   padding: 1%;
   flex-direction: row;
 }
-.left-down-container{
+
+.left-down-container {
   display: flex;
   height: 100%;
   width: 30%;
@@ -111,7 +116,8 @@
   backdrop-filter: blur(25px);
 
 }
-.right-down-container{
+
+.right-down-container {
   display: flex;
   height: 100%;
   width: 70%;
@@ -150,7 +156,7 @@
   }
 }
 
-.popular-pairs{ //kontener dla par walutowychd
+.popular-pairs { //kontener dla par walutowychd
   overflow-y: auto;
   justify-content: center;
   align-items: center;
@@ -226,18 +232,24 @@
 }
 
 @keyframes banner-move {
-  0% {transform: translateX(50%);}
-  100% {transform: translateX(-50%);}
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
-.banner-outer-container{
+
+.banner-outer-container {
   height: 10%;
   width: 100%;
 }
-.banner-inner-container{
+
+.banner-inner-container {
   overflow: hidden;
   position: relative;
   white-space: nowrap;
-  display:flex;
+  display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -249,6 +261,7 @@
   color: #dbdbdb;
   backdrop-filter: blur(25px);
 }
+
 .exchange-rate-change {
   display: inline-block;
   margin-right: 20px;
@@ -256,13 +269,15 @@
   font-size: 130%;
   //width: 180px;
 }
-.exchange-rate-text{
+
+.exchange-rate-text {
   margin-bottom: 0;
   //display: flex;
   //justify-content: center;
   //align-items: center;
 
 }
+
 .positive {
   color: green;
 }
@@ -270,6 +285,7 @@
 .negative {
   color: red;
 }
+
 .zero {
   color: #5fe5ee;
 }
@@ -301,7 +317,7 @@
 }
 
 
-.left-down-container{
+.left-down-container {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -309,6 +325,7 @@
   position: relative;
   padding: 0;
   font-family: "Twemoji Country Flags", "Helvetica", serif;
+
   &::-webkit-scrollbar {
     width: 20%;
     padding-right: 20px;
@@ -335,6 +352,7 @@
     border: solid 5px transparent;
   }
 }
+
 .header-containerr {
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
   position: sticky;
@@ -346,7 +364,7 @@
 }
 
 
-.custom-col{
+.custom-col {
   display: flex;
   flex-direction: row;
   padding: 5%;
@@ -355,38 +373,45 @@
   height: 10%;
   padding-bottom: 12%;
 }
-.custom-card{
+
+.custom-card {
   width: 100%;
 }
-.custom-card-body{
+
+.custom-card-body {
   display: flex;
   flex-direction: row;
   align-content: center;
   width: 100%;
 }
-.custom-card{
+
+.custom-card {
   height: 100%;
   width: 100%;
 }
-.custom-card-title, .custom-card-text{
+
+.custom-card-title, .custom-card-text {
   margin: 0;
   height: 100%;
   width: 50%;
 }
-#currency-info{
+
+#currency-info {
   width: 100%;
 }
-.custom-card-text{
+
+.custom-card-text {
   width: 50%;
 }
 
 
-.account-container{
+.account-container {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+
   &::-webkit-scrollbar {
     width: 20%;
     padding-right: 20px;
@@ -414,12 +439,13 @@
   }
 }
 
-.trasactions-container{
+.trasactions-container {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+
   &::-webkit-scrollbar {
     width: 20%;
     padding-right: 20px;
@@ -453,7 +479,8 @@ th, td {
   width: 20%;
   font-size: 1.25rem;
 }
-.transaction-row{
+
+.transaction-row {
   display: flex;
   align-items: center;
   border-bottom: 2px solid rgba(255, 255, 255, 0.22);
@@ -461,13 +488,15 @@ th, td {
   padding-right: 4%;
   width: 100%;
 }
-tbody{
-  width:100%;
-}
-.row{
+
+tbody {
   width: 100%;
 }
 
-.svg-image{
+.row {
+  width: 100%;
+}
+
+.svg-image {
   color: #dbdbdb;
 }
