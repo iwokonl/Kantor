@@ -31,10 +31,15 @@ export class AxiosService {
     }
     this.authStatusSubject.next(!!token);
   }
+
   logout(): void {
     window.localStorage.removeItem('authToken');
     this.authStatusSubject.next(false);
-    this.router.navigate(['/']);
+    //nawigacja do strony logowania (moze byc jakakolwiek, nawet pusta - byleby szybko się przeładowała)
+    //Taki trik jest potrzebny do zresetowania stanu strony glownej (tabelki na dole)
+    this.router.navigate(['/login']).then(() => {
+      this.router.navigate(['/']);
+    });
   }
   checkAuthTocken(): void {
     if (this.getAuthTocken() === null || this.getAuthTocken() === undefined || this.getAuthTocken() === '' || this.getAuthTocken() === 'null') {
