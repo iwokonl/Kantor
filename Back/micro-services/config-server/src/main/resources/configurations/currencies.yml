@@ -4,7 +4,7 @@ spring:
   jpa:
     hibernate:
       #      Pierwsze uruchomienie
-#      ddl-auto: create
+      #      ddl-auto: create
       #      update - po pierwszym uruchomieniu
       ddl-auto: update
     show-sql: true

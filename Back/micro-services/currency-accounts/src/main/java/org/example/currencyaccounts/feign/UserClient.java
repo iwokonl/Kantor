@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface UserClient {
     @PostMapping("v1/auth/userInfo")
     Optional<UserDto> getUserInfo();
+
     @PostMapping("v1/auth/findUserId/{id}")
     UserDto findUserId(@PathVariable("id") Long id);
 }

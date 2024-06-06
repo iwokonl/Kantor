@@ -12,9 +12,13 @@ import java.util.Optional;
 public interface CurrencyRepo extends JpaRepository<Currency, Long> {
 
     Optional<List<Currency>> findByCodeStartingWith(String code);
+
     Optional<List<Currency>> findByNameStartingWith(String name);
+
     Optional<Currency> findByName(String name);
+
     Optional<Currency> findByCode(String code);
+
     Optional<Currency> findById(Long id);
 
     @Query("SELECT c FROM Currency c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%', :name, '%'))")

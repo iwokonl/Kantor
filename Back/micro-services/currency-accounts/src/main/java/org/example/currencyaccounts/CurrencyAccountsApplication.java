@@ -8,8 +8,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 public class CurrencyAccountsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CurrencyAccountsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CurrencyAccountsApplication.class, args);
+    }
 
 }

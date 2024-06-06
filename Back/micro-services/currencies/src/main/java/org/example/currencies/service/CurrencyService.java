@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class CurrencyService {
     private final CurrencyRepo currencyRepository;
     private final CurrencyMapper currencyMapper;
+
     public List<CurrencyDto> findByName(SearchCurrencyDto query) {
         if (query.name() == null || query.name().isEmpty()) {
             return currencyMapper.toCurrencyDto(new ArrayList<>());
@@ -36,11 +37,11 @@ public class CurrencyService {
                 });
 
         if (combinedOptional.isEmpty()) {
-            throw new AppExeption("Currency not found","currencies", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Currency not found", "currencies", HttpStatus.NOT_FOUND);
         }
         List<Currency> results = combinedOptional.get();
         if (results.isEmpty()) {
-            throw new AppExeption("Currency not found","currencies", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Currency not found", "currencies", HttpStatus.NOT_FOUND);
         }
 
         List<Currency> sortedResults = results.stream()
@@ -53,7 +54,7 @@ public class CurrencyService {
     public CurrencyDto findById(Long id) {
         Optional<Currency> currency = currencyRepository.findById(id);
         if (currency.isEmpty()) {
-            throw new AppExeption("Currency not found","currencies", HttpStatus.NOT_FOUND);
+            throw new AppExeption("Currency not found", "currencies", HttpStatus.NOT_FOUND);
         }
         return currencyMapper.toCurrencyDto(currency.get());
     }

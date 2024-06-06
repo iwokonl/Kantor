@@ -221,3 +221,7 @@ C
 transaction/pom.xml,2\7\27142b460493ea58e9a698e5409e2cbd58e603f8
 v
 Fgateway/src/test/java/org/example/gateway/GatewayApplicationTests.java,2\e\2e04b24ad3fa2f04ac545b4ba7c9ba4ff9f0e0f2
+~
+Ndiscovery-server/src/main/java/org/example/discovery/DiscoveryApplication.java,c\b\cbdf5089e225d1160df6ab4ebcb6987eaa6e721e
+|
+Ltransaction/src/main/java/org/example/transaction/dto/GetTransactionDto.java,f\6\f62de79d4a0bdf68e29b117df4e85541886dcd7b

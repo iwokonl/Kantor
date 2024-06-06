@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper(componentModel="spring")
+@Mapper(componentModel = "spring")
 @Component
 public interface CurrencyMapper {
     List<CurrencyDto> toCurrencyDto(List<Currency> currencies);
+
     CurrencyDto toCurrencyDto(Currency currencies);
 }
