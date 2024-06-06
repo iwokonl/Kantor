@@ -42,6 +42,7 @@
 }
 .upper-container{
   display: flex;
+  justify-content: space-around;
   height: 60%;
   width: 100%;
   padding: 1%;
@@ -51,6 +52,39 @@
   backdrop-filter: blur(25px);
 
 }
+
+
+// Wykresy
+
+#chartUSD, #chartEUR, #chartCHF {
+  height: 70%;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+}
+
+//.chart-container canvas {
+//  height: 90%;
+//  width: 30%;
+//  margin-bottom: 3%;
+//}
+
+//kod waluty nad wykresem
+.chart-container p {
+  margin: 0;
+  height: 10%;
+  font-weight: bold;
+}
+
+
+
+
+
 .lower-container{
   display: flex;
   height: 40%;

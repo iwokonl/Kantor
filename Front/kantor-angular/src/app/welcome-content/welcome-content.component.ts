@@ -7,6 +7,10 @@ import {catchError, map} from "rxjs/operators";
 import { of } from 'rxjs';
 import {CurrencyFlagsService} from "../currency-flags.service";
 
+import { Chart } from 'chart.js/auto'; // Import Chart from chart.js
+import 'chartjs-adapter-date-fns'; // Import chartjs-adapter-date-fns for time functionality
+
+
 @Component({
   selector: 'app-welcome-content',
   templateUrl: './welcome-content.component.html',
@@ -27,6 +31,14 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
 
   transactions: any[] = [];
 
+  chart: Chart | undefined;
+  startDate: string = '';
+  endDate: string = '';
+
+  charts: { [key: string]: Chart } = {};
+
+
+
   constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
@@ -44,6 +56,112 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     this.printExchangeRates();
     this.fetchExchangeRatesChanges();
     console.log(this.exchangeRatesChanges);
+
+    const endDate = new Date();
+    const startDate = new Date();
+    startDate.setDate(endDate.getDate() - 30);
+
+    this.startDate = startDate.toISOString().split('T')[0];
+    this.endDate = endDate.toISOString().split('T')[0];
+
+    // Fetch the data and create the chart
+    this.updateChartData();
+  }
+
+  async updateChartData() {
+    const currencies = ['USD', 'EUR', 'CHF'];
+    const chartIds = ['chartUSD', 'chartEUR', 'chartCHF'];
+
+    for (let index = 0; index < currencies.length; index++) {
+      const currency = currencies[index];
+      const chartId = chartIds[index];
+
+      // Fetch the history data
+      const history = await this.currencyService.getCurrencyHistory(currency, this.startDate, this.endDate).toPromise();
+
+      if (history.rates && Array.isArray(history.rates)) {
+        // Prepare the labels and values
+        const labels = history.rates.map((rate: any) => rate.effectiveDate);
+        const values = history.rates.map((rate: any) => rate.mid);
+
+        // Create the chart
+        this.createChart(chartId, labels, values);
+      }
+    }
+  }
+
+  createChart(chartId: string, labels: string[], values: number[]) {
+    if (this.charts[chartId]) {
+      this.charts[chartId].destroy();
+    }
+    this.charts[chartId] = new Chart(chartId, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          // label: 'USD',
+          data: values,
+          borderColor: '#3cba9f',
+          fill: false,
+          tension: 1,
+          cubicInterpolationMode: 'monotone',
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+            onClick: (e, legendItem, legend) => {}
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                var label = context.dataset.label || '';
+
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              displayFormats: {
+                day: 'dd.MM'
+              },
+              parser: 'yyyy-MM-dd',
+              tooltipFormat: 'dd.MM.yyyy',
+            },
+            ticks: {
+              color: '#DBDBDB',
+            },
+            grid: {
+              color: 'rgba(219, 219, 219, 0)'
+            }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            ticks: {
+              color: '#DBDBDB'
+            },
+            grid: {
+              color: 'rgba(219, 219, 219, 0.2)',
+            }
+          }
+        }
+      }
+    });
   }
 
   getCurrencyAccounts(): void {
