@@ -1,10 +1,10 @@
 import {Component, OnInit, SimpleChanges} from '@angular/core';
-import { AxiosService } from '../axios.service';
-import { CurrencyService } from '../currency.service';
-import { CurrencyFlagsService } from '../currency-flags.service';
-import { Title } from '@angular/platform-browser';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormControl } from '@angular/forms';
+import {AxiosService} from '../axios.service';
+import {CurrencyService} from '../currency.service';
+import {CurrencyFlagsService} from '../currency-flags.service';
+import {Title} from '@angular/platform-browser';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormControl} from '@angular/forms';
 
 
 interface CurrencyFlags {
@@ -65,6 +65,7 @@ export class CurrencyAccountComponent implements OnInit {
   }
 
   openAccountForm: boolean = false;
+
   openCurrencyAccountForm() {
     this.openAccountForm = true;
     this.selectedAccount = null;
@@ -114,6 +115,7 @@ export class CurrencyAccountComponent implements OnInit {
       this.getCurrencyAccounts();
     });
   }
+
   ngOnInit(): void {
     this.getCurrencyAccounts();
     this.titleService.setTitle("Konta walutowe - Kantor $€££")
@@ -149,7 +151,7 @@ export class CurrencyAccountComponent implements OnInit {
 
   onAddMoney(account: any) {
     console.log(account.amount);
-    let regExp:RegExp = /[a-zA-Z]/g;
+    let regExp: RegExp = /[a-zA-Z]/g;
     if (account.amount === undefined || regExp.test(account.amount)) {
       console.log("Invalid amount");
       const message = 'Nieprawidłowa kwota!';
@@ -223,7 +225,7 @@ export class CurrencyAccountComponent implements OnInit {
   //nowa wersja - animacja trwa tyle ile trwa operacja, po zakończeniu animacja znika, konta sa odswiezane
   createPayout(account: any) {
     console.log(account.amount);
-    let regExp:RegExp = /[a-zA-Z]/g;
+    let regExp: RegExp = /[a-zA-Z]/g;
     if (account.amount === undefined || regExp.test(account.amount)) {
       console.log("Invalid amount");
       const message = 'Nieprawidłowa kwota!';

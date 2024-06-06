@@ -1,8 +1,8 @@
 // settings.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from '../user.service';
-import { AxiosService } from '../axios.service';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {UserService} from '../user.service';
+import {AxiosService} from '../axios.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -24,7 +24,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isSecuritySelected: boolean = false;
   isHelpSelected: boolean = false;
 
-  constructor(private axiosService: AxiosService, private userService: UserService) { }
+  constructor(private axiosService: AxiosService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = this.axiosService.getAuthTocken() !== null;
@@ -59,6 +60,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   changeUserLogin(): void {
     this.axiosService.request("PUT", "api/v1/auth/loginChange", {
       username: this.user_name,
@@ -67,6 +69,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       console.log(response);
     });
   }
+
   changeUserFirstName(): void {
     this.axiosService.request("PUT", "api/v1/auth/firstnameChange", {
       firstName: this.firstname,
@@ -76,6 +79,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.updateUserDetails();
     });
   }
+
   changeUserLastName(): void {
     this.axiosService.request("PUT", "api/v1/auth/lastnameChange", {
       lastName: this.lastname,
@@ -93,10 +97,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
       console.log(response);
     });
   }
+
   toggleEditUsername() {
     this.updateUserDetails();
     this.isEditingUsername = !this.isEditingUsername;
   }
+
   isEditingEmail = false; // Zmienna kontrolująca stan pola formularza
 
   toggleEditEmail() {

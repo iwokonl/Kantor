@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CurrencyDetailComponent } from './currency-detail.component';
+import {CurrencyDetailComponent} from './currency-detail.component';
 
 describe('CurrencyDetailComponent', () => {
   let component: CurrencyDetailComponent;
@@ -10,8 +10,8 @@ describe('CurrencyDetailComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CurrencyDetailComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CurrencyDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

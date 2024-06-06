@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { AxiosService } from '../axios.service';
+import {Component} from '@angular/core';
+import {AxiosService} from '../axios.service';
+
 @Component({
   selector: 'app-auth-content',
   templateUrl: './auth-content.component.html',
@@ -11,11 +12,12 @@ export class AuthContentComponent {
   constructor(private axiosService: AxiosService) {
 
   }
+
   ngOnInit() {
     this.axiosService.request('GET', '/api/messages', {})
       .then((response) => {
-      this.data = response.data;
-    });
+        this.data = response.data;
+      });
   }
 
   // ngOnInit() {

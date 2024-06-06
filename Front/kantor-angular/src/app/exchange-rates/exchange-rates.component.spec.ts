@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ExchangeRatesComponent } from './exchange-rates.component';
+import {ExchangeRatesComponent} from './exchange-rates.component';
 
 describe('ExchangeRatesComponent', () => {
   let component: ExchangeRatesComponent;
@@ -10,8 +10,8 @@ describe('ExchangeRatesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ExchangeRatesComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(ExchangeRatesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

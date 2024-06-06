@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter, OnInit, OnDestroy, HostListener, ElementRef} from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { AxiosService } from '../axios.service';
+import {Subject, Subscription} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {AxiosService} from '../axios.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -17,15 +17,18 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   searchResults: any[] = [];
   lastSearchResults: any[] = [];
 
-  constructor(private axiosService: AxiosService, private eRef: ElementRef) {}
+  constructor(private axiosService: AxiosService, private eRef: ElementRef) {
+  }
+
   onResultClick(): void {
     this.searchResults = [];
   }
+
   ngOnInit(): void {
     this.searchSubscription = this.searchInput.pipe(
       debounceTime(500)
     ).subscribe(searchText => {
-      this.axiosService.request('POST', '/api/v1/currencies/search', { name: searchText })
+      this.axiosService.request('POST', '/api/v1/currencies/search', {name: searchText})
         .then(response => {
           this.searchResults = response.data;
           this.searchChange.emit(response.data);

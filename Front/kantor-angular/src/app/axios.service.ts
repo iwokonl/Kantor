@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import axios from 'axios';
 import {Subject} from "rxjs";
+
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
   private authStatusSubject = new Subject<boolean>();
   authStatus$ = this.authStatusSubject.asObservable();
+
   constructor(private router: Router) {
     axios.defaults.baseURL = 'http://localhost:8222';
     axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -17,15 +19,15 @@ export class AxiosService {
     return window.localStorage.getItem('authToken');
 
   }
-  setAuthTocken(token: string | null) : void {
+
+  setAuthTocken(token: string | null): void {
 
     if (token !== null) {
 
-        window.localStorage.setItem('authToken', token);
+      window.localStorage.setItem('authToken', token);
 
 
-    }
-    else {
+    } else {
       window.localStorage.removeItem('authToken');
 
     }
@@ -41,11 +43,13 @@ export class AxiosService {
       this.router.navigate(['/']);
     });
   }
+
   checkAuthTocken(): void {
     if (this.getAuthTocken() === null || this.getAuthTocken() === undefined || this.getAuthTocken() === '' || this.getAuthTocken() === 'null') {
       window.localStorage.removeItem('authToken');
     }
   }
+
   request(method: string, url: string, data: any) {
     let headers = {};
     this.checkAuthTocken();
@@ -53,7 +57,7 @@ export class AxiosService {
       headers = {
         'Authorization': 'Bearer ' + this.getAuthTocken()
       };
-      }
+    }
     return axios({
       method: method,
       url: url,
@@ -78,7 +82,7 @@ export class AxiosService {
   }
 
   getCurrencyData(code: string) {
-    return this.requestWithOutData('GET', '/api/v1/currencies/id/'+code)
+    return this.requestWithOutData('GET', '/api/v1/currencies/id/' + code)
       .then(response => {
         return {
           code: response.data.code,

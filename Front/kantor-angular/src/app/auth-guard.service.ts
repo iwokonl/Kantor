@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AxiosService } from './axios.service';
+import {Injectable} from '@angular/core';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {AxiosService} from './axios.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private axiosService: AxiosService, private router: Router) { }
+  constructor(private axiosService: AxiosService, private router: Router) {
+  }
 
   //Funkcja do routowania na stronę główną jeśli użytkownik jest zalogowany
   canActivate(

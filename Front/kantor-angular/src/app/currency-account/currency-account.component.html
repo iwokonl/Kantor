@@ -1,4 +1,3 @@
-
 <div class="accounts-layout">
   <div class="custom-container">
     <div class="custom-row">
@@ -21,13 +20,12 @@
               </p>
             </h5>
             <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
-            <p class="custom-card-text"> {{ (account.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
+            <p class="custom-card-text"> {{ (account.balanceInPLN | number : '1.2-2') + ' PLN' }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 
 
   <div *ngIf="openAccountForm" class="selected-account-container" id="open-account-form">
@@ -37,18 +35,19 @@
           <div class="currency-flag-container">
             <h1 class="currency-flag"> + </h1>
           </div>
-            <div class="currency-info-container" [routerLink]="['/currency', selectedAccount.currencyCode]">
-              <div class="currency-info">
-                <p class="currency-name">Wybierz walutę</p>
-              </div>
+          <div class="currency-info-container" [routerLink]="['/currency', selectedAccount.currencyCode]">
+            <div class="currency-info">
+              <p class="currency-name">Wybierz walutę</p>
             </div>
           </div>
         </div>
+      </div>
     </div>
 
     <div class="lower-container">
       <div class="transactions">
-        <div class="no-accounts-message"> <h2>Wyszukaj interesującą cię walutę i otwórz nowe konto walutowe już teraz! </h2></div>
+        <div class="no-accounts-message"><h2>Wyszukaj interesującą cię walutę i otwórz nowe konto walutowe już
+          teraz! </h2></div>
       </div>
     </div>
 
@@ -67,7 +66,7 @@
               <p class="currency-code">{{ selectedAccount.currencyCode }}</p>
               <p class="currency-name">{{ selectedAccount.currencyName }}</p>
               <p class="currency-balance">{{ selectedAccount.balance + ' ' + selectedAccount.currencyCode }}</p>
-              <p class="currency-balance"> {{ (selectedAccount.balanceInPLN | number : '1.2-2') +' PLN' }}</p>
+              <p class="currency-balance"> {{ (selectedAccount.balanceInPLN | number : '1.2-2') + ' PLN' }}</p>
             </div>
           </div>
         </div>
@@ -75,11 +74,15 @@
 
       <div class="uppermiddle-container">
         <div class="actions-container">
-          <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty" [formControl]="amountControl">
-          <p>Kwota : {{ (expectedPrice  | number : '1.4-4')}} PLN</p>
+          <input class="custom-form-control" type="text" placeholder="Wprowadź kwotę do wpłaty/wypłaty"
+                 [formControl]="amountControl">
+          <p>Kwota : {{ (expectedPrice  | number : '1.4-4') }} PLN</p>
           <div class="buttons">
-            <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(selectedAccount)">Dodaj fundusze</button>
-            <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(selectedAccount)">Wypłać fundusze</button>
+            <button class="custom-btn custom-btn-outline-primary" (click)="onAddMoney(selectedAccount)">Dodaj fundusze
+            </button>
+            <button class="custom-btn custom-btn-outline-primary withdraw" (click)="createPayout(selectedAccount)">
+              Wypłać fundusze
+            </button>
           </div>
 
           <div class="loading-overlay" *ngIf="selectedAccount.isLoading">
@@ -98,117 +101,51 @@
 
 
 
-
-
-
-
-
-
-<!--    &lt;!&ndash; Thead table &ndash;&gt;-->
-<!--    <div class="table-wrapper">-->
-<!--      <table class="transactions-table">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--          <th>Ilość</th>-->
-<!--          <th>Kurs</th>-->
-<!--          <th>Wartość</th>-->
-<!--          <th>Typ transakcji</th>-->
-<!--          <th>Data</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--      </table>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Tbody table &ndash;&gt;-->
-<!--    <div class="lower-container">-->
-<!--      <div class="transactions">-->
-<!--        <div class="table-wrapper">-->
-<!--          <table class="transactions-table">-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let transaction of transactions">-->
-<!--              <td>{{ transaction.targetCurrency }}</td>-->
-<!--              <td>{{ transaction.exchangeRate }}</td>-->
-<!--              <td>{{ transaction.amountOfForeginCurrency }}</td>-->
-<!--              <td>{{ transaction.typeOfTransaction }}</td>-->
-<!--              <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--      </div>-->
-
-  <div class="history-container">
+    <div class="history-container">
       <div class="transactions">
-          <div class="table-container">
-            <div class>
-              <table>
-                <thead>
-                <tr class="one-row">
-                  <th class="columns">Ilość</th>
-                  <th class="columns">Kurs</th>
-                  <th class="columns">Wartość</th>
-                  <th class="columns">Typ transakcji</th>
-                  <th class="columns">Data</th>
+        <div class="table-container">
+          <div class>
+            <table>
+              <thead>
+              <tr class="one-row">
+                <th class="columns">Ilość</th>
+                <th class="columns">Kurs</th>
+                <th class="columns">Wartość</th>
+                <th class="columns">Typ transakcji</th>
+                <th class="columns">Data</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="lower-container">
+            <table>
+              <tbody>
+              <ng-container *ngFor="let transaction of transactions">
+                <tr class="one-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                  <td class="columns">{{ transaction.amountOfForeginCurrency + ' ' + selectedAccount.currencyCode }}
+                  </td>
+                  <td class="columns">{{ transaction.exchangeRate }}</td>
+                  <td class="columns">{{ transaction.targetCurrency + ' PLN' }}</td>
+                  <td class="columns"><img class="svg image" src="assets/PAYOUT.svg"></td>
+                  <td class="columns">{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                 </tr>
-                </thead>
-              </table>
-            </div>
-            <div class="lower-container">
-              <table>
-                <tbody>
-                <ng-container *ngFor="let transaction of transactions">
-                  <tr class="one-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
-                    <td class="columns">{{ transaction.amountOfForeginCurrency  + ' ' + selectedAccount.currencyCode}}</td>
-                    <td class="columns">{{ transaction.exchangeRate }}</td>
-                    <td class="columns">{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td class="columns"><img class="svg image" src="assets/PAYOUT.svg"></td>
-                    <td class="columns">{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-                  </tr>
-                  <ng-template #elseBlock>
-                    <tr class="one-row">
+                <ng-template #elseBlock>
+                  <tr class="one-row">
                     <td class="columns">{{ transaction.targetCurrency + ' ' + selectedAccount.currencyCode }}</td>
                     <td class="columns">{{ transaction.exchangeRate }}</td>
-                    <td class="columns">{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
+                    <td class="columns">{{ transaction.amountOfForeginCurrency + ' PLN' }}</td>
                     <td class="columns"><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
                     <td class="columns">{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-                    </tr>
-                  </ng-template>
-                </ng-container>
-                </tbody>
-              </table>
-            </div>
+                  </tr>
+                </ng-template>
+              </ng-container>
+              </tbody>
+            </table>
           </div>
         </div>
-    </div>
-
-<!--    <div class="lower-container">-->
-<!--      <div class="lower-container">-->
-<!--        <div class="transactions">-->
-<!--          <div class="transactions-table" >-->
-<!--            <table>-->
-<!--              <thead>-->
-<!--              <tr>-->
-<!--                <th>Ilość</th>-->
-<!--                <th>Kurs</th>-->
-<!--                <th>Wartość</th>-->
-<!--                <th>Typ transakcji</th>-->
-<!--                <th>Data</th>-->
-<!--              </tr>-->
-<!--              </thead>-->
-<!--              <tbody>-->
-<!--              <tr *ngFor="let transaction of transactions">-->
-<!--                <td>{{ transaction.targetCurrency }}</td>-->
-<!--                <td>{{ transaction.exchangeRate }}</td>-->
-<!--                <td>{{ transaction.amountOfForeginCurrency }}</td>-->
-<!--                <td>{{ transaction.typeOfTransaction }}</td>-->
-<!--                <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>-->
-<!--              </tr>-->
-<!--              </tbody>-->
-<!--            </table>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
       </div>
     </div>
+
+  </div>
+</div>
 

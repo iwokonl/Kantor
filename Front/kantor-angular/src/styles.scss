@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+body {
   background-image: url("assets/background.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +11,7 @@ body{
   z-index: 1000000;
 }
 
-.mdc-snackbar__surface{
+.mdc-snackbar__surface {
   border-radius: 12px;
 }
 
@@ -31,10 +31,12 @@ body{
   height: 52px;
   border-radius: 12px;
 }
-app-root{
+
+app-root {
   height: 100vh;
   width: 100vw;
 }
+
 /* src/styles.scss */
 
 .error-snackbar {
@@ -56,10 +58,12 @@ app-root{
   height: 52px;
   top: 50px;
 }
-.mat-mdc-snack-bar-container .mdc-snackbar__surface{
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
   box-shadow: none !important;
 
 }
+
 /* Dynamic width classes */
 .width-100 {
   width: 100px !important;

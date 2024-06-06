@@ -1,7 +1,7 @@
 // currency-chart.component.ts
 // currency-chart.component.ts
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Chart } from 'chart.js';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-currency-chart',
@@ -12,7 +12,8 @@ export class CurrencyChartComponent implements OnInit, OnChanges {
   @Input() currencyHistory: any;
   chart: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.createChart();

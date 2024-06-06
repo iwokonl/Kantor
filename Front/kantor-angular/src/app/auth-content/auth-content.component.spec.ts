@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthContentComponent } from './auth-content.component';
+import {AuthContentComponent} from './auth-content.component';
 
 describe('AuthContentComponent', () => {
   let component: AuthContentComponent;
@@ -10,8 +10,8 @@ describe('AuthContentComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AuthContentComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AuthContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

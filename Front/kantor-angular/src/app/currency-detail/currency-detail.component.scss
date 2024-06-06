@@ -1,11 +1,12 @@
-.currency-detail-container{
+.currency-detail-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
 }
-.header-container{
+
+.header-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,6 +14,7 @@
   height: 30%;
   width: 100%;
 }
+
 .currency-details {
   color: #DBDBDB;
   display: flex;
@@ -31,7 +33,8 @@
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.04) 12.6%, rgba(255, 255, 255, 0.02) 100.13%);
   backdrop-filter: blur(25px);
 }
-.chart-container{
+
+.chart-container {
   height: 48vh;
   width: 50vw;
   display: flex;
@@ -40,6 +43,7 @@
   padding: 1vh;
   color: #DBDBDB;
 }
+
 #chart {
   //height: 80% !important;
   //width: 80% !important;
@@ -49,7 +53,8 @@
   height: 100%;
   width: 100%;
 }
-.chart-buttons-container{
+
+.chart-buttons-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,14 +63,16 @@
   height: 10%;
   gap: 1%;
 }
-.chart-buttons-inner-container{
+
+.chart-buttons-inner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
 }
-.chart-buttons{
+
+.chart-buttons {
   width: 10%;
   height: 100%;
   background: none;
@@ -73,14 +80,15 @@
   margin-right: 3px;
   border-radius: 10px;
   color: rgba(228, 228, 228, 0.80);
-  &:hover{
+
+  &:hover {
     border-radius: 10px;
     border: 1px solid #D2DDE1;
     box-shadow: 0px 0px 4px 2px #81BCCE;
   }
 }
 
-.custom-btn{
+.custom-btn {
   font-size: 1.4em;
   font-weight: bold;
   background: none;
@@ -90,7 +98,8 @@
 
   margin-bottom: 14px;
   color: rgba(228, 228, 228, 0.7);
-  &:hover{
+
+  &:hover {
     border-radius: 10px;
     color: #3cba9f;
     border: 2px solid #DBDBDB;

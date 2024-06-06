@@ -114,62 +114,65 @@
           </div>
 
           <div class="account-container">
-          <div class="custom-col" *ngFor="let account of accounts">
+            <div class="custom-col" *ngFor="let account of accounts">
 
-            <div class="custom-card">
-              <div class="custom-card-body">
+              <div class="custom-card">
+                <div class="custom-card-body">
 
-                <h5 class="custom-card-title">
-                  <p id="currency-info" class="custom-card-title">
-                    {{ currencyFlags[account.currencyCode] }}
-                    {{ account.currencyCode }}
-                  </p>
-                </h5>
-                <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
+                  <h5 class="custom-card-title">
+                    <p id="currency-info" class="custom-card-title">
+                      {{ currencyFlags[account.currencyCode] }}
+                      {{ account.currencyCode }}
+                    </p>
+                  </h5>
+                  <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
 
 
         <div class="right-down-container">
           <ng-container *ngIf="isLoggedIn; else notLoggedIn">
-          <div style="overflow: visible;" class="header-containerr">
-            <thead>
-            <tr>
-              <th>Ogólna historia transakcji</th>
-            </tr>
-            </thead>
-          </div>
-          <div class="trasactions-container">
-
-
-            <ng-container *ngFor="let transaction of transactions">
-              <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
-                <td>{{ transaction.amountOfForeginCurrency + ' ' + transaction.currencyId }}</td>
-                <td>{{ transaction.exchangeRate }}</td>
-                <td>{{ transaction.targetCurrency + ' PLN' }}</td>
-                <td><img class="svg image" src="assets/PAYOUT.svg"></td>
-                <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+            <div style="overflow: visible;" class="header-containerr">
+              <thead>
+              <tr>
+                <th>Ogólna historia transakcji</th>
               </tr>
-              <ng-template #elseBlock>
-                <tr class="transaction-row">
-                  <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
+              </thead>
+            </div>
+            <div class="trasactions-container">
+
+
+              <ng-container *ngFor="let transaction of transactions">
+                <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                  <td>{{ transaction.amountOfForeginCurrency + ' ' + transaction.currencyId }}</td>
                   <td>{{ transaction.exchangeRate }}</td>
-                  <td>{{ transaction.amountOfForeginCurrency + ' PLN' }}</td>
-                  <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
+                  <td>{{ transaction.targetCurrency + ' PLN' }}</td>
+                  <td><img class="svg image" src="assets/PAYOUT.svg"></td>
                   <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                 </tr>
-              </ng-template>
-            </ng-container>
+                <ng-template #elseBlock>
+                  <tr class="transaction-row">
+                    <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
+                    <td>{{ transaction.exchangeRate }}</td>
+                    <td>{{ transaction.amountOfForeginCurrency + ' PLN' }}</td>
+                    <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
+                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                  </tr>
+                </ng-template>
+              </ng-container>
 
 
-
-          </div>
+            </div>
           </ng-container>
           <ng-template #notLoggedIn>
-            <p class="welcome-text">Witamy w naszym kantorze internetowym! Cieszymy się, że tu jesteś. Oferujemy najlepsze kursy walut, abyś mógł zaoszczędzić na każdej transakcji. Nasza platforma jest bezpieczna, szybka i wygodna – wymieniaj waluty bez wychodzenia z domu. Rejestracja? Błyskawiczna i zajmuje tylko kilka minut. Dbamy o Twoje bezpieczeństwo dzięki zaawansowanym technologiom. Dołącz do grona naszych zadowolonych klientów i korzystaj z najlepszych kursów już teraz. Zapraszamy!</p>
+            <p class="welcome-text">Witamy w naszym kantorze internetowym! Cieszymy się, że tu jesteś. Oferujemy
+              najlepsze kursy walut, abyś mógł zaoszczędzić na każdej transakcji. Nasza platforma jest bezpieczna,
+              szybka i wygodna – wymieniaj waluty bez wychodzenia z domu. Rejestracja? Błyskawiczna i zajmuje tylko
+              kilka minut. Dbamy o Twoje bezpieczeństwo dzięki zaawansowanym technologiom. Dołącz do grona naszych
+              zadowolonych klientów i korzystaj z najlepszych kursów już teraz. Zapraszamy!</p>
           </ng-template>
         </div>
 

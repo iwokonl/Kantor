@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from '../user.service';
-import { AxiosService } from '../axios.service';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {UserService} from '../user.service';
+import {AxiosService} from '../axios.service';
 import {forkJoin, Subscription} from 'rxjs';
-import { CurrencyService } from '../currency.service';
+import {CurrencyService} from '../currency.service';
 import {catchError, map} from "rxjs/operators";
-import { of } from 'rxjs';
+import {of} from 'rxjs';
 import {CurrencyFlagsService} from "../currency-flags.service";
 
-import { Chart } from 'chart.js/auto'; // Import Chart from chart.js
+import {Chart} from 'chart.js/auto'; // Import Chart from chart.js
 import 'chartjs-adapter-date-fns'; // Import chartjs-adapter-date-fns for time functionality
 
 
@@ -38,10 +38,10 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
   charts: { [key: string]: Chart } = {};
 
 
-
   constructor(private axiosService: AxiosService, private userService: UserService, private currencyService: CurrencyService, private currencyFlagsService: CurrencyFlagsService) {
     this.currencyFlags = this.currencyFlagsService.getCurrencyFlags();
   }
+
   ngOnInit(): void {
     this.getCurrencyAccounts();
     this.isLoggedIn = this.axiosService.getAuthTocken() !== null;
@@ -113,7 +113,8 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
         plugins: {
           legend: {
             display: false,
-            onClick: (e, legendItem, legend) => {}
+            onClick: (e, legendItem, legend) => {
+            }
           },
           tooltip: {
             callbacks: {
@@ -124,7 +125,7 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
                   label += ': ';
                 }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat('en-US', { style: 'decimal' }).format(context.parsed.y) + ' PLN';
+                  label += new Intl.NumberFormat('en-US', {style: 'decimal'}).format(context.parsed.y) + ' PLN';
                 }
                 return label;
               }
@@ -218,37 +219,37 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
 
   printExchangeRates(): void {
     const currencyPairs = [
-      { from: 'EUR', to: 'PLN' },
-      { from: 'USD', to: 'PLN' },
-      { from: 'GBP', to: 'PLN' },
-      { from: 'USD', to: 'EUR' },
-      { from: 'USD', to: 'GBP' },
-      { from: 'USD', to: 'JPY' },
-      { from: 'EUR', to: 'USD' },
-      { from: 'EUR', to: 'GBP' },
-      { from: 'GBP', to: 'USD' },
-      { from: 'JPY', to: 'USD' },
-      { from: 'CAD', to: 'USD' },
-      { from: 'AUD', to: 'USD' },
-      { from: 'CHF', to: 'USD' },
-      { from: 'HKD', to: 'USD' },
+      {from: 'EUR', to: 'PLN'},
+      {from: 'USD', to: 'PLN'},
+      {from: 'GBP', to: 'PLN'},
+      {from: 'USD', to: 'EUR'},
+      {from: 'USD', to: 'GBP'},
+      {from: 'USD', to: 'JPY'},
+      {from: 'EUR', to: 'USD'},
+      {from: 'EUR', to: 'GBP'},
+      {from: 'GBP', to: 'USD'},
+      {from: 'JPY', to: 'USD'},
+      {from: 'CAD', to: 'USD'},
+      {from: 'AUD', to: 'USD'},
+      {from: 'CHF', to: 'USD'},
+      {from: 'HKD', to: 'USD'},
     ];
 
     currencyPairs.forEach(pair => {
       if (pair.from === 'PLN') {
         // When the base currency is PLN, directly use the rate from the API
         this.currencyService.getCurrencyDetails(pair.to).subscribe(details => {
-          this.exchangeRates.push({ from: pair.from, to: pair.to, rate: 1 / details.rates[0].mid });
+          this.exchangeRates.push({from: pair.from, to: pair.to, rate: 1 / details.rates[0].mid});
         });
       } else if (pair.to === 'PLN') {
         // When the target currency is PLN, directly use the rate from the API
         this.currencyService.getCurrencyDetails(pair.from).subscribe(details => {
-          this.exchangeRates.push({ from: pair.from, to: pair.to, rate: details.rates[0].mid });
+          this.exchangeRates.push({from: pair.from, to: pair.to, rate: details.rates[0].mid});
         });
       } else {
         // Otherwise, calculate the exchange rate
         this.currencyService.getExchangeRate(pair.from, pair.to).subscribe(rate => {
-          this.exchangeRates.push({ from: pair.from, to: pair.to, rate });
+          this.exchangeRates.push({from: pair.from, to: pair.to, rate});
         });
       }
     });
@@ -264,16 +265,22 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
 
     const requests = currencies.map(currency =>
       forkJoin({
-        todayRate: this.currencyService.getCurrencyDetails(currency).pipe(catchError(error => { console.error('Error fetching todayRate for ' + currency, error); return of(null); })),
-        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, dateAgo.toISOString().split('T')[0], today.toISOString().split('T')[0]).pipe(catchError(error => { console.error('Error fetching oneDayAgoRate for ' + currency, error); return of(null); }))
+        todayRate: this.currencyService.getCurrencyDetails(currency).pipe(catchError(error => {
+          console.error('Error fetching todayRate for ' + currency, error);
+          return of(null);
+        })),
+        oneDayAgoRate: this.currencyService.getCurrencyHistory(currency, dateAgo.toISOString().split('T')[0], today.toISOString().split('T')[0]).pipe(catchError(error => {
+          console.error('Error fetching oneDayAgoRate for ' + currency, error);
+          return of(null);
+        }))
       }).pipe(
-        map(({ todayRate, oneDayAgoRate }) => {
+        map(({todayRate, oneDayAgoRate}) => {
           const rate = todayRate.rates[0].mid;
           const oldRate = oneDayAgoRate.rates[0].mid;
           const change = rate - oldRate;
           const percentageChange = (change / oldRate) * 100;
 
-          return { from: currency, to: 'PLN', rate, change, percentageChange };
+          return {from: currency, to: 'PLN', rate, change, percentageChange};
         })
       )
     );

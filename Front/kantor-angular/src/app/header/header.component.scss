@@ -1,4 +1,4 @@
-.header{
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,14 +6,14 @@
   width: 100%;
 }
 
-.material-icons{
+.material-icons {
   color: #DBDBDB;
   cursor: pointer;
   margin-left: 15px;
   margin-top: 8px;
   font-size: 1.7em;
 
-  &:hover{
+  &:hover {
     color: #5fe5ee;
   }
 }

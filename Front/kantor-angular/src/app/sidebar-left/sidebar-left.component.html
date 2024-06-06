@@ -4,7 +4,8 @@
     <a class="navbar-brand" routerLink="/">
       <img class="logo" src="assets/logo.svg" alt="Kantor Walut">
     </a>
-    <a class="nav-item nav-link text-class" routerLink="/" routerLinkActive="active-icon" [routerLinkActiveOptions]="{exact: true}">
+    <a class="nav-item nav-link text-class" routerLink="/" routerLinkActive="active-icon"
+       [routerLinkActiveOptions]="{exact: true}">
       <img *ngIf="router.url === '/'; else inactiveHomeIcon" class="icons-kantor active-icon"
            src="assets/home_icon_active.svg" alt="settings">
       <ng-template #inactiveHomeIcon>
@@ -37,7 +38,8 @@
         Ustawienia
       </a>
       <a class="nav-item nav-link text-class" routerLink="/currency-account" routerLinkActive="active-icon">
-        <img *ngIf="router.url === '/currency-account'; else inactiveCurrencyAccountIcon" class="icons-kantor active-icon"
+        <img *ngIf="router.url === '/currency-account'; else inactiveCurrencyAccountIcon"
+             class="icons-kantor active-icon"
              src="assets/currency_account_active.svg" alt="konta-walutowe">
         <ng-template #inactiveCurrencyAccountIcon>
           <img class="icons-kantor" src="assets/currency-account.svg" alt="konta-walutowe">

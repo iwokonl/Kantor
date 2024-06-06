@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {AxiosService} from "../axios.service";
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { Title } from '@angular/platform-browser';
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -11,7 +11,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar, private titleService: Title) { }
+  constructor(private axiosService: AxiosService, private router: Router, private snackBar: MatSnackBar, private titleService: Title) {
+  }
 
   login: string = '';
   password: string = '';

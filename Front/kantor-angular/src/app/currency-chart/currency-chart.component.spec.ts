@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CurrencyChartComponent } from './currency-chart.component';
+import {CurrencyChartComponent} from './currency-chart.component';
 
 describe('CurrencyChartComponent', () => {
   let component: CurrencyChartComponent;
@@ -10,8 +10,8 @@ describe('CurrencyChartComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CurrencyChartComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CurrencyChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

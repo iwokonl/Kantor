@@ -10,7 +10,8 @@ import {AxiosService} from "../axios.service";
 export class ContentsComponent {
   componentToShow: string = "welcome";
 
-  constructor(private axiosService: AxiosService) { }
+  constructor(private axiosService: AxiosService) {
+  }
 
   onRegister(input: any) {
     this.axiosService.request(
@@ -23,7 +24,6 @@ export class ContentsComponent {
         username: input.login,
         password: input.password
       }
-
     ).then((response) => {
       this.axiosService.setAuthTocken(response.data.token);
       this.componentToShow = "messages";
