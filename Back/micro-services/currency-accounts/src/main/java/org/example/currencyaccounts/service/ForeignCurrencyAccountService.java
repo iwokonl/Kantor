@@ -107,6 +107,10 @@ public class ForeignCurrencyAccountService {
         if (account.isEmpty()) {
             throw new AppExeption("Account is not yours", "currency-accounts", HttpStatus.NOT_FOUND);
         }
+        ForeignCurrencyAccount foreignCurrencyAccount = account.get();
+        if (foreignCurrencyAccount.getBalance().compareTo(BigDecimal.ZERO) != 0) {
+            throw new AppExeption("Account balance is not 0", "currency-accounts", HttpStatus.BAD_REQUEST);
+        }
         try {
             foreignCurrencyAccountRepo.deleteById(id);
         } catch (Exception e) {
