@@ -19,6 +19,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,6 +95,7 @@ public class ForeignCurrencyAccountService {
             throw new AppExeption("User not found","currency-accounts", HttpStatus.NOT_FOUND);
         }
         List<ForeignCurrencyAccount> accounts = foreignCurrencyAccountRepo.findAllByUserId(userDtoReal.getId());
+        Collections.reverse(accounts);
         return foreignCurrencyAccountMapper.toForeignCurrencyAccountDtoList(accounts);
     }
 
