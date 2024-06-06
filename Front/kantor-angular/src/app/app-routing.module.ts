@@ -8,13 +8,13 @@ import { CurrencyAccountComponent } from './currency-account/currency-account.co
 import { SettingsComponent} from "./settings/settings.component";
 import {WelcomeContentComponent} from "./welcome-content/welcome-content.component";
 import { ExchangeRatesComponent } from './exchange-rates/exchange-rates.component';
-
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   // {path: '', component: HomeComponentComponent},
   {path: '', component: WelcomeContentComponent},
-  {path: 'login', component: LoginFormComponent},
-  {path: 'register', component: RegisterFormComponent},
+  {path: 'login', component: LoginFormComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterFormComponent, canActivate: [AuthGuard]},
   { path: 'currency-account', component: CurrencyAccountComponent},
   { path: 'currency/:code', component: CurrencyDetailComponent },
   { path: 'settings', component: SettingsComponent},
