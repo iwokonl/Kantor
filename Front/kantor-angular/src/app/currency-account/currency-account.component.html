@@ -143,12 +143,12 @@
             <div class>
               <table>
                 <thead>
-                <tr>
-                  <th>Ilość</th>
-                  <th>Kurs</th>
-                  <th>Wartość</th>
-                  <th>Typ transakcji</th>
-                  <th>Data</th>
+                <tr class="one-row">
+                  <th class="columns">Ilość</th>
+                  <th class="columns">Kurs</th>
+                  <th class="columns">Wartość</th>
+                  <th class="columns">Typ transakcji</th>
+                  <th class="columns">Data</th>
                 </tr>
                 </thead>
               </table>
@@ -157,20 +157,20 @@
               <table>
                 <tbody>
                 <ng-container *ngFor="let transaction of transactions">
-                  <tr *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
-                    <td>{{ transaction.amountOfForeginCurrency  + ' ' + selectedAccount.currencyCode}}</td>
-                    <td>{{ transaction.exchangeRate }}</td>
-                    <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td><img class="svg image" src="assets/PAYOUT.svg"></td>
-                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                  <tr class="one-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                    <td class="columns">{{ transaction.amountOfForeginCurrency  + ' ' + selectedAccount.currencyCode}}</td>
+                    <td class="columns">{{ transaction.exchangeRate }}</td>
+                    <td class="columns">{{ transaction.targetCurrency  + ' PLN' }}</td>
+                    <td class="columns"><img class="svg image" src="assets/PAYOUT.svg"></td>
+                    <td class="columns">{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                   </tr>
                   <ng-template #elseBlock>
-                    <tr>
-                    <td>{{ transaction.targetCurrency + ' ' + selectedAccount.currencyCode }}</td>
-                    <td>{{ transaction.exchangeRate }}</td>
-                    <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
-                    <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
-                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                    <tr class="one-row">
+                    <td class="columns">{{ transaction.targetCurrency + ' ' + selectedAccount.currencyCode }}</td>
+                    <td class="columns">{{ transaction.exchangeRate }}</td>
+                    <td class="columns">{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
+                    <td class="columns"><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
+                    <td class="columns">{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
                     </tr>
                   </ng-template>
                 </ng-container>
