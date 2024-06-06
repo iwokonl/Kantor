@@ -76,9 +76,9 @@ h1 {
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.12) 12.6%, rgba(255, 255, 255, 0.06) 100.13%);
 }
 
-.profile-active, .security-active, .help-active {
+.profile-active, .help-active {
   height: 100%;
-  width: 33.33%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,9 +113,9 @@ h1 {
   background: linear-gradient(94deg, rgba(255, 255, 255, 0.12) 12.6%, rgba(255, 255, 255, 0.06) 100.13%);
 }
 
-.profile-inactive, .security-inactive, .help-inactive {
+.profile-inactive, .help-inactive {
   height: 100%;
-  width: 33.33%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

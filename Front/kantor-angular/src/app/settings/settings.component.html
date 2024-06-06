@@ -13,12 +13,6 @@
           <div class="profile-inactive" *ngIf="!isProfileSelected">
             <button class="buttons-inactive" (click)="selectCategory('profile')">Profile</button>
           </div>
-          <div class="security-active" *ngIf="isSecuritySelected">
-            <button class="buttons-active" (click)="selectCategory('security')">Security</button>
-          </div>
-          <div class="security-inactive" *ngIf="!isSecuritySelected">
-            <button class="buttons-inactive" (click)="selectCategory('security')">Security</button>
-          </div>
           <div class="help-active" *ngIf="isHelpSelected">
             <button class="buttons-active" (click)="selectCategory('help')">Help</button>
           </div>
@@ -87,12 +81,7 @@
           </div>
         </div>
       </div>
-
-      <div class="selected-security" *ngIf="isSecuritySelected">
-        <!-- Security settings go here -->
-        <p> Bezpieczeństwo </p>
-
-      </div>
+      
 
       <div class="selected-help" *ngIf="isHelpSelected">
         <!-- Help settings go here -->

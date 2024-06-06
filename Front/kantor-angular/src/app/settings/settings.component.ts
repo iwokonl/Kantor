@@ -68,6 +68,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }).then((response) => {
       console.log(response);
     });
+    this.toggleEditUsername();
   }
 
   changeUserFirstName(): void {
