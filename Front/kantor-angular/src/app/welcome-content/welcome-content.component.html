@@ -180,29 +180,29 @@
       </div>
     </div>
 
+    <div class="right-container-outer">
+      <div class="right-container">
+        <ng-template #currencyPair let-exchangeRate>
+          <div class="pair">
+            <p class="exchange-rate-text">{{ exchangeRate.from }}
+              = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
+          </div>
+        </ng-template>
 
-    <div class="right-container">
-      <ng-template #currencyPair let-exchangeRate>
-        <div class="pair">
-          <p class="exchange-rate-text">{{ exchangeRate.from }}
-            = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
-        </div>
-      </ng-template>
+        <div class="popular-pairs">
+          <h2>Najpopularniejsze pary walutowe</h2>
+          <div class="pairs">
+            <div class="column">
+              <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 15)">
+                <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
+              </ng-container>
 
-      <div class="popular-pairs">
-        <h2>Najpopularniejsze pary walutowe</h2>
-        <div class="pairs">
-          <div class="column">
-            <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 15)">
-              <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
-            </ng-container>
+            </div>
 
           </div>
 
         </div>
-
       </div>
     </div>
-
   </div>
 </div>
