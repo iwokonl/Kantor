@@ -132,7 +132,9 @@
         </div>
         </div>
 
+
         <div class="right-down-container">
+          <ng-container *ngIf="isLoggedIn; else notLoggedIn">
           <div style="overflow: visible;" class="header-containerr">
             <thead>
             <tr>
@@ -163,7 +165,12 @@
             </ng-container>
 
 
+
           </div>
+          </ng-container>
+          <ng-template #notLoggedIn>
+            <p>Witamy w naszym kantorze internetowym! Cieszymy się, że tu jesteś. Oferujemy najlepsze kursy walut, abyś mógł zaoszczędzić na każdej transakcji. Nasza platforma jest bezpieczna i szybka, zapewniając wygodę wymiany walut bez wychodzenia z domu. Rejestracja jest prosta i zajmuje tylko kilka minut. Dbamy o Twoje bezpieczeństwo, stosując zaawansowane technologie zabezpieczeń. Dołącz do grona naszych zadowolonych klientów i korzystaj z najlepszych kursów walut już teraz! Zapraszamy!</p>
+          </ng-template>
         </div>
 
 
@@ -186,8 +193,11 @@
             <ng-container *ngFor="let exchangeRate of exchangeRates.slice(0, 15)">
               <ng-container *ngTemplateOutlet="currencyPair; context: {$implicit: exchangeRate}"></ng-container>
             </ng-container>
+
           </div>
+
         </div>
+
       </div>
     </div>
 
