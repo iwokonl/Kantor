@@ -76,29 +76,23 @@ java -jar [nazwa_pliku_jar] # np. java -jar kantor-0.0.1-SNAPSHOT.jar w Target. 
 
 
 ### Przykłady użycia
-Pierwsze co widzi użytkownik to strona główna. Zawiera ona wyszukiwarkę walut, dzięki której potencjalny klient może sprawdzić czy kantor oferuje wymiany walut, które go interesują. Poruszający się pasek wraz z niedawnymi spadkami i wzrostem walut. Pary walutowe które cieszą się największą popularnością. Na końcu najpotrzebniejsze odnośniki takie jak strona główna, kursy walut, ustawienia, konta walutowe czy zaloguj się/wyloguj się/zajerestruj się.
+Pierwsze co widzi użytkownik to strona główna. Zawiera ona wyszukiwarkę walut, dzięki której potencjalny klient może sprawdzić czy kantor oferuje wymiany walut, które go interesują. Poruszający się pasek wraz z niedawnymi spadkami i wzrostem walut. Pary walutowe które cieszące się największą popularnością. Na środku widnieją również wykresy trzech przykładowych walut. Na końcu najpotrzebniejsze odnośniki takie jak strona główna, kursy walut, ustawienia, konta walutowe czy zaloguj się/wyloguj się/zajerestruj się.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/1.png?raw=true)
-
 
 Na następnym zrzucie ekranowym widać dobrze funkcjonującą wyszukiwarkę. W bazie znajdują się wszystkie waluty obsuługiwane przez NBP API.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/2.png?raw=true)
 
-
 Z kolei tutaj mamy przykład kursu Dolara amerykańskiego wraz z dokładną wartością oraz wykresem z ostatnich 3 miesięcy. Istnieje, także możliwość zobaczenia wykresu na przestrzeni jednego tygonia, dwóch tygodni, jednego miesiąca oraz roku.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/3.png?raw=true)
-
 
 Na tym zrzucie ekranowym widać już założone konto walutowe z możliwością wpłaty i wypłaty funduszy. Konto udostępnia takie informacje jak ilość pobranych lub wpłaconych funduszy oraz po jakim kursie te opercaje zostały przeprowadzone, wartość w złotówkach, typ transakcji oraz jej data. W prawym górnym roku, jest także przycisk odpowiedzialny za usuwanie konta walutowego.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/5.png?raw=true)
 
-
 Obsługą wpłaty i wypłat funduszy zajmuje się API Paypal. Pozwala to na bezpieczne przeprowadzenie transakcji.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/6.png?raw=true)
 
-
 Na końcu chcielibyśmy, także pokazać ustawienia, w których można zmienić dane swojego zarejestrowanego konta.
 ![alt text](https://github.com/Patryk920n/Patryk/blob/main/7.png?raw=true)
-
 
 ### API
 Aplikacja wykorzystuje interfejs [API Narodowego Banku Polskiego (NBP)](https://api.nbp.pl) do pobierania kursów walut oraz cen złota w formacie XML oraz JSON.
