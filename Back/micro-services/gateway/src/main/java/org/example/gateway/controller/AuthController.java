@@ -26,7 +26,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody CredentialsDto coridentialsDto) {
-
         UserDto user = userService.login(coridentialsDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.ok(user);
@@ -78,12 +77,13 @@ public class AuthController {
 
     @PutMapping("/lastnameChange")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void lastnameChange(@RequestBody UserDto userDto){
+    public void lastnameChange(@RequestBody UserDto userDto) {
         userService.lastnameChange(userDto);
     }
+
     @PutMapping("/emailChange")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void emailChange(@RequestBody UserDto userDto){
+    public void emailChange(@RequestBody UserDto userDto) {
         userService.emailChange(userDto);
     }
 
