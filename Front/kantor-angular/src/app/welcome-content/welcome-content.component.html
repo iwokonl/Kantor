@@ -1,4 +1,3 @@
-
 <div class="welcome-page-container">
   <div class="banner-outer-container">
     <div class="banner-inner-container">
@@ -14,7 +13,7 @@
                        'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
                        'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
                      }">
-              {{ exchangeRateChange.change | number:'1.4-4'}}
+              {{ exchangeRateChange.change | number:'1.4-4' }}
               <span class="arrow"
                     [ngClass]="{
                     'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
@@ -39,7 +38,7 @@
                        'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
                        'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
                      }">
-              {{ exchangeRateChange.change | number:'1.4-4'}}
+              {{ exchangeRateChange.change | number:'1.4-4' }}
               <span class="arrow"
                     [ngClass]="{
                     'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
@@ -64,7 +63,7 @@
                        'negative': (exchangeRateChange.change < 0) || ((exchangeRateChange?.percentageChange ?? 0) < 0),
                        'zero': (exchangeRateChange.change == 0) || ((exchangeRateChange?.percentageChange ?? 0) == 0)
                      }">
-              {{ exchangeRateChange.change | number:'1.4-4'}}
+              {{ exchangeRateChange.change | number:'1.4-4' }}
               <span class="arrow"
                     [ngClass]="{
                     'up': (exchangeRateChange.change > 0) || ((exchangeRateChange?.percentageChange ?? 0) > 0),
@@ -85,18 +84,32 @@
     <div class="left-container">
 
       <div class="upper-container">
-        <div class="chart-container"><canvas id="chart" style="margin-top: 0;"></canvas></div>
+        <div class="chart-container">
+          <canvas id="chart" style="margin-top: 0;"></canvas>
+        </div>
       </div>
 
       <div class="lower-container">
+
         <div class="left-down-container">
+          <div style="overflow: visible;" class="header-containerr">
+            <thead>
+            <tr>
+              <th>Ogólna historia transakcji</th>
+            </tr>
+            </thead>
+          </div>
+
+          <div class="account-container">
           <div class="custom-col" *ngFor="let account of accounts">
+
             <div class="custom-card">
               <div class="custom-card-body">
+
                 <h5 class="custom-card-title">
                   <p id="currency-info" class="custom-card-title">
                     {{ currencyFlags[account.currencyCode] }}
-                    {{account.currencyCode}}
+                    {{ account.currencyCode }}
                   </p>
                 </h5>
                 <p class="custom-card-text"> {{ account.balance + ' ' + account.currencyCode }}</p>
@@ -104,27 +117,39 @@
             </div>
           </div>
         </div>
+        </div>
 
         <div class="right-down-container">
+          <div style="overflow: visible;" class="header-containerr">
+            <thead>
+            <tr>
+              <th>Ogólna historia transakcji</th>
+            </tr>
+            </thead>
+          </div>
           <div class="trasactions-container">
-                <ng-container *ngFor="let transaction of transactions">
-                  <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
-                    <td>{{ transaction.amountOfForeginCurrency  + ' ' + transaction.currencyId}}</td>
-                    <td>{{ transaction.exchangeRate }}</td>
-                    <td>{{ transaction.targetCurrency  + ' PLN' }}</td>
-                    <td><img class="svg image" src="assets/PAYOUT.svg"></td>
-                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-                  </tr>
-                  <ng-template #elseBlock>
-                    <tr class="transaction-row">
-                    <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
-                    <td>{{ transaction.exchangeRate }}</td>
-                    <td>{{ transaction.amountOfForeginCurrency+ ' PLN' }}</td>
-                    <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
-                    <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
-                    </tr>
-                  </ng-template>
-                </ng-container>
+
+
+            <ng-container *ngFor="let transaction of transactions">
+              <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
+                <td>{{ transaction.amountOfForeginCurrency + ' ' + transaction.currencyId }}</td>
+                <td>{{ transaction.exchangeRate }}</td>
+                <td>{{ transaction.targetCurrency + ' PLN' }}</td>
+                <td><img class="svg image" src="assets/PAYOUT.svg"></td>
+                <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+              </tr>
+              <ng-template #elseBlock>
+                <tr class="transaction-row">
+                  <td>{{ transaction.targetCurrency + ' ' + transaction.currencyId }}</td>
+                  <td>{{ transaction.exchangeRate }}</td>
+                  <td>{{ transaction.amountOfForeginCurrency + ' PLN' }}</td>
+                  <td><img src="assets/{{ transaction.typeOfTransaction }}.svg"></td>
+                  <td>{{ transaction.transactionDate | date:'dd-MM-yy HH:mm' }}</td>
+                </tr>
+              </ng-template>
+            </ng-container>
+
+
           </div>
         </div>
 
@@ -133,13 +158,13 @@
     </div>
 
 
-
     <div class="right-container">
       <ng-template #currencyPair let-exchangeRate>
-      <div class="pair">
-        <p class="exchange-rate-text">{{ exchangeRate.from }} = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
-      </div>
-    </ng-template>
+        <div class="pair">
+          <p class="exchange-rate-text">{{ exchangeRate.from }}
+            = {{ exchangeRate.rate | number:'1.4-4' }} {{ exchangeRate.to }}</p>
+        </div>
+      </ng-template>
 
       <div class="popular-pairs">
         <h2>Najpopularniejsze pary walutowe</h2>
