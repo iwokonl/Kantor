@@ -266,6 +266,16 @@
     border: solid 5px transparent;
   }
 }
+.header-containerr {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.22);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  background-attachment: fixed; /* Dodaj tę linię */
+}
+
 
 .custom-col{
   display: flex;

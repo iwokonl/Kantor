@@ -89,7 +89,15 @@
       </div>
 
       <div class="lower-container">
+
         <div class="left-down-container">
+          <div style="overflow: visible;" class="header-containerr">
+            <thead>
+            <tr>
+              <th>Konta walutowe</th>
+            </tr>
+            </thead>
+          </div>
           <div class="custom-col" *ngFor="let account of accounts">
             <div class="custom-card">
               <div class="custom-card-body">
@@ -106,7 +114,16 @@
         </div>
 
         <div class="right-down-container">
+          <div style="overflow: visible;" class="header-containerr">
+            <thead>
+            <tr>
+              <th>Historia tranzakcji</th>
+            </tr>
+            </thead>
+          </div>
           <div class="trasactions-container">
+
+
                 <ng-container *ngFor="let transaction of transactions">
                   <tr class="transaction-row" *ngIf="transaction.typeOfTransaction == 'PAYOUT'; else elseBlock">
                     <td>{{ transaction.amountOfForeginCurrency  + ' ' + transaction.currencyId}}</td>
@@ -125,6 +142,8 @@
                     </tr>
                   </ng-template>
                 </ng-container>
+
+
           </div>
         </div>
 
