@@ -4,7 +4,7 @@
       <app-search-bar (searchChange)="handleSearchChange($event)"></app-search-bar>
     </form>
   </div>
-  <div class="refresh-icon-container" *ngIf="isLoggedIn" (click)="refreshToken()">
+  <div class="refresh-icon-container" [class.hidden]="!isLoggedIn" (click)="refreshToken()">
     <i class="material-icons">autorenew</i>
   </div>
 </div>
