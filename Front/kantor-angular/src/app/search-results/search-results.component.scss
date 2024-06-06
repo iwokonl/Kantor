@@ -3,6 +3,9 @@
   font-family: "Twemoji Country Flags", "Helvetica", serif;
   text-decoration: none;
   color: #DBDBDB;
+  &:hover{
+    color: #5fe5ee;
+  }
 }
 
 .column:nth-child(1) {

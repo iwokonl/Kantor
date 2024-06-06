@@ -310,6 +310,9 @@ a:hover{
 }
 
 .no-accounts-message {
+  position: absolute;
+  top: 40%;
+  left: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
