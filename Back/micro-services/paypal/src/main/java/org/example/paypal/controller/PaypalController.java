@@ -123,13 +123,6 @@ public class PaypalController {
             }
 
             CurrencyDto currencyDto = currency.get();
-            logger.error("asdasdasddasadsdasasddasasdasdkut" + payoutRequestPaypalDto.total());
-            PayoutBatch payoutBatch = paypalService.createPayout(
-                    payoutRequestPaypalDto.receiverEmail(),
-                    payoutRequestPaypalDto.total(),
-                    currencyDto.getCode()
-            );
-            logger.info("Create payout");
             ApiService apiService = new ApiService();
             String json = apiService.callExternalApi(currencyDto.getCode());
             JSONObject jsonObject = new JSONObject(json);
@@ -137,6 +130,16 @@ public class PaypalController {
 
             double mid = ratesObject.getDouble("mid");
             BigDecimal total = BigDecimal.valueOf(payoutRequestPaypalDto.total()).multiply(BigDecimal.valueOf(mid));
+            logger.error("asdasdasddasadsdasasddasasdasdkut" + payoutRequestPaypalDto.total());
+            PayoutBatch payoutBatch = paypalService.createPayout(
+                    payoutRequestPaypalDto.receiverEmail(),
+                    total.doubleValue(),
+                    "PLN"
+            );
+            logger.info("Create payout");
+
+
+            logger.error("Iwoasdasdads"+String.valueOf(payoutRequestPaypalDto.total()));
             paypalService.removeAmountToKantorAccount(payoutRequestPaypalDto.currencyId(), String.valueOf(userDto.getId()), payoutRequestPaypalDto.total());
             AddTransactionDto addTransactionDto = AddTransactionDto.builder()
                     .typeOfTransaction("PAYOUT")
