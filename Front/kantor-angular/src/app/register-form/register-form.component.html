@@ -15,7 +15,12 @@
       <div class="form-group">
         <label for="email">Adres e-mail</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Wpisz adres e-mail"
-               [(ngModel)]="email" required>
+               [formControl]="email">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+<!--          <div *ngIf="email.errors?.['required']">Email is required.</div>-->
+<!--          <div *ngIf="email.errors?.['email']">Email must be a valid email address.</div>-->
+<!--          <div *ngIf="email.errors?.['pattern']">Email must match the pattern.</div>-->
+        </div>
       </div>
       <div class="form-group">
         <label for="username">Login</label>
