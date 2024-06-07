@@ -259,7 +259,9 @@ export class WelcomeContentComponent implements OnInit, OnDestroy {
     const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'JPY', 'CAD', 'AUD', 'CZK', 'DKK', 'NOK', 'SEK'];
 
     const today = new Date();
-    let daysAgo = today.getDay() === 0 ? 2 : 1; // If today is Sunday, set daysAgo to 2, otherwise 1
+    let hours = today.getHours();
+    let minutes = today.getMinutes();
+    let daysAgo = (today.getDay() === 0 || hours < 12 || (hours === 12 && minutes < 15)) ? 2 : 1;// If today is Sunday or time is before 12.15 PM, set daysAgo to 2, otherwise 1
     let dateAgo = new Date(today);
     dateAgo.setDate(today.getDate() - daysAgo);
 
